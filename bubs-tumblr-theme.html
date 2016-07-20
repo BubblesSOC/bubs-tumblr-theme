@@ -1,0 +1,402 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>{Title}{block:SearchPage} ({lang:Search results for SearchQuery}){/block:SearchPage}{block:PermalinkPage}{block:PostSummary} — {PostSummary}{/block:PostSummary}{/block:PermalinkPage}</title>
+        {block:Description}
+        <meta name="description" content="{MetaDescription}">
+        {/block:Description}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Theme Options -->
+        <meta name="text:Ask Link Label" content="">
+        <meta name="text:Submit Link Label" content="">
+        <meta name="text:Alternate Description" content="">
+        <!-- /Theme Options -->
+
+        <link rel="shortcut icon" href="{Favicon}">
+        <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
+        <link rel="alternate" type="application/rss+xml" href="{RSS}">
+        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic&subset=latin,latin-ext">
+
+        <style>
+
+            /* Custom CSS */
+        </style>
+
+        <!--<script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>-->
+    </head>
+    <body
+    {block:IndexPage}class="index{block:SearchPage} search{block:NoSearchResults} no-results{/block:NoSearchResults}{/block:SearchPage}{block:TagPage} tag-page{/block:TagPage}"{/block:IndexPage}
+    {block:PermalinkPage}class="permalink"{/block:PermalinkPage}
+    {block:TagPage}data-tag="{PlaintextTag}"{/block:TagPage}
+    >
+
+        <header id="blog-header">
+            <!--<form action="/search" method="get" id="search-form">
+                <span class="icon-search"></span>
+                <input type="text" name="q" value="{SearchQuery}" placeholder="{lang:Search}" id="search-field"/>
+            </form>-->
+
+            <h1 id="blog-title"><a href="/" title="{Title}">{Title}</a></h1>
+            {block:IfAlternateDescription}
+            <h2 id="blog-description">{text:Alternate Description}</h2>
+            {/block:IfAlternateDescription}
+            {block:IfNotAlternateDescription}{block:Description}
+            <h2 id="blog-description">{Description}</h2>
+            {/block:Description}{/block:IfNotAlternateDescription}
+
+            <nav id="blog-nav">
+                <ul>
+                    {block:HasPages}
+                    {block:Pages}
+                    <li><a href="{URL}" title="{Label}">{Label}</a></li>
+                    {/block:Pages}
+                    {/block:HasPages}
+
+                    <li><a href="/archive" title="{lang:Archive}">{lang:Archive}</a></li>
+
+                    {block:SubmissionsEnabled}
+                    {block:IfSubmitLinkLabel}
+                    <li><a href="/submit" title="{text:Submit Link Label}">{text:Submit Link Label}</a></li>
+                    {/block:IfSubmitLinkLabel}
+                    {block:IfNotSubmitLinkLabel}
+                    <li><a href="/submit" title="{SubmitLabel}">{SubmitLabel}</a></li>
+                    {/block:IfNotSubmitLinkLabel}
+                    {/block:SubmissionsEnabled}
+
+                    {block:AskEnabled}
+                    {block:IfAskLinkLabel}
+                    <li><a href="/ask" title="{text:Ask Link Label}">{text:Ask Link Label}</a></li>
+                    {/block:IfAskLinkLabel}
+                    {block:IfNotAskLinkLabel}
+                    <li><a href="/ask" title="{AskLabel}">{AskLabel}</a></li>
+                    {/block:IfNotAskLinkLabel}
+                    {/block:AskEnabled}
+                </ul>
+            </nav>
+        </header> <!-- #blog-header -->
+
+        <main id="posts-container">
+
+            {block:Posts inlineMediaWidth="500" inlineNestedMediaWidth="500"}
+            <article id="{PostID}" class="post type-{PostType} {TagsAsClasses}">
+
+                {block:Text}
+                <!-- Text Post -->
+                {block:Title}
+                <h1 class="post-title">
+                    {block:IndexPage}<a href="{Permalink}" title="{Title}">{/block:IndexPage}
+                    {Title}
+                    {block:IndexPage}</a>{/block:IndexPage}
+                </h1>
+                {/block:Title}
+                <div class="post-body">
+                    {Body}
+                </div>
+                <!-- /Text Post -->
+                {/block:Text}
+
+
+                {block:Photo}
+                <!-- Photo Post -->
+                <figure class="photo-container">
+                    {block:IndexPage}
+                    <a href="{Permalink}" class="photo-link" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" data-lowres="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}">
+                        <img src="{PhotoURL-500}" alt="{PhotoAlt}" class="post-photo">
+                    </a>
+                    {/block:IndexPage}
+
+                    {block:PermalinkPage}
+                    {LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" class="post-photo">{LinkCloseTag}
+                    {/block:PermalinkPage}
+
+                    {block:Caption}
+                    <figcaption class="caption">
+                        {Caption}
+                    </figcaption>
+                    {/block:Caption}
+                </figure>
+                <!-- /Photo Post -->
+                {/block:Photo}
+
+
+                {block:Panorama}
+                <!-- Panorama Post -->
+                <figure class="photo-container panorama">
+                    {LinkOpenTag}<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" class="post-photo">{LinkCloseTag}
+
+                    {block:Caption}
+                    <figcaption class="caption">
+                        {Caption}
+                    </figcaption>
+                    {/block:Caption}
+                </figure>
+                <!-- /Panorama Post -->
+                {/block:Panorama}
+
+
+                {block:Photoset}
+                <!-- Photoset Post -->
+                <figure class="photo-container photoset" id="photoset-{PostID}" data-id="{PostID}" data-jslayout="{JSPhotosetLayout}" data-layout="{PhotosetLayout}">
+                    {block:Photos}
+                    <a href="{PhotoURL-HighRes}" class="photo-link" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" data-lowres="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}">
+                        <img src="{PhotoURL-HighRes}" alt="{PlaintextCaption}" class="post-photo">
+                    </a>
+                    {/block:Photos}
+
+                    {block:Caption}
+                    <figcaption class="caption">
+                        {Caption}
+                    </figcaption>
+                    {/block:Caption}
+                </figure>
+                <!-- /Photoset Post -->
+                {/block:Photoset}
+
+
+                {block:Quote}
+                <!-- Quote Post -->
+                <blockquote class="quote-container {Length}">
+                    {Quote}
+
+                    {block:Source}
+                    <footer class="caption">
+                        &mdash;
+                        <cite class="quote-source">
+                            {Source}
+                        </cite>
+                    </footer>
+                    {/block:Source}
+                </blockquote>
+                <!-- /Quote Post -->
+                {/block:Quote}
+
+
+                {block:Link}
+                <!-- Link Post -->
+                <a href="{URL}" class="link-container" {Target}>
+                    {block:Thumbnail}<img src="{Thumbnail-HighRes}" alt="{PlaintextName}">{/block:Thumbnail}
+
+                    <h1 class="post-title link-name">{Name} &rsaquo;</h1>
+                    {block:Excerpt}<div class="link-excerpt">{Excerpt}</div>{/block:Excerpt}
+                    {block:Author}<div class="link-author">By {Author}</div>{/block:Author}
+                    {block:Host}<div class="link-host">{Host}</div>{/block:Host}
+                </a>
+                {block:Description}
+                <div class="caption">
+                    {Description}
+                </div>
+                {/block:Description}
+                <!-- /Link Post -->
+                {/block:Link}
+
+
+                {block:Chat}
+                <!-- Chat Post -->
+                {block:Title}
+                <h1 class="post-title chat-title">
+                    {block:IndexPage}<a href="{Permalink}" title="{Title}">{/block:IndexPage}
+                    {Title}
+                    {block:IndexPage}</a>{/block:IndexPage}
+                </h1>
+                {/block:Title}
+                <ul class="chat-container">
+                    {block:Lines}
+                    <li class="chat-line {Alt}">
+                        {block:Label}<strong class="line-label">{Label}</strong>{/block:Label}
+                        {Line}
+                    </li>
+                    {/block:Lines}
+                </ul>
+                <!-- /Chat Post -->
+                {/block:Chat}
+
+
+                {block:Audio}
+                <!-- Audio Post -->
+                {block:AudioPlayer}
+                <!-- Default Audio Player -->
+                <header class="audio-info">
+                    {block:TrackName}<h1 class="post-title track-name">{TrackName}</h1>{/block:TrackName}
+                    {block:Artist}<h2 class="artist-name">{Artist}</h2>{/block:Artist}
+                    {block:Album}<h3 class="album-name">{Album}</h3>{/block:Album}
+                    {block:AlbumArt}
+                    <img src="{AlbumArtURL}" alt="{PlaintextAlbum}" class="album-cover">
+                    {/block:AlbumArt}
+                </header>
+
+                <figure class="audio-container">
+                    {AudioPlayer}
+
+                    {block:Caption}
+                    <figcaption class="caption">
+                        {Caption}
+                    </figcaption>
+                    {/block:Caption}
+                </figure>
+                <!-- /Default Audio Player -->
+                {/block:AudioPlayer}
+
+                {block:AudioEmbed}
+                <!-- Embedded Audio Player -->
+                <figure class="audio-container">
+                    {block:IndexPage}{AudioEmbed-500}{/block:IndexPage}
+                    {block:PermalinkPage}{AudioEmbed}{/block:PermalinkPage}
+
+                    {block:Caption}
+                    <figcaption class="caption">
+                        {Caption}
+                    </figcaption>
+                    {/block:Caption}
+                </figure>
+                <!-- /Embedded Audio Player -->
+                {/block:AudioEmbed}
+                <!-- /Audio Post -->
+                {/block:Audio}
+
+
+                {block:Video}
+                <!-- Video Post -->
+                <figure class="video-container">
+                    {block:IndexPage}{VideoEmbed-500}{/block:IndexPage}
+                    {block:PermalinkPage}{VideoEmbed-700}{/block:PermalinkPage}
+
+                    {block:Caption}
+                    <figcaption class="caption">
+                        {Caption}
+                    </figcaption>
+                    {/block:Caption}
+                </figure>
+                <!-- /Video Post -->
+                {/block:Video}
+
+
+                {block:Answer}
+                <!-- Answer Post -->
+                <div class="answer-container asker-container">
+                    <img src="{AskerPortraitURL-48}" alt="{PlaintextAsker}" class="asker-portrait">
+                    <div class="asker"><strong>{Asker}</strong> asked:</div>
+                    <div class="question">{Question}</div>
+                </div>
+
+                {block:Answerer}
+                <div class="answer-container answerer-container">
+                    <img src="{AnswererPortraitURL-48}" alt="{PlaintextAnswerer}" class="answerer-portrait">
+                    <div class="answerer"><strong>{Answerer}</strong> answered:</div>
+                    <div class="answer">{Answer}</div>
+                </div>
+                {/block:Answerer}
+
+                <div class="caption">
+                    {Replies}
+                </div>
+                <!-- /Answer Post -->
+                {/block:Answer}
+
+                <!-- Post Meta -->
+                {block:Date}
+                <footer class="post-footer">
+                    <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {24HourWithZero}:{Minutes}:{Seconds}">
+                        {TimeAgo}
+                    </time>
+
+                    {block:HasTags}
+                    <ul class="tags">
+                        {block:Tags}
+                        <li>#<a href="{TagURL}">{Tag}</a></li>
+                        {/block:Tags}
+                    </ul>
+                    {/block:HasTags}
+
+                    <ul class="post-icons">
+                        {block:IndexPage}
+                        <li><a href="{Permalink}" class="icon-link" title="Permalink">Permalink</a></li>
+                        {/block:IndexPage}
+                        <li>{LikeButton}</li>
+                        <li>{ReblogButton}</li>
+                        {block:Audio}{block:ExternalAudio}
+                        <li><a href="{ExternalAudioURL}" class="bicon-download" title="{lang:Download}">Download</a></li>
+                        {/block:ExternalAudio}{/block:Audio}
+                    </ul>
+                </footer>
+                {/block:Date}
+                <!-- /Post Meta -->
+
+            </article> <!-- .post -->
+            <hr>
+            {/block:Posts}
+
+        </main> <!-- #posts-container -->
+
+        <footer id="blog-footer">
+            {block:IndexPage}{block:Pagination}
+            <ul id="blog-pagination">
+                {block:PreviousPage}
+                <li class="prev-page"><a href="{PreviousPage}" title="Previous Page">&lsaquo; Previous Page</a></li>
+                {/block:PreviousPage}
+
+                {block:JumpPagination length="5"}
+                {block:CurrentPage}
+                <li class="current-page">{PageNumber}</li>
+                {/block:CurrentPage}
+                {block:JumpPage}
+                <li class="jump-page"><a href="{URL}">{PageNumber}</a></li>
+                {/block:JumpPage}
+                {/block:JumpPagination}
+
+                {block:NextPage}
+                <li class="next-page"><a href="{NextPage}" title="Next Page">Next Page &rsaquo;</a></li>
+                {/block:NextPage}
+            </ul>
+            {/block:Pagination}{/block:IndexPage}
+
+            <p>Theme by <a href="http://bubbless0c.tumblr.com" target="_blank">Bubs</a></p>
+        </footer>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="http://static.tumblr.com/f8gk9za/Zcioakoiw/imagesloaded.pkgd.min.js"></script>
+        <script src="http://static.tumblr.com/f8gk9za/dCooako9r/masonry.pkgd.min.js"></script>
+        <script>
+            $(function() {
+                $('.photo-container:not(.panorama)').each(function() {
+                    var photoset = $(this),
+                        photos   = [];
+
+                    photoset.children('.photo-link').each(function(index) {
+                        var photo = $(this);
+
+                        photos.push({
+                            width: photo.data('width'),
+                            height: photo.data('height'),
+                            low_res: photo.data('lowres'),
+                            high_res: photo.data('highres')
+                        });
+
+                        photo.click(function() {
+                            Tumblr.Lightbox.init(photos, index);
+                            return false;
+                        });
+                    });
+                });
+            });
+        </script>
+
+        {block:IfGoogleAnalyticsID}
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','{text:Google Analytics ID}','auto');ga('send','pageview');
+        </script>
+        {/block:IfGoogleAnalyticsID}
+
+    </body>
+</html>
