@@ -26,6 +26,7 @@
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic&subset=latin,latin-ext">
+        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/HCPoaod24/rapture-icons.css">
 
         <style>
             img {
@@ -36,6 +37,11 @@
             }
             .permalink .photo-container {
                 max-width: 1280px;
+            }
+            #elevator {
+                position: fixed;
+                bottom: 15px;
+                right: 15px;
             }
 
             /* Custom CSS */
@@ -324,25 +330,22 @@
                 {block:Date}
                 <!-- Post Meta -->
                 <footer class="post-footer">
-                    <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {24HourWithZero}:{Minutes}:{Seconds}">
+                    <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {24HourWithZero}:{Minutes}:{Seconds}" class="icon-clock">
                         {TimeAgo}
                     </time>
 
                     <ul class="post-sources">
                         {block:RebloggedFrom}
-                        <li class="source">
-                            source:
-                            <a href="{ReblogRootURL}" title="{PlaintextReblogRootTitle}">{ReblogRootName}</a>
+                        <li class="source icon-feather">
+                            <a href="{ReblogRootURL}" title="Source: {PlaintextReblogRootTitle}">{ReblogRootName}</a>
                         </li>
-                        <li class="via">
-                            via:
-                            <a href="{ReblogParentURL}" title="{PlaintextReblogParentTitle}">{ReblogParentName}</a>
+                        <li class="via icon-loop">
+                            <a href="{ReblogParentURL}" title="Via: {PlaintextReblogParentTitle}">{ReblogParentName}</a>
                         </li>
                         {/block:RebloggedFrom}
                         {block:NotReblog}{block:ContentSource}
-                        <li class="source">
-                            source:
-                            <a href="{SourceURL}" title="{PlaintextSourceTitle}">{SourceTitle}</a>
+                        <li class="source icon-feather">
+                            <a href="{SourceURL}" title="Source: {PlaintextSourceTitle}">{SourceTitle}</a>
                         </li>
                         {/block:ContentSource}{/block:NotReblog}
                     </ul>
@@ -357,12 +360,12 @@
 
                     <ul class="post-icons">
                         {block:IndexPage}
-                        <li><a href="{Permalink}" class="icon-link" title="{ShortURL}">Permalink</a></li>
-                        {/block:IndexPage}
+                        <li><a href="{Permalink}" class="icon-link" title="Permalink: {ShortURL}"></a></li>
                         <li>{LikeButton}</li>
                         <li>{ReblogButton}</li>
+                        {/block:IndexPage}
                         {block:Audio}{block:ExternalAudio}
-                        <li><a href="{ExternalAudioURL}" class="bicon-download" title="{lang:Download}">Download</a></li>
+                        <li><a href="{ExternalAudioURL}" class="icon-download" title="{lang:Download}"></a></li>
                         {/block:ExternalAudio}{/block:Audio}
                     </ul>
 
@@ -370,12 +373,12 @@
                     <ul id="permalink-pagination">
                         {block:PreviousPost}
                         <li id="prev-post" class="previous">
-                            <a href="{PreviousPost}" title="Previous Post">&lsaquo; Previous Post</a>
+                            <a href="{PreviousPost}" title="Previous Post" class="icon-angle-left">Previous Post</a>
                         </li>
                         {/block:PreviousPost}
                         {block:NextPost}
                         <li id="next-post" class="next">
-                            <a href="{NextPost}" title="Next Post">Next Post &rsaquo;</a>
+                            <a href="{NextPost}" title="Next Post" class="icon-angle-right">Next Post</a>
                         </li>
                         {/block:NextPost}
                     </ul>
@@ -400,7 +403,7 @@
             <ul id="blog-pagination">
                 {block:PreviousPage}
                 <li id="prev-page" class="previous">
-                    <a href="{PreviousPage}" title="Previous Page">&lsaquo; Previous Page</a>
+                    <a href="{PreviousPage}" title="Previous Page" class="icon-angle-left">Previous Page</a>
                 </li>
                 {/block:PreviousPage}
 
@@ -417,13 +420,16 @@
 
                 {block:NextPage}
                 <li id="next-page" class="next">
-                    <a href="{NextPage}" title="Next Page">Next Page &rsaquo;</a>
+                    <a href="{NextPage}" title="Next Page" class="icon-angle-right">Next Page</a>
                 </li>
                 {/block:NextPage}
             </ul>
             {/block:Pagination}{/block:IndexPage}
 
-            <p>Theme by <a href="http://bubbless0c.tumblr.com" target="_blank">Bubs</a></p>
+            <p>
+                Theme by <a href="http://bubbless0c.tumblr.com" target="_blank">Bubs</a>
+                <a href="#" title="Back to Top" id="elevator" class="icon-point-up"></a>
+            </p>
         </footer>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -454,6 +460,26 @@
                     });
                 });
                 // end photo and photoset functionality
+
+                // scroll to top
+                // jquery from wallstocker tumblr theme: https://www.tumblr.com/theme/38586
+                var $elevator = $('#elevator').hide();
+                $(window).load(function() {
+                    $elevator.css('opacity', 1);
+                }).scroll(function() {
+                    if ($(this).scrollTop() > 200) {
+                        $elevator.fadeIn('slow');
+                    } else {
+                        $elevator.fadeOut('slow');
+                    }
+                });
+                $elevator.click(function() {
+                    $('body,html').animate({
+                        scrollTop: 0
+                    }, 500);
+                    return false;
+                });
+                // end scroll to top
             });
         </script>
 
