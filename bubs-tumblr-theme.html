@@ -13,9 +13,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Theme Options -->
+        <meta name="if:Show Search Form" content="1">
         <meta name="text:Ask Link Label" content="">
         <meta name="text:Submit Link Label" content="">
         <meta name="text:Alternate Description" content="">
+        <meta name="if:Show Jump Pagination" content="1">
+        <meta name="text:Google Analytics ID" content="">
         <!-- /Theme Options -->
 
         <link rel="shortcut icon" href="{Favicon}">
@@ -25,8 +28,18 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic&subset=latin,latin-ext">
 
         <style>
+            img {
+                max-width: 100%;
+            }
+            .index .photo-container {
+                max-width: 500px;
+            }
+            .permalink .photo-container {
+                max-width: 1280px;
+            }
 
             /* Custom CSS */
+            {CustomCSS}
         </style>
 
         <!--<script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>-->
@@ -38,21 +51,16 @@
     >
 
         <header id="blog-header">
-            <!--<form action="/search" method="get" id="search-form">
-                <span class="icon-search"></span>
-                <input type="text" name="q" value="{SearchQuery}" placeholder="{lang:Search}" id="search-field"/>
-            </form>-->
-
             <h1 id="blog-title"><a href="/" title="{Title}">{Title}</a></h1>
             {block:IfAlternateDescription}
-            <h2 id="blog-description">{text:Alternate Description}</h2>
+            <div id="blog-description">{text:Alternate Description}</div>
             {/block:IfAlternateDescription}
             {block:IfNotAlternateDescription}{block:Description}
-            <h2 id="blog-description">{Description}</h2>
+            <div id="blog-description">{Description}</div>
             {/block:Description}{/block:IfNotAlternateDescription}
 
             <nav id="blog-nav">
-                <ul>
+                <ul id="main-menu">
                     {block:HasPages}
                     {block:Pages}
                     <li><a href="{URL}" title="{Label}">{Label}</a></li>
@@ -79,10 +87,23 @@
                     {/block:IfNotAskLinkLabel}
                     {/block:AskEnabled}
                 </ul>
+
+                {block:IfShowSearchForm}
+                <form action="/search" method="get" id="search-form">
+                    <input type="text" name="q" value="{SearchQuery}">
+                    <input type="submit" value="Search">
+                </form>
+                {/block:IfShowSearchForm}
             </nav>
         </header> <!-- #blog-header -->
 
         <main id="posts-container">
+            {block:TagPage}
+            <h2 class="results-title">Posts tagged as &ldquo;<em>{Tag}</em>&rdquo;</h2>
+            {/block:TagPage}
+            {block:SearchPage}
+            <h2 class="results-title">Search results for &ldquo;<em>{SearchQuery}</em>&rdquo;</h2>
+            {/block:SearchPage}
 
             {block:Posts inlineMediaWidth="500" inlineNestedMediaWidth="500"}
             <article id="{PostID}" class="post type-{PostType} {TagsAsClasses}">
@@ -143,7 +164,7 @@
 
                 {block:Photoset}
                 <!-- Photoset Post -->
-                <figure class="photo-container photoset" id="photoset-{PostID}" data-id="{PostID}" data-jslayout="{JSPhotosetLayout}" data-layout="{PhotosetLayout}">
+                <figure class="photo-container photoset" data-layout='{JSPhotosetLayout}'>
                     {block:Photos}
                     <a href="{PhotoURL-HighRes}" class="photo-link" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" data-lowres="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}">
                         <img src="{PhotoURL-HighRes}" alt="{PlaintextCaption}" class="post-photo">
@@ -189,7 +210,7 @@
                     {block:Host}<div class="link-host">{Host}</div>{/block:Host}
                 </a>
                 {block:Description}
-                <div class="caption">
+                <div class="post-body">
                     {Description}
                 </div>
                 {/block:Description}
@@ -293,18 +314,38 @@
                 </div>
                 {/block:Answerer}
 
-                <div class="caption">
+                <div class="post-body">
                     {Replies}
                 </div>
                 <!-- /Answer Post -->
                 {/block:Answer}
 
-                <!-- Post Meta -->
+
                 {block:Date}
+                <!-- Post Meta -->
                 <footer class="post-footer">
                     <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {24HourWithZero}:{Minutes}:{Seconds}">
                         {TimeAgo}
                     </time>
+
+                    <ul class="post-sources">
+                        {block:RebloggedFrom}
+                        <li class="source">
+                            source:
+                            <a href="{ReblogRootURL}" title="{PlaintextReblogRootTitle}">{ReblogRootName}</a>
+                        </li>
+                        <li class="via">
+                            via:
+                            <a href="{ReblogParentURL}" title="{PlaintextReblogParentTitle}">{ReblogParentName}</a>
+                        </li>
+                        {/block:RebloggedFrom}
+                        {block:NotReblog}{block:ContentSource}
+                        <li class="source">
+                            source:
+                            <a href="{SourceURL}" title="{PlaintextSourceTitle}">{SourceTitle}</a>
+                        </li>
+                        {/block:ContentSource}{/block:NotReblog}
+                    </ul>
 
                     {block:HasTags}
                     <ul class="tags">
@@ -316,7 +357,7 @@
 
                     <ul class="post-icons">
                         {block:IndexPage}
-                        <li><a href="{Permalink}" class="icon-link" title="Permalink">Permalink</a></li>
+                        <li><a href="{Permalink}" class="icon-link" title="{ShortURL}">Permalink</a></li>
                         {/block:IndexPage}
                         <li>{LikeButton}</li>
                         <li>{ReblogButton}</li>
@@ -324,9 +365,29 @@
                         <li><a href="{ExternalAudioURL}" class="bicon-download" title="{lang:Download}">Download</a></li>
                         {/block:ExternalAudio}{/block:Audio}
                     </ul>
+
+                    {block:PermalinkPagination}
+                    <ul id="permalink-pagination">
+                        {block:PreviousPost}
+                        <li id="prev-post" class="previous">
+                            <a href="{PreviousPost}" title="Previous Post">&lsaquo; Previous Post</a>
+                        </li>
+                        {/block:PreviousPost}
+                        {block:NextPost}
+                        <li id="next-post" class="next">
+                            <a href="{NextPost}" title="Next Post">Next Post &rsaquo;</a>
+                        </li>
+                        {/block:NextPost}
+                    </ul>
+                    {/block:PermalinkPagination}
+
+                    {block:PostNotes}
+                    {block:NoteCount}<h3 class="note-count">{NoteCountWithLabel}</h3>{/block:NoteCount}
+                    {PostNotes-16}
+                    {/block:PostNotes}
                 </footer>
-                {/block:Date}
                 <!-- /Post Meta -->
+                {/block:Date}
 
             </article> <!-- .post -->
             <hr>
@@ -338,9 +399,12 @@
             {block:IndexPage}{block:Pagination}
             <ul id="blog-pagination">
                 {block:PreviousPage}
-                <li class="prev-page"><a href="{PreviousPage}" title="Previous Page">&lsaquo; Previous Page</a></li>
+                <li id="prev-page" class="previous">
+                    <a href="{PreviousPage}" title="Previous Page">&lsaquo; Previous Page</a>
+                </li>
                 {/block:PreviousPage}
 
+                {block:IfShowJumpPagination}
                 {block:JumpPagination length="5"}
                 {block:CurrentPage}
                 <li class="current-page">{PageNumber}</li>
@@ -349,9 +413,12 @@
                 <li class="jump-page"><a href="{URL}">{PageNumber}</a></li>
                 {/block:JumpPage}
                 {/block:JumpPagination}
+                {/block:IfShowJumpPagination}
 
                 {block:NextPage}
-                <li class="next-page"><a href="{NextPage}" title="Next Page">Next Page &rsaquo;</a></li>
+                <li id="next-page" class="next">
+                    <a href="{NextPage}" title="Next Page">Next Page &rsaquo;</a>
+                </li>
                 {/block:NextPage}
             </ul>
             {/block:Pagination}{/block:IndexPage}
@@ -364,26 +431,29 @@
         <script src="http://static.tumblr.com/f8gk9za/dCooako9r/masonry.pkgd.min.js"></script>
         <script>
             $(function() {
+                // begin photo and photoset functionality
                 $('.photo-container:not(.panorama)').each(function() {
-                    var photoset = $(this),
-                        photos   = [];
+                    var $photoset = $(this),
+                        images    = [];
 
-                    photoset.children('.photo-link').each(function(index) {
-                        var photo = $(this);
+                    // enable tumblr lightbox
+                    $photoset.children('.photo-link').each(function(index) {
+                        var image = $(this).data();
 
-                        photos.push({
-                            width: photo.data('width'),
-                            height: photo.data('height'),
-                            low_res: photo.data('lowres'),
-                            high_res: photo.data('highres')
+                        images.push({
+                            width: image['width'],
+                            height: image['height'],
+                            low_res: image['lowres'],
+                            high_res: image['highres']
                         });
 
-                        photo.click(function() {
-                            Tumblr.Lightbox.init(photos, index);
+                        $(this).click(function() {
+                            Tumblr.Lightbox.init(images, index);
                             return false;
                         });
                     });
                 });
+                // end photo and photoset functionality
             });
         </script>
 
