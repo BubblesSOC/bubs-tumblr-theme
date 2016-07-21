@@ -26,7 +26,7 @@
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic&subset=latin,latin-ext">
-        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/HCPoaod24/rapture-icons.css">
+        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/lwloaohm9/rapture-icons.css">
 
         <style>
             img {
@@ -43,6 +43,54 @@
                 bottom: 15px;
                 right: 15px;
             }
+
+            /* Begin Photoset Grid CSS */
+            .photoset-row {
+                white-space: nowrap;
+                overflow: hidden;
+                clear: left;
+                margin-top: 10px;
+            }
+            .index .photoset-row {
+                margin-top: 5px;
+            }
+            .photoset-row:first-child {
+                margin-top: 0;
+            }
+            .photoset-row .photo-link {
+                display: block;
+                vertical-align: top;
+                padding-left: 10px;
+                float: left;
+                box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+            }
+            .index .photoset-row .photo-link {
+                padding-left: 5px;
+            }
+            .photoset-row .photo-link:first-child {
+                padding-left: 0;
+            }
+            .columns-1 .photo-link {
+                width: 100%;
+            }
+            .columns-2 .photo-link {
+                width: 50%;
+            }
+            .columns-3 .photo-link {
+                width: 33.3%;
+            }
+            .columns-4 .photo-link {
+                width: 25%;
+            }
+            .columns-5 .photo-link {
+                width: 20%;
+            }
+            .photoset-row .photo-link .post-photo {
+                width: 100%;
+            }
+            /* End Photoset Grid CSS */
 
             /* Custom CSS */
             {CustomCSS}
@@ -458,10 +506,30 @@
                             return false;
                         });
                     });
+
+                    // initialize photoset grid
+                    // todo: hi-res photoset width, window resizing
+                    if (!$photoset.hasClass('photoset')) return true;
+                    $.each($photoset.data('layout'), function(i, columns) {
+                        var $row = $photoset.children('.photo-link:lt(' + columns + ')');
+                        $row.wrapAll('<div class="photoset-row columns-' + columns + '" />').imagesLoaded(function() {
+                            var $rowImgs  = $row.find('img'),
+                                minHeight = Math.min.apply(null, $rowImgs.map(function() {
+                                    return $(this).height();
+                                }));
+                            $row.parent('.photoset-row').height(minHeight);
+                            $rowImgs.each(function() {
+                                if ($(this).height() == minHeight) return true;
+                                var margin = 0 - Math.ceil( ($(this).height() - minHeight) / 2 );
+                                $(this).css('margin-top', margin + 'px');
+                            });
+                        });
+                    });
                 });
                 // end photo and photoset functionality
 
-                // scroll to top
+
+                // fade-in scroll to top
                 // jquery from wallstocker tumblr theme: https://www.tumblr.com/theme/38586
                 var $elevator = $('#elevator').hide();
                 $(window).load(function() {
@@ -479,7 +547,7 @@
                     }, 500);
                     return false;
                 });
-                // end scroll to top
+                // end fade-in scroll to top
             });
         </script>
 
