@@ -34,7 +34,7 @@
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic&subset=latin,latin-ext">
-        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/lwloaohm9/rapture-icons.css">
+        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/pSwoapad1/rapture-icons.css">
 
         <style>
             img {
@@ -45,6 +45,9 @@
             }
             .permalink .photo-container {
                 max-width: 1280px;
+            }
+            .index .post-sources {
+                display: none;
             }
             #elevator {
                 position: fixed;
@@ -386,7 +389,7 @@
                 {block:Date}
                 <!-- Post Meta -->
                 <footer class="post-footer">
-                    <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {24HourWithZero}:{Minutes}:{Seconds}" class="icon-clock">
+                    <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {24HourWithZero}:{Minutes}:{Seconds}" title="{DayOfWeek}, {Month} {DayOfMonth}, {Year} {12Hour}:{Minutes}{AmPm}" class="icon-clock">
                         {TimeAgo}
                     </time>
 
@@ -434,7 +437,7 @@
                         {/block:PreviousPost}
                         {block:NextPost}
                         <li id="next-post" class="next">
-                            <a href="{NextPost}" title="Next Post" class="icon-angle-right">Next Post</a>
+                            <a href="{NextPost}" title="Next Post" class="iconr-angle-right">Next Post</a>
                         </li>
                         {/block:NextPost}
                     </ul>
@@ -475,7 +478,7 @@
 
                 {block:NextPage}
                 <li id="next-page" class="next">
-                    <a href="{NextPage}" title="Next Page" class="icon-angle-right">Next Page</a>
+                    <a href="{NextPage}" title="Next Page" class="iconr-angle-right">Next Page</a>
                 </li>
                 {/block:NextPage}
             </ul>
