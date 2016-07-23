@@ -56,9 +56,13 @@
         <!-- /Custom Fonts -->
 
         <style>
+            html {
+                font-size: 100%;
+                /* https://offroadcode.com/rem-calculator/ */
+            }
             body {
-                font-family: 'Karla', 'Helvetica Neue', 'Helvetica', sans-serif;
-                font-size: 81.25%;
+                font: 0.8125rem/161.54% 'Karla', 'Helvetica Neue', 'Helvetica', sans-serif;
+                /* 13px/21px */
             }
             img {
                 max-width: 100%;
@@ -77,17 +81,30 @@
             a[class^="iconr-"], a[class*=" iconr-"] {
                 text-decoration: none;
             }
+            .clearfix:before,
+            .clearfix:after {
+                content: " ";
+                display: table;
+            }
+            .clearfix:after {
+                clear: both;
+            }
+            .clearfix {
+                *zoom: 1;
+            }
 
-            #blog-title {
-                font-family: 'Limelight', {TitleFont};
+            .unlistified {
+                list-style-type: none;
+                padding: 0;
             }
-            #blog-title a {
-                text-decoration: none;
+            .unlistified li {
+                display: inline-block;
             }
-            .results-title {
-                font-family: 'Trochut', {TitleFont};
+            #elevator {
+                position: fixed;
+                bottom: 15px;
+                right: 15px;
             }
-
             .index .photo-container {
                 max-width: 500px;
             }
@@ -97,11 +114,98 @@
             .index .post-sources {
                 display: none;
             }
-            #elevator {
+
+            /* Begin Layout Styles */
+            #blog-header,
+            #blog-footer {
+                width: 200px;
+                margin-left: 50px;
                 position: fixed;
-                bottom: 15px;
-                right: 15px;
             }
+            #blog-header {
+                top: 0;
+            }
+            #blog-footer {
+                left: 0;
+                bottom: 0;
+            }
+            #posts-container {
+                margin-left: 300px;
+            }
+            /* End Layout Styles */
+
+            /* Begin Header Styles */
+            #blog-title {
+                text-align: center;
+            }
+            #blog-title a {
+                text-decoration: none;
+            }
+            #blog-portrait,
+            #blog-logo {
+                display: block;
+                margin: 0 auto;
+            }
+            #blog-portrait {
+                width: 96px;
+                height: 96px;
+            }
+            #blog-portrait.circle {
+                -webkit-border-radius: 48px;
+                -moz-border-radius: 48px;
+                border-radius: 48px;
+            }
+            #blog-portrait.square {
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                border-radius: 4px;
+            }
+            #blog-logo {
+                width: 90%;
+            }
+            #blog-title-text {
+                font: 2rem/100% 'Limelight', {TitleFont};
+                /* 32px/32px */
+            }
+            #main-menu {
+                font: 1.125rem/1.25rem 'Trochut', {TitleFont};
+                /* 18px/20px */
+                text-transform: lowercase;
+            }
+            #main-menu li {
+                float: left;
+                padding-right: 0.1875rem; /* 3px */
+            }
+            #main-menu li:last-child {
+                padding-right: 0;
+            }
+            #main-menu li:not(:last-child):after {
+                content: '/';
+                padding-left: 0.1875rem; /* 3px */
+            }
+            #main-menu li a {
+                text-decoration: none;
+            }
+            #search-form {
+                position: relative;
+            }
+            #search-form .icon-search {
+                position: absolute;
+                top: 0.125rem; /* 2px */
+                left: 0.4375rem; /* 7px */
+            }
+            #search-field {
+                width: 100%;
+                border: 1px solid #000;
+                border-radius: 20px;
+                -webkit-border-radius: 20px;
+                -moz-border-radius: 20px;
+                padding: 0.1875rem 0.3125rem 0.1875rem 1.25rem; /* 3px 5px 3px 20px */
+                box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+            }
+            /* End Header Styles */
 
             /* Begin Photoset Grid CSS */
             .photoset-row {
@@ -166,15 +270,15 @@
         <header id="blog-header">
             <h1 id="blog-title">
                 <a href="/" title="{Title}">
-                    {block:ShowAvatar}
-                    <img src="{PortraitURL-128}" alt="{Title}" class="{AvatarShape}" id="blog-portrait">
-                    <br>
-                    {/block:ShowAvatar}
                     {block:IfLogoImage}
-                    <img src="{image:Logo}" alt="{Title}" class="{AvatarShape}" id="logo-image">
+                    <img src="{image:Logo}" alt="{Title}" class="{AvatarShape}" id="blog-logo">
                     <br>
                     {/block:IfLogoImage}
-                    {Title}
+                    {block:IfNotLogoImage}{block:ShowAvatar}
+                    <img src="{PortraitURL-128}" alt="{Title}" class="{AvatarShape}" id="blog-portrait">
+                    <br>
+                    {/block:ShowAvatar}{/block:IfNotLogoImage}
+                    <span id="blog-title-text">{Title}</span>
                 </a>
             </h1>
             {block:IfAlternateDescription}
@@ -185,7 +289,7 @@
             {/block:Description}{/block:IfNotAlternateDescription}
 
             <nav id="blog-nav">
-                <ul id="main-menu">
+                <ul id="main-menu" class="unlistified clearfix">
                     {block:HasPages}
                     {block:Pages}
                     <li><a href="{URL}" title="{Label}">{Label}</a></li>
@@ -215,10 +319,8 @@
 
                 {block:IfShowSearchForm}
                 <form action="/search" method="get" id="search-form">
-                    <input type="text" name="q" value="{SearchQuery}">
-                    <input type="submit" value="Search">
                     <span class="icon-search"></span>
-                    <span class="icon-close"></span>
+                    <input type="text" placeholder="Search" name="q" value="{SearchQuery}" id="search-field">
                 </form>
                 {/block:IfShowSearchForm}
             </nav>
@@ -455,7 +557,7 @@
                         {TimeAgo}
                     </time>
 
-                    <ul class="post-sources">
+                    <ul class="post-sources unlistified">
                         {block:RebloggedFrom}
                         <li class="source icon-feather">
                             <a href="{ReblogRootURL}" title="Source: {PlaintextReblogRootTitle}">{ReblogRootName}</a>
@@ -472,14 +574,14 @@
                     </ul>
 
                     {block:HasTags}
-                    <ul class="tags icon-tag">
+                    <ul class="tags icon-tag unlistified">
                         {block:Tags}
                         <li>#<a href="{TagURL}">{Tag}</a></li>
                         {/block:Tags}
                     </ul>
                     {/block:HasTags}
 
-                    <ul class="post-icons">
+                    <ul class="post-icons unlistified">
                         {block:IndexPage}
                         <li><a href="{Permalink}" class="icon-link-2" title="Permalink: {ShortURL}"></a></li>
                         <li>{LikeButton}</li>
@@ -491,7 +593,7 @@
                     </ul>
 
                     {block:PermalinkPagination}
-                    <ul id="permalink-pagination">
+                    <ul id="permalink-pagination" class="pagination unlistified">
                         {block:PreviousPost}
                         <li id="prev-post" class="previous">
                             <a href="{PreviousPost}" title="Previous Post" class="icon-angle-left">Previous Post</a>
@@ -520,7 +622,7 @@
 
         <footer id="blog-footer">
             {block:IndexPage}{block:Pagination}
-            <ul id="blog-pagination">
+            <ul id="blog-pagination" class="pagination unlistified">
                 {block:PreviousPage}
                 <li id="prev-page" class="previous">
                     <a href="{PreviousPage}" title="Previous Page" class="icon-angle-left">Previous Page</a>
@@ -548,7 +650,7 @@
 
             <p>
                 Theme by <a href="http://bubbless0c.tumblr.com" target="_blank">Bubs</a>
-                <ul id="social-icons">
+                <ul id="social-icons" class="unlistified">
                     <li><a href="http://8tracks.com/{text:8tracks Username}" title="8tracks" class="icon-8tracks" target="_blank"></a></li>
                     <li><a href="http://archiveofourown.org/users/{text:ao3 Username}" title="Archive of Our Own" class="icon-ao3" target="_blank"></a></li>
                     <li><a href="https://facebook.com/{text:Facebook Username}" title="Facebook" class="icon-facebook" target="_blank"></a></li>
