@@ -12,7 +12,9 @@
         {/block:Description}
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        {block:Hidden}
         <!-- Theme Options -->
+        <meta name="image:Logo" content="">
         <meta name="if:Show Search Form" content="1">
         <meta name="text:Ask Link Label" content="">
         <meta name="text:Submit Link Label" content="">
@@ -28,18 +30,64 @@
         <meta name="text:Tumblr Username" content="">
         <meta name="text:Twitter Username" content="">
         <!-- /Theme Options -->
+        {/block:Hidden}
 
         <link rel="shortcut icon" href="{Favicon}">
         <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic&subset=latin,latin-ext">
-        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/pSwoapad1/rapture-icons.css">
+        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/mM7oapbsy/rapture-icons.css">
+
+        <!-- Custom Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Limelight&subset=latin-ext" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Trochut:400,400i,700" rel="stylesheet">
+        <!--
+        <link href='https://fonts.googleapis.com/css?family=Fascinate' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css?family=Fascinate+Inline" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Federo" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Galada" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,400i,600,600i,700,700i&subset=latin-ext" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One&subset=latin-ext" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Oleo+Script:400,700&subset=latin-ext" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Playball&subset=latin-ext" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Suranna" rel="stylesheet">
+        -->
+        <!-- /Custom Fonts -->
 
         <style>
+            body {
+                font-family: 'Karla', 'Helvetica Neue', 'Helvetica', sans-serif;
+                font-size: 81.25%;
+            }
             img {
                 max-width: 100%;
             }
+            figure {
+                margin-left: 0;
+                margin-right: 0;
+            }
+            a {
+                transition: color 0.14s ease-in-out;
+                -webkit-transition: color 0.14s ease-in-out;
+                -moz-transition: color 0.14s ease-in-out;
+                -o-transition: color 0.14s ease-in-out;
+            }
+            a[class^="icon-"], a[class*=" icon-"],
+            a[class^="iconr-"], a[class*=" iconr-"] {
+                text-decoration: none;
+            }
+
+            #blog-title {
+                font-family: 'Limelight', {TitleFont};
+            }
+            #blog-title a {
+                text-decoration: none;
+            }
+            .results-title {
+                font-family: 'Trochut', {TitleFont};
+            }
+
             .index .photo-container {
                 max-width: 500px;
             }
@@ -116,7 +164,19 @@
     >
 
         <header id="blog-header">
-            <h1 id="blog-title"><a href="/" title="{Title}">{Title}</a></h1>
+            <h1 id="blog-title">
+                <a href="/" title="{Title}">
+                    {block:ShowAvatar}
+                    <img src="{PortraitURL-128}" alt="{Title}" class="{AvatarShape}" id="blog-portrait">
+                    <br>
+                    {/block:ShowAvatar}
+                    {block:IfLogoImage}
+                    <img src="{image:Logo}" alt="{Title}" class="{AvatarShape}" id="logo-image">
+                    <br>
+                    {/block:IfLogoImage}
+                    {Title}
+                </a>
+            </h1>
             {block:IfAlternateDescription}
             <div id="blog-description">{text:Alternate Description}</div>
             {/block:IfAlternateDescription}
@@ -157,6 +217,8 @@
                 <form action="/search" method="get" id="search-form">
                     <input type="text" name="q" value="{SearchQuery}">
                     <input type="submit" value="Search">
+                    <span class="icon-search"></span>
+                    <span class="icon-close"></span>
                 </form>
                 {/block:IfShowSearchForm}
             </nav>
@@ -248,7 +310,7 @@
 
                 {block:Quote}
                 <!-- Quote Post -->
-                <blockquote class="quote-container {Length}">
+                <blockquote class="quote-container {Length} icon-quote-left-bold iconr-quote-right-bold">
                     {Quote}
 
                     {block:Source}
@@ -269,7 +331,7 @@
                 <a href="{URL}" class="link-container" {Target}>
                     {block:Thumbnail}<img src="{Thumbnail-HighRes}" alt="{PlaintextName}">{/block:Thumbnail}
 
-                    <h1 class="post-title link-name">{Name} &rsaquo;</h1>
+                    <h1 class="post-title link-name iconr-right-bold">{Name}</h1>
                     {block:Excerpt}<div class="link-excerpt">{Excerpt}</div>{/block:Excerpt}
                     {block:Author}<div class="link-author">By {Author}</div>{/block:Author}
                     {block:Host}<div class="link-host">{Host}</div>{/block:Host}
@@ -410,7 +472,7 @@
                     </ul>
 
                     {block:HasTags}
-                    <ul class="tags">
+                    <ul class="tags icon-tag">
                         {block:Tags}
                         <li>#<a href="{TagURL}">{Tag}</a></li>
                         {/block:Tags}
@@ -419,7 +481,7 @@
 
                     <ul class="post-icons">
                         {block:IndexPage}
-                        <li><a href="{Permalink}" class="icon-link" title="Permalink: {ShortURL}"></a></li>
+                        <li><a href="{Permalink}" class="icon-link-2" title="Permalink: {ShortURL}"></a></li>
                         <li>{LikeButton}</li>
                         <li>{ReblogButton}</li>
                         {/block:IndexPage}
