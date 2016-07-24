@@ -15,6 +15,19 @@
         {block:Hidden}
         <!-- Theme Options -->
         <meta name="image:Logo" content="">
+        <meta name="color:Background" content="#f5f6e6">
+        <meta name="color:Text" content="#333">
+        <meta name="color:Link" content="#999">
+        <meta name="color:Link Hover" content="#333">
+        <meta name="color:Blog Title" content="#fb834f">
+        <meta name="color:Blog Title Shadow" content="#53170d">
+        <meta name="color:Blog Title Hover" content="#e55a3d">
+        <meta name="color:Navigation" content="#c54132">
+        <meta name="color:Navigation Hover" content="#e55a3d">
+        <meta name="color:Footer Link" content="#698845">
+        <meta name="color:Footer Link Hover" content="#3d785c">
+        <meta name="color:Post Background" content="#fff">
+        <meta name="color:Borders" content="#e1e2da">
         <meta name="if:Show Search Form" content="1">
         <meta name="text:Ask Link Label" content="">
         <meta name="text:Submit Link Label" content="">
@@ -63,6 +76,8 @@
             body {
                 font: 0.8125rem/161.54% 'Karla', 'Helvetica Neue', 'Helvetica', sans-serif;
                 /* 13px/21px */
+                background-color: {color:Background};
+                color: {color:Text};
             }
             img {
                 max-width: 100%;
@@ -70,16 +85,18 @@
             figure {
                 margin-left: 0;
                 margin-right: 0;
+                margin-top: 0;
             }
             a {
+                text-decoration: none;
                 transition: color 0.14s ease-in-out;
                 -webkit-transition: color 0.14s ease-in-out;
                 -moz-transition: color 0.14s ease-in-out;
                 -o-transition: color 0.14s ease-in-out;
+                color: {color:Link};
             }
-            a[class^="icon-"], a[class*=" icon-"],
-            a[class^="iconr-"], a[class*=" iconr-"] {
-                text-decoration: none;
+            a:hover {
+                color: {color:Link Hover};
             }
             .clearfix:before,
             .clearfix:after {
@@ -100,20 +117,6 @@
             .unlistified li {
                 display: inline-block;
             }
-            #elevator {
-                position: fixed;
-                bottom: 15px;
-                right: 15px;
-            }
-            .index .photo-container {
-                max-width: 500px;
-            }
-            .permalink .photo-container {
-                max-width: 1280px;
-            }
-            .index .post-sources {
-                display: none;
-            }
 
             /* Begin Layout Styles */
             #blog-header,
@@ -131,15 +134,25 @@
             }
             #posts-container {
                 margin-left: 300px;
+                margin-bottom: 30px;
             }
             /* End Layout Styles */
 
             /* Begin Header Styles */
+            #blog-header a {
+                color: {color:Navigation};
+            }
+            #blog-header a:hover {
+                color: {color:Navigation Hover};
+            }
             #blog-title {
                 text-align: center;
             }
             #blog-title a {
-                text-decoration: none;
+                color: {color:Blog Title};
+            }
+            #blog-title a:hover {
+                color: {color:Blog Title Hover};
             }
             #blog-portrait,
             #blog-logo {
@@ -162,10 +175,24 @@
             }
             #blog-logo {
                 width: 90%;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                border-radius: 50%;
+                border: 5px solid transparent;
+            }
+            #blog-title a #blog-logo {
+                transition: border-color 0.14s ease-in-out;
+                -webkit-transition: border-color 0.14s ease-in-out;
+                -moz-transition: border-color 0.14s ease-in-out;
+                -o-transition: border-color 0.14s ease-in-out;
+            }
+            #blog-title a:hover #blog-logo {
+                border-color: {color:Blog Title Hover};
             }
             #blog-title-text {
                 font: 2rem/100% 'Limelight', {TitleFont};
                 /* 32px/32px */
+                text-shadow: 1px 0 0 {color:Blog Title Shadow};
             }
             #main-menu {
                 font: 1.125rem/1.25rem 'Trochut', {TitleFont};
@@ -183,9 +210,6 @@
                 content: '/';
                 padding-left: 0.1875rem; /* 3px */
             }
-            #main-menu li a {
-                text-decoration: none;
-            }
             #search-form {
                 position: relative;
             }
@@ -193,10 +217,12 @@
                 position: absolute;
                 top: 0.125rem; /* 2px */
                 left: 0.4375rem; /* 7px */
+                opacity: 0.75;
             }
             #search-field {
                 width: 100%;
-                border: 1px solid #000;
+                border-width: 1px;
+                border-style: solid;
                 border-radius: 20px;
                 -webkit-border-radius: 20px;
                 -moz-border-radius: 20px;
@@ -204,8 +230,31 @@
                 box-sizing: border-box;
                 -webkit-box-sizing: border-box;
                 -moz-box-sizing: border-box;
+                background-color: {color:Post Background};
+                border-color: {color:Borders};
             }
             /* End Header Styles */
+
+            /* Begin Post Styles */
+            .post {
+                width: 500px;
+                margin-bottom: 20px;
+                border-radius: 3px;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                background-color: {color:Post Background};
+                box-shadow: 1px 1px 0 {color:Borders};
+            }
+            .index .photo-container {
+                width: 500px;
+            }
+            .permalink .photo-container {
+                max-width: 1280px;
+            }
+            .index .post-sources {
+                display: none;
+            }
+            /* End Post Styles */
 
             /* Begin Photoset Grid CSS */
             .photoset-row {
@@ -254,6 +303,20 @@
                 width: 100%;
             }
             /* End Photoset Grid CSS */
+
+            /* Begin Footer Styles */
+            #blog-footer a {
+                color: {color:Footer Link};
+            }
+            #blog-footer a:hover {
+                color: {color:Footer Link Hover};
+            }
+            #elevator {
+                position: fixed;
+                bottom: 15px;
+                right: 15px;
+            }
+            /* End Footer Styles */
 
             /* Custom CSS */
             {CustomCSS}
@@ -669,6 +732,7 @@
         <script src="http://static.tumblr.com/f8gk9za/dCooako9r/masonry.pkgd.min.js"></script>
         <script>
             $(function() {
+
                 // begin photo and photoset functionality
                 $('.photo-container:not(.panorama)').each(function() {
                     var $photoset = $(this),
