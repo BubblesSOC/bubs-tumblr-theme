@@ -19,6 +19,7 @@
         <meta name="color:Text" content="#333">
         <meta name="color:Link" content="#999">
         <meta name="color:Link Hover" content="#333">
+        <meta name="color:Highlight" content="#e2e6c3">
         <meta name="color:Blog Title" content="#fb834f">
         <meta name="color:Blog Title Shadow" content="#53170d">
         <meta name="color:Blog Title Hover" content="#e55a3d">
@@ -69,6 +70,15 @@
         <!-- /Custom Fonts -->
 
         <style>
+            ::-moz-selection {
+                background: {color:Highlight};
+                text-shadow: none;
+            }
+
+            ::selection {
+                background: {color:Highlight};
+                text-shadow: none;
+            }
             html {
                 font-size: 100%;
                 /* https://offroadcode.com/rem-calculator/ */
@@ -79,25 +89,48 @@
                 background-color: {color:Background};
                 color: {color:Text};
             }
+            audio, canvas, iframe, img, svg, video {
+                vertical-align: middle;
+            }
+            textarea {
+                resize: vertical;
+            }
             img {
                 max-width: 100%;
             }
             figure {
-                margin-left: 0;
-                margin-right: 0;
-                margin-top: 0;
+                margin: 0;
             }
             a {
                 text-decoration: none;
-                transition: color 0.14s ease-in-out;
                 -webkit-transition: color 0.14s ease-in-out;
                 -moz-transition: color 0.14s ease-in-out;
                 -o-transition: color 0.14s ease-in-out;
+                transition: color 0.14s ease-in-out;
                 color: {color:Link};
             }
             a:hover {
                 color: {color:Link Hover};
             }
+            hr {
+                display: block;
+                height: 1px;
+                margin: 1em 0;
+                padding: 0;
+                border: 0;
+                border-top: 1px solid {color:Borders};
+            }
+            blockquote {
+                margin: 1em 0;
+                padding-left: 0.9375rem; /* 15px */
+                border-left: 2px solid {color:Borders};
+            }
+
+            .hidden {
+                display: none !important;
+                visibility: hidden;
+            }
+
             .clearfix:before,
             .clearfix:after {
                 content: " ";
@@ -118,7 +151,7 @@
                 display: inline-block;
             }
 
-            /* Begin Layout Styles */
+            /*** Begin Layout Styles ***/
             #blog-header,
             #blog-footer {
                 width: 200px;
@@ -133,12 +166,11 @@
                 bottom: 0;
             }
             #posts-container {
-                margin-left: 300px;
-                margin-bottom: 30px;
+                margin: 1.25rem 50px 30px 300px; /* 20px */
             }
-            /* End Layout Styles */
+            /*** End Layout Styles ***/
 
-            /* Begin Header Styles */
+            /*** Begin Header Styles ***/
             #blog-header a {
                 color: {color:Navigation};
             }
@@ -147,6 +179,7 @@
             }
             #blog-title {
                 text-align: center;
+                margin-top: 1.063rem; /* 17px (~2em) */
             }
             #blog-title a {
                 color: {color:Blog Title};
@@ -158,6 +191,19 @@
             #blog-logo {
                 display: block;
                 margin: 0 auto;
+            }
+            #blog-title a #blog-portrait,
+            #blog-title a #blog-logo {
+                -webkit-transition: all 0.14s ease-in-out;
+                -moz-transition: all 0.14s ease-in-out;
+                -o-transition: all 0.14s ease-in-out;
+                transition: all 0.14s ease-in-out;
+            }
+            #blog-title a:hover #blog-portrait,
+            #blog-title a:hover #blog-logo {
+                -webkit-box-shadow: 0 0 0 5px {color:Blog Title Hover};
+                -moz-box-shadow: 0 0 0 5px {color:Blog Title Hover};
+                box-shadow: 0 0 0 5px {color:Blog Title Hover};
             }
             #blog-portrait {
                 width: 96px;
@@ -178,16 +224,6 @@
                 -webkit-border-radius: 50%;
                 -moz-border-radius: 50%;
                 border-radius: 50%;
-                border: 5px solid transparent;
-            }
-            #blog-title a #blog-logo {
-                transition: border-color 0.14s ease-in-out;
-                -webkit-transition: border-color 0.14s ease-in-out;
-                -moz-transition: border-color 0.14s ease-in-out;
-                -o-transition: border-color 0.14s ease-in-out;
-            }
-            #blog-title a:hover #blog-logo {
-                border-color: {color:Blog Title Hover};
             }
             #blog-title-text {
                 font: 2rem/100% 'Limelight', {TitleFont};
@@ -212,6 +248,7 @@
             }
             #search-form {
                 position: relative;
+                clear: left;
             }
             #search-form .icon-search {
                 position: absolute;
@@ -221,49 +258,136 @@
             }
             #search-field {
                 width: 100%;
+                outline: none;
                 border-width: 1px;
                 border-style: solid;
-                border-radius: 20px;
                 -webkit-border-radius: 20px;
                 -moz-border-radius: 20px;
-                padding: 0.1875rem 0.3125rem 0.1875rem 1.25rem; /* 3px 5px 3px 20px */
-                box-sizing: border-box;
+                border-radius: 20px;
                 -webkit-box-sizing: border-box;
                 -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                padding: 0.1875rem 0.3125rem 0.1875rem 1.25rem; /* 3px 5px 3px 20px */
                 background-color: {color:Post Background};
                 border-color: {color:Borders};
             }
-            /* End Header Styles */
+            /*** End Header Styles ***/
 
-            /* Begin Post Styles */
+            /*** Begin Post Styles ***/
             .post {
                 width: 500px;
                 margin-bottom: 20px;
-                border-radius: 3px;
-                -webkit-border-radius: 3px;
-                -moz-border-radius: 3px;
+                padding-bottom: 1em;
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                border-radius: 4px;
                 background-color: {color:Post Background};
+                -webkit-box-shadow: 1px 1px 0 {color:Borders};
+                -moz-box-shadow: 1px 1px 0 {color:Borders};
                 box-shadow: 1px 1px 0 {color:Borders};
             }
-            .index .photo-container {
-                width: 500px;
+            .permalink .post {
+                width: 540px;
             }
-            .permalink .photo-container {
-                max-width: 1280px;
+            .post-photo {
+                width: 100%;
+            }
+            .photo-container:not(.photoset) .post-photo {
+                /* todo: link thumbnail */
+                -webkit-border-radius: 4px 4px 0 0;
+                -moz-border-radius: 4px 4px 0 0;
+                border-radius: 4px 4px 0 0;
+            }
+            .caption {
+                margin: 0 1em;
+            }
+            /* Post Meta */
+            .post-footer {
+                padding: 1em 1em 0;
+            }
+            .post-date,
+            .tags,
+            .post-sources {
+                font-size: 0.6875rem; /* 11px */
+            }
+            .post-date:before,
+            .tags:before {
+                margin-right: 0.2em;
+            }
+            .post-date,
+            .tags,
+            .post-icons {
+                float: left;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                margin: 0;
+            }
+            .post-date {
+                width: 21%;
+            }
+            .tags {
+                width: 71%;
+            }
+            .index .has-external-audio .tags {
+                width: 67%;
+            }
+            .permalink .tags {
+                width: 79%;
+            }
+            .permalink .has-external-audio .tags {
+                width: 76%;
+            }
+            .tags li {
+                margin-right: 0.3125rem; /* 5px */
+            }
+            .post-icons {
+                float: right;
+                text-align: right;
+                width: 8%;
+            }
+            .index .has-external-audio .post-icons {
+                width: 12%;
+            }
+            .permalink .post-icons {
+                display: none;
+            }
+            .permalink .has-external-audio .post-icons {
+                display: block;
+                width: 3%;
+            }
+            .post-icons li {
+                width: 13px;
+                margin-left: 5px;
+            }
+            .post-icons li:first-child {
+                margin-left: 0;
+            }
+            .post-icons .icon-download {
+                position: relative;
+                top: 2px;
+            }
+            .post-icons .like_button {
+                position: relative;
+                bottom: 1px;
+            }
+            .post-icons a,
+            .post-icons a:hover {
+                color: #ccc;
             }
             .index .post-sources {
                 display: none;
             }
-            /* End Post Styles */
+            .permalink .post-sources {
+                clear: left;
+            }
+            /*** End Post Styles ***/
 
-            /* Begin Photoset Grid CSS */
+            /*** Begin Photoset Grid CSS ***/
             .photoset-row {
                 white-space: nowrap;
                 overflow: hidden;
                 clear: left;
-                margin-top: 10px;
-            }
-            .index .photoset-row {
                 margin-top: 5px;
             }
             .photoset-row:first-child {
@@ -272,14 +396,12 @@
             .photoset-row .photo-link {
                 display: block;
                 vertical-align: top;
-                padding-left: 10px;
+                padding-left: 5px;
                 float: left;
-                box-sizing: border-box;
+                overflow: hidden;
                 -webkit-box-sizing: border-box;
                 -moz-box-sizing: border-box;
-            }
-            .index .photoset-row .photo-link {
-                padding-left: 5px;
+                box-sizing: border-box;
             }
             .photoset-row .photo-link:first-child {
                 padding-left: 0;
@@ -299,12 +421,27 @@
             .columns-5 .photo-link {
                 width: 20%;
             }
-            .photoset-row .photo-link .post-photo {
-                width: 100%;
+            .photoset-row:first-child.columns-1 .photo-link {
+                -webkit-border-radius: 4px 4px 0 0;
+                -moz-border-radius: 4px 4px 0 0;
+                border-radius: 4px 4px 0 0;
             }
-            /* End Photoset Grid CSS */
+            .photoset-row:first-child:not(.columns-1) .photo-link:first-child {
+                -webkit-border-top-left-radius: 4px;
+                -moz-border-top-left-radius: 4px;
+                border-top-left-radius: 4px;
+            }
+            .photoset-row:first-child:not(.columns-1) .photo-link:last-child {
+                -webkit-border-top-right-radius: 4px;
+                -moz-border-top-right-radius: 4px;
+                border-top-right-radius: 4px;
+            }
+            .photoset-row .photo-link .post-photo {
+                position: relative;
+            }
+            /*** End Photoset Grid CSS ***/
 
-            /* Begin Footer Styles */
+            /*** Begin Footer Styles ***/
             #blog-footer a {
                 color: {color:Footer Link};
             }
@@ -316,9 +453,9 @@
                 bottom: 15px;
                 right: 15px;
             }
-            /* End Footer Styles */
+            /*** End Footer Styles ***/
 
-            /* Custom CSS */
+            /*** Custom CSS ***/
             {CustomCSS}
         </style>
 
@@ -383,7 +520,7 @@
                 {block:IfShowSearchForm}
                 <form action="/search" method="get" id="search-form">
                     <span class="icon-search"></span>
-                    <input type="text" placeholder="Search" name="q" value="{SearchQuery}" id="search-field">
+                    <input type="search" placeholder="Search" name="q" value="{SearchQuery}" id="search-field">
                 </form>
                 {/block:IfShowSearchForm}
             </nav>
@@ -558,7 +695,7 @@
 
                 {block:AudioEmbed}
                 <!-- Embedded Audio Player -->
-                <figure class="audio-container">
+                <figure class="audio-container embedded-audio">
                     {block:IndexPage}{AudioEmbed-500}{/block:IndexPage}
                     {block:PermalinkPage}{AudioEmbed}{/block:PermalinkPage}
 
@@ -615,10 +752,28 @@
 
                 {block:Date}
                 <!-- Post Meta -->
-                <footer class="post-footer">
-                    <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {24HourWithZero}:{Minutes}:{Seconds}" title="{DayOfWeek}, {Month} {DayOfMonth}, {Year} {12Hour}:{Minutes}{AmPm}" class="icon-clock">
-                        {TimeAgo}
+                <footer class="post-footer clearfix{block:Audio}{block:ExternalAudio} has-external-audio{/block:ExternalAudio}{/block:Audio}">
+                    <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {24HourWithZero}:{Minutes}:{Seconds}" title="{DayOfWeek}, {Month} {DayOfMonth}, {Year} {12Hour}:{Minutes}{AmPm}" class="post-date icon-clock">
+                        <a href="{Permalink}" title="Permalink: {ShortURL}">{TimeAgo}</a>
                     </time>
+
+                    {block:HasTags}
+                    <ul class="tags icon-tag unlistified">
+                        {block:Tags}
+                        <li>#<a href="{TagURL}">{Tag}</a></li>
+                        {/block:Tags}
+                    </ul>
+                    {/block:HasTags}
+
+                    <ul class="post-icons unlistified">
+                        {block:Audio}{block:ExternalAudio}
+                        <li><a href="{ExternalAudioURL}" class="icon-download" title="{lang:Download}"></a></li>
+                        {/block:ExternalAudio}{/block:Audio}
+                        {block:IndexPage}
+                        <li>{LikeButton color="grey" size="13"}</li>
+                        <li>{ReblogButton color="grey" size="13"}</li>
+                        {/block:IndexPage}
+                    </ul>
 
                     <ul class="post-sources unlistified">
                         {block:RebloggedFrom}
@@ -636,35 +791,16 @@
                         {/block:ContentSource}{/block:NotReblog}
                     </ul>
 
-                    {block:HasTags}
-                    <ul class="tags icon-tag unlistified">
-                        {block:Tags}
-                        <li>#<a href="{TagURL}">{Tag}</a></li>
-                        {/block:Tags}
-                    </ul>
-                    {/block:HasTags}
-
-                    <ul class="post-icons unlistified">
-                        {block:IndexPage}
-                        <li><a href="{Permalink}" class="icon-link-2" title="Permalink: {ShortURL}"></a></li>
-                        <li>{LikeButton}</li>
-                        <li>{ReblogButton}</li>
-                        {/block:IndexPage}
-                        {block:Audio}{block:ExternalAudio}
-                        <li><a href="{ExternalAudioURL}" class="icon-download" title="{lang:Download}"></a></li>
-                        {/block:ExternalAudio}{/block:Audio}
-                    </ul>
-
                     {block:PermalinkPagination}
                     <ul id="permalink-pagination" class="pagination unlistified">
                         {block:PreviousPost}
                         <li id="prev-post" class="previous">
-                            <a href="{PreviousPost}" title="Previous Post" class="icon-angle-left">Previous Post</a>
+                            <a href="{PreviousPost}" title="Previous Post" class="icon-angle-left"></a>
                         </li>
                         {/block:PreviousPost}
                         {block:NextPost}
                         <li id="next-post" class="next">
-                            <a href="{NextPost}" title="Next Post" class="iconr-angle-right">Next Post</a>
+                            <a href="{NextPost}" title="Next Post" class="iconr-angle-right"></a>
                         </li>
                         {/block:NextPost}
                     </ul>
@@ -688,7 +824,7 @@
             <ul id="blog-pagination" class="pagination unlistified">
                 {block:PreviousPage}
                 <li id="prev-page" class="previous">
-                    <a href="{PreviousPage}" title="Previous Page" class="icon-angle-left">Previous Page</a>
+                    <a href="{PreviousPage}" title="Previous Page" class="icon-angle-left">Prev</a>
                 </li>
                 {/block:PreviousPage}
 
@@ -705,7 +841,7 @@
 
                 {block:NextPage}
                 <li id="next-page" class="next">
-                    <a href="{NextPage}" title="Next Page" class="iconr-angle-right">Next Page</a>
+                    <a href="{NextPage}" title="Next Page" class="iconr-angle-right">Next</a>
                 </li>
                 {/block:NextPage}
             </ul>
@@ -769,7 +905,7 @@
                             $rowImgs.each(function() {
                                 if ($(this).height() == minHeight) return true;
                                 var margin = 0 - Math.ceil( ($(this).height() - minHeight) / 2 );
-                                $(this).css('margin-top', margin + 'px');
+                                $(this).css('top', margin + 'px');
                             });
                         });
                     });
