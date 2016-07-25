@@ -298,7 +298,12 @@
                 -moz-border-radius: 4px 4px 0 0;
                 border-radius: 4px 4px 0 0;
             }
-            .caption {
+            .audio-container iframe,
+            .video-container iframe {
+                max-width: 100%;
+            }
+            .caption,
+            .post-body {
                 margin: 0 1em;
             }
             /* Post Meta */
@@ -309,9 +314,12 @@
             .tags,
             .post-sources {
                 font-size: 0.6875rem; /* 11px */
+                text-transform: lowercase;
             }
             .post-date:before,
-            .tags:before {
+            .tags:before,
+            .post-sources .via:before,
+            .post-sources .source:first-child:before {
                 margin-right: 0.2em;
             }
             .post-date,
@@ -322,6 +330,11 @@
                 -moz-box-sizing: border-box;
                 box-sizing: border-box;
                 margin: 0;
+            }
+            .permalink .post-date,
+            .permalink .tags,
+            .permalink .post-icons {
+                margin-bottom: 1em;
             }
             .post-date {
                 width: 22%;
@@ -363,23 +376,42 @@
             .post-icons li:first-child {
                 margin-left: 0;
             }
-            .post-icons .icon-download {
-                position: relative;
-                top: 2px;
+            .post-icons a,
+            .post-icons .like_button {
+                color: #000;
+                opacity: 0.2;
+                -webkit-transition: opacity 0.14s ease-in-out;
+                -moz-transition: opacity 0.14s ease-in-out;
+                -o-transition: opacity 0.14s ease-in-out;
+                transition: opacity 0.14s ease-in-out;
+            }
+            .post-icons a:hover,
+            .post-icons .like_button:hover {
+                opacity: 0.8;
+            }
+            .post-icons .like_button.liked,
+            .post-icons .like_button.liked:hover {
+                opacity: 1;
             }
             .post-icons .like_button {
                 position: relative;
                 bottom: 1px;
             }
-            .post-icons a,
-            .post-icons a:hover {
-                color: #ccc;
+            .post-icons .icon-download:before {
+                font-size: 13px;
+            }
+            .index .post-icons .icon-download {
+                position: relative;
+                top: 2px;
             }
             .index .post-sources {
                 display: none;
             }
             .permalink .post-sources {
                 clear: left;
+            }
+            .post-sources li:first-child {
+                margin-right: 0.125rem; /* 2px */
             }
             /*** End Post Styles ***/
 
@@ -697,7 +729,7 @@
                 <!-- Embedded Audio Player -->
                 <figure class="audio-container embedded-audio">
                     {block:IndexPage}{AudioEmbed-500}{/block:IndexPage}
-                    {block:PermalinkPage}{AudioEmbed}{/block:PermalinkPage}
+                    {block:PermalinkPage}{AudioEmbed-640}{/block:PermalinkPage}
 
                     {block:Caption}
                     <figcaption class="caption">
@@ -754,7 +786,9 @@
                 <!-- Post Meta -->
                 <footer class="post-footer clearfix{block:Audio}{block:ExternalAudio} has-external-audio{/block:ExternalAudio}{/block:Audio}">
                     <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {24HourWithZero}:{Minutes}:{Seconds}" title="{DayOfWeek}, {Month} {DayOfMonth}, {Year} {12Hour}:{Minutes}{AmPm}" class="post-date icon-clock">
-                        <a href="{Permalink}" title="Permalink: {ShortURL}">{TimeAgo}</a>
+                        {block:IndexPage}<a href="{Permalink}" title="Permalink: {ShortURL}">{/block:IndexPage}
+                            {TimeAgo}
+                        {block:IndexPage}</a>{/block:IndexPage}
                     </time>
 
                     {block:HasTags}
@@ -770,22 +804,25 @@
                         <li><a href="{ExternalAudioURL}" class="icon-download" title="{lang:Download}"></a></li>
                         {/block:ExternalAudio}{/block:Audio}
                         {block:IndexPage}
-                        <li>{LikeButton color="grey" size="13"}</li>
-                        <li>{ReblogButton color="grey" size="13"}</li>
+                        <li>{LikeButton color="black" size="13"}</li>
+                        <li>{ReblogButton color="black" size="13"}</li>
                         {/block:IndexPage}
                     </ul>
 
                     <ul class="post-sources unlistified">
                         {block:RebloggedFrom}
-                        <li class="source icon-feather">
-                            <a href="{ReblogRootURL}" title="Source: {PlaintextReblogRootTitle}">{ReblogRootName}</a>
-                        </li>
                         <li class="via icon-loop">
-                            <a href="{ReblogParentURL}" title="Via: {PlaintextReblogParentTitle}">{ReblogParentName}</a>
+                            Reblogged from
+                            <a href="{ReblogParentURL}" title="Via: {PlaintextReblogParentTitle}">{ReblogParentName}</a>,
+                        </li>
+                        <li class="source">
+                            Published by
+                            <a href="{ReblogRootURL}" title="Source: {PlaintextReblogRootTitle}">{ReblogRootName}</a>
                         </li>
                         {/block:RebloggedFrom}
                         {block:NotReblog}{block:ContentSource}
-                        <li class="source icon-feather">
+                        <li class="source icon-loop">
+                            Published by
                             <a href="{SourceURL}" title="Source: {PlaintextSourceTitle}">{SourceTitle}</a>
                         </li>
                         {/block:ContentSource}{/block:NotReblog}
@@ -794,13 +831,13 @@
                     {block:PermalinkPagination}
                     <ul id="permalink-pagination" class="pagination unlistified">
                         {block:PreviousPost}
-                        <li id="prev-post" class="previous">
-                            <a href="{PreviousPost}" title="Previous Post" class="icon-angle-left"></a>
+                        <li id="prev-post">
+                            <a href="{PreviousPost}" title="Previous Post" class="previous icon-point-left"></a>
                         </li>
                         {/block:PreviousPost}
                         {block:NextPost}
-                        <li id="next-post" class="next">
-                            <a href="{NextPost}" title="Next Post" class="iconr-angle-right"></a>
+                        <li id="next-post">
+                            <a href="{NextPost}" title="Next Post" class="next iconr-point-right"></a>
                         </li>
                         {/block:NextPost}
                     </ul>
@@ -823,8 +860,8 @@
             {block:IndexPage}{block:Pagination}
             <ul id="blog-pagination" class="pagination unlistified">
                 {block:PreviousPage}
-                <li id="prev-page" class="previous">
-                    <a href="{PreviousPage}" title="Previous Page" class="icon-angle-left">Prev</a>
+                <li id="prev-page">
+                    <a href="{PreviousPage}" title="Previous Page" class="previous icon-angle-left">Prev</a>
                 </li>
                 {/block:PreviousPage}
 
@@ -840,8 +877,8 @@
                 {/block:IfShowJumpPagination}
 
                 {block:NextPage}
-                <li id="next-page" class="next">
-                    <a href="{NextPage}" title="Next Page" class="iconr-angle-right">Next</a>
+                <li id="next-page">
+                    <a href="{NextPage}" title="Next Page" class="next iconr-angle-right">Next</a>
                 </li>
                 {/block:NextPage}
             </ul>
