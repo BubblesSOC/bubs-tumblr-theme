@@ -173,6 +173,21 @@
                 display: inline-block;
             }
 
+            .pointer {
+                width: 13px;
+                height: 13px;
+                line-height: 13px;
+                padding: 8px;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                border-radius: 50%;
+                color: {color:Text};
+                background-color: {color:Highlight};
+            }
+            .pointer:before {
+                font-size: 13px;
+            }
+
             /*** Begin Layout Styles ***/
             #blog-header,
             #blog-footer {
@@ -296,6 +311,14 @@
             /*** End Header Styles ***/
 
             /*** Begin Post Styles ***/
+            .results-title {
+                font-family: 'Trochut', {TitleFont};
+                font-weight: normal;
+            }
+            .results-title .the-query {
+                font-weight: bold;
+                font-style: normal;
+            }
             .post {
                 width: 500px;
                 margin-bottom: 30px;
@@ -443,20 +466,6 @@
             #prev-post .previous,
             #next-post .next {
                 display: block;
-                width: 13px;
-                height: 13px;
-                padding: 8px;
-                -webkit-border-radius: 50%;
-                -moz-border-radius: 50%;
-                border-radius: 50%;
-                color: {color:Text};
-                background-color: {color:Highlight};
-            }
-            #prev-post .previous:before,
-            #next-post .next:before {
-                font-size: 13px;
-                position: relative;
-                bottom: 3px;
             }
             .note-count {
                 padding-top: 1em;
@@ -546,16 +555,20 @@
             /*** End Photoset Grid CSS ***/
 
             /*** Begin Footer Styles ***/
-            #blog-footer a {
+            #blog-footer a:not(#elevator) {
                 color: {color:Footer Link};
             }
-            #blog-footer a:hover {
+            #blog-footer a:not(#elevator):hover {
                 color: {color:Footer Link Hover};
             }
             #elevator {
                 position: fixed;
-                bottom: 15px;
-                right: 15px;
+                bottom: 20px;
+                right: 20px;
+            }
+            #elevator:before {
+                position: relative;
+                left: 2px;
             }
             /*** End Footer Styles ***/
 
@@ -632,10 +645,10 @@
 
         <main id="posts-container">
             {block:TagPage}
-            <h2 class="results-title">Posts tagged as &ldquo;<em>{Tag}</em>&rdquo;</h2>
+            <h2 class="results-title">Posts tagged as &ldquo;<em class="the-query">{Tag}</em>&rdquo;</h2>
             {/block:TagPage}
             {block:SearchPage}
-            <h2 class="results-title">Search results for &ldquo;<em>{SearchQuery}</em>&rdquo;</h2>
+            <h2 class="results-title">Search results for &ldquo;<em class="the-query">{SearchQuery}</em>&rdquo;</h2>
             {/block:SearchPage}
 
             {block:Posts inlineMediaWidth="500" inlineNestedMediaWidth="500"}
@@ -904,12 +917,12 @@
                     <ul id="permalink-pagination" class="pagination unlistified">
                         {block:PreviousPost}
                         <li id="prev-post">
-                            <a href="{PreviousPost}" title="Previous Post" class="previous icon-point-left"></a>
+                            <a href="{PreviousPost}" title="Previous Post" class="previous icon-point-left pointer"></a>
                         </li>
                         {/block:PreviousPost}
                         {block:NextPost}
                         <li id="next-post">
-                            <a href="{NextPost}" title="Next Post" class="next icon-point-right"></a>
+                            <a href="{NextPost}" title="Next Post" class="next icon-point-right pointer"></a>
                         </li>
                         {/block:NextPost}
                     </ul>
@@ -956,20 +969,18 @@
             </ul>
             {/block:Pagination}{/block:IndexPage}
 
-            <p>
-                Theme by <a href="http://bubbless0c.tumblr.com" target="_blank">Bubs</a>
-                <ul id="social-icons" class="unlistified">
-                    <li><a href="http://8tracks.com/{text:8tracks Username}" title="8tracks" class="icon-8tracks" target="_blank"></a></li>
-                    <li><a href="http://archiveofourown.org/users/{text:ao3 Username}" title="Archive of Our Own" class="icon-ao3" target="_blank"></a></li>
-                    <li><a href="https://facebook.com/{text:Facebook Username}" title="Facebook" class="icon-facebook" target="_blank"></a></li>
-                    <li><a href="http://github.com/{text:Github Username}" title="Github" class="icon-github" target="_blank"></a></li>
-                    <li><a href="https://open.spotify.com/user/{text:Spotify Username}" title="Spotify" class="icon-spotify" target="_blank"></a></li>
-                    <li><a href="http://steamcommunity.com/id/{text:Steam Username}" title="Steam" class="icon-steam" target="_blank"></a></li>
-                    <li><a href="http://{text:Tumblr Username}.tumblr.com" title="Tumblr" class="icon-tumblr" target="_blank"></a></li>
-                    <li><a href="http://twitter.com/{text:Twitter Username}" title="Twitter" class="icon-twitter" target="_blank"></a></li>
-                </ul>
-                <a href="#" title="Back to Top" id="elevator" class="icon-point-up"></a>
-            </p>
+            <p>Theme by <a href="http://bubbless0c.tumblr.com" target="_blank">Bubs</a></p>
+            <ul id="social-icons" class="unlistified">
+                <li><a href="http://8tracks.com/{text:8tracks Username}" title="8tracks" class="icon-8tracks" target="_blank"></a></li>
+                <li><a href="http://archiveofourown.org/users/{text:ao3 Username}" title="Archive of Our Own" class="icon-ao3" target="_blank"></a></li>
+                <li><a href="https://facebook.com/{text:Facebook Username}" title="Facebook" class="icon-facebook" target="_blank"></a></li>
+                <li><a href="http://github.com/{text:Github Username}" title="Github" class="icon-github" target="_blank"></a></li>
+                <li><a href="https://open.spotify.com/user/{text:Spotify Username}" title="Spotify" class="icon-spotify" target="_blank"></a></li>
+                <li><a href="http://steamcommunity.com/id/{text:Steam Username}" title="Steam" class="icon-steam" target="_blank"></a></li>
+                <li><a href="http://{text:Tumblr Username}.tumblr.com" title="Tumblr" class="icon-tumblr" target="_blank"></a></li>
+                <li><a href="http://twitter.com/{text:Twitter Username}" title="Twitter" class="icon-twitter" target="_blank"></a></li>
+            </ul>
+            <a href="#" title="Back to Top" id="elevator" class="pointer icon-point-up"></a>
         </footer>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
