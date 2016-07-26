@@ -6,7 +6,13 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>{Title}{block:SearchPage} ({lang:Search results for SearchQuery}){/block:SearchPage}{block:PermalinkPage}{block:PostSummary} — {PostSummary}{/block:PostSummary}{/block:PermalinkPage}</title>
+        <title>
+            {block:SearchPage}Search results for &ldquo;{SearchQuery}&rdquo; |{/block:SearchPage}
+            {block:TagPage}Posts tagged as &ldquo;{PlaintextTag}&rdquo; |{/block:TagPage}
+            {block:DayPage}{/block:DayPage}
+            {block:PermalinkPage}{block:PostSummary}{PostSummary} |{/block:PostSummary}{/block:PermalinkPage}
+            {Title}
+        </title>
         {block:Description}
         <meta name="description" content="{MetaDescription}">
         {/block:Description}
@@ -15,43 +21,71 @@
         {block:Hidden}
         <!-- Theme Options -->
         <meta name="image:Logo" content="">
+
+        <meta name="color:Background" content="{BackgroundColor}"> <!-- #f5f6e6 -->
+        <meta name="color:Post Background" content="#fff"> <!-- #fff -->
+        <meta name="color:Text" content="#333"> <!-- #333 -->
+        <meta name="color:Link" content="{AccentColor}"> <!-- #999 -->
+        <meta name="color:Link Hover" content="{AccentColor}"> <!-- #333 -->
+        <meta name="color:Highlight" content="#eee"> <!-- #e2e6c3 -->
+        <meta name="color:Borders" content="#eee"> <!-- #e1e2da -->
+        <meta name="color:Blog Title" content="{TitleColor}"> <!-- #fb834f -->
+        <meta name="color:Blog Title Shadow" content="#eee"> <!-- #53170d -->
+        <meta name="color:Blog Title Hover" content="{TitleColor}"> <!-- #e55a3d -->
+        <meta name="color:Navigation" content="{AccentColor}"> <!-- #c54132 -->
+        <meta name="color:Navigation Hover" content="{AccentColor}"> <!-- #e55a3d -->
+        <meta name="color:Sidebar Text" content="#333"> <!-- #333 -->
+        <meta name="color:Sidebar Link" content="{AccentColor}"> <!-- #c54132 -->
+        <meta name="color:Sidebar Link Hover" content="{AccentColor}"> <!-- #e55a3d -->
+        <meta name="color:Footer Text" content="#333"> <!-- #333 -->
+        <meta name="color:Footer Link" content="{AccentColor}"> <!-- #698845 -->
+        <meta name="color:Footer Link Hover" content="{AccentColor}"> <!-- #3d785c -->
+
+        <meta name="font:Heading Font" content="{TitleFont}">
+        <meta name="font:Subheading Font" content="{TitleFont}">
+
+        <meta name="select:Heading Font Weight" content="bold" title="Bold">
+        <meta name="select:Heading Font Weight" content="normal" title="Normal">
+
+        <meta name="select:Subheading Font Weight" content="bold" title="Bold">
+        <meta name="select:Subheading Font Weight" content="normal" title="Normal">
+
         <meta name="select:Logo Shape" content="circle" title="Circle">
         <meta name="select:Logo Shape" content="square" title="Square">
+
         <meta name="if:Logo Hover Effect" content="1">
-        <meta name="color:Background" content="#f5f6e6">
-        <meta name="color:Text" content="#333">
-        <meta name="color:Link" content="#999">
-        <meta name="color:Link Hover" content="#333">
-        <meta name="color:Highlight" content="#e2e6c3">
-        <meta name="color:Blog Title" content="#fb834f">
-        <meta name="color:Blog Title Shadow" content="#53170d">
-        <meta name="color:Blog Title Hover" content="#e55a3d">
-        <meta name="color:Navigation" content="#c54132">
-        <meta name="color:Navigation Hover" content="#e55a3d">
-        <meta name="color:Footer Link" content="#698845">
-        <meta name="color:Footer Link Hover" content="#3d785c">
-        <meta name="color:Post Background" content="#fff">
-        <meta name="color:Borders" content="#e1e2da">
-        <meta name="font:Heading Font" content="{TitleFont}">
+        <meta name="if:Blog Title Shadow" content="1">
+        <meta name="if:Show Search Form" content="1">
+        <meta name="if:Show Jump Pagination" content="1">
+
         <meta name="text:Custom Heading Font URL" content="">
         <meta name="text:Custom Heading Font Name" content=""> <!-- Limelight -->
-        <meta name="font:Subheading Font" content="{TitleFont}">
+
         <meta name="text:Custom Subheading Font URL" content="">
         <meta name="text:Custom Subheading Font Name" content=""> <!-- Trochut -->
-        <meta name="if:Show Search Form" content="1">
+
         <meta name="text:Ask Link Label" content="">
         <meta name="text:Submit Link Label" content="">
         <meta name="text:Alternate Description" content="">
-        <meta name="if:Show Jump Pagination" content="1">
+
         <meta name="text:Google Analytics ID" content="">
         <meta name="text:8tracks Username" content="">
         <meta name="text:ao3 Username" content="">
+        <meta name="text:Behance URL" content="">
+        <meta name="text:deviantART Username" content="">
+        <meta name="text:Dribbble Username" content="">
         <meta name="text:Facebook Username" content="">
         <meta name="text:Github Username" content="">
-        <meta name="text:Spotify Username" content="">
+        <meta name="text:Goodreads URL" content="">
+        <meta name="text:Instagram Username" content="">
+        <meta name="text:Pinterest Username" content="">
+        <meta name="text:Spotify URL" content="">
         <meta name="text:Steam Username" content="">
         <meta name="text:Tumblr Username" content="">
         <meta name="text:Twitter Username" content="">
+        <meta name="text:Website URL" content="">
+        <meta name="text:WordPress URL" content="">
+        <meta name="text:YouTube URL" content="">
         <!-- /Theme Options -->
         {/block:Hidden}
 
@@ -59,7 +93,7 @@
         <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/mM7oapbsy/rapture-icons.css">
+        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/wh9oawb4y/rapture-icons.css">
 
         <!-- Custom Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet">
@@ -170,6 +204,7 @@
                 {block:IfNotCustomHeadingFontName}
                 font-family: {TitleFont};
                 {/block:IfNotCustomHeadingFontName}
+                font-weight: {select:Heading Font Weight};
             }
             .subheading {
                 {block:IfCustomSubheadingFontName}
@@ -178,6 +213,7 @@
                 {block:IfNotCustomSubheadingFontName}
                 font-family: {TitleFont};
                 {/block:IfNotCustomSubheadingFontName}
+                font-weight: {select:Subheading Font Weight};
             }
 
             .hidden {
@@ -240,11 +276,14 @@
             /*** End Layout Styles ***/
 
             /*** Begin Header Styles ***/
+            #blog-header {
+                color: {color:Sidebar Text};
+            }
             #blog-header a {
-                color: {color:Navigation};
+                color: {color:Sidebar Link};
             }
             #blog-header a:hover {
-                color: {color:Navigation Hover};
+                color: {color:Sidebar Link Hover};
             }
             #blog-title {
                 text-align: center;
@@ -303,7 +342,9 @@
                 font-size: 2rem;
                 line-height: 100%;
                 /* 32px/32px */
+                {block:IfBlogTitleShadow}
                 text-shadow: 1px 0 0 {color:Blog Title Shadow};
+                {/block:IfBlogTitleShadow}
             }
             #main-menu {
                 /* .subheading */
@@ -322,6 +363,12 @@
             #main-menu li:not(:last-child):after {
                 content: '/';
                 padding-left: 0.1875rem; /* 3px */
+            }
+            #main-menu a {
+                color: {color:Navigation};
+            }
+            #main-menu a:hover {
+                color: {color:Navigation Hover};
             }
             #search-form {
                 position: relative;
@@ -351,10 +398,6 @@
             /*** End Header Styles ***/
 
             /*** Begin Post Styles ***/
-            .results-title {
-                /* .subheading */
-                font-weight: normal;
-            }
             .results-title .the-query {
                 font-weight: bold;
                 font-style: normal;
@@ -510,7 +553,6 @@
             .note-count {
                 /* .subheading */
                 padding-top: 1em;
-                font-weight: normal;
                 font-size: 1.125rem; /* 18px */
                 border-top: 1px solid {color:Borders};
             }
@@ -595,6 +637,9 @@
             /*** End Photoset Grid CSS ***/
 
             /*** Begin Footer Styles ***/
+            #blog-footer {
+                color: {color:Footer Text};
+            }
             #blog-footer a:not(#elevator) {
                 color: {color:Footer Link};
             }
@@ -1015,14 +1060,73 @@
 
             <p>Theme by <a href="http://bubbless0c.tumblr.com" target="_blank">Bubs</a></p>
             <ul id="social-icons" class="unlistified">
+                {block:If8tracksUsername}
                 <li><a href="http://8tracks.com/{text:8tracks Username}" title="8tracks" class="icon-8tracks" target="_blank"></a></li>
+                {/block:If8tracksUsername}
+
+                {block:Ifao3Username}
                 <li><a href="http://archiveofourown.org/users/{text:ao3 Username}" title="Archive of Our Own" class="icon-ao3" target="_blank"></a></li>
+                {/block:Ifao3Username}
+
+                {block:IfBehanceURL}
+                <li><a href="{text:Behance URL}" title="Behance" class="icon-behance" target="_blank"></a></li>
+                {/block:IfBehanceURL}
+
+                {block:IfDeviantartUsername}
+                <li><a href="http://{text:deviantART Username}.deviantart.com/" title="deviantART" class="icon-deviantart" target="_blank"></a></li>
+                {/block:IfDeviantartUsername}
+
+                {block:IfDribbbleUsername}
+                <li><a href="https://dribbble.com/{text:Dribbble Username}" title="Dribbble" class="icon-dribbble" target="_blank"></a></li>
+                {/block:IfDribbbleUsername}
+
+                {block:IfFacebookUsername}
                 <li><a href="https://facebook.com/{text:Facebook Username}" title="Facebook" class="icon-facebook" target="_blank"></a></li>
+                {/block:IfFacebookUsername}
+
+                {block:IfGithubUsername}
                 <li><a href="http://github.com/{text:Github Username}" title="Github" class="icon-github" target="_blank"></a></li>
-                <li><a href="https://open.spotify.com/user/{text:Spotify Username}" title="Spotify" class="icon-spotify" target="_blank"></a></li>
+                {/block:IfGithubUsername}
+
+                {block:IfGoodreadsURL}
+                <li><a href="{text:Goodreads URL}" title="Goodreads" class="icon-goodreads" target="_blank"></a></li>
+                {/block:IfGoodreadsURL}
+
+                {block:IfInstagramUsername}
+                <li><a href="https://instagram.com/{text:Instagram Username}" title="Instagram" class="icon-instagram" target="_blank"></a></li>
+                {/block:IfInstagramUsername}
+
+                {block:IfPinterestUsername}
+                <li><a href="https://pinterest.com/{text:Pinterest Username}" title="Pinterest" class="icon-pinterest" target="_blank"></a></li>
+                {/block:IfPinterestUsername}
+
+                {block:IfSpotifyURL}
+                <li><a href="{text:Spotify URL}" title="Spotify" class="icon-spotify" target="_blank"></a></li>
+                {/block:IfSpotifyURL}
+
+                {block:IfSteamUsername}
                 <li><a href="http://steamcommunity.com/id/{text:Steam Username}" title="Steam" class="icon-steam" target="_blank"></a></li>
+                {/block:IfSteamUsername}
+
+                {block:IfTumblrUsername}
                 <li><a href="http://{text:Tumblr Username}.tumblr.com" title="Tumblr" class="icon-tumblr" target="_blank"></a></li>
+                {/block:IfTumblrUsername}
+
+                {block:IfTwitterUsername}
                 <li><a href="http://twitter.com/{text:Twitter Username}" title="Twitter" class="icon-twitter" target="_blank"></a></li>
+                {/block:IfTwitterUsername}
+
+                {block:IfWebsiteURL}
+                <li><a href="{text:Website URL}" title="Website" class="icon-globe" target="_blank"></a></li>
+                {/block:IfWebsiteURL}
+
+                {block:IfWordPressURL}
+                <li><a href="{text:WordPress URL}" title="WordPress" class="icon-wordpress" target="_blank"></a></li>
+                {/block:IfWordPressURL}
+
+                {block:IfYouTubeURL}
+                <li><a href="{text:YouTube URL}" title="YouTube" class="icon-youtube" target="_blank"></a></li>
+                {/block:IfYouTubeURL}
             </ul>
             <a href="#" title="Back to Top" id="elevator" class="pointer icon-point-up"></a>
         </footer>
