@@ -9,7 +9,7 @@
         <title>
             {block:SearchPage}Search results for &ldquo;{SearchQuery}&rdquo; |{/block:SearchPage}
             {block:TagPage}Posts tagged as &ldquo;{PlaintextTag}&rdquo; |{/block:TagPage}
-            {block:DayPage}{/block:DayPage}
+            {block:DayPage}{Month} {DayOfMonth}, {Year} |{/block:DayPage}
             {block:PermalinkPage}{block:PostSummary}{PostSummary} |{/block:PostSummary}{/block:PermalinkPage}
             {Title}
         </title>
@@ -79,6 +79,7 @@
         <meta name="text:Goodreads URL" content="">
         <meta name="text:Instagram Username" content="">
         <meta name="text:Pinterest Username" content="">
+        <meta name="text:Skype URL" content="">
         <meta name="text:Spotify URL" content="">
         <meta name="text:Steam Username" content="">
         <meta name="text:Tumblr Username" content="">
@@ -93,7 +94,7 @@
         <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/wh9oawb4y/rapture-icons.css">
+        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/0dQoaxhzc/rapture-icons.css">
 
         <!-- Custom Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet">
@@ -129,8 +130,7 @@
                 text-shadow: none;
             }
             html {
-                font-size: 100%;
-                /* https://offroadcode.com/rem-calculator/ */
+                font-size: 100%; /* 16px */
             }
             body {
                 font: 0.8125rem/161.54% 'Karla', 'Helvetica Neue', 'Helvetica', sans-serif;
@@ -675,16 +675,42 @@
                 position: relative;
                 left: 2px;
             }
+            /* Pagination */
+            .hide-jump-pages .prev-container,
+            .hide-jump-pages .next-container,
+            #day-pagination .prev-container,
+            #day-pagination .next-container {
+                width: 50%;
+                float: left;
+            }
+            .hide-jump-pages .next-container,
+            #day-pagination .next-container {
+                float: right;
+                text-align: right;
+            }
+            .show-jump-pages {
+                text-align: center;
+            }
+            .show-jump-pages #prev-page {
+                width: 3%;
+                float: left;
+                text-align: left;
+            }
+            .show-jump-pages #next-page {
+                width: 3%;
+                float: right;
+                text-align: right;
+            }
             /*** End Footer Styles ***/
 
             /*** Custom CSS ***/
             {CustomCSS}
         </style>
 
-        <!--<script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>-->
+        <script src="http://bubblessoc.net/personal/tumblr/js/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     </head>
     <body
-    {block:IndexPage}class="index{block:SearchPage} search{block:NoSearchResults} no-results{/block:NoSearchResults}{/block:SearchPage}{block:TagPage} tag-page{/block:TagPage}"{/block:IndexPage}
+    {block:IndexPage}class="index{block:SearchPage} search{block:NoSearchResults} no-results{/block:NoSearchResults}{/block:SearchPage}{block:TagPage} tag-page{/block:TagPage}{block:DayPage} day-page{/block:DayPage}"{/block:IndexPage}
     {block:PermalinkPage}class="permalink"{/block:PermalinkPage}
     {block:TagPage}data-tag="{PlaintextTag}"{/block:TagPage}
     >
@@ -759,6 +785,11 @@
         Search results for &ldquo;<em class="the-query">{SearchQuery}</em>&rdquo;
     </h2>
     {/block:SearchPage}
+    {block:DayPage}
+    <h2 class="results-title subheading">
+        {Month} {DayOfMonth}, {Year}
+    </h2>
+    {/block:DayPage}
 
     <div id="the-posts">
         {block:Posts inlineMediaWidth="500" inlineNestedMediaWidth="500"}
@@ -1027,12 +1058,12 @@
                 {block:PermalinkPagination}
                 <ul id="permalink-pagination" class="pagination unlistified">
                     {block:PreviousPost}
-                    <li id="prev-post">
+                    <li id="prev-post" class="prev-container">
                         <a href="{PreviousPost}" title="Previous Post" class="previous icon-point-left pointer"></a>
                     </li>
                     {/block:PreviousPost}
                     {block:NextPost}
-                    <li id="next-post">
+                    <li id="next-post" class="next-container">
                         <a href="{NextPost}" title="Next Post" class="next icon-point-right pointer"></a>
                     </li>
                     {/block:NextPost}
@@ -1054,11 +1085,13 @@
 </main> <!-- #posts-container -->
 
         <footer id="blog-footer">
-            {block:IndexPage}{block:Pagination}
-            <ul id="blog-pagination" class="pagination unlistified">
+            {block:Pagination}
+            <ul id="blog-pagination" class="pagination unlistified clearfix{block:IfShowJumpPagination} show-jump-pages{/block:IfShowJumpPagination}{block:IfNotShowJumpPagination} hide-jump-pages{/block:IfNotShowJumpPagination}">
                 {block:PreviousPage}
-                <li id="prev-page">
-                    <a href="{PreviousPage}" title="Previous Page" class="previous icon-angle-left">Prev</a>
+                <li id="prev-page" class="prev-container">
+                    <a href="{PreviousPage}" title="Previous Page" class="previous icon-angle-left">
+                        {block:IfNotShowJumpPagination}Prev{/block:IfNotShowJumpPagination}
+                    </a>
                 </li>
                 {/block:PreviousPage}
 
@@ -1074,12 +1107,33 @@
                 {/block:IfShowJumpPagination}
 
                 {block:NextPage}
-                <li id="next-page">
-                    <a href="{NextPage}" title="Next Page" class="next iconr-angle-right">Next</a>
+                <li id="next-page" class="next-container">
+                    <a href="{NextPage}" title="Next Page" class="next iconr-angle-right">
+                        {block:IfNotShowJumpPagination}Next{/block:IfNotShowJumpPagination}
+                    </a>
                 </li>
                 {/block:NextPage}
             </ul>
-            {/block:Pagination}{/block:IndexPage}
+            {/block:Pagination}
+
+            {block:DayPagination}
+            <ul id="day-pagination" class="pagination unlistified clearfix">
+                {block:PreviousDayPage}
+                <li id="prev-day" class="prev-container">
+                    <a href="{PreviousDayPage}" title="Previous Day" class="previous icon-angle-left">
+                        {ShortMonth} {DayOfMonth}
+                    </a>
+                </li>
+                {/block:PreviousDayPage}
+                {block:NextDayPage}
+                <li id="next-day" class="next-container">
+                    <a href="{NextDayPage}" title="Next Day" class="next iconr-angle-right">
+                        {ShortMonth} {DayOfMonth}
+                    </a>
+                </li>
+                {/block:NextDayPage}
+            </ul>
+            {/block:DayPagination}
 
             <p>Theme by <a href="http://bubbless0c.tumblr.com" target="_blank">Bubs</a></p>
             <ul id="social-icons" class="unlistified">
@@ -1122,6 +1176,10 @@
                 {block:IfPinterestUsername}
                 <li><a href="https://pinterest.com/{text:Pinterest Username}" title="Pinterest" class="icon-pinterest" target="_blank"></a></li>
                 {/block:IfPinterestUsername}
+
+                {block:IfSkypeURL}
+                <li><a href="{text:Skype URL}" title="Skype" class="icon-skype" target="_blank"></a></li>
+                {/block:IfSkypeURL}
 
                 {block:IfSpotifyURL}
                 <li><a href="{text:Spotify URL}" title="Spotify" class="icon-spotify" target="_blank"></a></li>

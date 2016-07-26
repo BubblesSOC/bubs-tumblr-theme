@@ -1,6 +1,7 @@
 # Mine #
 ########
-assets/*
+assets/fonts/*
+etc/*
 
 # Packages #
 ############
