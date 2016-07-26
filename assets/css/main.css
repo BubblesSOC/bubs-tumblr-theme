@@ -1,0 +1,552 @@
+html {
+    font-size: 100%; /* 16px */
+}
+
+body {
+    font: 0.8125rem/161.54% 'Karla', 'Helvetica Neue', 'Helvetica', sans-serif;
+    /* 13px/21px */
+}
+
+audio, canvas, iframe, img, svg, video {
+    vertical-align: middle;
+}
+
+textarea {
+    resize: vertical;
+}
+
+img {
+    max-width: 100%;
+}
+
+figure {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    -webkit-transition: color 0.14s ease-in-out;
+    -moz-transition: color 0.14s ease-in-out;
+    -o-transition: color 0.14s ease-in-out;
+    transition: color 0.14s ease-in-out;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    margin: 1em 0;
+    padding: 0;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+blockquote {
+    margin: 1em 0;
+    padding-left: 0.9375rem; /* 15px */
+    border-left: 2px solid #eee;
+}
+
+ul, ol {
+    margin: 1em 0;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin: 0.83em 0;
+}
+h3 {
+    font-size: 1.17em;
+    margin: 1em 0;
+}
+h4 {
+    margin: 1.33em 0;
+}
+h5 {
+    font-size: 0.83em;
+    margin: 1.67em 0;
+}
+h6 {
+    font-size: 0.67em;
+    margin: 2.33em 0;
+}
+
+/* ==========================================================================
+   Helper Classes
+   ========================================================================== */
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+    *zoom: 1;
+}
+
+.unlistified {
+    list-style-type: none;
+    padding: 0;
+}
+.unlistified li {
+    display: inline-block;
+}
+
+.pointer {
+    width: 13px;
+    height: 13px;
+    line-height: 13px;
+    padding: 8px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+.pointer:before {
+    font-size: 13px;
+}
+
+/* ==========================================================================
+   General Layout Styles
+   ========================================================================== */
+
+#blog-header,
+#blog-footer {
+    width: 200px;
+    margin-left: 50px;
+    position: fixed;
+}
+
+#blog-header {
+    top: 0;
+}
+
+#blog-footer {
+    left: 0;
+    bottom: 0;
+}
+
+#posts-container {
+    margin: 30px 50px 30px 300px;
+}
+
+/* ==========================================================================
+   Header Styles
+   ========================================================================== */
+
+#blog-title {
+    text-align: center;
+    margin-top: 1.063rem; /* 17px (~2em) */
+}
+
+#blog-portrait,
+#blog-logo {
+    display: block;
+    margin: 0 auto;
+}
+
+#blog-portrait {
+    width: 96px;
+    height: 96px;
+}
+#blog-portrait.circle {
+    -webkit-border-radius: 48px;
+    -moz-border-radius: 48px;
+    -o-border-radius: 48px;
+    border-radius: 48px;
+}
+#blog-portrait.square {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+}
+
+#blog-logo {
+    width: 90%;
+}
+#blog-logo.circle {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+
+#blog-title-text {
+    /* .heading */
+    font-size: 2rem;
+    line-height: 100%;
+    /* 32px/32px */
+}
+
+#main-menu {
+    /* .subheading */
+    text-transform: lowercase;
+    font-size: 1.125rem;
+    line-height: 1.25rem;
+    /* 18px/20px */
+}
+#main-menu li {
+    float: left;
+    padding-right: 0.1875rem; /* 3px */
+}
+#main-menu li:last-child {
+    padding-right: 0;
+}
+#main-menu li:not(:last-child):after {
+    content: '/';
+    padding-left: 0.1875rem; /* 3px */
+}
+
+#search-form {
+    position: relative;
+    clear: left;
+}
+#search-form .icon-search {
+    position: absolute;
+    top: 0.125rem; /* 2px */
+    left: 0.4375rem; /* 7px */
+    opacity: 0.75;
+}
+#search-field {
+    width: 100%;
+    outline: none;
+    border: 1px solid #eee;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -o-border-radius: 20px;
+    border-radius: 20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0.1875rem 0.3125rem 0.1875rem 1.25rem; /* 3px 5px 3px 20px */
+}
+
+/* ==========================================================================
+   Main Styles
+   ========================================================================== */
+
+.results-title .the-query {
+    font-weight: bold;
+    font-style: normal;
+}
+
+.post {
+    width: 500px;
+    margin-bottom: 30px;
+    padding-bottom: 1em;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.permalink .post {
+    width: 540px;
+}
+
+/* ===========
+    The Posts
+   =========== */
+
+.post iframe {
+   max-width: 100%;
+}
+
+.post-title {
+    margin: 0.8125rem; /* 13px */
+    font-size: 1.625rem; /* 26px */
+    line-height: 1.875rem; /* 30px */
+}
+
+.caption,
+.post-body {
+    margin: 0 1em;
+}
+
+.post-photo, .link-thumbnail {
+    width: 100%;
+}
+
+.photo-container:not(.photoset) .post-photo,
+.link-thumbnail {
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    -o-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+}
+
+/* ===============
+    Photoset Grid
+   =============== */
+
+.photoset-row {
+    white-space: nowrap;
+    overflow: hidden;
+    clear: left;
+    margin-top: 5px;
+}
+.photoset-row:first-child {
+    margin-top: 0;
+}
+.photoset-row .photo-link {
+    display: block;
+    vertical-align: top;
+    padding-left: 5px;
+    float: left;
+    overflow: hidden;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.photoset-row .photo-link:first-child {
+    padding-left: 0;
+}
+.columns-1 .photo-link {
+    width: 100%;
+}
+.columns-2 .photo-link {
+    width: 50%;
+}
+.columns-3 .photo-link {
+    width: 33.3%;
+}
+.columns-4 .photo-link {
+    width: 25%;
+}
+.columns-5 .photo-link {
+    width: 20%;
+}
+.photoset-row:first-child.columns-1 .photo-link {
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    -o-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+}
+.photoset-row:first-child:not(.columns-1) .photo-link:first-child {
+    -webkit-border-top-left-radius: 4px;
+    -moz-border-top-left-radius: 4px;
+    -o-border-top-left-radius: 4px;
+    border-top-left-radius: 4px;
+}
+.photoset-row:first-child:not(.columns-1) .photo-link:last-child {
+    -webkit-border-top-right-radius: 4px;
+    -moz-border-top-right-radius: 4px;
+    -o-border-top-right-radius: 4px;
+    border-top-right-radius: 4px;
+}
+.photoset-row .photo-link .post-photo {
+    position: relative;
+}
+
+/* ===========
+    Post Meta
+   =========== */
+
+.post-footer {
+    padding: 1em 1em 0;
+}
+
+.post-date,
+.tags,
+.post-sources {
+    font-size: 0.6875rem; /* 11px */
+    text-transform: lowercase;
+}
+
+.post-date:before,
+.tags:before,
+.post-sources .via:before,
+.post-sources .source:first-child:before {
+    /* icons */
+    margin-right: 0.2em;
+}
+
+.post-date,
+.tags,
+.post-icons {
+    float: left;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.post-date {
+    width: 22%;
+}
+
+.tags {
+    width: 70%;
+}
+.index .has-external-audio .tags {
+    width: 66%;
+}
+.permalink .tags {
+    width: 78%;
+}
+.permalink .has-external-audio .tags {
+    width: 75%;
+}
+.tags .tag {
+    margin-right: 0.3125rem; /* 5px */
+}
+
+.post-icons {
+    float: right;
+    text-align: right;
+    width: 8%;
+}
+.index .has-external-audio .post-icons {
+    width: 12%;
+}
+.permalink .post-icons {
+    display: none;
+}
+.permalink .has-external-audio .post-icons {
+    display: block;
+    width: 3%;
+}
+.post-icons li {
+    width: 13px;
+    margin-left: 5px;
+}
+.post-icons li:first-child {
+    margin-left: 0;
+}
+.post-icons a,
+.post-icons .like_button {
+    color: #000;
+    opacity: 0.2;
+    -webkit-transition: opacity 0.14s ease-in-out;
+    -moz-transition: opacity 0.14s ease-in-out;
+    -o-transition: opacity 0.14s ease-in-out;
+    transition: opacity 0.14s ease-in-out;
+}
+.post-icons a:hover,
+.post-icons .like_button:hover {
+    opacity: 0.8;
+}
+.post-icons .like_button.liked,
+.post-icons .like_button.liked:hover {
+    opacity: 1;
+}
+.post-icons .like_button {
+    position: relative;
+    bottom: 1px;
+}
+.post-icons .icon-download:before {
+    font-size: 13px;
+}
+.index .post-icons .icon-download {
+    position: relative;
+    top: 2px;
+}
+
+.index .post-sources {
+    display: none;
+}
+.permalink .post-sources {
+    clear: left;
+}
+.post-sources li:first-child {
+    margin-right: 0.125rem; /* 2px */
+}
+
+#prev-post, #next-post {
+    position: fixed;
+    top: 50%;
+}
+#prev-post {
+    left: 261px;
+}
+#next-post {
+    left: 850px;
+}
+#prev-post .previous,
+#next-post .next {
+    display: block;
+}
+
+.note-count {
+    /* .subheading */
+    padding-top: 1em;
+    font-size: 1.125rem; /* 18px */
+    border-top: 1px solid #eee;
+}
+
+.notes {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.75rem; /* 12px */
+}
+.notes .note {
+    margin-bottom: 0.3125rem; /* 5px */
+}
+.notes .more_notes_link_container {
+    margin-bottom: 0;
+}
+.notes .avatar_frame {
+    margin-right: 0.1875rem; /* 3px */
+}
+.notes .avatar {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+
+/* ==========================================================================
+   Footer Styles
+   ========================================================================== */
+
+#elevator {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+#elevator:before {
+    position: relative;
+    left: 2px;
+}
+
+/* ============
+    Pagination
+   ============ */
+
+.hide-jump-pages .prev-container,
+.hide-jump-pages .next-container,
+#day-pagination .prev-container,
+#day-pagination .next-container {
+    width: 50%;
+    float: left;
+}
+.hide-jump-pages .next-container,
+#day-pagination .next-container {
+    float: right;
+    text-align: right;
+}
+.show-jump-pages {
+    text-align: center;
+}
+.show-jump-pages #prev-page {
+    width: 3%;
+    float: left;
+    text-align: left;
+}
+.show-jump-pages #next-page {
+    width: 3%;
+    float: right;
+    text-align: right;
+}
