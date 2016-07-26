@@ -206,7 +206,7 @@
                 {/block:IfNotCustomHeadingFontName}
                 font-weight: {select:Heading Font Weight};
             }
-            .subheading {
+            .subheading, .post h2 {
                 {block:IfCustomSubheadingFontName}
                 font-family: '{text:Custom Subheading Font Name}', {TitleFont};
                 {/block:IfCustomSubheadingFontName}
@@ -248,6 +248,7 @@
                 padding: 8px;
                 -webkit-border-radius: 50%;
                 -moz-border-radius: 50%;
+                -o-border-radius: 50%;
                 border-radius: 50%;
                 color: {color:Text};
                 background-color: {color:Highlight};
@@ -271,7 +272,7 @@
                 bottom: 0;
             }
             #posts-container {
-                margin: 1.25rem 50px 30px 300px; /* 20px */
+                margin: 30px 50px 30px 300px;
             }
             /*** End Layout Styles ***/
 
@@ -312,6 +313,7 @@
             #blog-title a:hover #blog-logo {
                 -webkit-box-shadow: 0 0 0 5px {color:Blog Title Hover};
                 -moz-box-shadow: 0 0 0 5px {color:Blog Title Hover};
+                -o-box-shadow: 0 0 0 5px {color:Blog Title Hover};
                 box-shadow: 0 0 0 5px {color:Blog Title Hover};
             }
             {/block:IfLogoHoverEffect}
@@ -322,11 +324,13 @@
             #blog-portrait.circle {
                 -webkit-border-radius: 48px;
                 -moz-border-radius: 48px;
+                -o-border-radius: 48px;
                 border-radius: 48px;
             }
             #blog-portrait.square {
                 -webkit-border-radius: 4px;
                 -moz-border-radius: 4px;
+                -o-border-radius: 4px;
                 border-radius: 4px;
             }
             #blog-logo {
@@ -335,6 +339,7 @@
             #blog-logo.circle {
                 -webkit-border-radius: 50%;
                 -moz-border-radius: 50%;
+                -o-border-radius: 50%;
                 border-radius: 50%;
             }
             #blog-title-text {
@@ -387,9 +392,11 @@
                 border-style: solid;
                 -webkit-border-radius: 20px;
                 -moz-border-radius: 20px;
+                -o-border-radius: 20px;
                 border-radius: 20px;
                 -webkit-box-sizing: border-box;
                 -moz-box-sizing: border-box;
+                -o-box-sizing: border-box;
                 box-sizing: border-box;
                 padding: 0.1875rem 0.3125rem 0.1875rem 1.25rem; /* 3px 5px 3px 20px */
                 background-color: {color:Post Background};
@@ -408,26 +415,33 @@
                 padding-bottom: 1em;
                 -webkit-border-radius: 4px;
                 -moz-border-radius: 4px;
+                -o-border-radius: 4px;
                 border-radius: 4px;
                 background-color: {color:Post Background};
                 -webkit-box-shadow: 1px 1px 0 {color:Borders};
                 -moz-box-shadow: 1px 1px 0 {color:Borders};
+                -o-box-shadow: 1px 1px 0 {color:Borders};
                 box-shadow: 1px 1px 0 {color:Borders};
             }
             .permalink .post {
                 width: 540px;
             }
-            .post-photo {
+            .post-title {
+                margin: 0.8125rem; /* 13px */
+                font-size: 1.625rem; /* 26px */
+                line-height: 1.875rem; /* 30px */
+            }
+            .post-photo, .link-thumbnail {
                 width: 100%;
             }
-            .photo-container:not(.photoset) .post-photo {
-                /* todo: link thumbnail */
+            .photo-container:not(.photoset) .post-photo,
+            .link-thumbnail {
                 -webkit-border-radius: 4px 4px 0 0;
                 -moz-border-radius: 4px 4px 0 0;
+                -o-border-radius: 4px 4px 0 0;
                 border-radius: 4px 4px 0 0;
             }
-            .audio-container iframe,
-            .video-container iframe {
+            .post iframe {
                 max-width: 100%;
             }
             .caption,
@@ -456,6 +470,7 @@
                 float: left;
                 -webkit-box-sizing: border-box;
                 -moz-box-sizing: border-box;
+                -o-box-sizing: border-box;
                 box-sizing: border-box;
                 margin: 0;
             }
@@ -574,6 +589,7 @@
             .notes .avatar {
                 -webkit-border-radius: 50%;
                 -moz-border-radius: 50%;
+                -o-border-radius: 50%;
                 border-radius: 50%;
             }
             /*** End Post Styles ***/
@@ -596,6 +612,7 @@
                 overflow: hidden;
                 -webkit-box-sizing: border-box;
                 -moz-box-sizing: border-box;
+                -o-box-sizing: border-box;
                 box-sizing: border-box;
             }
             .photoset-row .photo-link:first-child {
@@ -619,16 +636,19 @@
             .photoset-row:first-child.columns-1 .photo-link {
                 -webkit-border-radius: 4px 4px 0 0;
                 -moz-border-radius: 4px 4px 0 0;
+                -o-border-radius: 4px 4px 0 0;
                 border-radius: 4px 4px 0 0;
             }
             .photoset-row:first-child:not(.columns-1) .photo-link:first-child {
                 -webkit-border-top-left-radius: 4px;
                 -moz-border-top-left-radius: 4px;
+                -o-border-top-left-radius: 4px;
                 border-top-left-radius: 4px;
             }
             .photoset-row:first-child:not(.columns-1) .photo-link:last-child {
                 -webkit-border-top-right-radius: 4px;
                 -moz-border-top-right-radius: 4px;
+                -o-border-top-right-radius: 4px;
                 border-top-right-radius: 4px;
             }
             .photoset-row .photo-link .post-photo {
@@ -728,307 +748,310 @@
             </nav>
         </header> <!-- #blog-header -->
 
-        <main id="posts-container">
-            {block:TagPage}
-            <h2 class="results-title subheading">
-                Posts tagged as &ldquo;<em class="the-query">{Tag}</em>&rdquo;
-            </h2>
-            {/block:TagPage}
-            {block:SearchPage}
-            <h2 class="results-title subheading">
-                Search results for &ldquo;<em class="the-query">{SearchQuery}</em>&rdquo;
-            </h2>
-            {/block:SearchPage}
+<main id="posts-container">
+    {block:TagPage}
+    <h2 class="results-title subheading">
+        Posts tagged as &ldquo;<em class="the-query">{Tag}</em>&rdquo;
+    </h2>
+    {/block:TagPage}
+    {block:SearchPage}
+    <h2 class="results-title subheading">
+        Search results for &ldquo;<em class="the-query">{SearchQuery}</em>&rdquo;
+    </h2>
+    {/block:SearchPage}
 
-            {block:Posts inlineMediaWidth="500" inlineNestedMediaWidth="500"}
-            <article id="{PostID}" class="post type-{PostType} {TagsAsClasses}">
+    <div id="the-posts">
+        {block:Posts inlineMediaWidth="500" inlineNestedMediaWidth="500"}
+        <article id="{PostID}" class="post type-{PostType} {TagsAsClasses}">
 
-                {block:Text}
-                <!-- Text Post -->
-                {block:Title}
-                <h1 class="post-title">
-                    {block:IndexPage}<a href="{Permalink}" title="{Title}">{/block:IndexPage}
-                    {Title}
-                    {block:IndexPage}</a>{/block:IndexPage}
-                </h1>
-                {/block:Title}
-                <div class="post-body">
-                    {Body}
-                </div>
-                <!-- /Text Post -->
-                {/block:Text}
-
-
-                {block:Photo}
-                <!-- Photo Post -->
-                <figure class="photo-container">
-                    {block:IndexPage}
-                    <a href="{Permalink}" class="photo-link" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" data-lowres="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}">
-                        <img src="{PhotoURL-500}" alt="{PhotoAlt}" class="post-photo">
-                    </a>
-                    {/block:IndexPage}
-
-                    {block:PermalinkPage}
-                    {LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" class="post-photo">{LinkCloseTag}
-                    {/block:PermalinkPage}
-
-                    {block:Caption}
-                    <figcaption class="caption">
-                        {Caption}
-                    </figcaption>
-                    {/block:Caption}
-                </figure>
-                <!-- /Photo Post -->
-                {/block:Photo}
+            {block:Text}
+            <!-- Text Post -->
+            {block:Title}
+            <h1 class="post-title heading">
+                {block:IndexPage}<a href="{Permalink}" title="{Title}">{/block:IndexPage}
+                {Title}
+                {block:IndexPage}</a>{/block:IndexPage}
+            </h1>
+            {/block:Title}
+            <div class="post-body">
+                {Body}
+            </div>
+            <!-- /Text Post -->
+            {/block:Text}
 
 
-                {block:Panorama}
-                <!-- Panorama Post -->
-                <figure class="photo-container panorama">
-                    {LinkOpenTag}<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" class="post-photo">{LinkCloseTag}
-
-                    {block:Caption}
-                    <figcaption class="caption">
-                        {Caption}
-                    </figcaption>
-                    {/block:Caption}
-                </figure>
-                <!-- /Panorama Post -->
-                {/block:Panorama}
-
-
-                {block:Photoset}
-                <!-- Photoset Post -->
-                <figure class="photo-container photoset" data-layout='{JSPhotosetLayout}'>
-                    {block:Photos}
-                    <a href="{PhotoURL-HighRes}" class="photo-link" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" data-lowres="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}">
-                        <img src="{PhotoURL-HighRes}" alt="{PlaintextCaption}" class="post-photo">
-                    </a>
-                    {/block:Photos}
-
-                    {block:Caption}
-                    <figcaption class="caption">
-                        {Caption}
-                    </figcaption>
-                    {/block:Caption}
-                </figure>
-                <!-- /Photoset Post -->
-                {/block:Photoset}
-
-
-                {block:Quote}
-                <!-- Quote Post -->
-                <blockquote class="quote-container {Length} icon-quote-left-bold iconr-quote-right-bold">
-                    {Quote}
-
-                    {block:Source}
-                    <footer class="caption">
-                        &mdash;
-                        <cite class="quote-source">
-                            {Source}
-                        </cite>
-                    </footer>
-                    {/block:Source}
-                </blockquote>
-                <!-- /Quote Post -->
-                {/block:Quote}
-
-
-                {block:Link}
-                <!-- Link Post -->
-                <a href="{URL}" class="link-container" {Target}>
-                    {block:Thumbnail}<img src="{Thumbnail-HighRes}" alt="{PlaintextName}">{/block:Thumbnail}
-
-                    <h1 class="post-title link-name iconr-right-bold">{Name}</h1>
-                    {block:Excerpt}<div class="link-excerpt">{Excerpt}</div>{/block:Excerpt}
-                    {block:Author}<div class="link-author">By {Author}</div>{/block:Author}
-                    {block:Host}<div class="link-host">{Host}</div>{/block:Host}
+            {block:Photo}
+            <!-- Photo Post -->
+            <figure class="photo-container">
+                {block:IndexPage}
+                <a href="{Permalink}" class="photo-link" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" data-lowres="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}">
+                    <img src="{PhotoURL-500}" alt="{PhotoAlt}" class="post-photo">
                 </a>
-                {block:Description}
-                <div class="post-body">
-                    {Description}
-                </div>
-                {/block:Description}
-                <!-- /Link Post -->
-                {/block:Link}
+                {/block:IndexPage}
+
+                {block:PermalinkPage}
+                {LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" class="post-photo">{LinkCloseTag}
+                {/block:PermalinkPage}
+
+                {block:Caption}
+                <figcaption class="caption">
+                    {Caption}
+                </figcaption>
+                {/block:Caption}
+            </figure>
+            <!-- /Photo Post -->
+            {/block:Photo}
 
 
-                {block:Chat}
-                <!-- Chat Post -->
-                {block:Title}
-                <h1 class="post-title chat-title">
-                    {block:IndexPage}<a href="{Permalink}" title="{Title}">{/block:IndexPage}
-                    {Title}
-                    {block:IndexPage}</a>{/block:IndexPage}
-                </h1>
-                {/block:Title}
-                <ul class="chat-container">
-                    {block:Lines}
-                    <li class="chat-line {Alt}">
-                        {block:Label}<strong class="line-label">{Label}</strong>{/block:Label}
-                        {Line}
-                    </li>
-                    {/block:Lines}
-                </ul>
-                <!-- /Chat Post -->
-                {/block:Chat}
+            {block:Panorama}
+            <!-- Panorama Post -->
+            <figure class="photo-container panorama">
+                {LinkOpenTag}<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" class="post-photo">{LinkCloseTag}
+
+                {block:Caption}
+                <figcaption class="caption">
+                    {Caption}
+                </figcaption>
+                {/block:Caption}
+            </figure>
+            <!-- /Panorama Post -->
+            {/block:Panorama}
 
 
-                {block:Audio}
-                <!-- Audio Post -->
-                {block:AudioPlayer}
-                <!-- Default Audio Player -->
-                <header class="audio-info">
-                    {block:TrackName}<h1 class="post-title track-name">{TrackName}</h1>{/block:TrackName}
-                    {block:Artist}<h2 class="artist-name">{Artist}</h2>{/block:Artist}
-                    {block:Album}<h3 class="album-name">{Album}</h3>{/block:Album}
-                    {block:AlbumArt}
-                    <img src="{AlbumArtURL}" alt="{PlaintextAlbum}" class="album-cover">
-                    {/block:AlbumArt}
-                </header>
+            {block:Photoset}
+            <!-- Photoset Post -->
+            <figure class="photo-container photoset" data-layout='{JSPhotosetLayout}'>
+                {block:Photos}
+                <a href="{PhotoURL-HighRes}" class="photo-link" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" data-lowres="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}">
+                    <img src="{PhotoURL-HighRes}" alt="{PlaintextCaption}" class="post-photo">
+                </a>
+                {/block:Photos}
 
-                <figure class="audio-container">
-                    {AudioPlayer}
-
-                    {block:Caption}
-                    <figcaption class="caption">
-                        {Caption}
-                    </figcaption>
-                    {/block:Caption}
-                </figure>
-                <!-- /Default Audio Player -->
-                {/block:AudioPlayer}
-
-                {block:AudioEmbed}
-                <!-- Embedded Audio Player -->
-                <figure class="audio-container embedded-audio">
-                    {block:IndexPage}{AudioEmbed-500}{/block:IndexPage}
-                    {block:PermalinkPage}{AudioEmbed-640}{/block:PermalinkPage}
-
-                    {block:Caption}
-                    <figcaption class="caption">
-                        {Caption}
-                    </figcaption>
-                    {/block:Caption}
-                </figure>
-                <!-- /Embedded Audio Player -->
-                {/block:AudioEmbed}
-                <!-- /Audio Post -->
-                {/block:Audio}
+                {block:Caption}
+                <figcaption class="caption">
+                    {Caption}
+                </figcaption>
+                {/block:Caption}
+            </figure>
+            <!-- /Photoset Post -->
+            {/block:Photoset}
 
 
-                {block:Video}
-                <!-- Video Post -->
-                <figure class="video-container">
-                    {block:IndexPage}{VideoEmbed-500}{/block:IndexPage}
-                    {block:PermalinkPage}{VideoEmbed-700}{/block:PermalinkPage}
+            {block:Quote}
+            <!-- Quote Post -->
+            <blockquote class="quote-container {Length} icon-quote-left-bold iconr-quote-right-bold">
+                {Quote}
 
-                    {block:Caption}
-                    <figcaption class="caption">
-                        {Caption}
-                    </figcaption>
-                    {/block:Caption}
-                </figure>
-                <!-- /Video Post -->
-                {/block:Video}
-
-
-                {block:Answer}
-                <!-- Answer Post -->
-                <div class="answer-container asker-container">
-                    <img src="{AskerPortraitURL-48}" alt="{PlaintextAsker}" class="asker-portrait">
-                    <div class="asker"><strong>{Asker}</strong> asked:</div>
-                    <div class="question">{Question}</div>
-                </div>
-
-                {block:Answerer}
-                <div class="answer-container answerer-container">
-                    <img src="{AnswererPortraitURL-48}" alt="{PlaintextAnswerer}" class="answerer-portrait">
-                    <div class="answerer"><strong>{Answerer}</strong> answered:</div>
-                    <div class="answer">{Answer}</div>
-                </div>
-                {/block:Answerer}
-
-                <div class="post-body">
-                    {Replies}
-                </div>
-                <!-- /Answer Post -->
-                {/block:Answer}
-
-
-                {block:Date}
-                <!-- Post Meta -->
-                <footer class="post-footer clearfix{block:Audio}{block:ExternalAudio} has-external-audio{/block:ExternalAudio}{/block:Audio}">
-                    <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {24HourWithZero}:{Minutes}:{Seconds}" title="{DayOfWeek}, {Month} {DayOfMonth}, {Year} {12Hour}:{Minutes}{AmPm}" class="post-date icon-clock">
-                        {block:IndexPage}<a href="{Permalink}" title="Permalink: {ShortURL}">{/block:IndexPage}
-                            {TimeAgo}
-                        {block:IndexPage}</a>{/block:IndexPage}
-                    </time>
-
-                    {block:HasTags}
-                    <ul class="tags icon-tag unlistified">
-                        {block:Tags}
-                        <li class="tag">#<a href="{TagURL}">{Tag}</a></li>
-                        {/block:Tags}
-                    </ul>
-                    {/block:HasTags}
-
-                    <ul class="post-icons unlistified">
-                        {block:Audio}{block:ExternalAudio}
-                        <li><a href="{ExternalAudioURL}" class="icon-download" title="{lang:Download}"></a></li>
-                        {/block:ExternalAudio}{/block:Audio}
-                        {block:IndexPage}
-                        <li>{LikeButton color="black" size="13"}</li>
-                        <li>{ReblogButton color="black" size="13"}</li>
-                        {/block:IndexPage}
-                    </ul>
-
-                    <ul class="post-sources unlistified">
-                        {block:RebloggedFrom}
-                        <li class="via icon-loop">
-                            Reblogged from
-                            <a href="{ReblogParentURL}" title="Via: {PlaintextReblogParentTitle}">{ReblogParentName}</a>,
-                        </li>
-                        <li class="source">
-                            Published by
-                            <a href="{ReblogRootURL}" title="Source: {PlaintextReblogRootTitle}">{ReblogRootName}</a>
-                        </li>
-                        {/block:RebloggedFrom}
-                        {block:NotReblog}{block:ContentSource}
-                        <li class="source icon-loop">
-                            Published by
-                            <a href="{SourceURL}" title="Source: {PlaintextSourceTitle}">{SourceTitle}</a>
-                        </li>
-                        {/block:ContentSource}{/block:NotReblog}
-                    </ul>
-
-                    {block:PermalinkPagination}
-                    <ul id="permalink-pagination" class="pagination unlistified">
-                        {block:PreviousPost}
-                        <li id="prev-post">
-                            <a href="{PreviousPost}" title="Previous Post" class="previous icon-point-left pointer"></a>
-                        </li>
-                        {/block:PreviousPost}
-                        {block:NextPost}
-                        <li id="next-post">
-                            <a href="{NextPost}" title="Next Post" class="next icon-point-right pointer"></a>
-                        </li>
-                        {/block:NextPost}
-                    </ul>
-                    {/block:PermalinkPagination}
-
-                    {block:PostNotes}
-                    {block:NoteCount}<h3 class="note-count subheading">{NoteCountWithLabel}</h3>{/block:NoteCount}
-                    {PostNotes-16}
-                    {/block:PostNotes}
+                {block:Source}
+                <footer class="caption">
+                    &mdash;
+                    <cite class="quote-source">
+                        {Source}
+                    </cite>
                 </footer>
-                <!-- /Post Meta -->
-                {/block:Date}
+                {/block:Source}
+            </blockquote>
+            <!-- /Quote Post -->
+            {/block:Quote}
 
-            </article> <!-- .post -->
-            {/block:Posts}
 
-        </main> <!-- #posts-container -->
+            {block:Link}
+            <!-- Link Post -->
+            <a href="{URL}" class="link-container" {Target}>
+                {block:Thumbnail}
+                <img src="{Thumbnail-HighRes}" alt="{PlaintextName}" class="link-thumbnail">
+                {/block:Thumbnail}
+
+                <h1 class="post-title link-name heading iconr-right-bold">{Name}</h1>
+                {block:Excerpt}<div class="link-excerpt">{Excerpt}</div>{/block:Excerpt}
+                {block:Author}<div class="link-author">By {Author}</div>{/block:Author}
+                {block:Host}<div class="link-host">{Host}</div>{/block:Host}
+            </a>
+            {block:Description}
+            <div class="post-body">
+                {Description}
+            </div>
+            {/block:Description}
+            <!-- /Link Post -->
+            {/block:Link}
+
+
+            {block:Chat}
+            <!-- Chat Post -->
+            {block:Title}
+            <h1 class="post-title chat-title heading">
+                {block:IndexPage}<a href="{Permalink}" title="{Title}">{/block:IndexPage}
+                {Title}
+                {block:IndexPage}</a>{/block:IndexPage}
+            </h1>
+            {/block:Title}
+            <ul class="chat-container">
+                {block:Lines}
+                <li class="chat-line {Alt}">
+                    {block:Label}<strong class="line-label">{Label}</strong>{/block:Label}
+                    {Line}
+                </li>
+                {/block:Lines}
+            </ul>
+            <!-- /Chat Post -->
+            {/block:Chat}
+
+
+            {block:Audio}
+            <!-- Audio Post -->
+            {block:AudioPlayer}
+            <!-- Default Audio Player -->
+            <header class="audio-info clearfix">
+                {block:TrackName}<h1 class="post-title track-name heading">{TrackName}</h1>{/block:TrackName}
+                {block:Artist}<h2 class="artist-name">{Artist}</h2>{/block:Artist}
+                {block:AlbumArt}
+                <img src="{AlbumArtURL}" alt="{PlaintextAlbum}" class="album-cover">
+                {/block:AlbumArt}
+            </header>
+
+            <figure class="audio-container">
+                {AudioPlayer}
+
+                {block:Caption}
+                <figcaption class="caption">
+                    {Caption}
+                </figcaption>
+                {/block:Caption}
+            </figure>
+            <!-- /Default Audio Player -->
+            {/block:AudioPlayer}
+
+            {block:AudioEmbed}
+            <!-- Embedded Audio Player -->
+            <figure class="audio-container embedded-audio">
+                {block:IndexPage}{AudioEmbed-500}{/block:IndexPage}
+                {block:PermalinkPage}{AudioEmbed-640}{/block:PermalinkPage}
+
+                {block:Caption}
+                <figcaption class="caption">
+                    {Caption}
+                </figcaption>
+                {/block:Caption}
+            </figure>
+            <!-- /Embedded Audio Player -->
+            {/block:AudioEmbed}
+            <!-- /Audio Post -->
+            {/block:Audio}
+
+
+            {block:Video}
+            <!-- Video Post -->
+            <figure class="video-container">
+                {block:IndexPage}{VideoEmbed-500}{/block:IndexPage}
+                {block:PermalinkPage}{VideoEmbed-700}{/block:PermalinkPage}
+
+                {block:Caption}
+                <figcaption class="caption">
+                    {Caption}
+                </figcaption>
+                {/block:Caption}
+            </figure>
+            <!-- /Video Post -->
+            {/block:Video}
+
+
+            {block:Answer}
+            <!-- Answer Post -->
+            <div class="answer-container asker-container">
+                <img src="{AskerPortraitURL-48}" alt="{PlaintextAsker}" class="asker-portrait">
+                <div class="asker"><strong>{Asker}</strong> asked:</div>
+                <div class="question">{Question}</div>
+            </div>
+
+            {block:Answerer}
+            <div class="answer-container answerer-container">
+                <img src="{AnswererPortraitURL-48}" alt="{PlaintextAnswerer}" class="answerer-portrait">
+                <div class="answerer"><strong>{Answerer}</strong> answered:</div>
+                <div class="answer">{Answer}</div>
+            </div>
+            {/block:Answerer}
+
+            <div class="post-body">
+                {Replies}
+            </div>
+            <!-- /Answer Post -->
+            {/block:Answer}
+
+
+            {block:Date}
+            <!-- Post Meta -->
+            <footer class="post-footer clearfix{block:Audio}{block:ExternalAudio} has-external-audio{/block:ExternalAudio}{/block:Audio}">
+                <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {24HourWithZero}:{Minutes}:{Seconds}" title="{DayOfWeek}, {Month} {DayOfMonth}, {Year} {12Hour}:{Minutes}{AmPm}" class="post-date icon-clock">
+                    {block:IndexPage}<a href="{Permalink}" title="Permalink: {ShortURL}">{/block:IndexPage}
+                        {TimeAgo}
+                    {block:IndexPage}</a>{/block:IndexPage}
+                </time>
+
+                {block:HasTags}
+                <ul class="tags icon-tag unlistified">
+                    {block:Tags}
+                    <li class="tag">#<a href="{TagURL}">{Tag}</a></li>
+                    {/block:Tags}
+                </ul>
+                {/block:HasTags}
+
+                <ul class="post-icons unlistified">
+                    {block:Audio}{block:ExternalAudio}
+                    <li><a href="{ExternalAudioURL}" class="icon-download" title="{lang:Download}"></a></li>
+                    {/block:ExternalAudio}{/block:Audio}
+                    {block:IndexPage}
+                    <li>{LikeButton color="black" size="13"}</li>
+                    <li>{ReblogButton color="black" size="13"}</li>
+                    {/block:IndexPage}
+                </ul>
+
+                <ul class="post-sources unlistified">
+                    {block:RebloggedFrom}
+                    <li class="via icon-loop">
+                        Reblogged from
+                        <a href="{ReblogParentURL}" title="Via: {PlaintextReblogParentTitle}">{ReblogParentName}</a>,
+                    </li>
+                    <li class="source">
+                        Published by
+                        <a href="{ReblogRootURL}" title="Source: {PlaintextReblogRootTitle}">{ReblogRootName}</a>
+                    </li>
+                    {/block:RebloggedFrom}
+                    {block:NotReblog}{block:ContentSource}
+                    <li class="source icon-loop">
+                        Published by
+                        <a href="{SourceURL}" title="Source: {PlaintextSourceTitle}">{SourceTitle}</a>
+                    </li>
+                    {/block:ContentSource}{/block:NotReblog}
+                </ul>
+
+                {block:PermalinkPagination}
+                <ul id="permalink-pagination" class="pagination unlistified">
+                    {block:PreviousPost}
+                    <li id="prev-post">
+                        <a href="{PreviousPost}" title="Previous Post" class="previous icon-point-left pointer"></a>
+                    </li>
+                    {/block:PreviousPost}
+                    {block:NextPost}
+                    <li id="next-post">
+                        <a href="{NextPost}" title="Next Post" class="next icon-point-right pointer"></a>
+                    </li>
+                    {/block:NextPost}
+                </ul>
+                {/block:PermalinkPagination}
+
+                {block:PostNotes}
+                {block:NoteCount}<h3 class="note-count subheading">{NoteCountWithLabel}</h3>{/block:NoteCount}
+                {PostNotes-16}
+                {/block:PostNotes}
+            </footer>
+            <!-- /Post Meta -->
+            {/block:Date}
+
+        </article> <!-- .post -->
+        {/block:Posts}
+
+    </div> <!-- #the-posts -->
+</main> <!-- #posts-container -->
 
         <footer id="blog-footer">
             {block:IndexPage}{block:Pagination}
@@ -1136,6 +1159,14 @@
         <script src="http://static.tumblr.com/f8gk9za/dCooako9r/masonry.pkgd.min.js"></script>
         <script>
             $(function() {
+                var $grid = $('.index #the-posts').imagesLoaded(function() {
+                    // init Masonry after all images have loaded
+                    $grid.masonry({
+                        columnWidth: 500,
+                        itemSelector: '.post',
+                        gutter: 20
+                    });
+                });
 
                 // begin photo and photoset functionality
                 $('.photo-container:not(.panorama)').each(function() {
