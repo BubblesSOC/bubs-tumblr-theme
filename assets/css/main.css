@@ -137,6 +137,10 @@ h6 {
     margin: 30px 50px 30px 300px;
 }
 
+.index #posts-container {
+    margin-bottom: 0;
+}
+
 /* ==========================================================================
    Header Styles
    ========================================================================== */
@@ -247,10 +251,17 @@ h6 {
     -moz-border-radius: 4px;
     -o-border-radius: 4px;
     border-radius: 4px;
+    position: relative;
 }
 
 .permalink .post {
     width: 540px;
+}
+
+.permalink .type-text,
+.permalink .type-quote,
+.permalink .type-answer {
+    padding-top: 1em;
 }
 
 /* ===========
@@ -283,6 +294,92 @@ h6 {
     -o-border-radius: 4px 4px 0 0;
     border-radius: 4px 4px 0 0;
 }
+
+/* Begin Audio Post Styles */
+.audio-info {
+    padding: 1em 1em 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.permalink .audio-info {
+    position: relative;
+    min-height: 125px;
+    background: url('http://static.tumblr.com/f8gk9za/FmDoaxehu/nocover.png') no-repeat;
+    -webkit-background-size: 125px 125px;
+    -moz-background-size: 125px 125px;
+    -o-background-size: 125px 125px;
+    background-size: 125px 125px;
+    -webkit-border-top-left-radius: 4px;
+    -moz-border-top-left-radius: 4px;
+    -o-border-top-left-radius: 4px;
+    border-top-left-radius: 4px;
+}
+
+.track-name {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    font-size: 1.438rem; /* 23px */
+    line-height: 1.688rem; /* 27px */
+}
+
+.artist-name {
+    margin-top: 0;
+    text-transform: lowercase;
+}
+
+.index .track-name,
+.index .artist-name {
+    margin-left: 60px;
+}
+
+.permalink .track-name,
+.permalink .artist-name {
+    margin-left: 125px;
+}
+
+.album-name,
+.album-cover {
+    display: none;
+}
+
+.permalink .album-cover {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 125px;
+    height: 125px;
+    -webkit-border-top-left-radius: 4px;
+    -moz-border-top-left-radius: 4px;
+    -o-border-top-left-radius: 4px;
+    border-top-left-radius: 4px;
+}
+
+.audio-player {
+    width: 27px;
+    height: 27px;
+    padding: 10px;
+    background-color: #e4e4e4;
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.permalink .audio-player {
+    top: 39px;
+    left: 39px;
+    background-color: #fff;
+    z-index: 1;
+}
+/* End Audio Post Styles */
 
 /* ===============
     Photoset Grid

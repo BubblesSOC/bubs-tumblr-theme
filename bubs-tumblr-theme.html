@@ -94,7 +94,7 @@
         <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/XNvoaxn4y/main.css">
+        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/LK2oaydnt/main.css">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/0dQoaxhzc/rapture-icons.css">
 
         <!-- Custom Fonts -->
@@ -223,6 +223,9 @@
                 -moz-box-shadow: 1px 1px 0 {color:Borders};
                 -o-box-shadow: 1px 1px 0 {color:Borders};
                 box-shadow: 1px 1px 0 {color:Borders};
+            }
+            .artist-name {
+                color: rgba({RGBcolor:Text}, 0.7);
             }
             .note-count {
                 border-top-color: {color:Borders};
@@ -474,16 +477,20 @@
             <!-- Audio Post -->
             {block:AudioPlayer}
             <!-- Default Audio Player -->
-            <header class="audio-info clearfix">
+            <header class="audio-info">
                 {block:TrackName}<h1 class="post-title track-name heading">{TrackName}</h1>{/block:TrackName}
                 {block:Artist}<h2 class="artist-name">{Artist}</h2>{/block:Artist}
+                {block:Album}<h3 class="album-name">{Album}</h3>{/block:Album}
                 {block:AlbumArt}
                 <img src="{AlbumArtURL}" alt="{PlaintextAlbum}" class="album-cover">
                 {/block:AlbumArt}
             </header>
 
-            <figure class="audio-container">
-                {AudioPlayer}
+            <figure class="audio-container default-audio">
+                <div class="audio-player">
+                    {block:IndexPage}{AudioPlayerGrey}{/block:IndexPage}
+                    {block:PermalinkPage}{AudioPlayerWhite}{/block:PermalinkPage}
+                </div>
 
                 {block:Caption}
                 <figcaption class="caption">
