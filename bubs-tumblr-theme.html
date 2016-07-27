@@ -94,7 +94,7 @@
         <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/Iacoazjw8/main.css">
+        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/YqToazntf/main.css">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/8yvoazcav/rapture-icons.css">
 
         <!-- Custom Fonts -->
@@ -224,8 +224,18 @@
                 -o-box-shadow: 1px 1px 0 {color:Borders};
                 box-shadow: 1px 1px 0 {color:Borders};
             }
+            .index .post-title a,
+            .index .post-title a:hover {
+                color: {color:Text};
+            }
+            .index .post-title a:hover {
+                text-decoration: underline;
+            }
             .artist-name {
                 color: rgba({RGBcolor:Text}, 0.7);
+            }
+            .chat-line.even {
+                background-color: rgba({RGBcolor:Borders}, 0.5);
             }
             .note-count {
                 border-top-color: {color:Borders};
@@ -433,7 +443,7 @@
 
             {block:Link}
             <!-- Link Post -->
-            <a href="{URL}" class="link-container" {Target}>
+            <a href="{URL}" class="link-container{block:Thumbnail} has-thumbnail{/block:Thumbnail}" {Target}>
                 {block:Thumbnail}
                 <img src="{Thumbnail-HighRes}" alt="{PlaintextName}" class="link-thumbnail">
                 {/block:Thumbnail}
@@ -463,9 +473,9 @@
             {/block:Title}
             <ul class="chat-container">
                 {block:Lines}
-                <li class="chat-line {Alt}">
+                <li class="chat-line {Alt} clearfix{block:Label} has-label{/block:Label}">
                     {block:Label}<strong class="line-label">{Label}</strong>{/block:Label}
-                    {Line}
+                    <span class="line-text">{Line}</span>
                 </li>
                 {/block:Lines}
             </ul>

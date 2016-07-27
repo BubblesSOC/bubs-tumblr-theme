@@ -71,7 +71,7 @@ h6 {
 }
 
 /* ==========================================================================
-   Helper Classes
+    Helper Classes
    ========================================================================== */
 
 .hidden {
@@ -114,7 +114,7 @@ h6 {
 }
 
 /* ==========================================================================
-   General Layout Styles
+    General Layout Styles
    ========================================================================== */
 
 #blog-header,
@@ -142,7 +142,7 @@ h6 {
 }
 
 /* ==========================================================================
-   Header Styles
+    Header Styles
    ========================================================================== */
 
 #blog-title {
@@ -232,7 +232,7 @@ h6 {
 }
 
 /* ==========================================================================
-   Main Styles
+    Main Styles
    ========================================================================== */
 
 .results-title .the-query {
@@ -261,7 +261,8 @@ h6 {
 }
 
 /* I think I'll cheat instead of resetting all the top margins... */
-.permalink .type-text {
+.permalink .type-text,
+.permalink .type-chat {
     padding-top: 1px;
 }
 
@@ -292,6 +293,7 @@ h6 {
     margin-bottom: 1em;
 }
 
+/* Begin Tumblr Gif Styles */
 .post-body figure[data-tumblr-attribution],
 .caption figure[data-tumblr-attribution] {
     margin-bottom: 0;
@@ -308,6 +310,7 @@ h6 {
     margin: 0 0.1875rem; /* 3px */
     vertical-align: middle;
 }
+/* End Tumblr Gif Styles */
 
 .post-photo, .link-thumbnail {
     width: 100%;
@@ -437,6 +440,34 @@ h6 {
     margin-top: 0;
 }
 /* End Quote Post Styles */
+
+/* Begin Chat Post Styles */
+.chat-container {
+    list-style-type: none;
+    margin-top: 0;
+    padding: 0;
+}
+
+.chat-line {
+    padding: 1em;
+}
+
+.line-label {
+    width: 20%;
+    float: left;
+    word-wrap: break-word;
+}
+
+.chat-line.has-label .line-text {
+    width: 80%;
+    float: left;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-left: 0.3125rem; /* 5px */
+}
+/* End Chat Post Styles */
 
 /* ===============
     Photoset Grid
@@ -662,7 +693,7 @@ h6 {
 }
 
 /* ==========================================================================
-   Footer Styles
+    Footer Styles
    ========================================================================== */
 
 #elevator {
