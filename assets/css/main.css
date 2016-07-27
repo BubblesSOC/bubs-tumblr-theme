@@ -258,10 +258,17 @@ h6 {
     width: 540px;
 }
 
-.permalink .type-text,
-.permalink .type-quote,
-.permalink .type-answer {
+/* todo: why do i need .permalink .type-text here?
+   since i'm resetting margin-top down below... */
+/*.permalink .type-text,*/
+.type-quote,
+.type-answer {
     padding-top: 1em;
+}
+
+/* I think I'll cheat instead of resetting all the top margins... */
+.permalink .type-text {
+    padding-top: 1px;
 }
 
 /* ===========
@@ -282,6 +289,39 @@ h6 {
 .post-body {
     margin: 0 1em;
 }
+
+.post-body figure,
+.caption figure {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.post-body figure[data-tumblr-attribution],
+.caption figure[data-tumblr-attribution] {
+    margin-bottom: 0;
+}
+
+.post-body .tmblr-attribution,
+.caption .tmblr-attribution {
+    margin-top: 0;
+    font-size: 0.6875rem; /* 11px */
+}
+
+/*.permalink .type-text .post-title,
+.permalink .type-text .post-body h2,
+.permalink .type-text .post-body h3,
+.permalink .type-text .post-body h4,
+.permalink .type-text .post-body h5,
+.permalink .type-text .post-body h6,
+.permalink .type-text .post-body ul,
+.permalink .type-text .post-body ol,
+.permalink .type-text .post-body blockquote,
+.permalink .type-text .post-body p {
+    margin-top: 0;
+}
+.index .post-body figure:first-child {
+    margin-top: 1em;
+}*/
 
 .post-photo, .link-thumbnail {
     width: 100%;
