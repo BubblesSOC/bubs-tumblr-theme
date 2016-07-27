@@ -94,7 +94,7 @@
         <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/YqToazntf/main.css">
+        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/8Looazykw/main.css">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/8yvoazcav/rapture-icons.css">
 
         <!-- Custom Fonts -->
@@ -225,7 +225,10 @@
                 box-shadow: 1px 1px 0 {color:Borders};
             }
             .index .post-title a,
-            .index .post-title a:hover {
+            .index .post-title a:hover,
+            .link-name,
+            .link-excerpt,
+            .link-author {
                 color: {color:Text};
             }
             .index .post-title a:hover {
@@ -237,6 +240,7 @@
             .chat-line.even {
                 background-color: rgba({RGBcolor:Borders}, 0.5);
             }
+            .type-link .post-body,
             .note-count {
                 border-top-color: {color:Borders};
             }
@@ -450,7 +454,7 @@
 
                 <h1 class="post-title link-name heading iconr-right-bold">{Name}</h1>
                 {block:Excerpt}<div class="link-excerpt">{Excerpt}</div>{/block:Excerpt}
-                {block:Author}<div class="link-author">By {Author}</div>{/block:Author}
+                {block:Author}<div class="link-author">By <strong>{Author}</strong></div>{/block:Author}
                 {block:Host}<div class="link-host">{Host}</div>{/block:Host}
             </a>
             {block:Description}

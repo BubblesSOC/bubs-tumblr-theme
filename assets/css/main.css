@@ -469,6 +469,56 @@ h6 {
 }
 /* End Chat Post Styles */
 
+/* Begin Link Post Styles */
+.link-container {
+    display: block;
+    padding-top: 1em;
+}
+.link-container.has-thumbnail {
+    padding-top: 0;
+    position: relative;
+}
+
+.link-thumbnail {
+    display: block;
+    margin-bottom: 1em;
+}
+
+.link-name {
+    /* h1.heading.post-title */
+    margin-top: 0;
+}
+.link-container:hover .link-name {
+    text-decoration: underline;
+}
+.link-name:after {
+    margin-left: 0.625rem; /* 10px */
+}
+.link-container:hover .link-name:after {
+    text-decoration: none;
+}
+
+.link-excerpt, .link-author, .link-host {
+    margin: 1em;
+}
+
+.link-host {
+    display: none;
+}
+.link-container.has-thumbnail .link-host {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #fff;
+    font-size: 0.9375rem; /* 15.21px (h3) */
+}
+
+.type-link .post-body {
+    border-top: 1px solid #eee;
+}
+/* End Link Post Styles */
+
 /* ===============
     Photoset Grid
    =============== */
