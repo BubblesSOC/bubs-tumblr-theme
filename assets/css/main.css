@@ -409,6 +409,35 @@ h6 {
 }
 /* End Audio Post Styles */
 
+/* Begin Quote Post Styles */
+.quote-container {
+    padding: 0;
+    border-width: 0;
+    margin-top: 0;
+    margin-bottom: 1em;
+}
+
+.the-quote {
+    /* .subheading */
+    margin: 0 0.8125rem 0.8125rem; /* 13px (~1em) */
+    line-height: 125%;
+}
+
+.quote-container.short .the-quote {
+    font-size: 1.625rem; /* 26px (h1) */
+}
+.quote-container.medium .the-quote {
+    font-size: 1.188rem; /* 19.5px (h2) */
+}
+.quote-container.long .the-quote {
+    font-size: 0.9375rem; /* 15.21px (h3) */
+}
+
+.the-quote p:first-child {
+    margin-top: 0;
+}
+/* End Quote Post Styles */
+
 /* ===============
     Photoset Grid
    =============== */
