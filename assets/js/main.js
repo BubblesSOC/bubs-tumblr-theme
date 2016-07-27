@@ -71,4 +71,8 @@ $(function() {
         return false;
     });
     // end fade-in scroll to top
+
+
+    // add icon to tumblr gif attribution
+    $('figure[data-tumblr-attribution] .tmblr-attribution a').addClass('icon-link-ext');
 });

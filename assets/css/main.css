@@ -156,16 +156,19 @@ h6 {
     margin: 0 auto;
 }
 
+#blog-portrait.circle,
+#blog-logo.circle {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+
 #blog-portrait {
     width: 96px;
     height: 96px;
 }
-#blog-portrait.circle {
-    -webkit-border-radius: 48px;
-    -moz-border-radius: 48px;
-    -o-border-radius: 48px;
-    border-radius: 48px;
-}
+
 #blog-portrait.square {
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -176,15 +179,9 @@ h6 {
 #blog-logo {
     width: 90%;
 }
-#blog-logo.circle {
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-radius: 50%;
-}
 
 #blog-title-text {
-    /* .heading */
+    /* h1.heading */
     font-size: 2rem;
     line-height: 100%;
     /* 32px/32px */
@@ -258,9 +255,6 @@ h6 {
     width: 540px;
 }
 
-/* todo: why do i need .permalink .type-text here?
-   since i'm resetting margin-top down below... */
-/*.permalink .type-text,*/
 .type-quote,
 .type-answer {
     padding-top: 1em;
@@ -280,8 +274,10 @@ h6 {
 }
 
 .post-title {
-    margin: 0.8125rem; /* 13px */
-    font-size: 1.625rem; /* 26px */
+    /* h1.heading */
+    /* converted normalized h1 em vals to rem */
+    margin: 0.8125rem; /* 13px (~1em) */
+    font-size: 1.625rem; /* 26px (~2em) */
     line-height: 1.875rem; /* 30px */
 }
 
@@ -307,21 +303,11 @@ h6 {
     font-size: 0.6875rem; /* 11px */
 }
 
-/*.permalink .type-text .post-title,
-.permalink .type-text .post-body h2,
-.permalink .type-text .post-body h3,
-.permalink .type-text .post-body h4,
-.permalink .type-text .post-body h5,
-.permalink .type-text .post-body h6,
-.permalink .type-text .post-body ul,
-.permalink .type-text .post-body ol,
-.permalink .type-text .post-body blockquote,
-.permalink .type-text .post-body p {
-    margin-top: 0;
+.post-body .tmblr-attribution .icon-link-ext:before,
+.caption .tmblr-attribution .icon-link-ext:before {
+    margin: 0 0.1875rem; /* 3px */
+    vertical-align: middle;
 }
-.index .post-body figure:first-child {
-    margin-top: 1em;
-}*/
 
 .post-photo, .link-thumbnail {
     width: 100%;
@@ -359,6 +345,7 @@ h6 {
 }
 
 .track-name {
+    /* h1.heading.post-title */
     margin-top: 0;
     margin-right: 0;
     margin-bottom: 0;
@@ -367,6 +354,7 @@ h6 {
 }
 
 .artist-name {
+    /* h2.subheading */
     margin-top: 0;
     text-transform: lowercase;
 }
@@ -616,7 +604,7 @@ h6 {
 }
 
 .note-count {
-    /* .subheading */
+    /* h3.subheading */
     padding-top: 1em;
     font-size: 1.125rem; /* 18px */
     border-top: 1px solid #eee;
