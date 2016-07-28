@@ -331,16 +331,13 @@ h6 {
     -moz-box-sizing: border-box;
     -o-box-sizing: border-box;
     box-sizing: border-box;
-}
-
-.permalink .audio-info {
     position: relative;
-    min-height: 125px;
+    min-height: 150px;
     background: url('http://static.tumblr.com/f8gk9za/FmDoaxehu/nocover.png') no-repeat;
-    -webkit-background-size: 125px 125px;
-    -moz-background-size: 125px 125px;
-    -o-background-size: 125px 125px;
-    background-size: 125px 125px;
+    -webkit-background-size: 150px 150px;
+    -moz-background-size: 150px 150px;
+    -o-background-size: 150px 150px;
+    background-size: 150px 150px;
     -webkit-border-top-left-radius: 4px;
     -moz-border-top-left-radius: 4px;
     -o-border-top-left-radius: 4px;
@@ -352,8 +349,6 @@ h6 {
     margin-top: 0;
     margin-right: 0;
     margin-bottom: 0;
-    font-size: 1.438rem; /* 23px */
-    line-height: 1.688rem; /* 27px */
 }
 
 .artist-name {
@@ -362,28 +357,21 @@ h6 {
     text-transform: lowercase;
 }
 
-.index .track-name,
-.index .artist-name {
-    margin-left: 60px;
+.track-name, .artist-name {
+    margin-left: 150px;
 }
 
-.permalink .track-name,
-.permalink .artist-name {
-    margin-left: 125px;
-}
-
-.album-name,
-.album-cover {
+.album-name {
     display: none;
 }
 
-.permalink .album-cover {
+.album-cover {
     display: block;
     position: absolute;
     top: 0;
     left: 0;
-    width: 125px;
-    height: 125px;
+    width: 150px;
+    height: 150px;
     -webkit-border-top-left-radius: 4px;
     -moz-border-top-left-radius: 4px;
     -o-border-top-left-radius: 4px;
@@ -394,20 +382,14 @@ h6 {
     width: 27px;
     height: 27px;
     padding: 10px;
-    background-color: #e4e4e4;
+    background-color: #fff;
     position: absolute;
-    top: 1em;
-    left: 1em;
+    top: 51px;
+    left: 51px;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     -o-border-radius: 50%;
     border-radius: 50%;
-}
-
-.permalink .audio-player {
-    top: 39px;
-    left: 39px;
-    background-color: #fff;
     z-index: 1;
 }
 /* End Audio Post Styles */
