@@ -46,7 +46,7 @@ blockquote {
     border-left: 2px solid #eee;
 }
 
-ul, ol {
+ul, ol, p {
     margin: 1em 0;
 }
 
@@ -287,6 +287,11 @@ h6 {
     margin: 0 1em;
 }
 
+.type-link .post-body,
+.type-answer .post-body {
+    border-top: 1px solid #eee;
+}
+
 .post-body figure,
 .caption figure {
     margin-top: 1em;
@@ -503,11 +508,89 @@ h6 {
     color: #fff;
     font-size: 0.9375rem; /* 15.21px (h3) */
 }
-
-.type-link .post-body {
-    border-top: 1px solid #eee;
-}
 /* End Link Post Styles */
+
+/* Begin Answer Post Styles */
+.answer-container {
+    margin: 0 1em 1em;
+    position: relative;
+}
+
+.answer-portrait {
+    width: 40px;
+    height: 40px;
+    float: right;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.answer-author, .answer-text {
+    width: 89%;
+    float: left;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.permalink .answer-author,
+.permalink .answer-text {
+    width: 90%;
+}
+
+.answer-author {
+    padding: 1em 1em 0;
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    -o-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+}
+.answer-author:after {
+    content: '';
+    position: absolute;
+    top: 17px;
+    left: 89%;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    display: block;
+    width: 0;
+    z-index: 1;
+}
+.permalink .answer-author:after {
+    left: 90%;
+}
+
+.answer-text {
+    -webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+    -o-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px;
+}
+
+.question {
+    padding: 1em;
+}
+
+.answer p,
+.answer ol,
+.answer ul,
+.answer blockquote {
+    margin: 1em;
+}
+.answer h2 {
+    margin: 0.83em;
+}
+.answer figure {
+    margin: 1em 0;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+}
+
+.type-answer .post-body:empty {
+    border-width: 0;
+}
+/* End Answer Post Styles */
 
 /* ===============
     Photoset Grid

@@ -94,7 +94,7 @@
         <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/yitob16og/main.css">
+        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/Kq9ob19hr/main.css">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/8yvoazcav/rapture-icons.css">
 
         <!-- Custom Fonts -->
@@ -237,10 +237,17 @@
             .artist-name {
                 color: rgba({RGBcolor:Text}, 0.7);
             }
-            .chat-line.even {
+            .chat-line.even,
+            .answer-author,
+            .answer-text {
                 background-color: rgba({RGBcolor:Borders}, 0.5);
             }
+            .answer-author:after,
+            .answer figure {
+                border-color: transparent rgba({RGBcolor:Borders}, 0.5);
+            }
             .type-link .post-body,
+            .type-answer .post-body,
             .note-count {
                 border-top-color: {color:Borders};
             }
@@ -553,22 +560,20 @@
             {block:Answer}
             <!-- Answer Post -->
             <div class="answer-container asker-container clearfix">
-                <img src="{AskerPortraitURL-48}" alt="{PlaintextAsker}" class="asker-portrait">
-                <div class="asker"><strong>{Asker}</strong> asked:</div>
-                <div class="question">{Question}</div>
+                <img src="{AskerPortraitURL-48}" alt="{PlaintextAsker}" class="answer-portrait asker-portrait">
+                <div class="answer-author asker"><strong>{Asker}</strong> asked:</div>
+                <div class="answer-text question">{Question}</div>
             </div>
 
             {block:Answerer}
             <div class="answer-container answerer-container clearfix">
-                <img src="{AnswererPortraitURL-48}" alt="{PlaintextAnswerer}" class="answerer-portrait">
-                <div class="answerer"><strong>{Answerer}</strong> answered:</div>
-                <div class="answer">{Answer}</div>
+                <img src="{AnswererPortraitURL-48}" alt="{PlaintextAnswerer}" class="answer-portrait answerer-portrait">
+                <div class="answer-author answerer"><strong>{Answerer}</strong> answered:</div>
+                <div class="answer-text answer">{Answer}</div>
             </div>
             {/block:Answerer}
 
-            <div class="post-body">
-                {Replies}
-            </div>
+            <div class="post-body">{Replies}</div>
             <!-- /Answer Post -->
             {/block:Answer}
 
