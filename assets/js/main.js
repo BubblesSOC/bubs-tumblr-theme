@@ -8,6 +8,31 @@ $(function() {
         });
     });
 
+
+    // vertically center audio info
+    $('.audio-info').each(function() {
+        var $cont = $(this),
+            $cell = $cont.children('.the-info');
+
+        if ($cont.innerHeight() > 150 || $cell.height() >= $cont.height()) {
+            $cell.css('opacity', '1');
+            return true;
+        }
+
+        $cont.css({
+            'height': '150px',
+            'display': 'table',
+            'padding-top': '0'
+        });
+
+        $cell.css({
+            'display': 'table-cell',
+            'vertical-align': 'middle'
+        }).fadeTo(400, 1);
+    });
+    // end vertically center audio info
+
+
     // begin photo and photoset functionality
     $('.photo-container:not(.panorama)').each(function() {
         var $photoset = $(this),

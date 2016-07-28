@@ -94,7 +94,7 @@
         <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/dQCob036g/main.css">
+        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/yitob16og/main.css">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/8yvoazcav/rapture-icons.css">
 
         <!-- Custom Fonts -->
@@ -492,9 +492,11 @@
             {block:AudioPlayer}
             <!-- Default Audio Player -->
             <header class="audio-info">
-                {block:TrackName}<h1 class="post-title track-name heading">{TrackName}</h1>{/block:TrackName}
-                {block:Artist}<h2 class="artist-name">{Artist}</h2>{/block:Artist}
-                {block:Album}<h3 class="album-name">{Album}</h3>{/block:Album}
+                <div class="the-info">
+                    {block:TrackName}<h1 class="post-title track-name heading">{TrackName}</h1>{/block:TrackName}
+                    {block:Artist}<h2 class="artist-name">{Artist}</h2>{/block:Artist}
+                    {block:Album}<h3 class="album-name">{Album}</h3>{/block:Album}
+                </div>
                 {block:AlbumArt}
                 <img src="{AlbumArtURL}" alt="{PlaintextAlbum}" class="album-cover">
                 {/block:AlbumArt}
@@ -502,7 +504,7 @@
 
             <figure class="audio-container default-audio">
                 <div class="audio-player">
-                    {AudioPlayerWhite}
+                    {AudioPlayerGrey}
                 </div>
 
                 {block:Caption}
@@ -550,14 +552,14 @@
 
             {block:Answer}
             <!-- Answer Post -->
-            <div class="answer-container asker-container">
+            <div class="answer-container asker-container clearfix">
                 <img src="{AskerPortraitURL-48}" alt="{PlaintextAsker}" class="asker-portrait">
                 <div class="asker"><strong>{Asker}</strong> asked:</div>
                 <div class="question">{Question}</div>
             </div>
 
             {block:Answerer}
-            <div class="answer-container answerer-container">
+            <div class="answer-container answerer-container clearfix">
                 <img src="{AnswererPortraitURL-48}" alt="{PlaintextAnswerer}" class="answerer-portrait">
                 <div class="answerer"><strong>{Answerer}</strong> answered:</div>
                 <div class="answer">{Answer}</div>
@@ -777,7 +779,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="http://static.tumblr.com/f8gk9za/Zcioakoiw/imagesloaded.pkgd.min.js"></script>
         <script src="http://static.tumblr.com/f8gk9za/dCooako9r/masonry.pkgd.min.js"></script>
-        <script src="http://static.tumblr.com/f8gk9za/egYoazjt0/main.js"></script>
+        <script src="http://static.tumblr.com/f8gk9za/7Wiob18qq/main.js"></script>
 
         {block:IfGoogleAnalyticsID}
         <script>

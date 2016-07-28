@@ -42,7 +42,7 @@ hr {
 
 blockquote {
     margin: 1em 0;
-    padding-left: 0.9375rem; /* 15px */
+    padding-left: 1em;
     border-left: 2px solid #eee;
 }
 
@@ -333,6 +333,7 @@ h6 {
     box-sizing: border-box;
     position: relative;
     min-height: 150px;
+    width: 100%;
     background: url('http://static.tumblr.com/f8gk9za/FmDoaxehu/nocover.png') no-repeat;
     -webkit-background-size: 150px 150px;
     -moz-background-size: 150px 150px;
@@ -344,16 +345,19 @@ h6 {
     border-top-left-radius: 4px;
 }
 
+.audio-info .the-info {
+    opacity: 0;
+}
+
 .track-name {
     /* h1.heading.post-title */
-    margin-top: 0;
-    margin-right: 0;
-    margin-bottom: 0;
+    margin: 0;
+    font-size: 1.438rem; /* 23px */
 }
 
 .artist-name {
     /* h2.subheading */
-    margin-top: 0;
+    margin: 0;
     text-transform: lowercase;
 }
 
@@ -378,11 +382,15 @@ h6 {
     border-top-left-radius: 4px;
 }
 
+.index .audio-container .caption {
+    display: none;
+}
+
 .audio-player {
     width: 27px;
     height: 27px;
     padding: 10px;
-    background-color: #fff;
+    background-color: #e4e4e4;
     position: absolute;
     top: 51px;
     left: 51px;
