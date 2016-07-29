@@ -94,7 +94,7 @@
         <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/HAaob2ydu/main.css">
+        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/gpDob2zx9/main.css">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/8yvoazcav/rapture-icons.css">
 
         <!-- Custom Fonts -->
@@ -507,7 +507,7 @@
             </header>
 
             <figure class="audio-container default-audio">
-                <div class="audio-player">
+                <div class="audio-player circle">
                     {AudioPlayerGrey}
                 </div>
 
@@ -557,14 +557,14 @@
             {block:Answer}
             <!-- Answer Post -->
             <div class="ask-container clearfix">
-                <img src="{AskerPortraitURL-48}" alt="{PlaintextAsker}" class="asker-portrait">
+                <img src="{AskerPortraitURL-48}" alt="{PlaintextAsker}" class="asker-portrait circle">
                 <div class="ask-author"><strong>{Asker}</strong> asked:</div>
                 <div class="question">{Question}</div>
             </div>
 
             {block:Answerer}
             <div class="answer-container clearfix">
-                <img src="{AnswererPortraitURL-48}" alt="{PlaintextAnswerer}" class="answerer-portrait">
+                <img src="{AnswererPortraitURL-48}" alt="{PlaintextAnswerer}" class="answerer-portrait circle">
                 <div class="answer-author"><strong>{Answerer}</strong> answered:</div>
                 <div class="answer">{Answer}</div>
             </div>
@@ -625,12 +625,12 @@
                 <ul id="permalink-pagination" class="pagination unlistified">
                     {block:PreviousPost}
                     <li id="prev-post" class="prev-container">
-                        <a href="{PreviousPost}" title="Previous Post" class="previous icon-point-left pointer"></a>
+                        <a href="{PreviousPost}" title="Previous Post" class="previous icon-point-left pointer circle"></a>
                     </li>
                     {/block:PreviousPost}
                     {block:NextPost}
                     <li id="next-post" class="next-container">
-                        <a href="{NextPost}" title="Next Post" class="next icon-point-right pointer"></a>
+                        <a href="{NextPost}" title="Next Post" class="next icon-point-right pointer circle"></a>
                     </li>
                     {/block:NextPost}
                 </ul>
@@ -775,7 +775,7 @@
                 <li><a href="{text:YouTube URL}" title="YouTube" class="icon-youtube" target="_blank"></a></li>
                 {/block:IfYouTubeURL}
             </ul>
-            <a href="#" title="Back to Top" id="elevator" class="pointer icon-point-up"></a>
+            <a href="#" title="Back to Top" id="elevator" class="pointer icon-point-up circle"></a>
         </footer>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

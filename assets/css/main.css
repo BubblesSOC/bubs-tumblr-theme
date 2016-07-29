@@ -104,15 +104,19 @@ pre {
     display: inline-block;
 }
 
+.circle,
+.notes .avatar {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+
 .pointer {
     width: 13px;
     height: 13px;
     line-height: 13px;
     padding: 8px;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-radius: 50%;
 }
 .pointer:before {
     font-size: 13px;
@@ -159,14 +163,6 @@ pre {
 #blog-logo {
     display: block;
     margin: 0 auto;
-}
-
-#blog-portrait.circle,
-#blog-logo.circle {
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-radius: 50%;
 }
 
 #blog-portrait {
@@ -403,10 +399,6 @@ pre {
     position: absolute;
     top: 51px;
     left: 51px;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-radius: 50%;
     z-index: 1;
 }
 /* End Audio Post Styles */
@@ -530,12 +522,9 @@ pre {
     width: 40px;
     height: 40px;
     float: right;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-radius: 50%;
 }
 .answerer-portrait {
+    float: left;
     margin-bottom: 1em;
 }
 
@@ -584,8 +573,18 @@ pre {
 }
 
 .answer-author {
+    float: right;
     min-height: 40px;
     margin-bottom: 1em;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-top: 0.5rem; /* 8px */
+}
+
+.answer {
+    clear: both;
 }
 
 .type-answer .post-body:empty {
@@ -807,13 +806,7 @@ pre {
     margin-bottom: 0;
 }
 .notes .avatar_frame {
-    margin-right: 0.1875rem; /* 3px */
-}
-.notes .avatar {
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-radius: 50%;
+    margin-right: 0.3125rem; /* 5px */
 }
 
 /* ==========================================================================
