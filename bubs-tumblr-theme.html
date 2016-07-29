@@ -30,6 +30,8 @@
         <meta name="color:Highlight" content="#eee"> <!-- #e2e6c3 -->
         <meta name="color:Highlight Text" content="#333"> <!-- #333 -->
         <meta name="color:Borders" content="#eee"> <!-- #e1e2da -->
+        <meta name="color:Headings" content="#333"> <!-- #333 -->
+        <meta name="color:Subheadings" content="#333"> <!-- #333 -->
         <meta name="color:Blog Title" content="{TitleColor}"> <!-- #fb834f -->
         <meta name="color:Blog Title Shadow" content="#eee"> <!-- #53170d -->
         <meta name="color:Blog Title Hover" content="{TitleColor}"> <!-- #e55a3d -->
@@ -48,16 +50,18 @@
         <meta name="font:Subheading Font" content="{TitleFont}">
 
         <meta name="select:Heading Font Weight" content="bold" title="Bold">
-        <meta name="select:Heading Font Weight" content="normal" title="Normal">
+        <meta name="select:Heading Font Weight" content="normal" title="Normal"> <!-- * -->
 
         <meta name="select:Subheading Font Weight" content="bold" title="Bold">
-        <meta name="select:Subheading Font Weight" content="normal" title="Normal">
+        <meta name="select:Subheading Font Weight" content="normal" title="Normal"> <!-- * -->
 
-        <meta name="select:Logo Shape" content="circle" title="Circle">
+        <meta name="select:Logo Shape" content="circle" title="Circle"> <!-- * -->
         <meta name="select:Logo Shape" content="square" title="Square">
 
         <meta name="if:Logo Hover Effect" content="1">
+        <meta name="if:Show Blog Title" content="1">
         <meta name="if:Blog Title Shadow" content="1">
+        <meta name="if:Center Description Text" content="0">
         <meta name="if:Show Search Form" content="1">
         <meta name="if:Show Jump Pagination" content="1">
 
@@ -97,7 +101,7 @@
         <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/F43ob34al/main.css">
+        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/Makob3efw/main.css">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/8yvoazcav/rapture-icons.css">
 
         <!-- Custom Fonts -->
@@ -150,6 +154,7 @@
                 font-family: {TitleFont};
                 {/block:IfNotCustomHeadingFontName}
                 font-weight: {select:Heading Font Weight};
+                color: {color:Headings};
             }
             .subheading, .post h2 {
                 {block:IfCustomSubheadingFontName}
@@ -159,6 +164,7 @@
                 font-family: {TitleFont};
                 {/block:IfNotCustomSubheadingFontName}
                 font-weight: {select:Subheading Font Weight};
+                color: {color:Subheadings};
             }
             .pointer {
                 background-color: {color:Highlight};
@@ -169,7 +175,8 @@
                 Header Styles
                =============== */
 
-            #blog-header {
+            #blog-header,
+            .results-title {
                 color: {color:Sidebar Text};
             }
             #blog-header a {
@@ -178,33 +185,40 @@
             #blog-header a:hover {
                 color: {color:Sidebar Link Hover};
             }
-            #blog-title a {
-                color: {color:Blog Title};
-            }
-            #blog-title a:hover {
-                color: {color:Blog Title Hover};
-            }
+
             {block:IfLogoHoverEffect}
-            #blog-title a #blog-portrait,
-            #blog-title a #blog-logo {
+            #blog-title-link #blog-portrait,
+            #blog-title-link #blog-logo {
                 -webkit-transition: all 0.14s ease-in-out;
                 -moz-transition: all 0.14s ease-in-out;
                 -o-transition: all 0.14s ease-in-out;
                 transition: all 0.14s ease-in-out;
             }
-            #blog-title a:hover #blog-portrait,
-            #blog-title a:hover #blog-logo {
+            #blog-title-link:hover #blog-portrait,
+            #blog-title-link:hover #blog-logo {
                 -webkit-box-shadow: 0 0 0 5px {color:Blog Title Hover};
                 -moz-box-shadow: 0 0 0 5px {color:Blog Title Hover};
                 -o-box-shadow: 0 0 0 5px {color:Blog Title Hover};
                 box-shadow: 0 0 0 5px {color:Blog Title Hover};
             }
             {/block:IfLogoHoverEffect}
-            {block:IfBlogTitleShadow}
+
             #blog-title-text {
+                color: {color:Blog Title};
+                {block:IfBlogTitleShadow}
                 text-shadow: 1px 0 0 {color:Blog Title Shadow};
+                {/block:IfBlogTitleShadow}
             }
-            {/block:IfBlogTitleShadow}
+            #blog-title-link:hover #blog-title-text {
+                color: {color:Blog Title Hover};
+            }
+
+            {block:IfCenterDescriptionText}
+            #blog-description {
+                text-align: center;
+            }
+            {/block:IfCenterDescriptionText}
+
             #main-menu a {
                 color: {color:Navigation};
             }
@@ -228,15 +242,17 @@
                 box-shadow: 1px 1px 0 {color:Borders};
             }
             .index .post-title a,
-            .index .post-title a:hover,
-            .link-name, .link-excerpt, .link-author {
-                color: {color:Text};
+            .index .post-title a:hover {
+                color: {color:Headings};
             }
             .index .post-title a:hover {
                 text-decoration: underline;
             }
-            .artist-name {
-                color: rgba({RGBcolor:Text}, 0.7);
+            .link-excerpt, .link-author {
+                color: {color:Text};
+            }
+            .post .artist-name {
+                color: rgba({RGBcolor:Headings}, 0.7);
             }
             .chat-line.even,
             .ask-author, .question {
@@ -288,9 +304,11 @@
     {block:TagPage}data-tag="{PlaintextTag}"{/block:TagPage}
     >
 
-        <header id="blog-header">
+        <header id="blog-header"
+        {block:IfLogoImage} class="has-logo"{/block:IfLogoImage}
+        {block:IfNotLogoImage}{block:ShowAvatar} class="has-avatar"{/block:ShowAvatar}{/block:IfNotLogoImage}>
             <h1 id="blog-title">
-                <a href="/" title="{Title}">
+                <a href="/" title="{Title}" id="blog-title-link">
                     {block:IfLogoImage}
                     <img src="{image:Logo}" alt="{Title}" class="{select:Logo Shape}" id="blog-logo">
                     <br>
@@ -299,7 +317,9 @@
                     <img src="{PortraitURL-128}" alt="{Title}" class="{AvatarShape}" id="blog-portrait">
                     <br>
                     {/block:ShowAvatar}{/block:IfNotLogoImage}
+                    {block:IfShowBlogTitle}
                     <span id="blog-title-text" class="heading">{Title}</span>
+                    {/block:IfShowBlogTitle}
                 </a>
             </h1>
             {block:IfAlternateDescription}
