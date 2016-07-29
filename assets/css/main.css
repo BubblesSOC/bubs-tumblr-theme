@@ -70,6 +70,11 @@ h6 {
     margin: 2.33em 0;
 }
 
+pre {
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
 /* ==========================================================================
     Helper Classes
    ========================================================================== */
@@ -177,14 +182,13 @@ h6 {
 }
 
 #blog-logo {
-    width: 90%;
+    max-width: 90%;
 }
 
 #blog-title-text {
     /* h1.heading */
-    font-size: 2rem;
-    line-height: 100%;
-    /* 32px/32px */
+    font-size: 2rem; /* 32px */
+    line-height: 125%;
 }
 
 #main-menu {
@@ -279,7 +283,7 @@ h6 {
     /* converted normalized h1 em vals to rem */
     margin: 0.8125rem; /* 13px (~1em) */
     font-size: 1.625rem; /* 26px (~2em) */
-    line-height: 1.875rem; /* 30px */
+    line-height: 125%;
 }
 
 .caption,
@@ -511,12 +515,18 @@ h6 {
 /* End Link Post Styles */
 
 /* Begin Answer Post Styles */
+.ask-container,
 .answer-container {
     margin: 0 1em 1em;
     position: relative;
 }
+.answer-container {
+    border-top: 1px solid #eee;
+    padding-top: 1em;
+}
 
-.answer-portrait {
+.asker-portrait,
+.answerer-portrait {
     width: 40px;
     height: 40px;
     float: right;
@@ -525,8 +535,11 @@ h6 {
     -o-border-radius: 50%;
     border-radius: 50%;
 }
+.answerer-portrait {
+    margin-bottom: 1em;
+}
 
-.answer-author, .answer-text {
+.ask-author, .question, .answer-author {
     width: 89%;
     float: left;
     -webkit-box-sizing: border-box;
@@ -534,19 +547,20 @@ h6 {
     -o-box-sizing: border-box;
     box-sizing: border-box;
 }
-.permalink .answer-author,
-.permalink .answer-text {
+.permalink .ask-author,
+.permalink .question,
+.permalink .answer-author {
     width: 90%;
 }
 
-.answer-author {
+.ask-author {
     padding: 1em 1em 0;
     -webkit-border-radius: 4px 4px 0 0;
     -moz-border-radius: 4px 4px 0 0;
     -o-border-radius: 4px 4px 0 0;
     border-radius: 4px 4px 0 0;
 }
-.answer-author:after {
+.ask-author:after {
     content: '';
     position: absolute;
     top: 17px;
@@ -557,34 +571,21 @@ h6 {
     width: 0;
     z-index: 1;
 }
-.permalink .answer-author:after {
+.permalink .ask-author:after {
     left: 90%;
 }
 
-.answer-text {
+.question {
+    padding: 1em;
     -webkit-border-radius: 0 0 4px 4px;
     -moz-border-radius: 0 0 4px 4px;
     -o-border-radius: 0 0 4px 4px;
     border-radius: 0 0 4px 4px;
 }
 
-.question {
-    padding: 1em;
-}
-
-.answer p,
-.answer ol,
-.answer ul,
-.answer blockquote {
-    margin: 1em;
-}
-.answer h2 {
-    margin: 0.83em;
-}
-.answer figure {
-    margin: 1em 0;
-    border-left: 1px solid #eee;
-    border-right: 1px solid #eee;
+.answer-author {
+    min-height: 40px;
+    margin-bottom: 1em;
 }
 
 .type-answer .post-body:empty {

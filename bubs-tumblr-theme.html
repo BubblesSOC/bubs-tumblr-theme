@@ -94,7 +94,7 @@
         <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/Kq9ob19hr/main.css">
+        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/HAaob2ydu/main.css">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/8yvoazcav/rapture-icons.css">
 
         <!-- Custom Fonts -->
@@ -226,9 +226,7 @@
             }
             .index .post-title a,
             .index .post-title a:hover,
-            .link-name,
-            .link-excerpt,
-            .link-author {
+            .link-name, .link-excerpt, .link-author {
                 color: {color:Text};
             }
             .index .post-title a:hover {
@@ -238,15 +236,14 @@
                 color: rgba({RGBcolor:Text}, 0.7);
             }
             .chat-line.even,
-            .answer-author,
-            .answer-text {
+            .ask-author, .question {
                 background-color: rgba({RGBcolor:Borders}, 0.5);
             }
-            .answer-author:after,
-            .answer figure {
+            .ask-author:after {
                 border-color: transparent rgba({RGBcolor:Borders}, 0.5);
             }
             .type-link .post-body,
+            .answer-container,
             .type-answer .post-body,
             .note-count {
                 border-top-color: {color:Borders};
@@ -559,17 +556,17 @@
 
             {block:Answer}
             <!-- Answer Post -->
-            <div class="answer-container asker-container clearfix">
-                <img src="{AskerPortraitURL-48}" alt="{PlaintextAsker}" class="answer-portrait asker-portrait">
-                <div class="answer-author asker"><strong>{Asker}</strong> asked:</div>
-                <div class="answer-text question">{Question}</div>
+            <div class="ask-container clearfix">
+                <img src="{AskerPortraitURL-48}" alt="{PlaintextAsker}" class="asker-portrait">
+                <div class="ask-author"><strong>{Asker}</strong> asked:</div>
+                <div class="question">{Question}</div>
             </div>
 
             {block:Answerer}
-            <div class="answer-container answerer-container clearfix">
-                <img src="{AnswererPortraitURL-48}" alt="{PlaintextAnswerer}" class="answer-portrait answerer-portrait">
-                <div class="answer-author answerer"><strong>{Answerer}</strong> answered:</div>
-                <div class="answer-text answer">{Answer}</div>
+            <div class="answer-container clearfix">
+                <img src="{AnswererPortraitURL-48}" alt="{PlaintextAnswerer}" class="answerer-portrait">
+                <div class="answer-author"><strong>{Answerer}</strong> answered:</div>
+                <div class="answer">{Answer}</div>
             </div>
             {/block:Answerer}
 
