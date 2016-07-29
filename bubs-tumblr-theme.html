@@ -28,6 +28,7 @@
         <meta name="color:Link" content="{AccentColor}"> <!-- #999 -->
         <meta name="color:Link Hover" content="{AccentColor}"> <!-- #333 -->
         <meta name="color:Highlight" content="#eee"> <!-- #e2e6c3 -->
+        <meta name="color:Highlight Text" content="#333"> <!-- #333 -->
         <meta name="color:Borders" content="#eee"> <!-- #e1e2da -->
         <meta name="color:Blog Title" content="{TitleColor}"> <!-- #fb834f -->
         <meta name="color:Blog Title Shadow" content="#eee"> <!-- #53170d -->
@@ -40,6 +41,8 @@
         <meta name="color:Footer Text" content="#333"> <!-- #333 -->
         <meta name="color:Footer Link" content="{AccentColor}"> <!-- #698845 -->
         <meta name="color:Footer Link Hover" content="{AccentColor}"> <!-- #3d785c -->
+        <meta name="color:Social Icons" content="{AccentColor}"> <!-- #698845 -->
+        <meta name="color:Social Icons Hover" content="{AccentColor}"> <!-- #3d785c -->
 
         <meta name="font:Heading Font" content="{TitleFont}">
         <meta name="font:Subheading Font" content="{TitleFont}">
@@ -94,7 +97,7 @@
         <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/gpDob2zx9/main.css">
+        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/F43ob34al/main.css">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/8yvoazcav/rapture-icons.css">
 
         <!-- Custom Fonts -->
@@ -158,8 +161,8 @@
                 font-weight: {select:Subheading Font Weight};
             }
             .pointer {
-                color: {color:Text};
                 background-color: {color:Highlight};
+                color: {color:Highlight Text};
             }
 
             /* ===============
@@ -256,11 +259,18 @@
             #blog-footer {
                color: {color:Footer Text};
             }
-            #blog-footer a:not(#elevator) {
+            #blog-footer a:not(#elevator):not(#theme-credit):not(.social-icon) {
                color: {color:Footer Link};
             }
-            #blog-footer a:not(#elevator):hover {
+            #blog-footer a:not(#elevator):not(#theme-credit):not(.social-icon):hover {
                color: {color:Footer Link Hover};
+            }
+
+            .social-icon {
+                color: {color:Social Icons};
+            }
+            .social-icon:hover {
+                color: {color:Social Icons Hover};
             }
 
             /* ============
@@ -701,81 +711,82 @@
             </ul>
             {/block:DayPagination}
 
-            <p>Theme by <a href="http://bubbless0c.tumblr.com" target="_blank">Bubs</a></p>
             <ul id="social-icons" class="unlistified">
                 {block:If8tracksUsername}
-                <li><a href="http://8tracks.com/{text:8tracks Username}" title="8tracks" class="icon-8tracks" target="_blank"></a></li>
+                <li><a href="http://8tracks.com/{text:8tracks Username}" title="8tracks" class="social-icon icon-8tracks" target="_blank"></a></li>
                 {/block:If8tracksUsername}
 
                 {block:Ifao3Username}
-                <li><a href="http://archiveofourown.org/users/{text:ao3 Username}" title="Archive of Our Own" class="icon-ao3" target="_blank"></a></li>
+                <li><a href="http://archiveofourown.org/users/{text:ao3 Username}" title="Archive of Our Own" class="social-icon icon-ao3" target="_blank"></a></li>
                 {/block:Ifao3Username}
 
                 {block:IfBehanceURL}
-                <li><a href="{text:Behance URL}" title="Behance" class="icon-behance" target="_blank"></a></li>
+                <li><a href="{text:Behance URL}" title="Behance" class="social-icon icon-behance" target="_blank"></a></li>
                 {/block:IfBehanceURL}
 
                 {block:IfDeviantartUsername}
-                <li><a href="http://{text:deviantART Username}.deviantart.com/" title="deviantART" class="icon-deviantart" target="_blank"></a></li>
+                <li><a href="http://{text:deviantART Username}.deviantart.com/" title="deviantART" class="social-icon icon-deviantart" target="_blank"></a></li>
                 {/block:IfDeviantartUsername}
 
                 {block:IfDribbbleUsername}
-                <li><a href="https://dribbble.com/{text:Dribbble Username}" title="Dribbble" class="icon-dribbble" target="_blank"></a></li>
+                <li><a href="https://dribbble.com/{text:Dribbble Username}" title="Dribbble" class="social-icon icon-dribbble" target="_blank"></a></li>
                 {/block:IfDribbbleUsername}
 
                 {block:IfFacebookUsername}
-                <li><a href="https://facebook.com/{text:Facebook Username}" title="Facebook" class="icon-facebook" target="_blank"></a></li>
+                <li><a href="https://facebook.com/{text:Facebook Username}" title="Facebook" class="social-icon icon-facebook" target="_blank"></a></li>
                 {/block:IfFacebookUsername}
 
                 {block:IfGithubUsername}
-                <li><a href="http://github.com/{text:Github Username}" title="Github" class="icon-github" target="_blank"></a></li>
+                <li><a href="http://github.com/{text:Github Username}" title="Github" class="social-icon icon-github" target="_blank"></a></li>
                 {/block:IfGithubUsername}
 
                 {block:IfGoodreadsURL}
-                <li><a href="{text:Goodreads URL}" title="Goodreads" class="icon-goodreads" target="_blank"></a></li>
+                <li><a href="{text:Goodreads URL}" title="Goodreads" class="social-icon icon-goodreads" target="_blank"></a></li>
                 {/block:IfGoodreadsURL}
 
                 {block:IfInstagramUsername}
-                <li><a href="https://instagram.com/{text:Instagram Username}" title="Instagram" class="icon-instagram" target="_blank"></a></li>
+                <li><a href="https://instagram.com/{text:Instagram Username}" title="Instagram" class="social-icon icon-instagram" target="_blank"></a></li>
                 {/block:IfInstagramUsername}
 
                 {block:IfPinterestUsername}
-                <li><a href="https://pinterest.com/{text:Pinterest Username}" title="Pinterest" class="icon-pinterest" target="_blank"></a></li>
+                <li><a href="https://pinterest.com/{text:Pinterest Username}" title="Pinterest" class="social-icon icon-pinterest" target="_blank"></a></li>
                 {/block:IfPinterestUsername}
 
                 {block:IfSkypeURL}
-                <li><a href="{text:Skype URL}" title="Skype" class="icon-skype" target="_blank"></a></li>
+                <li><a href="{text:Skype URL}" title="Skype" class="social-icon icon-skype" target="_blank"></a></li>
                 {/block:IfSkypeURL}
 
                 {block:IfSpotifyURL}
-                <li><a href="{text:Spotify URL}" title="Spotify" class="icon-spotify" target="_blank"></a></li>
+                <li><a href="{text:Spotify URL}" title="Spotify" class="social-icon icon-spotify" target="_blank"></a></li>
                 {/block:IfSpotifyURL}
 
                 {block:IfSteamUsername}
-                <li><a href="http://steamcommunity.com/id/{text:Steam Username}" title="Steam" class="icon-steam" target="_blank"></a></li>
+                <li><a href="http://steamcommunity.com/id/{text:Steam Username}" title="Steam" class="social-icon icon-steam" target="_blank"></a></li>
                 {/block:IfSteamUsername}
 
                 {block:IfTumblrUsername}
-                <li><a href="http://{text:Tumblr Username}.tumblr.com" title="Tumblr" class="icon-tumblr" target="_blank"></a></li>
+                <li><a href="http://{text:Tumblr Username}.tumblr.com" title="Tumblr" class="social-icon icon-tumblr" target="_blank"></a></li>
                 {/block:IfTumblrUsername}
 
                 {block:IfTwitterUsername}
-                <li><a href="http://twitter.com/{text:Twitter Username}" title="Twitter" class="icon-twitter" target="_blank"></a></li>
+                <li><a href="http://twitter.com/{text:Twitter Username}" title="Twitter" class="social-icon icon-twitter" target="_blank"></a></li>
                 {/block:IfTwitterUsername}
 
                 {block:IfWebsiteURL}
-                <li><a href="{text:Website URL}" title="Website" class="icon-globe" target="_blank"></a></li>
+                <li><a href="{text:Website URL}" title="Website" class="social-icon icon-globe" target="_blank"></a></li>
                 {/block:IfWebsiteURL}
 
                 {block:IfWordPressURL}
-                <li><a href="{text:WordPress URL}" title="WordPress" class="icon-wordpress" target="_blank"></a></li>
+                <li><a href="{text:WordPress URL}" title="WordPress" class="social-icon icon-wordpress" target="_blank"></a></li>
                 {/block:IfWordPressURL}
 
                 {block:IfYouTubeURL}
-                <li><a href="{text:YouTube URL}" title="YouTube" class="icon-youtube" target="_blank"></a></li>
+                <li><a href="{text:YouTube URL}" title="YouTube" class="social-icon icon-youtube" target="_blank"></a></li>
                 {/block:IfYouTubeURL}
             </ul>
+
             <a href="#" title="Back to Top" id="elevator" class="pointer icon-point-up circle"></a>
+            <a href="http://bubblessoc.com" target="_blank" title="Theme by Bubs" id="theme-credit" class="pointer icon-heart-outline circle"></a>
         </footer>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
