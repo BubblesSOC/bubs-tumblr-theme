@@ -729,8 +729,8 @@ pre {
     width: 3%;
 }
 .post-icons li {
-    width: 13px;
-    margin-left: 5px;
+    width: 0.8125rem; /* 13px */
+    margin-left: 0.3125rem; /* 5px */
 }
 .post-icons li:first-child {
     margin-left: 0;
@@ -757,11 +757,11 @@ pre {
     bottom: 1px;
 }
 .post-icons .icon-download:before {
-    font-size: 13px;
+    font-size: 0.8125rem; /* 13px */
 }
 .index .post-icons .icon-download {
     position: relative;
-    top: 2px;
+    top: 0.125rem; /* 2px */
 }
 
 .index .post-sources {
