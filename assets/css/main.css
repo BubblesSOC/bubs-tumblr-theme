@@ -979,6 +979,10 @@ pre {
 
     #prev-post, #next-post {
         position: static;
+        -ms-transform: translateX(0);
+        -webkit-transform: translateX(0);
+        -moz-transform: translateX(0);
+        -o-transform: translateX(0);
         transform: translateX(0);
     }
 
