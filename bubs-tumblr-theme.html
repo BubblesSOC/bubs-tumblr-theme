@@ -101,7 +101,7 @@
         <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/Makob3efw/main.css">
+        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/J4Iob462w/main.css">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/8yvoazcav/rapture-icons.css">
 
         <!-- Custom Fonts -->
@@ -169,6 +169,13 @@
             .pointer {
                 background-color: {color:Highlight};
                 color: {color:Highlight Text};
+            }
+            @media only screen and (max-width: 617px) {
+                .pointer.previous,
+                .pointer.next {
+                    background-color: {color:Post Background};
+                    color: {color:Text};
+                }
             }
 
             /* ===============
@@ -301,12 +308,10 @@
     <body
     {block:IndexPage}class="index{block:SearchPage} search{block:NoSearchResults} no-results{/block:NoSearchResults}{/block:SearchPage}{block:TagPage} tag-page{/block:TagPage}{block:DayPage} day-page{/block:DayPage}"{/block:IndexPage}
     {block:PermalinkPage}class="permalink"{/block:PermalinkPage}
-    {block:TagPage}data-tag="{PlaintextTag}"{/block:TagPage}
-    >
+    {block:TagPage}data-tag="{PlaintextTag}"{/block:TagPage}>
+    <div id="wrapper">
 
-        <header id="blog-header"
-        {block:IfLogoImage} class="has-logo"{/block:IfLogoImage}
-        {block:IfNotLogoImage}{block:ShowAvatar} class="has-avatar"{/block:ShowAvatar}{/block:IfNotLogoImage}>
+        <header id="blog-header" class="clearfix{block:IfLogoImage} has-logo{/block:IfLogoImage}{block:IfNotLogoImage}{block:ShowAvatar} has-avatar{/block:ShowAvatar}{/block:IfNotLogoImage}{block:IfShowSearchForm} has-search{/block:IfShowSearchForm}">
             <h1 id="blog-title">
                 <a href="/" title="{Title}" id="blog-title-link">
                     {block:IfLogoImage}
@@ -808,22 +813,23 @@
             <a href="#" title="Back to Top" id="elevator" class="pointer icon-point-up circle"></a>
             <a href="http://bubblessoc.com" target="_blank" title="Theme by Bubs" id="theme-credit" class="pointer icon-heart-outline circle"></a>
         </footer>
+    </div> <!-- #wrapper -->
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script src="http://static.tumblr.com/f8gk9za/Zcioakoiw/imagesloaded.pkgd.min.js"></script>
-        <script src="http://static.tumblr.com/f8gk9za/dCooako9r/masonry.pkgd.min.js"></script>
-        <script src="http://static.tumblr.com/f8gk9za/7Wiob18qq/main.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://static.tumblr.com/f8gk9za/Zcioakoiw/imagesloaded.pkgd.min.js"></script>
+    <script src="http://static.tumblr.com/f8gk9za/dCooako9r/masonry.pkgd.min.js"></script>
+    <script src="http://static.tumblr.com/f8gk9za/7Wiob18qq/main.js"></script>
 
-        {block:IfGoogleAnalyticsID}
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','{text:Google Analytics ID}','auto');ga('send','pageview');
-        </script>
-        {/block:IfGoogleAnalyticsID}
+    {block:IfGoogleAnalyticsID}
+    <script>
+        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+        e.src='//www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+        ga('create','{text:Google Analytics ID}','auto');ga('send','pageview');
+    </script>
+    {/block:IfGoogleAnalyticsID}
 
     </body>
 </html>
