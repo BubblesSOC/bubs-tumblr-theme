@@ -122,7 +122,8 @@ pre {
     -o-box-sizing: border-box;
     box-sizing: border-box;
 }
-.pointer:before {
+.pointer:before,
+.pointer:after {
     font-size: 0.8125rem; /* 13px */
 }
 
@@ -841,6 +842,10 @@ pre {
     bottom: 1.25rem; /* 20px */
     right: 20px;
 }
+#theme-credit:hover:before {
+    content: '\e80c';
+    color: #d95e40;
+}
 
 /* ============
     Pagination
@@ -932,12 +937,12 @@ pre {
         margin-top: 40px;
     }
 
-    #blog-header br {
-        display: none;
-    }
-
     #blog-title {
         margin-top: 0;
+    }
+
+    #blog-title br {
+        display: none;
     }
 
     #blog-logo, #blog-portrait {

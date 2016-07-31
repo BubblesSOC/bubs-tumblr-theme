@@ -101,7 +101,7 @@
         <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/HfYob514n/main.css">
+        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/m7bob5r2n/main.css">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/8yvoazcav/rapture-icons.css">
 
         <!-- Custom Fonts -->
@@ -171,8 +171,8 @@
                 color: {color:Highlight Text};
             }
             @media only screen and (max-width: 617px) {
-                .pointer.previous,
-                .pointer.next {
+                #prev-post .pointer.previous,
+                #next-post .pointer.next {
                     background-color: {color:Post Background};
                     color: {color:Text};
                 }
@@ -338,7 +338,7 @@
                 <ul id="main-menu" class="subheading unlistified clearfix">
                     {block:HasPages}
                     {block:Pages}
-                    <li><a href="{URL}" title="{Label}">{Label}</a></li>
+                    <li data-page="{PlaintextLabel}"><a href="{URL}" title="{Label}">{Label}</a></li>
                     {/block:Pages}
                     {/block:HasPages}
 
@@ -390,7 +390,7 @@
     {/block:DayPage}
 
     <div id="the-posts">
-        {block:Posts inlineMediaWidth="500" inlineNestedMediaWidth="500"}
+        {block:Posts inlineMediaWidth="540" inlineNestedMediaWidth="540"}
         <article id="{PostID}" class="post type-{PostType} {TagsAsClasses}">
 
             {block:Text}
@@ -414,7 +414,7 @@
             <figure class="photo-container">
                 {block:IndexPage}
                 <a href="{Permalink}" class="photo-link" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" data-lowres="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}">
-                    <img src="{PhotoURL-500}" alt="{PhotoAlt}" class="post-photo">
+                    <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" class="post-photo">
                 </a>
                 {/block:IndexPage}
 
@@ -558,8 +558,7 @@
             {block:AudioEmbed}
             <!-- Embedded Audio Player -->
             <figure class="audio-container embedded-audio">
-                {block:IndexPage}{AudioEmbed-500}{/block:IndexPage}
-                {block:PermalinkPage}{AudioEmbed-640}{/block:PermalinkPage}
+                {AudioEmbed-640}
 
                 {block:Caption}
                 <figcaption class="caption">
@@ -576,8 +575,7 @@
             {block:Video}
             <!-- Video Post -->
             <figure class="video-container">
-                {block:IndexPage}{VideoEmbed-500}{/block:IndexPage}
-                {block:PermalinkPage}{VideoEmbed-700}{/block:PermalinkPage}
+                {VideoEmbed-700}
 
                 {block:Caption}
                 <figcaption class="caption">
@@ -811,7 +809,7 @@
             </ul>
 
             <a href="#" title="Back to Top" id="elevator" class="pointer icon-point-up circle"></a>
-            <a href="http://bubblessoc.com" target="_blank" title="Theme by Bubs" id="theme-credit" class="pointer icon-heart-outline circle"></a>
+            <a href="http://bubbless0c.tumblr.com" target="_blank" title="Theme by Bubs" id="theme-credit" class="pointer icon-heart-outline circle"></a>
         </footer>
     </div> <!-- #wrapper -->
 
