@@ -98,6 +98,6 @@
 .icon-quote-left-bold:before { content: '\f10d'; } /* Font Awesome */
 .icon-quote-right-bold:before,
 .iconr-quote-right-bold:after { content: '\f10e'; } /* Font Awesome */
-.icon-menu-entypo:before { content: '\e81f'; } /* Entypo */
+.icon-menu:before { content: '\e81f'; } /* Entypo */
 .icon-menu-fa:before { content: '\f0c9'; } /* Font Awesome */
-.icon-menu:before { content: '\f008'; } /* MFG Labs */
+.icon-menu-mfg:before { content: '\f008'; } /* MFG Labs */

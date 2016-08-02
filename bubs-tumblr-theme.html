@@ -58,10 +58,13 @@
         <meta name="select:Logo Shape" content="circle" title="Circle"> <!-- * -->
         <meta name="select:Logo Shape" content="square" title="Square">
 
+        <meta name="select:Navigation Style" content="horizontal" title="Default">
+        <meta name="select:Navigation Style" content="dropdown" title="Slide Down from Top">
+
         <meta name="if:Logo Hover Effect" content="1">
         <meta name="if:Show Blog Title" content="1">
         <meta name="if:Blog Title Shadow" content="1">
-        <meta name="if:Center Description Text" content="0">
+        <meta name="if:Show Description" content="1">
         <meta name="if:Show Search Form" content="1">
         <meta name="if:Show Jump Pagination" content="1">
 
@@ -101,8 +104,8 @@
         <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
         <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/m7bob5r2n/main.css">
-        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/8yvoazcav/rapture-icons.css">
+        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/LDdobafdy/main.css">
+        <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/XPSobacwp/rapture-icons.css">
 
         <!-- Custom Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet">
@@ -168,13 +171,13 @@
             }
             .pointer {
                 background-color: {color:Highlight};
-                color: {color:Highlight Text};
+                color: {color:Highlight Text} !important;
             }
             @media only screen and (max-width: 617px) {
                 #prev-post .pointer.previous,
                 #next-post .pointer.next {
                     background-color: {color:Post Background};
-                    color: {color:Text};
+                    color: {color:Text} !important;
                 }
             }
 
@@ -220,11 +223,10 @@
                 color: {color:Blog Title Hover};
             }
 
-            {block:IfCenterDescriptionText}
-            #blog-description {
-                text-align: center;
+            .nav-dropdown #blog-nav {
+                background-color: rgba({RGBcolor:Highlight}, 0.75);
+                border-bottom-color: {color:Highlight};
             }
-            {/block:IfCenterDescriptionText}
 
             #main-menu a {
                 color: {color:Navigation};
@@ -309,7 +311,7 @@
     {block:IndexPage}class="index{block:SearchPage} search{block:NoSearchResults} no-results{/block:NoSearchResults}{/block:SearchPage}{block:TagPage} tag-page{/block:TagPage}{block:DayPage} day-page{/block:DayPage}"{/block:IndexPage}
     {block:PermalinkPage}class="permalink"{/block:PermalinkPage}
     {block:TagPage}data-tag="{PlaintextTag}"{/block:TagPage}>
-    <div id="wrapper">
+    <div id="wrapper" class="nav-{select:Navigation Style}">
 
         <header id="blog-header" class="clearfix{block:IfLogoImage} has-logo{/block:IfLogoImage}{block:IfNotLogoImage}{block:ShowAvatar} has-avatar{/block:ShowAvatar}{/block:IfNotLogoImage}{block:IfShowSearchForm} has-search{/block:IfShowSearchForm}">
             <h1 id="blog-title">
@@ -327,13 +329,16 @@
                     {/block:IfShowBlogTitle}
                 </a>
             </h1>
+            {block:IfShowDescription}
             {block:IfAlternateDescription}
             <div id="blog-description">{text:Alternate Description}</div>
             {/block:IfAlternateDescription}
             {block:IfNotAlternateDescription}{block:Description}
             <div id="blog-description">{Description}</div>
             {/block:Description}{/block:IfNotAlternateDescription}
+            {/block:IfShowDescription}
 
+            <a href="#" id="nav-control" class="icon-menu pointer circle"></a>
             <nav id="blog-nav">
                 <ul id="main-menu" class="subheading unlistified clearfix">
                     {block:HasPages}
