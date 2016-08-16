@@ -30,7 +30,7 @@
     <link rel="alternate" type="application/rss+xml" href="{RSS}">
 
     <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/3aoobysf4/main.css">
+    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/7Pwoc0ffp/main.css">
 
     <style>
         /* ============
@@ -116,7 +116,7 @@
 
         <div id="the-posts">
             {block:Posts}
-            <article id="{PostID}" class="post type-{PostType}{block:Panorama} panorama{/block:Panorama}{block:Photoset} photoset{/block:Photoset} {TagsAsClasses}">
+            <article id="{PostID}" class="post type-{PostType}{block:Panorama} panorama-post{/block:Panorama}{block:Photoset} photoset-post{/block:Photoset} {TagsAsClasses}">
 
                 {block:Text}
                 <!-- Text Post -->
@@ -361,9 +361,6 @@
                         </li>
                         {/block:ExternalAudio}
                         {/block:Audio}
-                        {block:Video}
-                        <li class="play-count">{PlayCountWithLabel}</li>
-                        {/block:Video}
                         {block:IndexPage}
                         <li class="like-button">{LikeButton color="black" size="13"}</li>
                         <li class="reblog-button">{ReblogButton color="black" size="13"}</li>
@@ -445,7 +442,7 @@
     <footer id="blog-footer">
         {block:Pagination}
         {block:IfInfiniteScroll}
-        <div id="loading" data-total-pages="{TotalPages}" data-current-page="{CurrentPage}" data-loading="{lang:Loading}" data-finished="{lang:No more posts}">
+        <div id="loading" data-total-pages="{TotalPages}" data-current-page="{CurrentPage}" data-loading="{lang:Loading}" data-finished="{lang:No more posts}" data-more="{lang:Load more posts}">
             <span id="infscr-spinner" class="spinner"></span>
         </div>
         {/block:IfInfiniteScroll}
@@ -512,7 +509,7 @@
 {/block:IfInfiniteScroll}
 <script src="http://static.tumblr.com/f8gk9za/Zcioakoiw/imagesloaded.pkgd.min.js"></script>
 <script src="http://static.tumblr.com/f8gk9za/dCooako9r/masonry.pkgd.min.js"></script>
-<script src="http://static.tumblr.com/f8gk9za/CHGobyyc3/main.js"></script>
+<script src="http://static.tumblr.com/f8gk9za/22eoc0far/main.js"></script>
 
 {block:IfGoogleAnalyticsID}
 <script>
