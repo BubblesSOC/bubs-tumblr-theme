@@ -126,6 +126,14 @@ pre {
     *zoom: 1;
 }
 
+.unlistified {
+    list-style-type: none;
+    padding: 0;
+}
+.unlistified li {
+    display: inline-block;
+}
+
 .circle {
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;

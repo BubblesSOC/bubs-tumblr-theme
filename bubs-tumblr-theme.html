@@ -88,6 +88,12 @@
                 <li id="archive">
                     <a href="/archive" title="{lang:Archive}" id="archive-link">{lang:Archive}</a>
                 </li>
+
+                {block:Likes}
+                <li id="likes">
+                    <a href="https://www.tumblr.com/liked/by/{Name}" title="{lang:Likes}" id="likes-link">{lang:Likes}</a>
+                </li>
+                {/block:Likes}
             </ul>
 
             <form action="/search" method="get" id="search-form">
@@ -357,7 +363,9 @@
                         <li class="play-count">{PlayCountWithLabel}</li>
                         {block:ExternalAudio}
                         <li class="external-audio">
-                            <a href="{ExternalAudioURL}" title="{lang:Download}">{lang:Download}</a>
+                            <a href="{ExternalAudioURL}" title="{lang:Download}" class="external-audio-link">
+                                <span class="external-audio-text">{lang:Download}</span>
+                            </a>
                         </li>
                         {/block:ExternalAudio}
                         {/block:Audio}
@@ -386,7 +394,7 @@
                             </a>
                         </li>
                         <li class="post-source source">
-                            Published by
+                            Originally from
                             <a href="{ReblogRootURL}" title="{lang:Source}: {PlaintextReblogRootTitle}" class="ps-link source-link">
                                 <img src="{ReblogRootPortraitURL-16}" alt="{ReblogRootName}" class="ps-portrait source-portrait">
                                 {ReblogRootName}
@@ -411,14 +419,14 @@
                         {block:PreviousPost}
                         <li id="prev-post" class="previous">
                             <a href="{PreviousPost}" title="{lang:Previous post}" class="prev-link">
-                                {lang:Prev}
+                                <span class="prev-text">{lang:Prev}</span>
                             </a>
                         </li>
                         {/block:PreviousPost}
                         {block:NextPost}
                         <li id="next-post" class="next">
                             <a href="{NextPost}" title="{lang:Next post}" class="next-link">
-                                {lang:Next}
+                                <span class="next-text">{lang:Next}</span>
                             </a>
                         </li>
                         {/block:NextPost}
@@ -451,7 +459,7 @@
             {block:PreviousPage}
             <li id="prev-page" class="previous">
                 <a href="{PreviousPage}" title="{lang:Previous page}" class="prev-link">
-                    {lang:Prev}
+                    <span class="prev-text">{lang:Prev}</span>
                 </a>
             </li>
             {/block:PreviousPage}
@@ -472,7 +480,7 @@
             {block:NextPage}
             <li id="next-page" class="next">
                 <a href="{NextPage}" title="{lang:Next page}" class="next-link">
-                    {lang:Next}
+                    <span class="next-text">{lang:Next}</span>
                 </a>
             </li>
             {/block:NextPage}
@@ -484,22 +492,26 @@
             {block:PreviousDayPage}
             <li id="prev-day" class="previous">
                 <a href="{PreviousDayPage}" title="{lang:Previous day}" class="prev-link">
-                    {ShortMonth} {DayOfMonth}
+                    <span class="prev-text">{ShortMonth} {DayOfMonth}</span>
                 </a>
             </li>
             {/block:PreviousDayPage}
             {block:NextDayPage}
             <li id="next-day" class="next">
                 <a href="{NextDayPage}" title="{lang:Next day}" class="next-link">
-                    {ShortMonth} {DayOfMonth}
+                    <span class="next-text">{ShortMonth} {DayOfMonth}</span>
                 </a>
             </li>
             {/block:NextDayPage}
         </ul>
         {/block:DayPagination}
 
-        <a href="#" title="Back to Top" id="elevator"></a>
-        <a href="http://bubbless0c.tumblr.com" target="_blank" title="Theme by Bubs" id="theme-credit"></a>
+        <a href="#" title="Back to Top" id="elevator">
+            <span id="elevator-text">Back to Top</span>
+        </a>
+        <a href="http://bubbless0c.tumblr.com" target="_blank" title="Theme by Bubs" id="theme-credit">
+            <span id="theme-credit-text">Theme by Bubs</span>
+        </a>
     </footer>  <!-- #blog-footer -->
 </div> <!-- #wrapper -->
 
