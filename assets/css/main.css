@@ -206,7 +206,6 @@ i, em {
     width: 100%;
     height: 80px;
     padding: 20px;
-    display: table;
 
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -277,7 +276,6 @@ i, em {
 }
 
 #blog-title {
-    display: table-cell;
     height: 40px;
 }
 
@@ -293,14 +291,18 @@ i, em {
     margin-right: 10px;
 }
 
-#blog-title-text,
-#blog-nav {
+#blog-title-text {
     display: table-cell;
     height: 40px;
     vertical-align: middle;
 }
 
 #main-menu {
+    position: fixed;
+    width: 100%;
+    top: 2.188rem; /* 35px */
+    left: 0;
+    text-align: center;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 0.6875rem; /* 11px */
@@ -309,11 +311,10 @@ i, em {
 }
 
 .menu-item {
-    float: left;
-    padding-right: 20px;
+    margin-right: 1rem;
 }
 .menu-item:last-child {
-    padding-right: 0;
+    margin-right: 0;
 }
 
 #tumblr-controls {
