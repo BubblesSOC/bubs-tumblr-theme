@@ -3,15 +3,12 @@ html {
 }
 
 body {
-
+    font: 0.8125rem/175% 'Yrsa', 'Baskerville', 'Georgia', 'Times New Roman', 'Times', serif;
+    /* 13px/22.75px */
 }
 
 audio, canvas, iframe, img, svg, video {
     vertical-align: middle;
-}
-
-input {
-    outline: none;
 }
 
 textarea {
@@ -53,6 +50,11 @@ ul, ol, p {
     margin: 1em 0;
 }
 
+h1, h2, h3 {
+    letter-spacing: 1px;
+    font-variant: small-caps;
+}
+
 h2 {
     font-size: 1.5em;
     margin: 0.83em 0;
@@ -76,6 +78,22 @@ h6 {
 pre {
     word-wrap: break-word;
     white-space: pre-wrap;
+}
+
+small, sub, sup {
+    font-weight: 300;
+}
+
+small {
+    font-size: 0.6875rem; /* 11px */
+}
+
+b, strong {
+    font-weight: 600;
+}
+
+i, em {
+    font-family: 'Lora', 'Georgia', 'Times New Roman', 'Times', serif;
 }
 
 /* ==========================================================================
@@ -126,11 +144,123 @@ pre {
     *zoom: 1;
 }
 
-.circle {
+.circle, .badge {
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     -o-border-radius: 50%;
     border-radius: 50%;
+}
+
+.badge {
+    display: inline-block;
+    width: 1.813rem; /* 13px + 8px + 8px = 29px */
+    height: 1.813rem; /* 13px + 8px + 8px = 29px */
+    padding: 0.5rem; /* 8px */
+    line-height: 0.8125rem; /* 13px */
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+
+    -webkit-transition: background-color 0.2s ease-in-out;
+    -moz-transition: background-color 0.2s ease-in-out;
+    -o-transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out;
+}
+.badge:before {
+    font-size: 0.8125rem; /* 13px */
+}
+
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to   { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to   { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+.spinner:before {
+    -webkit-animation: spin 2s linear infinite;
+    -moz-animation: spin 2s linear infinite;
+    -o-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+/* ==========================================================================
+    General Layout Styles
+   ========================================================================== */
+
+.index .tmblr-iframe {
+   display: none;
+}
+
+#blog-header {
+
+}
+
+#posts-container {
+
+}
+
+#blog-footer {
+
+}
+
+/* ==============
+    Misc. Styles
+   ============== */
+
+#main-menu,
+.tags, .post-icons, .post-sources,
+.pagination,
+#other-blogs, #credits,
+#tumblr-controls {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu-item,
+.tag,
+.submission, .via, .source,
+.play-count, .external-audio, .like-button, .reblog-button,
+.next, .previous, .page-number,
+.control-item {
+    display: inline-block;
+}
+
+/* ==========================================================================
+   Header Styles
+   ========================================================================== */
+
+#blog-title,
+#main-menu {
+   margin: 0;
+}
+
+.blog-title-image {
+   width: 40px;
+   height: 40px;
+}
+
+#search-field {
+    outline: none;
+}
+
+/* ==========================================================================
+    Main Styles
+   ========================================================================== */
+
+.post {
+   width: 500px;
+   margin-bottom: 20px;
+   float: left;
+   margin-right: 20px;
 }
 
 /* ===============
@@ -181,3 +311,61 @@ pre {
     position: relative;
     width: 100%;
 }
+
+/* ===========
+    Post Meta
+   =========== */
+
+.index .post-sources,
+.ps-portrait {
+    display: none;
+}
+
+/* ==========================================================================
+    Aside Styles
+   ========================================================================== */
+
+.aside-title {
+    text-transform: uppercase;
+    font-weight: normal;
+    font-variant: normal;
+    font-size: 0.8125rem;
+    line-height: 175%;
+}
+
+#credits-toggler:hover .badge {
+    color: #d95e40 !important;
+}
+
+/* ==========================================================================
+    Footer Styles
+   ========================================================================== */
+
+.control-icon:before,
+#elevator:before {
+    position: relative;
+}
+#search-open:before {
+    left: 0.125rem; /* 2px */
+}
+#search-close:before {
+    left: 0.1875rem; /* 3px */
+}
+#tumblr-message-link:before {
+    left: 0.125rem; /* 2px */
+}
+#follow-link:before {
+    left: 0.125rem; /* 2px */
+}
+#elevator:before {
+    top: -0.125rem; /* -2px */
+}
+
+#theme-credit:hover:before {
+    content: '\e813';
+    color: #d95e40;
+}
+
+/* ==========================================================================
+    Media Queries
+   ========================================================================== */
