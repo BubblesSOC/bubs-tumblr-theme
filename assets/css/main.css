@@ -172,44 +172,76 @@ i, em {
     font-size: 0.8125rem; /* 13px */
 }
 
-@-moz-keyframes spin {
-    from { -moz-transform: rotate(0deg); }
-    to   { -moz-transform: rotate(360deg); }
-}
-@-webkit-keyframes spin {
-    from { -webkit-transform: rotate(0deg); }
-    to   { -webkit-transform: rotate(360deg); }
-}
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
-}
-
-.spinner:before {
-    -webkit-animation: spin 2s linear infinite;
-    -moz-animation: spin 2s linear infinite;
-    -o-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;
-}
-
 /* ==========================================================================
     General Layout Styles
    ========================================================================== */
 
 .index .tmblr-iframe {
-   display: none;
+    display: none;
+}
+
+#wrapper {
+    margin: 0 auto;
+}
+
+.index #wrapper {
+    width: 100%;
+    max-width: 1290px; /* 500px + 20px + 500px + 20px (#posts-container) + 250px (#blog-aside) */
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.permalink #wrapper {
+    width: 810px; /* 540px (.post) + 20px + 250px (#blog-aside) */
 }
 
 #blog-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 80px;
+    padding: 20px;
+    display: table;
 
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 #posts-container {
+    margin-top: 80px;
+    background: yellow;
+}
 
+.index #posts-container {
+    margin-right: 250px;
+}
+
+#blog-aside,
+#blog-footer {
+    position: fixed;
+    margin-left: 1040px;
+    width: 250px;
+}
+
+#blog-aside {
+    top: 80px;
+    background: red;
 }
 
 #blog-footer {
+    bottom: 20px;
+}
 
+.permalink #blog-aside,
+.permalink #blog-footer {
+    margin-left: 560px;
 }
 
 /* ==============
@@ -239,13 +271,75 @@ i, em {
    ========================================================================== */
 
 #blog-title,
-#main-menu {
-   margin: 0;
+#main-menu,
+#tumblr-controls {
+    margin: 0;
+}
+
+#blog-title {
+    display: table-cell;
+    height: 40px;
+}
+
+#blog-title-link {
+    display: table;
+    height: 40px;
 }
 
 .blog-title-image {
-   width: 40px;
-   height: 40px;
+    display: table-cell;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+#blog-title-text,
+#blog-nav {
+    display: table-cell;
+    height: 40px;
+    vertical-align: middle;
+}
+
+#main-menu {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.6875rem; /* 11px */
+    line-height: 100%;
+    font-weight: 300;
+}
+
+.menu-item {
+    float: left;
+    padding-right: 20px;
+}
+.menu-item:last-child {
+    padding-right: 0;
+}
+
+#tumblr-controls {
+    position: fixed;
+    top: 25px;
+    right: 20px;
+}
+
+.control-icon:before {
+    position: relative;
+}
+#open-search:before {
+    left: 0.125rem; /* 2px */
+}
+#close-search:before {
+    left: 0.1875rem; /* 3px */
+}
+#tumblr-message-link:before {
+    left: 0.125rem; /* 2px */
+}
+#follow-link:before {
+    left: 0.125rem; /* 2px */
+}
+
+#search-form {
+    display: inline-block;
 }
 
 #search-field {
@@ -256,11 +350,26 @@ i, em {
     Main Styles
    ========================================================================== */
 
-.post {
-   width: 500px;
-   margin-bottom: 20px;
-   float: left;
-   margin-right: 20px;
+.index .post, #grid-sizer {
+    width: 50%;
+    max-width: 520px;
+    min-width: 420px;
+    padding-right: 20px;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.index .post {
+    margin-bottom: 20px;
+    float: left;
+}
+
+.permalink .post {
+    width: 540px;
+    margin-bottom: 20px;
 }
 
 /* ===============
@@ -341,24 +450,46 @@ i, em {
     Footer Styles
    ========================================================================== */
 
-.control-icon:before,
+#spinner, #elevator, #theme-credit {
+    position: fixed;
+    right: 20px;
+}
+
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to   { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to   { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+#spinner {
+    bottom: 5.25rem; /* 52px + 29px (#elevator) + 3px = 84px */
+}
+
+#spinner:before {
+    -webkit-animation: spin 2s linear infinite;
+    -moz-animation: spin 2s linear infinite;
+    -o-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+#elevator {
+    bottom: 3.25rem; /* 20px + 29px (#theme-credit) + 3px = 52px */
+}
+
 #elevator:before {
     position: relative;
-}
-#search-open:before {
-    left: 0.125rem; /* 2px */
-}
-#search-close:before {
-    left: 0.1875rem; /* 3px */
-}
-#tumblr-message-link:before {
-    left: 0.125rem; /* 2px */
-}
-#follow-link:before {
-    left: 0.125rem; /* 2px */
-}
-#elevator:before {
     top: -0.125rem; /* -2px */
+}
+
+#theme-credit {
+    bottom: 20px;
 }
 
 #theme-credit:hover:before {
@@ -369,3 +500,36 @@ i, em {
 /* ==========================================================================
     Media Queries
    ========================================================================== */
+
+@media only screen and (max-width: 1329px) {
+    .index #wrapper {
+        padding: 0 20px;
+    }
+    .index #blog-aside, .index #blog-footer {
+        margin-left: 0;
+        right: 20px;
+    }
+}
+
+@media only screen and (max-width: 1129px) {
+    .index #wrapper {
+        padding: 0;
+        width: 810px; /* 540px (.post) + 20px + 250px (#blog-aside) */
+        max-width: none;
+    }
+
+    .index #posts-container {
+        margin-right: 0;
+    }
+
+    .index #blog-aside, .index #blog-footer {
+        margin-left: 560px;
+        right: auto;
+    }
+
+    .index .post, #grid-sizer {
+        width: 560px;
+        max-width: none;
+        min-width: none;
+    }
+}

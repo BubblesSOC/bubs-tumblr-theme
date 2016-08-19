@@ -55,7 +55,9 @@
     <link rel="alternate" type="application/rss+xml" href="{RSS}">
 
     <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/HQ1oc4v8v/main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla|Lora:400i,700i|Yrsa:300,400,600&subset=latin-ext">
+    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/ZBjoc4muv/sulahnnehn-icons.css">
+    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/r3Goc6ct2/main.css">
 
     <style>
         ::-moz-selection {
@@ -95,7 +97,12 @@
             background-color: {color:Highlight Hover};
         }
 
-        .post {
+        #blog-header {
+            background-color: rgba({RGBcolor:Background}, 0.8);
+        }
+
+        .index .post-content,
+        .permalink .post {
             background-color: {color:Post Background};
             -webkit-box-shadow: 1px 1px 0 {color:Borders};
             -moz-box-shadow: 1px 1px 0 {color:Borders};
@@ -134,6 +141,7 @@
                 {block:IfNotLogoImage}
                 <img src="{PortraitURL-128}" alt="{Title}" class="blog-title-image circle" id="blog-portrait">
                 {/block:IfNotLogoImage}
+
                 {block:IfAlternateTitle}
                 <span id="blog-title-text">{text:Alternate Title}</span>
                 {/block:IfAlternateTitle}
@@ -144,7 +152,7 @@
         </h1>
 
         <nav id="blog-nav">
-            <ul id="main-menu">
+            <ul id="main-menu" class="clearfix">
                 {block:HasPages}
                 {block:Pages}
                 <li class="page menu-item" data-page="{Label}">
@@ -200,12 +208,27 @@
                 {/block:Likes}{/block:IfShowLikesLink}
             </ul>
 
-            {block:IfShowSearchForm}
-            <form action="/search" method="get" id="search-form">
-                <input type="search" placeholder="{lang:Search}" name="q" value="{SearchQuery}" id="search-field">
-                <input type="submit" value="{lang:Search}" id="search-button">
-            </form>
-            {/block:IfShowSearchForm}
+            <ul id="tumblr-controls">
+                {block:IfShowSearchForm}
+                <li id="search" class="control-item">
+                    <a href="#" title="Open {lang:Search}" id="open-search" class="icon-search control-icon badge"></a>
+                    <a href="#" title="Close {lang:Search}" id="close-search" class="icon-cancel control-icon badge"></a>
+                    <form action="/search" method="get" id="search-form">
+                        <input type="search" placeholder="{lang:Search}" name="q" value="{SearchQuery}" id="search-field">
+                        <input type="submit" value="{lang:Search}" id="search-button">
+                    </form>
+                </li>
+                {/block:IfShowSearchForm}
+                <li id="tumblr-message" class="control-item">
+                    <a href="https://www.tumblr.com/dashboard?conversation={Name}" title="Message {Name}" id="tumblr-message-link" class="icon-feather control-icon badge" target="_blank"></a>
+                </li>
+                <li id="follow" class="control-item">
+                    <a href="https://www.tumblr.com/follow/{Name}" title="{lang:Follow} {Name}" id="follow-link" class="icon-plus control-icon badge" target="_blank"></a>
+                </li>
+                <li id="dashboard" class="control-item">
+                    <a href="https://www.tumblr.com/dashboard" title="Dashboard" id="dashboard-link" class="icon-home control-icon badge" target="_blank"></a>
+                </li>
+            </ul>
         </nav>
     </header> <!-- #blog-header -->
 
@@ -226,9 +249,12 @@
         </h2>
         {/block:DayPage}
 
-        <div id="the-posts">
+        <div id="the-posts" class="clearfix">
+            {block:IndexPage}<div id="grid-sizer"></div>{/block:IndexPage}
+
             {block:Posts}
             <article id="{PostID}" class="post type-{PostType}{block:Panorama} panorama-post{/block:Panorama}{block:Photoset} photoset-post{/block:Photoset} {TagsAsClasses}">
+                {block:IndexPage}<div class="post-content">{/block:IndexPage}
 
                 {block:Text}
                 <!-- Text Post -->
@@ -473,7 +499,6 @@
                         </li>
                         {/block:ExternalAudio}
                         {/block:Audio}
-                        {block:IndexPage}
                         <li class="like-button">
                             <a href="#" title="Like" class="like-link icon-heart-outline post-icon" data-id="{PostID}"></a>
                             <a href="#" title="Unlike" class="unlike-link icon-heart-filled post-icon" data-id="{PostID}"></a>
@@ -482,7 +507,6 @@
                         <li class="reblog-button">
                             <a href="{ReblogURL}" title="Reblog" class="reblog-link icon-reblog post-icon" target="_blank"></a>
                         </li>
-                        {/block:IndexPage}
                     </ul>
 
                     <ul class="post-sources">
@@ -547,6 +571,7 @@
                 <!-- /Post Meta -->
                 {/block:Date}
 
+                {block:IndexPage}</div> <!-- .post-content -->{/block:IndexPage}
             </article> <!-- .post -->
             {/block:Posts}
 
@@ -636,7 +661,7 @@
     <footer id="blog-footer">
         {block:Pagination}
         <div id="loading" data-total-pages="{TotalPages}" data-current-page="{CurrentPage}" data-loading="{lang:Loading}" data-finished="{lang:No more posts}" data-more="{lang:Load more posts}">
-            <span id="infscr-spinner" class="spinner badge icon-loading"></span>
+            <span id="spinner" class="badge icon-loading"></span>
         </div>
 
         <ul id="blog-pagination" class="pagination">
@@ -690,31 +715,13 @@
         </ul>
         {/block:DayPagination}
 
-        <ul id="tumblr-controls">
-            {block:IfShowSearchForm}
-            <li id="search" class="control-item">
-                <a href="#" title="Open {lang:Search}" id="search-open" class="icon-search control-icon badge"></a>
-                <a href="#" title="Close {lang:Search}" id="search-close" class="icon-cancel control-icon badge"></a>
-            </li>
-            {/block:IfShowSearchForm}
-            <li id="tumblr-message" class="control-item">
-                <a href="https://www.tumblr.com/dashboard?conversation={Name}" title="Message {Name}" id="tumblr-message-link" class="icon-feather control-icon badge" target="_blank"></a>
-            </li>
-            <li id="follow" class="control-item">
-                <a href="https://www.tumblr.com/follow/{Name}" title="{lang:Follow} {Name}" id="follow-link" class="icon-plus control-icon badge" target="_blank"></a>
-            </li>
-            <li id="dashboard" class="control-item">
-                <a href="https://www.tumblr.com/dashboard" title="Dashboard" id="dashboard-link" class="icon-home control-icon badge" target="_blank"></a>
-            </li>
-        </ul>
-
         <a href="#" title="Back to Top" id="elevator" class="icon-up-bold badge"></a>
         <a href="http://bubbless0c.tumblr.com" target="_blank" title="Theme by Bubs" id="theme-credit" class="icon-heart-outline badge"></a>
     </footer>  <!-- #blog-footer -->
 </div> <!-- #wrapper -->
 
 <script>
-    WebFontConfig = {
+    /*WebFontConfig = {
         custom: {
             families: ['sulahnnehn-icons'],
             urls: ['http://static.tumblr.com/f8gk9za/ZBjoc4muv/sulahnnehn-icons.css']
@@ -726,12 +733,12 @@
                 'Karla:400'
             ]
         }
-    };
+    };*/
 </script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>-->
 <script src="http://static.tumblr.com/f8gk9za/qyQoc2jy7/plugins.js"></script>
-<script src="http://static.tumblr.com/f8gk9za/22eoc0far/main.js"></script>
+<script src="http://static.tumblr.com/f8gk9za/6Ikoc6ctz/main.js"></script>
 
 {block:IfGoogleAnalyticsID}
 <script>
