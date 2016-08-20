@@ -298,6 +298,9 @@ i, em, cite {
 
 #blog-title {
     height: 40px;
+    position: relative;
+    z-index: 2;
+    float: left;
 }
 
 #blog-title-link {
@@ -310,6 +313,11 @@ i, em, cite {
     width: 40px;
     height: 40px;
     margin-right: 10px;
+
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 #blog-title-text {
@@ -342,8 +350,12 @@ i, em, cite {
     margin-right: 0;
 }
 
-.menu-link:hover {
-    border-bottom: 1px solid #eee;
+.menu-link {
+    border-bottom: 1px solid transparent;
+    -webkit-transition: border-color 0.2s ease-in-out;
+    -moz-transition: border-color 0.2s ease-in-out;
+    -o-transition: border-color 0.2s ease-in-out;
+    transition: border-color 0.2s ease-in-out;
 }
 
 /* =================

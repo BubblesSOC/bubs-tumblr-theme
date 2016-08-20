@@ -30,7 +30,7 @@
     <meta name="color:Borders" content="#eeeeee">
     <meta name="color:Highlight" content="#eeeeee">
     <meta name="color:Highlight Hover" content="#dfdfdf">
-    <meta name="color:Progress Bar" content="{AccentColor}">
+    <meta name="color:Accent" content="{AccentColor}">
 
     <meta name="font:Heading Font" content="{TitleFont}">
 
@@ -61,7 +61,7 @@
     <!-- /Custom Fonts -->
 
     <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/WP1oc7xo1/main.css">
+    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/fyJoc82z8/main.css">
 
     <style>
         ::-moz-selection {
@@ -113,6 +113,10 @@
             background-color: rgba({RGBcolor:Background}, 0.9);
         }
 
+        #blog-title-link:hover .blog-title-image {
+            box-shadow: 0 0 10px 1px {color:Accent};
+        }
+
         .menu-link:hover {
             border-bottom-color: {color:Borders};
         }
@@ -139,7 +143,7 @@
            ============== */
 
         #nprogress .progress-bar {
-           background: {color:Progress Bar};
+           background: {color:Accent};
         }
 
         #blog-title-text, .menu-link, .post-title-link, .link-container, .post-date-link, .tag-link, .toggler {
