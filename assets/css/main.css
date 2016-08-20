@@ -92,7 +92,7 @@ b, strong {
     font-weight: 600;
 }
 
-i, em {
+i, em, cite {
     font-family: 'Lora', 'Georgia', 'Times New Roman', 'Times', serif;
 }
 
@@ -206,16 +206,21 @@ i, em {
     width: 100%;
     height: 80px;
     padding: 20px;
+    border-bottom: 1px solid transparent;
 
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     -o-box-sizing: border-box;
     box-sizing: border-box;
+
+    -webkit-transition: border-bottom-color 0.4s ease-in-out;
+    -moz-transition: border-bottom-color 0.4s ease-in-out;
+    -o-transition: border-bottom-color 0.4s ease-in-out;
+    transition: border-bottom-color 0.4s ease-in-out;
 }
 
 #posts-container {
     margin-top: 80px;
-    background: yellow;
 }
 
 .index #posts-container {
@@ -231,7 +236,6 @@ i, em {
 
 #blog-aside {
     top: 80px;
-    background: red;
 }
 
 #blog-footer {
@@ -241,6 +245,23 @@ i, em {
 .permalink #blog-aside,
 .permalink #blog-footer {
     margin-left: 560px;
+}
+
+/* ==============
+    Progress Bar
+   ============== */
+
+#nprogress {
+    pointer-events: none;
+}
+
+#nprogress .progress-bar {
+    position: fixed;
+    z-index: 1031;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
 }
 
 /* ==============
@@ -373,6 +394,14 @@ i, em {
     margin-bottom: 20px;
 }
 
+.post iframe {
+   max-width: 100%;
+}
+
+.post-photo {
+    width: 100%;
+}
+
 /* ===============
     Photoset Grid
    =============== */
@@ -471,8 +500,26 @@ i, em {
 
 #spinner {
     bottom: 5.25rem; /* 52px + 29px (#elevator) + 3px = 84px */
-}
+    opacity: 0;
 
+    -webkit-transition-property: bottom, opacity;
+    -moz-transition-property: bottom, opacity;
+    -o-transition-property: bottom, opacity;
+    transition-property: bottom, opacity;
+
+    -webkit-transition-duration: 0.4s;
+    -moz-transition-duration: 0.4s;
+    -o-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+
+    -webkit-transition-timing-function: ease-in-out;
+    -moz-transition-timing-function: ease-in-out;
+    -o-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+}
+#spinner.spin {
+    opacity: 1;
+}
 #spinner:before {
     -webkit-animation: spin 2s linear infinite;
     -moz-animation: spin 2s linear infinite;
@@ -482,8 +529,8 @@ i, em {
 
 #elevator {
     bottom: 3.25rem; /* 20px + 29px (#theme-credit) + 3px = 52px */
+    display: none;
 }
-
 #elevator:before {
     position: relative;
     top: -0.125rem; /* -2px */
@@ -492,7 +539,6 @@ i, em {
 #theme-credit {
     bottom: 20px;
 }
-
 #theme-credit:hover:before {
     content: '\e813';
     color: #d95e40;

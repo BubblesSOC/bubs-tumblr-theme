@@ -88,7 +88,67 @@
 
 
     $(function() {
+        var $theGrid = null,
+            $infScr  = null,
+            $loading = $('#loading'),
+            $spinner = $('#spinner');
+
         $('.post').idealize();
+
+
+        // initialize the layout grid
+        NProgress.configure({
+            trickleRate: 0.08,
+            trickleSpeed: 400,
+            showSpinner: false,
+            template: '<div class="progress-bar" role="bar"></div>'
+        }).start();
+
+        $theGrid = $('.index #the-posts').imagesLoaded(function() {
+            $theGrid.masonry({
+                columnWidth: '#grid-sizer',
+                percentPosition: true,
+                itemSelector: '.post'
+            });
+            NProgress.done(true);
+        });
+
+
+        // fade-in elements on scroll
+        var $elevator   = $('#elevator'),
+            spinInit    = $spinner.css('bottom'),
+            spinShift   = $elevator.css('bottom'),
+            $blogHeader = $('#blog-header'),
+            borderColor = $blogHeader.data('border-color');
+
+        $(window).scroll(function() {
+            if ( $(this).scrollTop() > 0 ) {
+                $blogHeader.css('border-bottom-color', borderColor);
+            } else {
+                $blogHeader.css('border-bottom-color', 'transparent');
+            }
+
+            if ( $(this).scrollTop() > 400 ) {
+                if ( $elevator.css('display') == 'none' ) {
+                    $spinner.css('bottom', spinInit);
+                    $elevator.fadeIn(400, function() {
+                        $elevator.css('display', 'inline-block');
+                    });
+                }
+            } else {
+                $elevator.fadeOut(400, function() {
+                    $spinner.css('bottom', spinShift);
+                });
+            }
+        });
+
+        // animated scroll to top
+        $elevator.click(function() {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 500);
+            return false;
+        });
     });
 
 }( jQuery, window ));

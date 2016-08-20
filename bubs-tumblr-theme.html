@@ -30,6 +30,7 @@
     <meta name="color:Borders" content="#eeeeee">
     <meta name="color:Highlight" content="#eeeeee">
     <meta name="color:Highlight Hover" content="#dfdfdf">
+    <meta name="color:Progress Bar" content="{AccentColor}">
 
     <meta name="font:Heading Font" content="{TitleFont}">
 
@@ -54,10 +55,13 @@
     <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
     <link rel="alternate" type="application/rss+xml" href="{RSS}">
 
-    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
+    <!-- Custom Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla|Lora:400i,700i|Yrsa:300,400,600&subset=latin-ext">
     <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/ZBjoc4muv/sulahnnehn-icons.css">
-    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/u6Woc6fc5/main.css">
+    <!-- /Custom Fonts -->
+
+    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
+    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/YWGoc7ome/main.css">
 
     <style>
         ::-moz-selection {
@@ -88,6 +92,10 @@
             border-left-color: {color:Borders};
         }
 
+        /* ================
+            Helper Classes
+           ================ */
+
         .badge {
             background-color: {color:Highlight};
             color: rgba({RGBcolor:Text}, 0.9) !important;
@@ -97,9 +105,17 @@
             background-color: {color:Highlight Hover};
         }
 
+        /* ===============
+            Header Styles
+           =============== */
+
         #blog-header {
-            background-color: rgba({RGBcolor:Background}, 0.8);
+            background-color: rgba({RGBcolor:Background}, 0.9);
         }
+
+        /* =============
+            Post Styles
+           ============= */
 
         .index .post-content,
         .permalink .post {
@@ -108,6 +124,14 @@
             -moz-box-shadow: 1px 1px 0 {color:Borders};
             -o-box-shadow: 1px 1px 0 {color:Borders};
             box-shadow: 1px 1px 0 {color:Borders};
+        }
+
+        /* ==============
+            Misc. Styles
+           ============== */
+
+        #nprogress .progress-bar {
+           background: {color:Progress Bar};
         }
 
         #blog-title-text, .menu-link, .post-title-link, .link-container, .post-date-link, .tag-link, .toggler {
@@ -132,7 +156,7 @@
     <p id="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <header id="blog-header">
+    <header id="blog-header" data-border-color="{color:Borders}">
         <h1 id="blog-title">
             <a href="/" title="{Title}" id="blog-title-link">
                 {block:IfLogoImage}
@@ -720,25 +744,9 @@
     </footer>  <!-- #blog-footer -->
 </div> <!-- #wrapper -->
 
-<script>
-    /*WebFontConfig = {
-        custom: {
-            families: ['sulahnnehn-icons'],
-            urls: ['http://static.tumblr.com/f8gk9za/ZBjoc4muv/sulahnnehn-icons.css']
-        },
-        google: {
-            families: [
-                'Yrsa:300,400,600:latin-ext',
-                'Lora:400i,700i:latin-ext',
-                'Karla:400'
-            ]
-        }
-    };*/
-</script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<!--<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>-->
-<script src="http://static.tumblr.com/f8gk9za/qyQoc2jy7/plugins.js"></script>
-<script src="http://static.tumblr.com/f8gk9za/6Ikoc6ctz/main.js"></script>
+<script src="http://static.tumblr.com/f8gk9za/m1Noc7qf2/plugins.js"></script>
+<script src="http://static.tumblr.com/f8gk9za/E98oc7qf8/main.js"></script>
 
 {block:IfGoogleAnalyticsID}
 <script>
