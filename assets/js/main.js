@@ -149,6 +149,25 @@
             }, 500);
             return false;
         });
+
+
+        // search form toggle and slide
+        var $search     = $('#search'),
+            $searchCtrl = $('.search-control');
+
+        $searchCtrl.click(function() {
+            if ( $search.hasClass('form-open') ) {
+                // form is open, close it
+                $search.removeClass('form-open');
+            } else {
+                // form is closed, open it
+                $search.addClass('form-open');
+                setTimeout(function() {
+                    $('#search-field').focus();
+                }, 500);
+            }
+            return false;
+        });
     });
 
 }( jQuery, window ));

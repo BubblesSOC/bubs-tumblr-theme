@@ -318,6 +318,10 @@ i, em, cite {
     vertical-align: middle;
 }
 
+/* ===========
+    Main Menu
+   =========== */
+
 #main-menu {
     position: fixed;
     width: 100%;
@@ -338,10 +342,26 @@ i, em, cite {
     margin-right: 0;
 }
 
+.menu-link:hover {
+    border-bottom: 1px solid #eee;
+}
+
+/* =================
+    Tumblr Controls
+   ================= */
+
 #tumblr-controls {
     position: fixed;
     top: 25px;
     right: 20px;
+}
+
+.control-item {
+    float: left;
+    padding-right: 4px;
+}
+#search, #dashboard {
+    padding: 0;
 }
 
 .control-icon:before {
@@ -360,12 +380,68 @@ i, em, cite {
     left: 0.125rem; /* 2px */
 }
 
+.search-control {
+    float: left;
+    margin-right: 4px;
+}
+
+.form-open #open-search,
+#close-search {
+    display: none;
+}
+.form-open #close-search {
+    display: inline-block;
+}
+
+/* =============
+    Search Form
+   ============= */
+
 #search-form {
     display: inline-block;
+    position: relative;
+    top: 2px;
+    float: left;
+    width: 0;
+    overflow: hidden;
+
+    -webkit-transition: width 0.4s ease-in-out;
+    -moz-transition: width 0.4s ease-in-out;
+    -o-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+.form-open #search-form {
+    width: 9.75rem; /* 131px + 5px + 20px = 156px */
+    margin-right: 4px;
 }
 
 #search-field {
     outline: none;
+    width: 9.75rem; /* 131px + 5px + 20px = 156px */
+    line-height: 100%;
+    border: 1px solid #eee;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -o-border-radius: 20px;
+    border-radius: 20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0.1875rem 0.3125rem 0.1875rem 1.25rem; /* 3px 5px 3px 20px */
+}
+
+#search-button {
+    -webkit-appearance: none;
+    background-color: transparent;
+    border-width: 0;
+    padding: 0;
+    outline: none;
+    line-height: 100%;
+    position: absolute;
+    top: 0.3125rem; /* 5px */
+    left: 0.4375rem; /* 7px */
 }
 
 /* ==========================================================================

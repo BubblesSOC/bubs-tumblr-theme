@@ -61,7 +61,7 @@
     <!-- /Custom Fonts -->
 
     <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/YWGoc7ome/main.css">
+    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/WP1oc7xo1/main.css">
 
     <style>
         ::-moz-selection {
@@ -113,12 +113,20 @@
             background-color: rgba({RGBcolor:Background}, 0.9);
         }
 
+        .menu-link:hover {
+            border-bottom-color: {color:Borders};
+        }
+
+        #search-field {
+            background-color: {color:Post Background};
+            border-color: {color:Borders};
+        }
+
         /* =============
             Post Styles
            ============= */
 
-        .index .post-content,
-        .permalink .post {
+        .post-content {
             background-color: {color:Post Background};
             -webkit-box-shadow: 1px 1px 0 {color:Borders};
             -moz-box-shadow: 1px 1px 0 {color:Borders};
@@ -232,14 +240,14 @@
                 {/block:Likes}{/block:IfShowLikesLink}
             </ul>
 
-            <ul id="tumblr-controls">
+            <ul id="tumblr-controls" class="clearfix">
                 {block:IfShowSearchForm}
-                <li id="search" class="control-item">
-                    <a href="#" title="Open {lang:Search}" id="open-search" class="icon-search control-icon badge"></a>
-                    <a href="#" title="Close {lang:Search}" id="close-search" class="icon-cancel control-icon badge"></a>
+                <li id="search" class="control-item{block:SearchPage} form-open{/block:SearchPage}">
+                    <a href="#" title="Open {lang:Search}" id="open-search" class="icon-search search-control control-icon badge"></a>
+                    <a href="#" title="Close {lang:Search}" id="close-search" class="icon-cancel search-control control-icon badge"></a>
                     <form action="/search" method="get" id="search-form">
                         <input type="search" placeholder="{lang:Search}" name="q" value="{SearchQuery}" id="search-field">
-                        <input type="submit" value="{lang:Search}" id="search-button">
+                        <button type="submit" title="{lang:Search}" id="search-button" class="icon-search"></button>
                     </form>
                 </li>
                 {/block:IfShowSearchForm}
@@ -278,7 +286,7 @@
 
             {block:Posts}
             <article id="{PostID}" class="post type-{PostType}{block:Panorama} panorama-post{/block:Panorama}{block:Photoset} photoset-post{/block:Photoset} {TagsAsClasses}">
-                {block:IndexPage}<div class="post-content">{/block:IndexPage}
+                <div class="post-content">
 
                 {block:Text}
                 <!-- Text Post -->
@@ -595,7 +603,7 @@
                 <!-- /Post Meta -->
                 {/block:Date}
 
-                {block:IndexPage}</div> <!-- .post-content -->{/block:IndexPage}
+                </div> <!-- .post-content -->
             </article> <!-- .post -->
             {/block:Posts}
 
@@ -746,7 +754,7 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="http://static.tumblr.com/f8gk9za/m1Noc7qf2/plugins.js"></script>
-<script src="http://static.tumblr.com/f8gk9za/E98oc7qf8/main.js"></script>
+<script src="http://static.tumblr.com/f8gk9za/eKLoc7xub/main.js"></script>
 
 {block:IfGoogleAnalyticsID}
 <script>
