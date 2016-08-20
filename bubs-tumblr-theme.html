@@ -61,7 +61,7 @@
     <!-- /Custom Fonts -->
 
     <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/fyJoc82z8/main.css">
+    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/aYXoc8d7r/main.css">
 
     <style>
         ::-moz-selection {
@@ -138,6 +138,15 @@
             box-shadow: 1px 1px 0 {color:Borders};
         }
 
+        /* ===============
+            Footer Styles
+           =============== */
+
+        #prev-day .prev-link:hover .prev-text,
+        #next-day .next-link:hover .next-text {
+            border-bottom-color: {color:Borders};
+        }
+
         /* ==============
             Misc. Styles
            ============== */
@@ -146,7 +155,11 @@
            background: {color:Accent};
         }
 
-        #blog-title-text, .menu-link, .post-title-link, .link-container, .post-date-link, .tag-link, .toggler {
+        #blog-title-text, .menu-link,
+        .post-title-link, .link-container,
+        .post-date-link, .tag-link,
+        .toggler,
+        #prev-day .prev-text, #next-day .next-text {
             color: {color:Text};
         }
 
@@ -188,7 +201,7 @@
         </h1>
 
         <nav id="blog-nav">
-            <ul id="main-menu">
+            <ul id="main-menu" class="lightcaps">
                 {block:HasPages}
                 {block:Pages}
                 <li class="page menu-item" data-page="{Label}">
@@ -700,7 +713,7 @@
             <span id="spinner" class="badge icon-loading"></span>
         </div>
 
-        <ul id="blog-pagination" class="pagination">
+        <ul id="blog-pagination" class="pagination invisible lightcaps">
             {block:PreviousPage}
             <li id="prev-page" class="previous">
                 <a href="{PreviousPage}" title="{lang:Previous page}" class="prev-link icon-angle-left">
@@ -733,17 +746,17 @@
         {/block:Pagination}
 
         {block:DayPagination}
-        <ul id="day-pagination" class="pagination">
+        <ul id="day-pagination" class="pagination lightcaps clearfix">
             {block:PreviousDayPage}
             <li id="prev-day" class="previous">
-                <a href="{PreviousDayPage}" title="{lang:Previous day}" class="prev-link icon-angle-left">
+                <a href="{PreviousDayPage}" title="{lang:Previous day}" class="prev-link icon-left-dir">
                     <span class="prev-text">{ShortMonth} {DayOfMonth}</span>
                 </a>
             </li>
             {/block:PreviousDayPage}
             {block:NextDayPage}
             <li id="next-day" class="next">
-                <a href="{NextDayPage}" title="{lang:Next day}" class="next-link iconr-angle-right">
+                <a href="{NextDayPage}" title="{lang:Next day}" class="next-link iconr-right-dir">
                     <span class="next-text">{ShortMonth} {DayOfMonth}</span>
                 </a>
             </li>
@@ -758,7 +771,7 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="http://static.tumblr.com/f8gk9za/m1Noc7qf2/plugins.js"></script>
-<script src="http://static.tumblr.com/f8gk9za/eKLoc7xub/main.js"></script>
+<script src="http://static.tumblr.com/f8gk9za/bsmoc8ep6/main.js"></script>
 
 {block:IfGoogleAnalyticsID}
 <script>

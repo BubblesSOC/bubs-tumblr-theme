@@ -172,6 +172,13 @@ i, em, cite {
     font-size: 0.8125rem; /* 13px */
 }
 
+.lightcaps {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 100%;
+    font-weight: 300;
+}
+
 /* ==========================================================================
     General Layout Styles
    ========================================================================== */
@@ -213,10 +220,10 @@ i, em, cite {
     -o-box-sizing: border-box;
     box-sizing: border-box;
 
-    -webkit-transition: border-bottom-color 0.4s ease-in-out;
-    -moz-transition: border-bottom-color 0.4s ease-in-out;
-    -o-transition: border-bottom-color 0.4s ease-in-out;
-    transition: border-bottom-color 0.4s ease-in-out;
+    -webkit-transition: border-color 0.4s ease-in-out;
+    -moz-transition: border-color 0.4s ease-in-out;
+    -o-transition: border-color 0.4s ease-in-out;
+    transition: border-color 0.4s ease-in-out;
 }
 
 #posts-container {
@@ -286,6 +293,16 @@ i, em, cite {
     display: inline-block;
 }
 
+.menu-link,
+#prev-day .prev-text,
+#next-day .next-text {
+    border-bottom: 1px solid transparent;
+    -webkit-transition: border-color 0.2s ease-in-out;
+    -moz-transition: border-color 0.2s ease-in-out;
+    -o-transition: border-color 0.2s ease-in-out;
+    transition: border-color 0.2s ease-in-out;
+}
+
 /* ==========================================================================
    Header Styles
    ========================================================================== */
@@ -336,11 +353,7 @@ i, em, cite {
     top: 2.188rem; /* 35px */
     left: 0;
     text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 2px;
     font-size: 0.6875rem; /* 11px */
-    line-height: 100%;
-    font-weight: 300;
 }
 
 .menu-item {
@@ -348,14 +361,6 @@ i, em, cite {
 }
 .menu-item:last-child {
     margin-right: 0;
-}
-
-.menu-link {
-    border-bottom: 1px solid transparent;
-    -webkit-transition: border-color 0.2s ease-in-out;
-    -moz-transition: border-color 0.2s ease-in-out;
-    -o-transition: border-color 0.2s ease-in-out;
-    transition: border-color 0.2s ease-in-out;
 }
 
 /* =================
@@ -568,6 +573,35 @@ i, em, cite {
     Footer Styles
    ========================================================================== */
 
+#day-pagination,
+#loading-message {
+    margin: 0;
+    font-size: 0.625rem; /* 10px */
+    padding-right: 39px;
+}
+
+#loading-message {
+    text-align: center;
+}
+
+/* ============
+    Pagination
+   ============ */
+
+#prev-day {
+    float: left;
+    width: 50%;
+}
+#next-day {
+    float: right;
+    width: 50%;
+    text-align: right;
+}
+
+/* =========
+    Buttons
+   ========= */
+
 #spinner, #elevator, #theme-credit {
     position: fixed;
     right: 20px;
@@ -607,8 +641,6 @@ i, em, cite {
 }
 #spinner.spin {
     opacity: 1;
-}
-#spinner:before {
     -webkit-animation: spin 2s linear infinite;
     -moz-animation: spin 2s linear infinite;
     -o-animation: spin 2s linear infinite;

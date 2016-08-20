@@ -114,6 +114,84 @@
         });
 
 
+        // initialize infinite scroll
+        var Spinner = {
+            on: function(currPage) {
+                var title = $loading.data('loading') + ' ' + currPage + ' / ' + $loading.data('total-pages');
+                return $spinner.attr('title', title).addClass('spin');
+            },
+            off: function() {
+                return $spinner.attr('title', '').removeClass('spin');
+            }
+        };
+
+        $infScr = $('.index #the-posts').infinitescroll({
+            loading: {
+                finishedMsg: $loading.data('finished'),
+                msg: $('<p id="loading-message" class="lightcaps"></p>'),
+                selector: '#loading',
+                speed: 400,
+                start: function(opts) {
+                    var instance = $(this).data('infinitescroll'),
+                        $loadMsg = opts.loading.msg.appendTo(opts.loading.selector),
+                        currPage = opts.state.currPage + 1;
+
+                    if (currPage <= opts.maxPage) {
+                        Spinner.on(currPage);
+                    } else {
+                        $(opts.navSelector).hide();
+                        $loadMsg.text(opts.loading.finishedMsg).fadeIn(opts.loading.speed);
+                    }
+
+                    instance.beginAjax(opts);
+                },
+                finished: function() {
+                    return;
+                }
+            },
+            state: {
+                currPage: $loading.data('current-page')
+            },
+            nextSelector: '#next-page a.next-link',
+            navSelector: '#blog-pagination',
+            itemSelector: '.post',
+            pathParse: function(path, nextPage) {
+                return [ path.substring(0, path.lastIndexOf('/')) + '/', '' ];
+            },
+            errorCallback: function() {
+                var opts = $infScr.data('infinitescroll').options;
+
+                setTimeout(function() {
+                    opts.loading.msg.fadeOut(opts.loading.speed);
+                }, 3000);
+            },
+            maxPage: $loading.data('total-pages')
+        },
+        function( newElements ) {
+            var $posts  = $(newElements).css({ opacity: 0 }),
+                postIds = $posts.map(function() {
+                    return this.id;
+                }).get(),
+                opts = $infScr.data('infinitescroll').options;
+
+            $infScr.infinitescroll('pause');
+            $posts.idealize().imagesLoaded(function() {
+                Tumblr.LikeButton.get_status_by_post_ids(postIds);
+
+                $posts.css({ opacity: 1 });
+                $theGrid.masonry('appended', $posts);
+
+                if (opts && !opts.state.isBeyondMaxPage) {
+                    Spinner.off();
+                    opts.loading.msg.fadeOut(opts.loading.speed);
+                }
+
+                $infScr.infinitescroll('resume');
+            });
+        });
+        // end infinite scroll
+
+
         // fade-in elements on scroll
         var $elevator   = $('#elevator'),
             spinInit    = $spinner.css('bottom'),
