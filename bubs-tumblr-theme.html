@@ -61,7 +61,7 @@
     <!-- /Custom Fonts -->
 
     <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/aYXoc8d7r/main.css">
+    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/4fhoc9j6t/main.css">
 
     <style>
         ::-moz-selection {
@@ -101,6 +101,7 @@
             color: rgba({RGBcolor:Text}, 0.9) !important;
         }
         .toggler:hover .badge,
+        .toggle-open .badge,
         .badge:hover {
             background-color: {color:Highlight Hover};
         }
@@ -115,10 +116,6 @@
 
         #blog-title-link:hover .blog-title-image {
             box-shadow: 0 0 10px 1px {color:Accent};
-        }
-
-        .menu-link:hover {
-            border-bottom-color: {color:Borders};
         }
 
         #search-field {
@@ -138,15 +135,6 @@
             box-shadow: 1px 1px 0 {color:Borders};
         }
 
-        /* ===============
-            Footer Styles
-           =============== */
-
-        #prev-day .prev-link:hover .prev-text,
-        #next-day .next-link:hover .next-text {
-            border-bottom-color: {color:Borders};
-        }
-
         /* ==============
             Misc. Styles
            ============== */
@@ -161,6 +149,14 @@
         .toggler,
         #prev-day .prev-text, #next-day .next-text {
             color: {color:Text};
+        }
+
+        .menu-link:hover,
+        .toggler:hover .toggler-text,
+        .toggle-open .toggler-text,
+        #prev-day .prev-link:hover .prev-text,
+        #next-day .next-link:hover .next-text {
+            border-bottom-color: {color:Borders};
         }
 
         /* ============
@@ -636,21 +632,24 @@
         {/block:Description}{/block:IfNotAlternateDescription}
 
         {block:IfAboutTheAuthor}
-        <h2 id="about-title" class="aside-title">
-            <a href="#" id="about-toggler" class="toggler">
-                <span class="icon-crown badge"></span>
-                About the Author
+        <!-- About the Author Menu -->
+        <h2 id="about-title" class="aside-title lightcaps">
+            <a href="#" id="about-toggler" class="toggler" data-toggle="about-text">
+                <span class="toggler-icon icon-crown badge"></span>
+                <span class="toggler-text">About the Author</span>
             </a>
         </h2>
         <p id="about-text" class="toggled icon-right-dir">
             {text:About the Author}
         </p>
+        <!-- /About the Author Menu -->
         {/block:IfAboutTheAuthor}
 
-        <h2 id="other-blogs-title" class="aside-title">
-            <a href="#" id="other-blogs-toggler" class="toggler">
-                <span class="icon-globe badge"></span>
-                Other Blogs
+        <!-- Other Blogs Menu -->
+        <h2 id="other-blogs-title" class="aside-title lightcaps">
+            <a href="#" id="other-blogs-toggler" class="toggler" data-toggle="other-blogs">
+                <span class="toggler-icon icon-globe badge"></span>
+                <span class="toggler-text">Other Blogs</span>
             </a>
         </h2>
         <ul id="other-blogs" class="toggled">
@@ -670,11 +669,13 @@
                 <a href="http://circleofminrathous.tumblr.com" target="_blank">Writing Ref Archive</a>
             </li>
         </ul>
+        <!-- /Other Blogs Menu -->
 
-        <h2 id="credits-title" class="aside-title">
-            <a href="#" id="credits-toggler" class="toggler">
-                <span class="icon-heart-filled badge"></span>
-                Credits
+        <!-- Credits Menu -->
+        <h2 id="credits-title" class="aside-title lightcaps">
+            <a href="#" id="credits-toggler" class="toggler" data-toggle="credits">
+                <span class="toggler-icon icon-heart-filled badge"></span>
+                <span class="toggler-text">Credits</span>
             </a>
         </h2>
         <ul id="credits" class="toggled">
@@ -697,13 +698,16 @@
             </li>
             {/block:IfAvatarArtCredit}
         </ul>
+        <!-- /Credits Menu -->
 
         {block:IfShowSkillsWidget}
+        <!-- Skills Widget -->
         <img src="http://67.media.tumblr.com/77275b2b81b1a7122d89010a975d52ae/tumblr_inline_oc4g40gCQ51s4zv8v_500.png">
         <img src="http://66.media.tumblr.com/52c57df76c9193ebdd963565d5340f88/tumblr_inline_oc4g4atA3D1s4zv8v_500.png">
         <img src="http://67.media.tumblr.com/ffb0ed2f068495143c824e3cac5f659a/tumblr_inline_oc4g4l4gWt1s4zv8v_500.png">
         <img src="http://67.media.tumblr.com/af0d9b421ddfd79a32623aa9a8358d72/tumblr_inline_oc4g4uAOq41s4zv8v_500.png">
         <img src="http://66.media.tumblr.com/1b3f4931da3f71fd60b92b3bc5b1f06f/tumblr_inline_oc4g55ea761s4zv8v_500.png">
+        <!-- /Skills Widget -->
         {/block:IfShowSkillsWidget}
     </aside>
 
@@ -771,7 +775,7 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="http://static.tumblr.com/f8gk9za/m1Noc7qf2/plugins.js"></script>
-<script src="http://static.tumblr.com/f8gk9za/bsmoc8ep6/main.js"></script>
+<script src="http://static.tumblr.com/f8gk9za/k73oc9hvn/main.js"></script>
 
 {block:IfGoogleAnalyticsID}
 <script>

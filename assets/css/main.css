@@ -243,6 +243,9 @@ i, em, cite {
 
 #blog-aside {
     top: 80px;
+    font-size: 0.75rem; /* 12px */
+    font-weight: 300;
+    line-height: 150%;
 }
 
 #blog-footer {
@@ -271,9 +274,9 @@ i, em, cite {
     height: 2px;
 }
 
-/* ==============
-    Misc. Styles
-   ============== */
+/* ============
+    Flat Lists
+   ============ */
 
 #main-menu,
 .tags, .post-icons, .post-sources,
@@ -293,7 +296,12 @@ i, em, cite {
     display: inline-block;
 }
 
+/* =========================
+    Bottom Border for Hover
+   ========================= */
+
 .menu-link,
+.toggler-text,
 #prev-day .prev-text,
 #next-day .next-text {
     border-bottom: 1px solid transparent;
@@ -384,16 +392,16 @@ i, em, cite {
 .control-icon:before {
     position: relative;
 }
-#open-search:before {
+.control-icon.icon-search:before {
     left: 0.125rem; /* 2px */
 }
-#close-search:before {
+.control-icon.icon-cancel:before {
     left: 0.1875rem; /* 3px */
 }
-#tumblr-message-link:before {
+.control-icon.icon-feather:before {
     left: 0.125rem; /* 2px */
 }
-#follow-link:before {
+.control-icon.icon-plus:before {
     left: 0.125rem; /* 2px */
 }
 
@@ -558,15 +566,40 @@ i, em, cite {
    ========================================================================== */
 
 .aside-title {
-    text-transform: uppercase;
-    font-weight: normal;
+    font-size: 0.75rem; /* 12px */
     font-variant: normal;
-    font-size: 0.8125rem;
-    line-height: 175%;
 }
 
-#credits-toggler:hover .badge {
+.aside-title .badge {
+    width: 1.313rem; /* 11px + 5px + 5px = 21px */
+    height: 1.313rem; /* 11px + 5px + 5px = 21px */
+    padding: 0.3125rem; /* 5px */
+    line-height: 0.6875rem; /* 11px */
+}
+.aside-title .badge:before {
+    font-size: 0.6875rem; /* 11px */
+}
+
+#about-title .icon-crown:before {
+    position: relative;
+    top: 0.0625rem; /* 1px */
+    left: 0.0625rem; /* 1px */
+}
+
+#credits-toggler.toggle-open .badge.icon-heart-filled,
+#credits-toggler:hover .badge.icon-heart-filled {
     color: #d95e40 !important;
+}
+
+.toggled {
+    display: none;
+    margin-left: 1em;
+    text-transform: lowercase;
+}
+
+#blog-aside .icon-right-dir:before {
+    font-size: 0.625rem; /* 10px */
+    margin-right: 0.1875rem; /* 3px */
 }
 
 /* ==========================================================================
@@ -651,7 +684,7 @@ i, em, cite {
     bottom: 3.25rem; /* 20px + 29px (#theme-credit) + 3px = 52px */
     display: none;
 }
-#elevator:before {
+#elevator.icon-up-bold:before {
     position: relative;
     top: -0.125rem; /* -2px */
 }

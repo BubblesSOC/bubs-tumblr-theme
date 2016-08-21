@@ -246,6 +246,20 @@
             }
             return false;
         });
+
+
+        // aside menu toggler
+        $('.toggler').click(function() {
+            var $toggler = $(this),
+                $toggled = $( '#' + $toggler.data('toggle') );
+
+            $('.toggled').not($toggled).slideUp('fast');
+            $toggled.slideToggle('fast', function() {
+                $('.toggler').removeClass('toggle-open');
+                if ( $toggled.is(':visible') ) $toggler.addClass('toggle-open');
+            });
+            return false;
+        });
     });
 
 }( jQuery, window ));
