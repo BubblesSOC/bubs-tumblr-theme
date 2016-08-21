@@ -606,20 +606,25 @@ i, em, cite {
     Footer Styles
    ========================================================================== */
 
-#day-pagination,
 #loading-message {
     margin: 0;
-    font-size: 0.625rem; /* 10px */
-    padding-right: 39px;
-}
-
-#loading-message {
     text-align: center;
+    font-size: 0.5rem; /* 8px */
 }
 
 /* ============
     Pagination
    ============ */
+
+#blog-pagination {
+    display: none;
+}
+
+#day-pagination {
+    margin: 0;
+    font-size: 0.625rem; /* 10px */
+    padding-right: 39px;
+}
 
 #prev-day {
     float: left;

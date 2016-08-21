@@ -137,13 +137,15 @@
                         currPage = opts.state.currPage + 1;
 
                     if (currPage <= opts.maxPage) {
+                        $loadMsg.text('Loading Page ' + currPage + ' of ' + opts.maxPage + '...');
                         Spinner.on(currPage);
                     } else {
-                        $(opts.navSelector).hide();
-                        $loadMsg.text(opts.loading.finishedMsg).fadeIn(opts.loading.speed);
+                        $loadMsg.text(opts.loading.finishedMsg);
                     }
 
-                    instance.beginAjax(opts);
+                    $loadMsg.fadeIn(opts.loading.speed, function() {
+                        instance.beginAjax(opts);
+                    });
                 },
                 finished: function() {
                     return;
