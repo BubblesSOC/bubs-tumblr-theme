@@ -56,12 +56,12 @@
     <link rel="alternate" type="application/rss+xml" href="{RSS}">
 
     <!-- Custom Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla|Lora:400i,700i|Yrsa:300,400,600&subset=latin-ext">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400i,700i|Yrsa:300,400,600&subset=latin-ext">
     <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/ZBjoc4muv/sulahnnehn-icons.css">
     <!-- /Custom Fonts -->
 
     <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/AXnoc9kt4/main.css">
+    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/cVKoc9tkq/main.css">
 
     <style>
         ::-moz-selection {
@@ -135,6 +135,10 @@
             box-shadow: 1px 1px 0 {color:Borders};
         }
 
+        .like_button:hover + .like-link {
+            color: {color:Link Hover};
+        }
+
         /* ==============
             Misc. Styles
            ============== */
@@ -152,6 +156,7 @@
         }
 
         .menu-link:hover,
+        .post-date-link:hover, .tag-link:hover,
         .toggler:hover .toggler-text,
         #prev-day .prev-link:hover .prev-text,
         #next-day .next-link:hover .next-text {
@@ -544,9 +549,8 @@
                         {/block:ExternalAudio}
                         {/block:Audio}
                         <li class="like-button">
-                            <a href="#" title="Like" class="like-link icon-heart-outline post-icon" data-id="{PostID}"></a>
-                            <a href="#" title="Unlike" class="unlike-link icon-heart-filled post-icon" data-id="{PostID}"></a>
                             {LikeButton color="black" size="13"}
+                            <a href="#" class="like-link icon-heart-outline post-icon"></a>
                         </li>
                         <li class="reblog-button">
                             <a href="{ReblogURL}" title="Reblog" class="reblog-link icon-reblog post-icon" target="_blank"></a>
