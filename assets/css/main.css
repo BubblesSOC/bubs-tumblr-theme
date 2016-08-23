@@ -183,7 +183,7 @@ i, em, cite {
     General Layout Styles
    ========================================================================== */
 
-.index .tmblr-iframe {
+.tmblr-iframe {
     display: none;
 }
 
@@ -394,17 +394,14 @@ i, em, cite {
 .control-icon:before {
     position: relative;
 }
-.control-icon.icon-search:before {
+.control-icon.icon-search:before,
+.control-icon.icon-pencil:before,
+.control-icon.icon-feather:before,
+.control-icon.icon-plus:before {
     left: 0.125rem; /* 2px */
 }
 .control-icon.icon-cancel:before {
     left: 0.1875rem; /* 3px */
-}
-.control-icon.icon-feather:before {
-    left: 0.125rem; /* 2px */
-}
-.control-icon.icon-plus:before {
-    left: 0.125rem; /* 2px */
 }
 
 .search-control {
@@ -735,12 +732,6 @@ i, em, cite {
     margin: 0;
     height: 0.8125rem; /* 13px */
     line-height: 0.8125rem;
-}
-.permalink .post-icons {
-    display: none;
-}
-.permalink .has-external-audio .post-icons {
-    display: block;
 }
 
 .external-audio,
