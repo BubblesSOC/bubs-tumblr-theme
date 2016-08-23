@@ -291,7 +291,6 @@ i, em, cite {
 .menu-item,
 .tag,
 .submission, .via, .source,
-.play-count, .external-audio, .like-button, .reblog-button,
 .next, .previous, .page-number,
 .control-item {
     display: inline-block;
@@ -652,7 +651,6 @@ i, em, cite {
 
 .audio-info {
     padding: 1em 1em 0;
-    display: table;
     min-height: 71px;
 }
 .index .audio-info {
@@ -660,7 +658,6 @@ i, em, cite {
 }
 
 .audio-info .the-info {
-    display: table-cell;
     vertical-align: middle;
     min-height: 71px;
     padding-left: 84px;
@@ -728,47 +725,43 @@ i, em, cite {
 
 .post-icons {
     float: right;
-    text-align: right;
     margin: 0;
-    height: 0.8125rem; /* 13px */
-    line-height: 0.8125rem;
 }
 
 .external-audio,
 .like-button,
 .reblog-button {
-    width: 0.8125rem; /* 13px */
-    height: 0.8125rem;
+    float: left;
+    padding-right: 4px;
+}
+.like-button {
+    width: 0.875rem; /* 14px */
+    padding-right: 3px;
+    position: relative;
+}
+.reblog-button {
+    padding-right: 0;
 }
 
 .post-icon {
-    display: inline-block;
+    display: block;
     font-size: 0.8125rem; /* 13px */
-    width: 0.8125rem;
-    height: 0.8125rem;
     line-height: 0.8125rem;
-    overflow: hidden;
+    height: 0.8125rem;
 }
 
-/* Custom Like Button
-   ref: http://stackoverflow.com/a/21715659/954677
+/*
+Custom Like Button
+ref: http://stackoverflow.com/a/21715659/954677
 */
-.like-button {
-    position: relative;
-}
-
 .like_button {
     position: absolute;
     top: 0;
-    right: 0;
-    bottom: 0;
     left: 0;
     z-index: 1;
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    line-height: 0.8125rem; /* 13px */
-    overflow: hidden;
+    width: 13px;
+    height: 13px;
+    line-height: 13px;
     cursor: pointer;
     opacity: 0;
 }
@@ -777,22 +770,13 @@ i, em, cite {
     height: 100% !important;
 }
 
-.like-link {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-}
-.like-link:before {
-    font-size: 0.75rem; /* 12px */
-}
-
 .like_button.liked + .like-link {
     color: #d75f45 !important;
 }
 .like_button.liked + .like-link:before {
     content: '\e813';
+    position: relative;
+    left: 0.0625rem; /* 1px */
 }
 
 #next-post .icon-right-bold:before {
@@ -827,7 +811,7 @@ i, em, cite {
 
 #credits-toggler.toggle-open .badge.icon-heart-filled,
 #credits-toggler:hover .badge.icon-heart-filled {
-    color: #d95e40 !important;
+    color: #d75f45 !important;
 }
 
 .toggled {
@@ -939,7 +923,7 @@ i, em, cite {
 }
 #theme-credit:hover:before {
     content: '\e813';
-    color: #d95e40;
+    color: #d75f45;
 }
 
 /* ==========================================================================
