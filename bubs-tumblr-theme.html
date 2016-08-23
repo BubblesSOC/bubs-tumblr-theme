@@ -57,11 +57,11 @@
 
     <!-- Custom Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400i,700i|Yrsa:300,400,600&subset=latin-ext">
-    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/ZBjoc4muv/sulahnnehn-icons.css">
+    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/l45oca5me/sulahnnehn-icons.css">
     <!-- /Custom Fonts -->
 
     <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/cVKoc9tkq/main.css">
+    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/VEbocd072/main.css">
 
     <style>
         ::-moz-selection {
@@ -82,7 +82,7 @@
         a:hover {
             color: {color:Link Hover};
         }
-        h1, h2:not(.aside-title), h3 {
+        h1:not(.lightcaps), h2:not(.lightcaps), h3:not(.lightcaps) {
             font-family: {font:Heading Font};
         }
         hr {
@@ -133,6 +133,15 @@
             -moz-box-shadow: 1px 1px 0 {color:Borders};
             -o-box-shadow: 1px 1px 0 {color:Borders};
             box-shadow: 1px 1px 0 {color:Borders};
+        }
+
+        .type-link .post-body,
+        .type-answer .post-body {
+            border-top-color: {color:Borders};
+        }
+
+        .the-quote {
+            font-family: {font:Heading Font};
         }
 
         .like_button:hover + .like-link {
@@ -428,7 +437,7 @@
                 {/block:Title}
                 <ul class="chat-container">
                     {block:Lines}
-                    <li class="chat-line {Alt}{block:Label} has-label{/block:Label}" data-user-number="{UserNumber}">
+                    <li class="chat-line {Alt}{block:Label} has-label clearfix{/block:Label}" data-user-number="{UserNumber}">
                         {block:Label}<strong class="line-label">{Label}</strong>{/block:Label}
                         <span class="line-text">{Line}</span>
                     </li>
@@ -442,20 +451,20 @@
                 <!-- Audio Post -->
                 {block:AudioPlayer}
                 <!-- Default Audio Player -->
-                <header class="audio-info">
+                <header class="audio-info{block:AlbumArt} has-album-art{/block:AlbumArt}">
                     <div class="the-info">
                         {block:TrackName}<h1 class="post-title track-name">{TrackName}</h1>{/block:TrackName}
-                        {block:Artist}<h2 class="artist">{Artist}</h2>{/block:Artist}
-                        {block:Album}<h3 class="album">{Album}</h3>{/block:Album}
+                        {block:Artist}<h2 class="artist lightcaps">{Artist}</h2>{/block:Artist}
+                        {block:Album}<h3 class="album lightcaps">{Album}</h3>{/block:Album}
                     </div>
                     {block:AlbumArt}
-                    <img src="{AlbumArtURL}" alt="{PlaintextAlbum}" class="album-art">
+                    <img src="{AlbumArtURL}" alt="{PlaintextAlbum}" class="album-art circle">
                     {/block:AlbumArt}
                 </header>
 
                 <figure class="audio-container default-audio">
                     <div class="audio-player circle">
-                        {AudioPlayer}
+                        {AudioPlayerWhite}
                     </div>
 
                     {block:Caption}
@@ -522,7 +531,7 @@
 
                 {block:Date}
                 <!-- Post Meta -->
-                <footer class="post-footer{block:HasTags} has-tags{/block:HasTags}{block:Audio}{block:ExternalAudio} has-external-audio{/block:ExternalAudio}{/block:Audio}">
+                <footer class="post-footer clearfix{block:HasTags} has-tags{/block:HasTags}{block:Audio}{block:ExternalAudio} has-external-audio{/block:ExternalAudio}{/block:Audio}">
                     <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {24HourWithZero}:{Minutes}:{Seconds}" title="{DayOfWeek}, {Month} {DayOfMonth}, {Year} {12Hour}:{Minutes}{AmPm}" class="post-date">
                         {block:IndexPage}<a href="{Permalink}" title="{lang:Permalink}: {ShortURL}" class="post-date-link">{/block:IndexPage}
                             {TimeAgo}
@@ -548,6 +557,7 @@
                         </li>
                         {/block:ExternalAudio}
                         {/block:Audio}
+                        {block:IndexPage}
                         <li class="like-button">
                             {LikeButton color="black" size="13"}
                             <a href="#" class="like-link icon-heart-outline post-icon"></a>
@@ -555,6 +565,7 @@
                         <li class="reblog-button">
                             <a href="{ReblogURL}" title="Reblog" class="reblog-link icon-reblog post-icon" target="_blank"></a>
                         </li>
+                        {/block:IndexPage}
                     </ul>
 
                     <ul class="post-sources">
@@ -778,7 +789,7 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="http://static.tumblr.com/f8gk9za/m1Noc7qf2/plugins.js"></script>
-<script src="http://static.tumblr.com/f8gk9za/reboc9kxj/main.js"></script>
+<script src="http://static.tumblr.com/f8gk9za/HUmocd0uf/main.js"></script>
 
 {block:IfGoogleAnalyticsID}
 <script>

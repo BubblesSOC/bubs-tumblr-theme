@@ -279,6 +279,7 @@ i, em, cite {
    ============ */
 
 #main-menu,
+.chat-container,
 .tags, .post-icons, .post-sources,
 .pagination,
 #other-blogs, #credits,
@@ -496,71 +497,257 @@ i, em, cite {
     margin-bottom: 20px;
 }
 
+.post-content {
+    padding-bottom: 1em;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.type-quote .post-content,
+.type-answer .post-content {
+    padding-top: 1em;
+}
+
+/* I think I'll cheat instead of resetting all the top margins... */
+.type-text .post-content,
+.type-chat .post-content {
+    padding-top: 1px;
+}
+
+/* ===========
+    The Posts
+   =========== */
+
 .post iframe {
    max-width: 100%;
 }
+
+.post-title {
+    margin: 0.8125rem; /* 13px */
+}
+
+.caption,
+.post-body {
+    margin: 0 1em;
+}
+
+.type-link .post-body,
+.type-answer .post-body {
+    border-top: 1px solid #eee;
+}
+
+.post-body figure,
+.caption figure {
+    margin: 1em 0;
+}
+
+/* begin tumblr gif styles */
+.tmblr-full.stretched {
+    position: relative;
+    left: -1em;
+}
+
+.tmblr-full.stretched img {
+    width: 100%;
+}
+
+.tmblr-full.stretched .tmblr-attribution {
+    margin: 0 1em;
+    font-size: 0.6875rem; /* 11px */
+    font-weight: 300;
+}
+
+.tmblr-full.stretched .tmblr-attribution .icon-link-ext:before {
+    margin-right: 0.1875rem; /* 3px */
+    vertical-align: middle;
+}
+
+/* ============
+    Photo Post
+   ============ */
 
 .post-photo {
     width: 100%;
 }
 
-/* ===============
-    Photoset Grid
-   =============== */
-
-.photoset-row {
-    overflow: hidden;
-    clear: left;
-    margin-top: 5px;
-    max-width: 1280px;
+.post:not(.photoset-post) .post-photo,
+.photoset-row:first-child.columns-1 .photo-link {
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    -o-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
 }
-.photoset-row:first-child {
+
+.photoset-row:first-child:not(.columns-1) .photo-link:first-child {
+    -webkit-border-top-left-radius: 4px;
+    -moz-border-top-left-radius: 4px;
+    -o-border-top-left-radius: 4px;
+    border-top-left-radius: 4px;
+}
+.photoset-row:first-child:not(.columns-1) .photo-link:last-child {
+    -webkit-border-top-right-radius: 4px;
+    -moz-border-top-right-radius: 4px;
+    -o-border-top-right-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+/* ============
+    Quote Post
+   ============ */
+
+.quote-container {
+    padding: 0;
+    border-width: 0;
     margin-top: 0;
 }
 
-.photoset-row .photo-link {
-    display: block;
-    padding-left: 5px;
-    float: left;
-    overflow: hidden;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    box-sizing: border-box;
-}
-.photoset-row .photo-link:first-child {
-    padding-left: 0;
+.the-quote {
+    margin: 0 0.8125rem 0.8125rem; /* 13px */
+    line-height: 125%;
 }
 
-.columns-1 .photo-link {
-    width: 100%;
+.quote-container.short .the-quote {
+    font-size: 1.25rem; /* 20px */
 }
-.columns-2 .photo-link {
-    width: 50%;
+.quote-container.medium .the-quote {
+    font-size: 1rem; /* 16px */
 }
-.columns-3 .photo-link {
-    width: 33.3333333333%;
-}
-.columns-4 .photo-link {
-    width: 25%;
-}
-.columns-5 .photo-link {
-    width: 20%;
+.quote-container.long .the-quote {
+    font-size: 0.875rem; /* 14px */
+    line-height: 150%;
 }
 
-.photoset-row .photo-link .post-photo {
+.the-quote p:first-child {
+    margin-top: 0;
+}
+
+.quote-source {
+    font-family: inherit;
+    font-style: normal;
+}
+
+/* ===========
+    Link Post
+   =========== */
+
+
+
+/* ===========
+    Chat Post
+   =========== */
+
+
+
+/* ============
+    Audio Post
+   ============ */
+
+.type-audio {
     position: relative;
-    width: 100%;
 }
+
+.album,
+.index .audio-container .caption {
+    display: none;
+}
+
+.audio-info {
+    padding: 1em 1em 0;
+    display: table;
+    min-height: 71px;
+}
+.index .audio-info {
+    margin-bottom: 1em;
+}
+
+.audio-info .the-info {
+    display: table-cell;
+    vertical-align: middle;
+    min-height: 71px;
+    padding-left: 84px;
+}
+
+.track-name {
+    font-size: 1.063rem; /* 17px */
+    font-weight: normal;
+    line-height: 115%;
+    margin: 0;
+}
+
+.artist {
+    font-size: 0.6875rem; /* 11px */
+    margin: 0.125rem 0 0; /* 2px */
+}
+
+.album-art {
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    width: 71px;
+    height: 71px;
+}
+
+.audio-player {
+    width: 27px;
+    height: 27px;
+    padding: 10px;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    background-color: #fff;
+    opacity: 0.7;
+}
+
+/* =============
+    Answer Post
+   ============= */
+
+
 
 /* ===========
     Post Meta
    =========== */
 
+.post-footer {
+    padding: 1em 1em 0;
+}
+
 .play-count,
 .index .post-sources,
 .ps-portrait {
     display: none;
+}
+
+.post-date, .tags {
+    float: left;
+    margin: 0;
+    font-size: 0.6875rem; /* 11px */
+    font-weight: 300;
+    text-transform: lowercase;
+    line-height: 125%;
+}
+
+.post-icons {
+    float: right;
+    text-align: right;
+    margin: 0;
+    height: 0.8125rem; /* 13px */
+    line-height: 0.8125rem;
+}
+.permalink .post-icons {
+    display: none;
+}
+.permalink .has-external-audio .post-icons {
+    display: block;
+}
+
+.external-audio,
+.like-button,
+.reblog-button {
+    width: 0.8125rem; /* 13px */
+    height: 0.8125rem;
 }
 
 .post-icon {
@@ -576,8 +763,6 @@ i, em, cite {
    ref: http://stackoverflow.com/a/21715659/954677
 */
 .like-button {
-    width: 0.8125rem; /* 13px */
-    height: 0.8125rem;
     position: relative;
 }
 
@@ -617,6 +802,11 @@ i, em, cite {
 }
 .like_button.liked + .like-link:before {
     content: '\e813';
+}
+
+#next-post .icon-right-bold:before {
+    position: relative;
+    left: 0.1875rem; /* 3px */
 }
 
 /* ==========================================================================
