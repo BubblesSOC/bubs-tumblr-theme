@@ -720,23 +720,51 @@ i, em, cite {
     font-size: 0.6875rem; /* 11px */
     font-weight: 300;
     text-transform: lowercase;
-    line-height: 125%;
+    line-height: 150%;
+}
+
+.post-date {
+    max-width: 18%;
+}
+
+.tags {
+    max-width: 77%;
+    position: relative;
+    padding-left: 1.25rem; /* 20px */
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.has-external-audio .tags {
+    max-width: 71%;
+}
+.tags:before {
+    content: '/';
+    position: absolute;
+    left: 0.5rem; /* 8px */
+}
+.tag {
+    float: left;
+    padding-right: 0.3125rem; /* 5px */
 }
 
 .post-icons {
     float: right;
     margin: 0;
+    font-size: 0.6875rem; /* 11px */
+    line-height: 0.6875rem;
 }
 
 .external-audio,
 .like-button,
 .reblog-button {
     float: left;
-    padding-right: 4px;
+    padding-right: 0.25rem; /* 4px */
 }
 .like-button {
-    width: 0.875rem; /* 14px */
-    padding-right: 3px;
+    width: 0.8125rem; /* 13px */
+    padding-right: 0.125rem; /* 2px */
     position: relative;
 }
 .reblog-button {
@@ -745,9 +773,7 @@ i, em, cite {
 
 .post-icon {
     display: block;
-    font-size: 0.8125rem; /* 13px */
-    line-height: 0.8125rem;
-    height: 0.8125rem;
+    height: 0.6875rem; /* 11px */
 }
 
 /*
@@ -759,15 +785,15 @@ ref: http://stackoverflow.com/a/21715659/954677
     top: 0;
     left: 0;
     z-index: 1;
-    width: 13px;
-    height: 13px;
-    line-height: 13px;
+    width: 11px;
+    height: 11px;
+    line-height: 11px;
     cursor: pointer;
     opacity: 0;
 }
 .like_button iframe {
-    width: 100% !important;
-    height: 100% !important;
+    position: relative;
+    top: -3px;
 }
 
 .like_button.liked + .like-link {
