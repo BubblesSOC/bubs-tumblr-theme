@@ -144,7 +144,7 @@ i, em, cite {
     *zoom: 1;
 }
 
-.circle, .badge {
+.circle, .badge, .notes .avatar {
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     -o-border-radius: 50%;
@@ -278,21 +278,18 @@ i, em, cite {
     Flat Lists
    ============ */
 
-#main-menu,
+#main-menu, #tumblr-controls,
 .chat-container,
 .tags, .post-icons, .post-sources,
-.pagination,
-#other-blogs, #credits,
-#tumblr-controls {
+.notes, .pagination,
+#other-blogs, #credits {
     list-style-type: none;
     padding: 0;
 }
 
-.menu-item,
-.tag,
+.menu-item, .control-item,
 .submission, .via, .source,
-.next, .previous, .page-number,
-.control-item {
+.next, .previous, .page-number {
     display: inline-block;
 }
 
@@ -661,6 +658,7 @@ i, em, cite {
     vertical-align: middle;
     min-height: 71px;
     padding-left: 84px;
+    opacity: 0;
 }
 
 .track-name {
@@ -709,14 +707,11 @@ i, em, cite {
 }
 
 .play-count,
-.index .post-sources,
-.ps-portrait {
+.index .post-sources {
     display: none;
 }
 
-.post-date, .tags {
-    float: left;
-    margin: 0;
+.post-date, .tags, .post-sources {
     font-size: 0.6875rem; /* 11px */
     font-weight: 300;
     text-transform: lowercase;
@@ -724,10 +719,14 @@ i, em, cite {
 }
 
 .post-date {
+    float: left;
+    margin: 0;
     max-width: 18%;
 }
 
 .tags {
+    float: left;
+    margin: 0;
     max-width: 77%;
     position: relative;
     padding-left: 1.25rem; /* 20px */
@@ -759,21 +758,28 @@ i, em, cite {
 .external-audio,
 .like-button,
 .reblog-button {
-    float: left;
-    padding-right: 0.25rem; /* 4px */
+    float: right;
+    text-align: right;
+    padding-left: 0.25rem; /* 4px */
 }
 .like-button {
     width: 0.8125rem; /* 13px */
-    padding-right: 0.125rem; /* 2px */
+    padding-left: 0.125rem; /* 2px */
     position: relative;
 }
 .reblog-button {
-    padding-right: 0;
+    padding-left: 0;
 }
 
 .post-icon {
     display: block;
     height: 0.6875rem; /* 11px */
+}
+.like-icon {
+    -webkit-transition: color 0.2s ease-in-out;
+    -moz-transition: color 0.2s ease-in-out;
+    -o-transition: color 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out;
 }
 
 /*
@@ -783,7 +789,7 @@ ref: http://stackoverflow.com/a/21715659/954677
 .like_button {
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     z-index: 1;
     width: 11px;
     height: 11px;
@@ -796,18 +802,42 @@ ref: http://stackoverflow.com/a/21715659/954677
     top: -3px;
 }
 
-.like_button.liked + .like-link {
+.like_button.liked + .like-icon {
     color: #d75f45 !important;
 }
-.like_button.liked + .like-link:before {
+.like_button.liked + .like-icon:before {
     content: '\e813';
     position: relative;
-    left: 0.0625rem; /* 1px */
+    right: 0.0625rem; /* 1px */
+}
+
+.post-sources {
+    clear: both;
+}
+
+.via:after {
+    content: ';';
+}
+
+#prev-post, #next-post {
+    position: fixed;
+    top: 50%;
+}
+
+#prev-post {
+    left: 20px;
+}
+#next-post {
+    right: 20px;
 }
 
 #next-post .icon-right-bold:before {
     position: relative;
     left: 0.1875rem; /* 3px */
+}
+
+.note-count {
+    font-weight: normal;
 }
 
 /* ==========================================================================
@@ -947,9 +977,13 @@ ref: http://stackoverflow.com/a/21715659/954677
 #theme-credit {
     bottom: 20px;
 }
+#theme-credit:hover {
+    color: #d75f45 !important;
+}
 #theme-credit:hover:before {
     content: '\e813';
-    color: #d75f45;
+    position: relative;
+    left: 0.0625rem; /* 1px */
 }
 
 /* ==========================================================================

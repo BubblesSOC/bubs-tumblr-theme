@@ -6,11 +6,13 @@
     var initLightbox = function( $post ) {
         if ( !$post.hasClass('type-photo') || $post.hasClass('panorama-post') ) return;
 
-        var $photoset = $post.find('.photo-container'),
+        var postId    = $post.attr('id'),
+            $photoset = $('#photoset_' + postId),
             images    = [];
 
         $photoset.children('.photo-link').each(function(index) {
-            var image = $(this).data();
+            var image = $(this).data(),
+                psIdx = index + 1;
 
             images.push({
                 width: image['width'],
@@ -19,10 +21,13 @@
                 high_res: image['highres']
             });
 
-            $(this).click(function() {
-                Tumblr.Lightbox.init(images, index);
-                return false;
-            });
+            $(this).attr('id', 'photoset_link_' + postId + '_' + psIdx)
+                   .attr('data-enable-lightbox', 1)
+                   .attr('data-photoset-index', psIdx)
+                   .click(function() {
+                       Tumblr.Lightbox.init(images, psIdx);
+                       return false;
+                   });
         });
     };
 
@@ -58,7 +63,9 @@
             } else if ( columns == '2' ) {
                 $cols.css('width', '50%');
             } else if ( columns == '3' ) {
-                $cols.css('width', '33.3333333333%');
+                $cols.css('width', '33%')
+                     .filter(':nth-child(2)')
+                     .css('width', '34%');
             } else if ( columns == '4' ) {
                 $cols.css('width', '25%');
             } else if ( columns == '5' ) {
@@ -139,6 +146,41 @@
     };
 
 
+    // vertically center audio info
+    $.fn.centerAudioInfo = function() {
+        return this.each(function() {
+            var $post = $(this);
+
+            if ( !$post.hasClass('type-audio') ) return;
+
+            var $table = $post.find('.audio-info'),
+                $cell  = $table.children('.the-info');
+
+            if ( $table.height() > 71 ) {
+                $table.css({
+                    'height': 'auto',
+                    'display': 'block'
+                });
+                $cell.css({
+                    'height': 'auto',
+                    'display': 'block',
+                    'opacity': '1'
+                });
+            } else {
+                $table.css({
+                    'height': '71px',
+                    'display': 'table'
+                });
+                $cell.css({
+                    'height': '71px',
+                    'display': 'table-cell',
+                    'opacity': '1'
+                });
+            }
+        });
+    };
+
+
     $.fn.idealize = function() {
         return this.each(function() {
             var $post = $(this);
@@ -162,22 +204,28 @@
             $loading = $('#loading'),
             $spinner = $('#spinner');
 
-        $('.post').idealize();
+        $('.post').centerAudioInfo().idealize();
 
 
         // initialize the layout grid
-        NProgress.configure({
-            trickleRate: 0.08,
-            trickleSpeed: 400,
-            showSpinner: false,
-            template: '<div class="progress-bar" role="bar"></div>'
-        }).start();
+        if ( $('body').hasClass('index') ) {
+            NProgress.configure({
+                trickleRate: 0.08,
+                trickleSpeed: 400,
+                showSpinner: false,
+                template: '<div class="progress-bar" role="bar"></div>'
+            }).start();
+        }
 
-        $theGrid = $('.index #the-posts').imagesLoaded(function() {
+        $theGrid = $('.index #the-posts').imagesLoaded().progress(function() {
+            NProgress.inc(0.08);
+        }).always(function() {
             $theGrid.masonry({
                 columnWidth: '#grid-sizer',
                 percentPosition: true,
                 itemSelector: '.post'
+            }).on('layoutComplete', function() {
+                $('.post.type-audio').centerAudioInfo();
             });
             NProgress.done(true);
         });
@@ -246,7 +294,7 @@
                 opts = $infScr.data('infinitescroll').options;
 
             $infScr.infinitescroll('pause');
-            $posts.idealize().imagesLoaded(function() {
+            $posts.idealize().imagesLoaded().always(function() {
                 Tumblr.LikeButton.get_status_by_post_ids(postIds);
 
                 $posts.css({ opacity: 1 });

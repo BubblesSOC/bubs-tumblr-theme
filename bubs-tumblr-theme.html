@@ -61,7 +61,7 @@
     <!-- /Custom Fonts -->
 
     <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/A6Aocdylo/main.css">
+    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/yQkocf7aq/main.css">
 
     <style>
         ::-moz-selection {
@@ -144,7 +144,10 @@
             font-family: {font:Heading Font};
         }
 
-        .like_button:hover + .like-link {
+        .like-icon {
+            color: {color:Link};
+        }
+        .like_button:hover + .like-icon {
             color: {color:Link Hover};
         }
 
@@ -339,7 +342,7 @@
 
                 {block:Photo}
                 <!-- Photo Post -->
-                <figure class="photo-container">
+                <figure class="photo-container" id="photoset_{PostID}">
                     {block:IndexPage}
                     <a href="{Permalink}" class="photo-link" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" data-lowres="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}">
                         <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" class="post-photo">
@@ -377,7 +380,7 @@
 
                 {block:Photoset}
                 <!-- Photoset Post -->
-                <figure class="photo-container" data-layout='{JSPhotosetLayout}'>
+                <figure class="photo-container" data-layout='{JSPhotosetLayout}' id="photoset_{PostID}">
                     {block:Photos}
                     <a href="{PhotoURL-HighRes}" class="photo-link" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" data-lowres="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}">
                         <img src="{PhotoURL-HighRes}" alt="{PlaintextCaption}" class="post-photo">
@@ -560,16 +563,16 @@
                         <li class="play-count">{PlayCountWithLabel}</li>
                         {block:ExternalAudio}
                         <li class="external-audio">
-                            <a href="{ExternalAudioURL}" title="{lang:Download}" class="external-audio-link icon-download post-icon"></a>
+                            <a href="{ExternalAudioURL}" title="{lang:Download}" class="external-audio-icon icon-download post-icon"></a>
                         </li>
                         {/block:ExternalAudio}
                         {/block:Audio}
                         <li class="like-button">
                             {LikeButton color="black" size="13"}
-                            <a href="#" class="like-link icon-heart-outline post-icon"></a>
+                            <span class="like-icon icon-heart-outline post-icon"></span>
                         </li>
                         <li class="reblog-button">
-                            <a href="{ReblogURL}" title="Reblog" class="reblog-link icon-reblog post-icon" target="_blank"></a>
+                            <a href="{ReblogURL}" title="Reblog" class="reblog-icon icon-reblog post-icon" target="_blank"></a>
                         </li>
                     </ul>
 
@@ -577,37 +580,23 @@
                         {block:Submission}
                         <li class="submission">
                             Submitted by
-                            <a href="{SubmitterURL}" class="ps-link submitter-link">
-                                <img src="{SubmitterPortraitURL-16}" alt="{Submitter}" class="ps-portrait submitter-portrait">
-                                {Submitter}
-                            </a>
+                            <a href="{SubmitterURL}" class="ps-link submitter-link">{Submitter}</a>
                         </li>
                         {/block:Submission}
                         {block:RebloggedFrom}
                         <li class="via">
                             {lang:Reblogged from}
-                            <a href="{ReblogParentURL}" title="{lang:Via}: {PlaintextReblogParentTitle}" class="ps-link via-link">
-                                <img src="{ReblogParentPortraitURL-16}" alt="{ReblogParentName}" class="ps-portrait via-portrait">
-                                {ReblogParentName}
-                            </a>
+                            <a href="{ReblogParentURL}" title="{lang:Via}: {PlaintextReblogParentTitle}" class="ps-link via-link">{ReblogParentName}</a>
                         </li>
                         <li class="source">
                             Originally from
-                            <a href="{ReblogRootURL}" title="{lang:Source}: {PlaintextReblogRootTitle}" class="ps-link source-link">
-                                <img src="{ReblogRootPortraitURL-16}" alt="{ReblogRootName}" class="ps-portrait source-portrait">
-                                {ReblogRootName}
-                            </a>
+                            <a href="{ReblogRootURL}" title="{lang:Source}: {PlaintextReblogRootTitle}" class="ps-link source-link">{ReblogRootName}</a>
                         </li>
                         {/block:RebloggedFrom}
                         {block:NotReblog}{block:ContentSource}
                         <li class="source">
                             Published by
-                            <a href="{SourceURL}" title="{lang:Source}: {PlaintextSourceTitle}" class="ps-link source-link">
-                                {block:SourceLogo}
-                                <img src="{BlackLogoURL}" alt="{PlaintextSourceTitle}" class="ps-portrait source-logo">
-                                {/block:SourceLogo}
-                                {SourceTitle}
-                            </a>
+                            <a href="{SourceURL}" title="{lang:Source}: {PlaintextSourceTitle}" class="ps-link source-link">{SourceTitle}</a>
                         </li>
                         {/block:ContentSource}{/block:NotReblog}
                     </ul>
@@ -794,7 +783,7 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="http://static.tumblr.com/f8gk9za/m1Noc7qf2/plugins.js"></script>
-<script src="http://static.tumblr.com/f8gk9za/HUmocd0uf/main.js"></script>
+<script src="http://static.tumblr.com/f8gk9za/PLsocf7hv/main.js"></script>
 
 {block:IfGoogleAnalyticsID}
 <script>
