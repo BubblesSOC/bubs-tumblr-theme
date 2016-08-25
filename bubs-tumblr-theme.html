@@ -61,7 +61,7 @@
     <!-- /Custom Fonts -->
 
     <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/yQkocf7aq/main.css">
+    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/q9Uocg5sn/main.css">
 
     <style>
         ::-moz-selection {
@@ -82,7 +82,7 @@
         a:hover {
             color: {color:Link Hover};
         }
-        h1:not(.lightcaps), h2:not(.lightcaps), h3:not(.lightcaps) {
+        h1:not(.lightcaps), h2:not(.lightcaps):not(.results-title), h3:not(.lightcaps) {
             font-family: {font:Heading Font};
         }
         hr {
@@ -135,13 +135,25 @@
             box-shadow: 1px 1px 0 {color:Borders};
         }
 
+        .answer-container,
         .type-link .post-body,
-        .type-answer .post-body {
+        .type-answer .post-body,
+        .note-count {
             border-top-color: {color:Borders};
         }
 
-        .the-quote {
+        .the-quote,
+        .question-author,
+        .answer-author {
             font-family: {font:Heading Font};
+        }
+
+        .chat-line.even,
+        .link-container:hover {
+            background-color: rgba({RGBcolor:Highlight}, 0.75);
+        }
+        .link-container:hover .link-excerpt {
+            border-left-color: {color:Highlight Hover};
         }
 
         .like-icon {
@@ -328,7 +340,7 @@
                 <!-- Text Post -->
                 {block:Title}
                 <h1 class="post-title">
-                    {block:IndexPage}<a href="{Permalink}" title="{Title}" class="post-title-link">{/block:IndexPage}
+                    {block:IndexPage}<a href="{Permalink}" title="{Title}" class="post-title-link iconr-angle-right-mini">{/block:IndexPage}
                     {Title}
                     {block:IndexPage}</a>{/block:IndexPage}
                 </h1>
@@ -422,10 +434,12 @@
                     <img src="{Thumbnail-HighRes}" alt="{PlaintextName}" class="post-photo link-thumbnail">
                     {/block:Thumbnail}
 
-                    <h1 class="post-title link-name">{Name}</h1>
-                    {block:Excerpt}<div class="link-excerpt">{Excerpt}</div>{/block:Excerpt}
-                    {block:Author}<div class="link-author">By <strong>{Author}</strong></div>{/block:Author}
-                    {block:Host}<div class="link-host">{Host}</div>{/block:Host}
+                    <h1 class="post-title link-name iconr-angle-right-mini">{Name}</h1>
+                    {block:Excerpt}
+                    <blockquote class="link-excerpt">
+                        <p class="the-excerpt">{Excerpt}</p>
+                    </blockquote>
+                    {/block:Excerpt}
                 </a>
                 {block:Description}
                 <div class="post-body">
@@ -440,7 +454,7 @@
                 <!-- Chat Post -->
                 {block:Title}
                 <h1 class="post-title chat-title">
-                    {block:IndexPage}<a href="{Permalink}" title="{Title}" class="post-title-link">{/block:IndexPage}
+                    {block:IndexPage}<a href="{Permalink}" title="{Title}" class="post-title-link iconr-angle-right-mini">{/block:IndexPage}
                     {Title}
                     {block:IndexPage}</a>{/block:IndexPage}
                 </h1>
@@ -783,7 +797,7 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="http://static.tumblr.com/f8gk9za/m1Noc7qf2/plugins.js"></script>
-<script src="http://static.tumblr.com/f8gk9za/PLsocf7hv/main.js"></script>
+<script src="http://static.tumblr.com/f8gk9za/MDFocfdk3/main.js"></script>
 
 {block:IfGoogleAnalyticsID}
 <script>
