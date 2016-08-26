@@ -128,10 +128,10 @@
     };
 
 
-    // stretch tumblr gifs beyond the margins of .post-body and .caption
+    // stretch tumblr gifs beyond the margins of .post-body
     // see: '.tmblr-full.stretched' in main.css
     var fixTumblrGifs = function( $post ) {
-        var $gifs = $post.find('.post-body figure.tmblr-full, .caption figure.tmblr-full');
+        var $gifs = $post.find('.post-body figure.tmblr-full');
         if ( $gifs.length < 1 ) return;
 
         var fixer = function() {
@@ -148,12 +148,8 @@
 
     // vertically center audio info
     $.fn.centerAudioInfo = function() {
-        return this.each(function() {
-            var $post = $(this);
-
-            if ( !$post.hasClass('type-audio') ) return;
-
-            var $table = $post.find('.audio-info'),
+        this.filter('.type-audio').each(function() {
+            var $table = $(this).find('.audio-info'),
                 $cell  = $table.children('.the-info');
 
             if ( $table.height() > 71 ) {
@@ -178,14 +174,13 @@
                 });
             }
         });
+        return this;
     };
 
 
     $.fn.idealize = function() {
-        return this.each(function() {
+        this.not('.idealized').each(function() {
             var $post = $(this);
-
-            if ( $post.hasClass('idealized') ) return true;
 
             initLightbox( $post );
             initPhotosetGrid( $post );
@@ -195,6 +190,7 @@
             // mark element with class to prevent duplicate work
             $post.addClass('idealized');
         });
+        return this;
     };
 
 
@@ -238,7 +234,7 @@
                 return $spinner.attr('title', title).addClass('spin');
             },
             off: function() {
-                return $spinner.attr('title', '').removeClass('spin');
+                return $spinner.removeAttr('title').removeClass('spin');
             }
         };
 
@@ -378,6 +374,21 @@
                 if ( $toggled.is(':visible') ) $toggler.addClass('toggle-open');
             });
             return false;
+        });
+
+
+        // nav enhancements
+        $('.menu-link').each(function() {
+            var $link = $(this);
+
+            if ( $link.attr('href') == '/fanmixes' ) {
+                $link.attr('target', '_blank');
+                return true;
+            }
+
+            if ( $link.attr('href') == window.location.pathname ) {
+                $link.addClass('active');
+            }
         });
     });
 

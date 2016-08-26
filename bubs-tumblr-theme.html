@@ -56,12 +56,12 @@
     <link rel="alternate" type="application/rss+xml" href="{RSS}">
 
     <!-- Custom Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400i,700i|Yrsa:300,400,600&subset=latin-ext">
-    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/XcAocddmn/sulahnnehn-icons.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Yrsa:300,400,600|Lora:400i,700i&subset=latin-ext">
+    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/vG9ochcw5/sulahnnehn-icons.css">
     <!-- /Custom Fonts -->
 
     <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/q9Uocg5sn/main.css">
+    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/tjEociu1i/main.css">
 
     <style>
         ::-moz-selection {
@@ -127,6 +127,10 @@
             Post Styles
            ============= */
 
+        .results-title {
+            color: rgba({RGBcolor:Text}, 0.9);
+        }
+
         .post-content {
             background-color: {color:Post Background};
             -webkit-box-shadow: 1px 1px 0 {color:Borders};
@@ -173,18 +177,23 @@
 
         #blog-title-text, .menu-link,
         .post-title-link, .link-container,
-        .post-date-link, .tag-link,
+        .post-date-link, .index .tag-link,
+        .more_notes_link,
         .toggler,
         #prev-day .prev-text, #next-day .next-text {
             color: {color:Text};
         }
 
-        .menu-link:hover,
-        .post-date-link:hover, .tag-link:hover,
+        .more_notes_link:hover,
         .toggler:hover .toggler-text,
         #prev-day .prev-link:hover .prev-text,
         #next-day .next-link:hover .next-text {
             border-bottom-color: {color:Borders};
+        }
+
+        .post-date-link:hover, .index .tag-link:hover,
+        .menu-link:hover, .menu-link.active {
+            border-bottom-color: {color:Highlight Hover};
         }
 
         /* ============
@@ -207,7 +216,7 @@
 
     <header id="blog-header" data-border-color="{color:Borders}">
         <h1 id="blog-title">
-            <a href="/" title="{Title}" id="blog-title-link">
+            <a href="/" id="blog-title-link">
                 {block:IfLogoImage}
                 <img src="{image:Logo}" alt="{Title}" class="blog-title-image circle" id="blog-logo">
                 {/block:IfLogoImage}
@@ -229,52 +238,36 @@
                 {block:HasPages}
                 {block:Pages}
                 <li class="page menu-item" data-page="{Label}">
-                    <a href="{URL}" title="{Label}" class="page-link menu-link">
-                        {Label}
-                    </a>
+                    <a href="{URL}" class="page-link menu-link">{Label}</a>
                 </li>
                 {/block:Pages}
                 {/block:HasPages}
 
                 {block:AskEnabled}
                 <li id="ask" class="menu-item">
-                    {block:IfAskLinkLabel}
-                    <a href="/ask" title="{text:Ask Link Label}" id="ask-link" class="menu-link">
-                        {text:Ask Link Label}
+                    <a href="/ask" id="ask-link" class="menu-link">
+                        {block:IfAskLinkLabel}{text:Ask Link Label}{/block:IfAskLinkLabel}
+                        {block:IfNotAskLinkLabel}{AskLabel}{/block:IfNotAskLinkLabel}
                     </a>
-                    {/block:IfAskLinkLabel}
-                    {block:IfNotAskLinkLabel}
-                    <a href="/ask" title="{AskLabel}" id="ask-link" class="menu-link">
-                        {AskLabel}
-                    </a>
-                    {/block:IfNotAskLinkLabel}
                 </li>
                 {/block:AskEnabled}
 
                 {block:IfShowSubmitLink}{block:SubmissionsEnabled}
                 <li id="submit" class="menu-item">
-                    {block:IfSubmitLinkLabel}
-                    <a href="/submit" title="{text:Submit Link Label}" id="submit-link" class="menu-link">
-                        {text:Submit Link Label}
+                    <a href="/submit" id="submit-link" class="menu-link">
+                        {block:IfSubmitLinkLabel}{text:Submit Link Label}{/block:IfSubmitLinkLabel}
+                        {block:IfNotSubmitLinkLabel}{SubmitLabel}{/block:IfNotSubmitLinkLabel}
                     </a>
-                    {/block:IfSubmitLinkLabel}
-                    {block:IfNotSubmitLinkLabel}
-                    <a href="/submit" title="{SubmitLabel}" id="submit-link" class="menu-link">
-                        {SubmitLabel}
-                    </a>
-                    {/block:IfNotSubmitLinkLabel}
                 </li>
                 {/block:SubmissionsEnabled}{/block:IfShowSubmitLink}
 
                 <li id="archive" class="menu-item">
-                    <a href="/archive" title="{lang:Archive}" id="archive-link" class="menu-link">
-                        {lang:Archive}
-                    </a>
+                    <a href="/archive" id="archive-link" class="menu-link">{lang:Archive}</a>
                 </li>
 
                 {block:IfShowLikesLink}{block:Likes}
                 <li id="likes" class="menu-item">
-                    <a href="https://www.tumblr.com/liked/by/{Name}" title="{lang:Likes}" id="likes-link" class="menu-link">
+                    <a href="https://www.tumblr.com/liked/by/{Name}" id="likes-link" class="menu-link">
                         {lang:Likes}
                     </a>
                 </li>
@@ -293,11 +286,11 @@
                 </li>
                 {/block:IfShowSearchForm}
                 {block:PermalinkPage}
-                {block:Posts}
+                {block:Posts}{block:Date}
                 <li id="embed-post" class="control-item">
                     <a href="{EmbedUrl}" title="Embed" id="embed-post-link" class="icon-code control-icon badge" target="_blank"></a>
                 </li>
-                {/block:Posts}
+                {/block:Date}{/block:Posts}
                 {/block:PermalinkPage}
                 <li id="tumblr-message" class="control-item">
                     <a href="https://www.tumblr.com/dashboard?conversation={Name}" title="Message {Name}" id="tumblr-message-link" class="icon-feather control-icon badge" target="_blank"></a>
@@ -340,7 +333,7 @@
                 <!-- Text Post -->
                 {block:Title}
                 <h1 class="post-title">
-                    {block:IndexPage}<a href="{Permalink}" title="{Title}" class="post-title-link iconr-angle-right-mini">{/block:IndexPage}
+                    {block:IndexPage}<a href="{Permalink}" class="post-title-link iconr-right-mini">{/block:IndexPage}
                     {Title}
                     {block:IndexPage}</a>{/block:IndexPage}
                 </h1>
@@ -366,7 +359,7 @@
                     {/block:PermalinkPage}
 
                     {block:Caption}
-                    <figcaption class="caption">
+                    <figcaption class="caption post-body">
                         {Caption}
                     </figcaption>
                     {/block:Caption}
@@ -381,7 +374,7 @@
                     {LinkOpenTag}<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" class="post-photo">{LinkCloseTag}
 
                     {block:Caption}
-                    <figcaption class="caption">
+                    <figcaption class="caption post-body">
                         {Caption}
                     </figcaption>
                     {/block:Caption}
@@ -400,7 +393,7 @@
                     {/block:Photos}
 
                     {block:Caption}
-                    <figcaption class="caption">
+                    <figcaption class="caption post-body">
                         {Caption}
                     </figcaption>
                     {/block:Caption}
@@ -415,7 +408,7 @@
                     <div class="the-quote">{Quote}</div>
 
                     {block:Source}
-                    <footer class="caption">
+                    <footer class="post-body">
                         &mdash;
                         <cite class="quote-source">
                             {Source}
@@ -434,7 +427,7 @@
                     <img src="{Thumbnail-HighRes}" alt="{PlaintextName}" class="post-photo link-thumbnail">
                     {/block:Thumbnail}
 
-                    <h1 class="post-title link-name iconr-angle-right-mini">{Name}</h1>
+                    <h1 class="post-title link-name iconr-right-mini">{Name}</h1>
                     {block:Excerpt}
                     <blockquote class="link-excerpt">
                         <p class="the-excerpt">{Excerpt}</p>
@@ -454,7 +447,7 @@
                 <!-- Chat Post -->
                 {block:Title}
                 <h1 class="post-title chat-title">
-                    {block:IndexPage}<a href="{Permalink}" title="{Title}" class="post-title-link iconr-angle-right-mini">{/block:IndexPage}
+                    {block:IndexPage}<a href="{Permalink}" class="post-title-link iconr-right-mini">{/block:IndexPage}
                     {Title}
                     {block:IndexPage}</a>{/block:IndexPage}
                 </h1>
@@ -492,7 +485,7 @@
                     </div>
 
                     {block:Caption}
-                    <figcaption class="caption">
+                    <figcaption class="caption post-body">
                         {Caption}
                     </figcaption>
                     {/block:Caption}
@@ -506,7 +499,7 @@
                     {AudioEmbed-640}
 
                     {block:Caption}
-                    <figcaption class="caption">
+                    <figcaption class="caption post-body">
                         {Caption}
                     </figcaption>
                     {/block:Caption}
@@ -523,7 +516,7 @@
                     {VideoEmbed-700}
 
                     {block:Caption}
-                    <figcaption class="caption">
+                    <figcaption class="caption post-body">
                         {Caption}
                     </figcaption>
                     {/block:Caption}
@@ -586,7 +579,7 @@
                             <span class="like-icon icon-heart-outline post-icon"></span>
                         </li>
                         <li class="reblog-button">
-                            <a href="{ReblogURL}" title="Reblog" class="reblog-icon icon-reblog post-icon" target="_blank"></a>
+                            <a href="{ReblogURL}" class="reblog-icon icon-reblog post-icon" target="_blank"></a>
                         </li>
                     </ul>
 
@@ -742,7 +735,7 @@
         <ul id="blog-pagination" class="pagination lightcaps">
             {block:PreviousPage}
             <li id="prev-page" class="previous">
-                <a href="{PreviousPage}" title="{lang:Previous page}" class="prev-link icon-angle-left">
+                <a href="{PreviousPage}" title="{lang:Previous page}" class="prev-link icon-left">
                     <span class="prev-text">{lang:Prev}</span>
                 </a>
             </li>
@@ -763,7 +756,7 @@
 
             {block:NextPage}
             <li id="next-page" class="next">
-                <a href="{NextPage}" title="{lang:Next page}" class="next-link iconr-angle-right">
+                <a href="{NextPage}" title="{lang:Next page}" class="next-link iconr-right">
                     <span class="next-text">{lang:Next}</span>
                 </a>
             </li>
@@ -797,7 +790,7 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="http://static.tumblr.com/f8gk9za/m1Noc7qf2/plugins.js"></script>
-<script src="http://static.tumblr.com/f8gk9za/MDFocfdk3/main.js"></script>
+<script src="http://static.tumblr.com/f8gk9za/N9oociscq/main.js"></script>
 
 {block:IfGoogleAnalyticsID}
 <script>

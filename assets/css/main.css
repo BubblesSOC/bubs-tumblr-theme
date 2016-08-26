@@ -80,22 +80,6 @@ pre {
     white-space: pre-wrap;
 }
 
-small, sub, sup {
-    font-weight: 300;
-}
-
-small {
-    font-size: 0.6875rem; /* 11px */
-}
-
-b, strong {
-    font-weight: 600;
-}
-
-i, em, cite {
-    font-family: 'Lora', 'Georgia', 'Times New Roman', 'Times', serif;
-}
-
 /* ==========================================================================
    Helper classes
    ========================================================================== */
@@ -172,7 +156,8 @@ i, em, cite {
     font-size: 0.8125rem; /* 13px */
 }
 
-.lightcaps {
+.lightcaps,
+.more_notes_link_container {
     text-transform: uppercase;
     letter-spacing: 2px;
     line-height: 100%;
@@ -299,6 +284,7 @@ i, em, cite {
 
 .menu-link,
 .post-date-link, .tag-link,
+.more_notes_link,
 .toggler-text,
 #prev-day .prev-text,
 #next-day .next-text {
@@ -391,7 +377,6 @@ i, em, cite {
     position: relative;
 }
 .control-icon.icon-search:before,
-.control-icon.icon-pencil:before,
 .control-icon.icon-feather:before,
 .control-icon.icon-plus:before {
     left: 0.125rem; /* 2px */
@@ -468,6 +453,20 @@ i, em, cite {
     Main Styles
    ========================================================================== */
 
+.results-title {
+    margin: 0.8125rem 0 20px; /* 13px */
+    font-variant: normal;
+    font-weight: normal;
+    font-size: 0.875rem; /* 14px */
+    font-family: 'Lora', 'Georgia', 'Times New Roman', 'Times', serif;
+    letter-spacing: normal;
+    padding-right: 20px;
+}
+.results-title .the-query {
+    font-weight: bold;
+    text-transform: lowercase;
+}
+
 .index .post, #grid-sizer {
     width: 50%;
     max-width: 520px;
@@ -539,18 +538,54 @@ i, em, cite {
     opacity: 1;
 }
 
-.caption,
 .post-body {
     margin: 0 1em;
 }
 
-.post-body h2,
-.caption h2 {
+.post-body h2 {
     font-weight: normal;
 }
 
-.post-body figure,
-.caption figure {
+.post-body b,
+.post-body strong {
+    font-weight: 600;
+}
+
+.post-body i,
+.post-body em,
+.post-body cite {
+    font-family: 'Lora', 'Georgia', 'Times New Roman', 'Times', serif;
+}
+
+.post-body small,
+.post-body sub,
+.post-body sup {
+    font-weight: 300;
+}
+
+.post-body small {
+    line-height: 100%;
+}
+
+.post-body small,
+.post-body i,
+.post-body em,
+.post-body cite,
+.post-body code,
+.post-body pre {
+    font-size: 0.6875rem; /* 11px */
+}
+
+.post-body small small,
+.post-body small i,
+.post-body small em,
+.post-body small cite,
+.post-body small code,
+.post-body small pre {
+    font-size: 0.5625rem; /* 9px */
+}
+
+.post-body figure {
     margin: 1em 0;
 }
 
@@ -634,8 +669,9 @@ i, em, cite {
     margin-top: 0;
 }
 
-.quote-source {
+.post-body .quote-source {
     font-family: inherit;
+    font-size: inherit;
     font-style: normal;
 }
 
@@ -986,6 +1022,25 @@ ref: http://stackoverflow.com/a/21715659/954677
     font-weight: normal;
     padding-top: 1em;
     border-top: 1px solid #eee;
+}
+
+.notes {
+    margin: 0;
+    font-size: 0.75rem; /* 12px */
+    font-weight: 300;
+}
+
+.notes .avatar_frame {
+    display: none;
+}
+
+.notes blockquote {
+    margin: 0.5em 0;
+}
+
+.more_notes_link_container {
+    font-size: 0.625rem; /* 10px */
+    line-height: inherit;
 }
 
 /* ==========================================================================
