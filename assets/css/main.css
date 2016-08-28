@@ -542,8 +542,11 @@ pre {
     margin: 0 1em;
 }
 
-.post-body h2 {
+.post-body h2:not(.lightcaps) {
     font-weight: normal;
+}
+.post-body h2.lightcaps {
+    font-size: 0.75rem; /* 12px */
 }
 
 .post-body b,
@@ -1008,14 +1011,11 @@ ref: http://stackoverflow.com/a/21715659/954677
 
 #prev-post {
     left: 20px;
+    text-align: left;
 }
 #next-post {
     right: 20px;
-}
-
-#next-post .icon-right-bold:before {
-    position: relative;
-    left: 0.1875rem; /* 3px */
+    text-align: right;
 }
 
 .note-count {
@@ -1223,5 +1223,56 @@ ref: http://stackoverflow.com/a/21715659/954677
         width: 560px;
         max-width: none;
         min-width: none;
+    }
+}
+
+@media only screen and (max-width: 1023px) {
+    #blog-header {
+        padding-top: 14px;
+        padding-bottom: 15px;
+    }
+
+    #main-menu {
+        position: static;
+        width: auto;
+        float: left;
+        clear: left;
+        padding-left: 50px;
+    }
+}
+
+@media only screen and (max-width: 907px) {
+    #wrapper {
+        width: 540px !important;
+    }
+
+    #blog-aside, #loading-message {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 639px) {
+    #wrapper {
+        margin: 0 20px;
+    }
+
+    #permalink-pagination {
+        margin-top: 1em;
+        float: left;
+        width: 100%;
+    }
+
+    #prev-post, #next-post {
+        position: static;
+        width: 50%;
+        float: left;
+    }
+
+    #next-post {
+        float: right;
+    }
+
+    .note-count {
+        clear: both;
     }
 }
