@@ -162,6 +162,7 @@ pre {
     letter-spacing: 2px;
     line-height: 100%;
     font-weight: 300;
+    font-variant: normal;
 }
 
 /* ==========================================================================
@@ -264,7 +265,7 @@ pre {
    ============ */
 
 #main-menu, #tumblr-controls,
-.chat-container,
+.chat-container, .fake-list,
 .tags, .post-icons, .post-sources,
 .notes, .pagination,
 #other-blogs, #credits {
@@ -378,7 +379,8 @@ pre {
 }
 .control-icon.icon-search:before,
 .control-icon.icon-feather:before,
-.control-icon.icon-plus:before {
+.control-icon.icon-plus:before,
+.control-icon.icon-menu:before {
     left: 0.125rem; /* 2px */
 }
 .control-icon.icon-cancel:before {
@@ -426,15 +428,17 @@ pre {
     width: 9.75rem; /* 131px + 5px + 20px = 156px */
     line-height: 100%;
     border: 1px solid #eee;
+    padding: 0.1875rem 0.3125rem 0.1875rem 1.25rem; /* 3px 5px 3px 20px */
+
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     -o-border-radius: 20px;
     border-radius: 20px;
+
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     -o-box-sizing: border-box;
     box-sizing: border-box;
-    padding: 0.1875rem 0.3125rem 0.1875rem 1.25rem; /* 3px 5px 3px 20px */
 }
 
 #search-button {
@@ -542,11 +546,8 @@ pre {
     margin: 0 1em;
 }
 
-.post-body h2:not(.lightcaps) {
+.post-body h2 {
     font-weight: normal;
-}
-.post-body h2.lightcaps {
-    font-size: 0.75rem; /* 12px */
 }
 
 .post-body b,
@@ -867,6 +868,7 @@ pre {
 
 .question {
     margin-top: 1em;
+    padding-bottom: 1em;
 }
 
 .answer-container,
@@ -875,6 +877,21 @@ pre {
 }
 .type-answer .post-body:empty {
     border-top-width: 0;
+}
+
+/* =======
+    Pages
+   ======= */
+
+.page-content .lightcaps {
+    font-weight: normal;
+    font-size: 0.75rem; /* 12px */
+    line-height: 125%;
+}
+
+.page-content .lightcaps small {
+    font-size: 0.625rem; /* 10px */
+    letter-spacing: 1px;
 }
 
 /* ===========
@@ -998,6 +1015,7 @@ ref: http://stackoverflow.com/a/21715659/954677
 
 .via:after {
     content: ';';
+    margin-right: 0.3125rem; /* 5px */
 }
 
 #permalink-pagination {
@@ -1047,25 +1065,29 @@ ref: http://stackoverflow.com/a/21715659/954677
     Aside Styles
    ========================================================================== */
 
+#blog-description {
+    font-size: 0.8125rem; /* 13px */
+}
+
 .aside-title {
     font-size: 0.75rem; /* 12px */
-    font-variant: normal;
 }
 
 .aside-title .badge {
     width: 1.313rem; /* 11px + 5px + 5px = 21px */
     height: 1.313rem; /* 11px + 5px + 5px = 21px */
     padding: 0.3125rem; /* 5px */
+    margin-right: 0.3125rem; /* 5px */
     line-height: 0.6875rem; /* 11px */
 }
 .aside-title .badge:before {
     font-size: 0.6875rem; /* 11px */
+    position: relative;
+    left: 0.0625rem; /* 1px */
 }
 
 #about-title .icon-crown:before {
-    position: relative;
     top: 0.0625rem; /* 1px */
-    left: 0.0625rem; /* 1px */
 }
 
 #credits-toggler.toggle-open .badge.icon-heart-filled,

@@ -120,9 +120,10 @@
     var removeQuoteVia = function( $post ) {
         if ( !$post.hasClass('type-quote') || !$('body').hasClass('index') ) return;
 
-        var $src = $post.find('.quote-source'),
-            html = $src.html().replace(/&nbsp;/g, ' ');
+        var $src = $post.find('.quote-source');
+        if ( $src.length < 1 ) return;
 
+        var html = $src.html().replace(/&nbsp;/g, ' ');
         html = html.replace(/(\s*)\(via\s+[^\)]+\)/gi, "$1");
         $src.html(html);
     };
@@ -381,7 +382,7 @@
         $('.menu-link').each(function() {
             var $link = $(this);
 
-            if ( $link.attr('href') == '/fanmixes' ) {
+            if ( $link.attr('href') == '/fanmixes' || $link.is('#likes-link') ) {
                 $link.attr('target', '_blank');
                 return true;
             }
