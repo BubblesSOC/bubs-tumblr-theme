@@ -40,6 +40,7 @@
     <meta name="if:Show Submit Link" content="1">
     <meta name="if:Show Likes Link" content="1">
     <meta name="if:Show Search Form" content="1">
+    <meta name="if:Show Featured Characters" content="0">
     <!-- {block:ShowHeaderImage}ShowHeaderImage{/block:ShowHeaderImage} -->
     <!-- {block:HideHeaderImage}HideHeaderImage{/block:HideHeaderImage} -->
     <!-- {block:ShowAvatar}ShowAvatar{/block:ShowAvatar} -->
@@ -67,11 +68,11 @@
 
     <!-- Custom Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Yrsa:300,400,600|Lora:400i,700i&subset=latin-ext">
-    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/vG9ochcw5/sulahnnehn-icons.css">
+    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/If3oigy5t/sulahnnehn-icons.css">
     <!-- /Custom Fonts -->
 
     <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/yoLoiemyq/main.css">
+    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/p7Foillhq/main.css">
 
     <style>
         ::-moz-selection {
@@ -296,13 +297,6 @@
                     </form>
                 </li>
                 {/block:IfShowSearchForm}
-                {block:PermalinkPage}
-                {block:Posts}{block:Date}
-                <li id="embed-post" class="control-item">
-                    <a href="{EmbedUrl}" title="Embed" id="embed-post-link" class="icon-code control-icon badge" target="_blank"></a>
-                </li>
-                {/block:Date}{/block:Posts}
-                {/block:PermalinkPage}
                 <li id="tumblr-message" class="control-item">
                     <a href="https://www.tumblr.com/dashboard?conversation={Name}" title="Message {Name}" id="tumblr-message-link" class="icon-feather control-icon badge" target="_blank"></a>
                 </li>
@@ -671,6 +665,43 @@
         <!-- /About the Author Menu -->
         {/block:IfAboutTheAuthor}
 
+        {block:IfShowFeaturedCharacters}
+        <!-- Featured Characters Menu -->
+        <h2 id="characters-title" class="aside-title lightcaps">
+            <a href="#" id="characters-toggler" class="toggler" data-toggle="featured-characters">
+                <span class="toggler-icon icon-group badge"></span>
+                <span class="toggler-text">Featured Characters</span>
+            </a>
+        </h2>
+        <ul id="featured-characters" class="toggled">
+            <li class="icon-right-dir">
+                <a href="/tagged/sibylla-surana">Sibylla Surana</a>
+                <small class="game">(DA: Origins)</small>
+            </li>
+            <li class="icon-right-dir">
+                <a href="/tagged/cyril-valerian">Cyril Valerian</a>
+                <small class="game">(DA Universe)</small>
+            </li>
+            <li class="icon-right-dir">
+                <a href="/tagged/alyssia-hawke">Alyssia Hawke</a>
+                <small class="game">(DA2)</small>
+            </li>
+            <li class="icon-right-dir">
+                <a href="/tagged/venka-cadash">Venka Cadash</a>
+                <small class="game">(DA: Inquisition)</small>
+            </li>
+            <li class="icon-right-dir">
+                <a href="/tagged/quintus-alessio">Quintus Alessio</a>
+                <small class="game">(Skyrim)</small>
+            </li>
+            <li class="icon-right-dir">
+                <a href="/tagged/signy-alessio">Signy Alessio</a>
+                <small class="game">(Skyrim)</small>
+            </li>
+        </ul>
+        <!-- /Featured Characters Menu -->
+        {/block:IfShowFeaturedCharacters}
+
         <!-- Other Blogs Menu -->
         <h2 id="other-blogs-title" class="aside-title lightcaps">
             <a href="#" id="other-blogs-toggler" class="toggler" data-toggle="other-blogs">
@@ -723,6 +754,10 @@
                 <a href="http://{text:Avatar Art Credit}.tumblr.com" target="_blank">{text:Avatar Art Credit}</a>
             </li>
             {/block:IfAvatarArtCredit}
+            <li class="icon-right-dir">
+                Theme by
+                <a href="https://github.com/BubblesSOC/bubs-tumblr-theme/tree/sulahnnehn" target="_blank">Me</a>
+            </li>
         </ul>
         <!-- /Credits Menu -->
     </aside>

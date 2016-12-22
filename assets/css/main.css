@@ -268,7 +268,7 @@ pre {
 .chat-container, .fake-list,
 .tags, .post-icons, .post-sources,
 .notes, .pagination,
-#other-blogs, #credits {
+.toggled:not(#about-text) {
     list-style-type: none;
     padding: 0;
 }
@@ -1089,6 +1089,9 @@ ref: http://stackoverflow.com/a/21715659/954677
 #about-title .icon-crown:before {
     top: 0.0625rem; /* 1px */
 }
+#characters-title .icon-group:before {
+    left: 0;
+}
 
 #credits-toggler.toggle-open .badge.icon-heart-filled,
 #credits-toggler:hover .badge.icon-heart-filled {
@@ -1104,6 +1107,17 @@ ref: http://stackoverflow.com/a/21715659/954677
 #blog-aside .icon-right-dir:before {
     font-size: 0.625rem; /* 10px */
     margin-right: 0.1875rem; /* 3px */
+}
+#featured-characters .icon-right-dir:before,
+#other-blogs .icon-right-dir:before {
+    margin-right: 0.3125rem; /* 5px */
+}
+
+#featured-characters .game {
+    font-size: 0.625rem; /* 10px */
+}
+#featured-characters .game:before {
+    content: ' ';
 }
 
 /* ==========================================================================
