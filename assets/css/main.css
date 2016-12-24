@@ -622,6 +622,10 @@ pre {
     width: 100%;
 }
 
+.tmblr-lightbox .lightbox-image {
+    max-width: none;
+}
+
 .post:not(.photoset-post) .post-photo,
 .photoset-row:first-child.columns-1 .photo-link {
     -webkit-border-radius: 4px 4px 0 0;
