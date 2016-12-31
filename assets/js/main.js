@@ -315,14 +315,21 @@
             $blogHeader = $('#blog-header'),
             borderColor = $blogHeader.data('border-color');
 
-        $(window).scroll(function() {
-            if ( $(this).scrollTop() > 0 ) {
+        // scroll optimization with window.requestAnimationFrame
+        // ref: https://developer.mozilla.org/en-US/docs/Web/Events/scroll
+        var last_known_scroll_position = 0,
+            ticking = false;
+
+        var blogHeaderBorder = function(scrollPos) {
+            if (scrollPos > 0) {
                 $blogHeader.css('border-bottom-color', borderColor);
             } else {
                 $blogHeader.css('border-bottom-color', 'transparent');
             }
+        };
 
-            if ( $(this).scrollTop() > 400 ) {
+        var elevatorFade = function(scrollPos) {
+            if (scrollPos > 400) {
                 if ( $elevator.css('display') == 'none' ) {
                     $spinner.css('bottom', spinInit);
                     $elevator.fadeIn(400, function() {
@@ -334,6 +341,18 @@
                     $spinner.css('bottom', spinShift);
                 });
             }
+        };
+
+        window.addEventListener('scroll', function(e) {
+            last_known_scroll_position = window.scrollY;
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    blogHeaderBorder(last_known_scroll_position);
+                    elevatorFade(last_known_scroll_position);
+                    ticking = false;
+                });
+            }
+            ticking = true;
         });
 
         // animated scroll to top
