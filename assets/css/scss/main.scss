@@ -1,9 +1,12 @@
+@import 'mixins';
+
 html {
-    font-size: 100%;
+    font-size: 100%; // 16px
 }
 
 body {
     font: 0.8125rem/175% 'Karla', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    // 13px/22.75px
 }
 
 audio, canvas, iframe, img, svg, video {
@@ -55,21 +58,17 @@ h2 {
     font-size: 1.5em;
     margin: 0.83em 0;
 }
-
 h3 {
     font-size: 1.17em;
     margin: 1em 0;
 }
-
 h4 {
     margin: 1.33em 0;
 }
-
 h5 {
     font-size: 0.83em;
     margin: 1.67em 0;
 }
-
 h6 {
     font-size: 0.67em;
     margin: 2.33em 0;
@@ -83,6 +82,7 @@ pre {
 /* ==========================================================================
    Helper classes
    ========================================================================== */
+
 .hidden {
     display: none !important;
     visibility: hidden;
@@ -103,25 +103,20 @@ pre {
 }
 
 .circle, .badge, .notes .avatar {
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-radius: 50%;
+    @include border-radius(50%);
 }
 
 .badge {
     display: inline-block;
-    width: 1.8125rem;
-    height: 1.8125rem;
-    padding: 0.5rem;
-    line-height: 0.8125rem;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    box-sizing: border-box;
-}
-.badge:before {
-    font-size: 0.8125rem;
+    width: px2rem($badge-width-height);
+    height: px2rem($badge-width-height);
+    padding: px2rem(8px);
+    line-height: px2rem(13px);
+    @include border-box-sizing;
+
+    &:before {
+        font-size: px2rem(13px);
+    }
 }
 
 .lightcaps,
@@ -131,53 +126,35 @@ pre {
     line-height: 100%;
 }
 
-.transitions-enabled a {
-    -webkit-transition: color 0.2s ease-in-out;
-    -moz-transition: color 0.2s ease-in-out;
-    -o-transition: color 0.2s ease-in-out;
-    transition: color 0.2s ease-in-out;
-}
-.transitions-enabled .badge {
-    -webkit-transition: background-color 0.2s ease-in-out;
-    -moz-transition: background-color 0.2s ease-in-out;
-    -o-transition: background-color 0.2s ease-in-out;
-    transition: background-color 0.2s ease-in-out;
-}
-.transitions-enabled .post-date-link, .transitions-enabled .index .tag-link, .transitions-enabled .more_notes_link {
-    -webkit-transition: border-color 0.2s ease-in-out;
-    -moz-transition: border-color 0.2s ease-in-out;
-    -o-transition: border-color 0.2s ease-in-out;
-    transition: border-color 0.2s ease-in-out;
-}
-.transitions-enabled #blog-header {
-    -webkit-transition: border-bottom-color 0.4s ease-in-out, height 0.2s ease-in-out;
-    -moz-transition: border-bottom-color 0.4s ease-in-out, height 0.2s ease-in-out;
-    -o-transition: border-bottom-color 0.4s ease-in-out, height 0.2s ease-in-out;
-    transition: border-bottom-color 0.4s ease-in-out, height 0.2s ease-in-out;
-}
-.transitions-enabled #blog-title {
-    -webkit-transition: font-size 0.2s ease-in-out;
-    -moz-transition: font-size 0.2s ease-in-out;
-    -o-transition: font-size 0.2s ease-in-out;
-    transition: font-size 0.2s ease-in-out;
-}
-.transitions-enabled #blog-description,
-.transitions-enabled #social-icons {
-    -webkit-transition: height 0.2s ease-in-out;
-    -moz-transition: height 0.2s ease-in-out;
-    -o-transition: height 0.2s ease-in-out;
-    transition: height 0.2s ease-in-out;
-}
-.transitions-enabled #elevator {
-    -webkit-transition: background-color 0.2s ease-in-out, bottom 0.4s ease-in-out, opacity 0.6s ease-in-out;
-    -moz-transition: background-color 0.2s ease-in-out, bottom 0.4s ease-in-out, opacity 0.6s ease-in-out;
-    -o-transition: background-color 0.2s ease-in-out, bottom 0.4s ease-in-out, opacity 0.6s ease-in-out;
-    transition: background-color 0.2s ease-in-out, bottom 0.4s ease-in-out, opacity 0.6s ease-in-out;
+.transitions-enabled {
+    a {
+        @include transition(color);
+    }
+    .badge {
+        @include transition(background-color);
+    }
+    .post-date-link, .index .tag-link, .more_notes_link {
+        @include transition(border-color 0.2s);
+    }
+    #blog-header {
+        @include transition(border-bottom-color 0.4s, height);
+    }
+    #blog-title {
+        @include transition(font-size);
+    }
+    #blog-description,
+    #social-icons {
+        @include transition(height);
+    }
+    #elevator {
+        @include transition(background-color, bottom 0.4s, opacity 0.6s);
+    }
 }
 
 /* ==========================================================================
     General Layout Styles
    ========================================================================== */
+
 .tmblr-iframe {
     display: none;
 }
@@ -185,13 +162,16 @@ pre {
 #wrapper, #blog-footer {
     margin: 0 auto;
     width: 100%;
-    max-width: 1080px;
+    max-width: $wrapper-max-width;
 }
 
 .permalink #wrapper {
-    width: 810px;
+    width: $permalink-post-width + $post-lr-padding + $post-aside-width;
     max-width: none;
 }
+
+$blog-header-height: px2rem(124px);
+// 40px (padding-top) + 18px + 13px (#blog-title) + 13px (#social-icons) + 40px (padding-bottom)
 
 #blog-header {
     position: fixed;
@@ -199,45 +179,47 @@ pre {
     left: 0;
     z-index: 10;
     width: 100%;
-    height: 7.75rem;
+    height: $blog-header-height;
     padding: 40px 0;
     border-bottom: 1px solid transparent;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    box-sizing: border-box;
-}
-#blog-header.compact {
-    height: 4.4375rem;
-    padding: 29px 0;
+    @include border-box-sizing;
+
+    &.compact {
+        height: px2rem(71px);
+        // 29px (padding-top) + 13px (#blog-title) + 29px (padding-bottom)
+        padding: 29px 0;
+    }
 }
 
 #posts-container {
-    margin-top: 7.75rem;
+    margin-top: $blog-header-height;
 }
 
 .permalink #posts-container.has-posts {
-    width: 540px;
+    width: $permalink-post-width;
 }
 
 /* ==============
     Progress Bar
    ============== */
+
 #nprogress {
     pointer-events: none;
-}
-#nprogress .progress-bar {
-    position: fixed;
-    z-index: 1031;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
+
+    .progress-bar {
+        position: fixed;
+        z-index: 1031;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+    }
 }
 
 /* ============
     Flat Lists
    ============ */
+
 #main-menu, #social-icons,
 .chat-container, .fake-list,
 .tags, .post-icons, .post-sources,
@@ -256,6 +238,7 @@ pre {
 /* =========================
     Bottom Border for Hover
    ========================= */
+
 .post-date-link,
 .index .tag-link,
 .more_notes_link {
@@ -265,9 +248,10 @@ pre {
 /* ==========================================================================
    Header Styles
    ========================================================================== */
+
 #header-wrapper {
     margin: 0 auto;
-    max-width: 1080px;
+    max-width: $wrapper-max-width;
     position: relative;
 }
 
@@ -283,37 +267,35 @@ pre {
 
 #blog-title {
     top: 0;
-    left: 20px;
-    font-size: 1.125rem;
+    left: $post-lr-padding;
+    font-size: px2rem(18px);
     letter-spacing: 11px;
 }
 
 #blog-description {
-    top: 1.625rem;
-    right: 20px;
-    font-size: 0.6875rem;
-    height: 0.8125rem;
-    line-height: 0.8125rem;
+    top: px2rem(26px); // 13px (#main-menu) + 13px
+    right: $post-lr-padding;
+    font-size: px2rem(11px);
+    height: px2rem(13px);
+    line-height: px2rem(13px);
 }
 
 #main-menu {
     top: 0;
-    right: 20px;
+    right: $post-lr-padding;
 }
-
 .menu-item {
-    margin-right: 2rem;
+    margin-right: px2rem(32px);
     text-transform: lowercase;
 }
 
 #social-icons {
-    top: 1.9375rem;
-    left: 20px;
+    top: px2rem(31px); // 18px (#blog-title) + 13px
+    left: $post-lr-padding;
     height: 1em;
 }
-
 .social-item {
-    margin-right: 0.8125rem;
+    margin-right: px2rem(13px);
 }
 
 .menu-item:last-child,
@@ -321,43 +303,45 @@ pre {
     margin-right: 0;
 }
 
-.compact #blog-title {
-    font-size: 0.8125rem;
-}
-.compact #blog-description,
-.compact #social-icons {
-    height: 0;
-    overflow: hidden;
+.compact {
+    #blog-title {
+        font-size: px2rem(13px);
+    }
+    #blog-description,
+    #social-icons {
+        height: 0;
+        overflow: hidden;
+    }
 }
 
 /* ==========================================================================
     Main Styles
    ========================================================================== */
+
 .results-title {
-    margin: 0 20px 20px;
-    font-size: 0.75rem;
+    margin: 0 $post-lr-padding 20px;
+    font-size: px2rem(12px);
     text-transform: lowercase;
     letter-spacing: normal;
-}
-.results-title:before {
-    vertical-align: middle;
-    margin-right: 3px;
-}
-.results-title .the-query {
-    font-style: normal;
-    font-weight: bold;
-    letter-spacing: 1px;
+
+    &:before {
+        vertical-align: middle;
+        margin-right: 3px;
+    }
+
+    .the-query {
+        font-style: normal;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
 }
 
 .index .post, #grid-sizer {
     width: 50%;
-    max-width: 540px;
-    min-width: 440px;
-    padding: 0 20px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    box-sizing: border-box;
+    max-width: $post-max-width;
+    min-width: $post-min-width;
+    padding: 0 $post-lr-padding;
+    @include border-box-sizing;
 }
 
 .index .post {
@@ -371,10 +355,7 @@ pre {
 
 .post-content {
     padding-bottom: 1em;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -o-border-radius: 4px;
-    border-radius: 4px;
+    @include border-radius(4px);
 }
 
 .type-quote .post-content,
@@ -382,6 +363,7 @@ pre {
     padding-top: 1em;
 }
 
+// I think I'll cheat instead of resetting all the top margins...
 .type-text .post-content,
 .type-chat .post-content {
     padding-top: 1px;
@@ -390,24 +372,24 @@ pre {
 /* ===========
     The Posts
    =========== */
+
 .post iframe {
     max-width: 100%;
 }
 
 .post-title {
-    margin: 0.8125rem;
+    margin: 0.8125rem; // 13px
     line-height: 115%;
 }
-
 .link-name, .chat-title {
-    font-size: 1.438rem;
+    font-size: 1.438rem; // 23px
 }
 
 .post-title-link:after {
     vertical-align: bottom;
     opacity: 0;
+    //@include transition(opacity);
 }
-
 .post-title-link:hover:after {
     opacity: 1;
 }
@@ -415,6 +397,28 @@ pre {
 .post-body {
     margin: 0 1em;
 }
+
+// .post-body small {
+//     line-height: 100%;
+// }
+//
+// .post-body small,
+// .post-body i,
+// .post-body em,
+// .post-body cite,
+// .post-body code,
+// .post-body pre {
+//     font-size: 0.6875rem; // 11px
+// }
+//
+// .post-body small small,
+// .post-body small i,
+// .post-body small em,
+// .post-body small cite,
+// .post-body small code,
+// .post-body small pre {
+//     font-size: 0.5625rem; // 9px
+// }
 
 .post-body figure {
     margin: 1em 0;
@@ -432,17 +436,18 @@ pre {
 
 .tmblr-full.stretched .tmblr-attribution {
     margin: 0 1em;
-    font-size: 0.6875rem;
+    font-size: 0.6875rem; // 11px
 }
 
 .tmblr-full.stretched .tmblr-attribution .icon-link-ext:before {
-    margin-right: 0.1875rem;
+    margin-right: 0.1875rem; // 3px
     vertical-align: middle;
 }
 
 /* ============
     Photo Post
    ============ */
+
 .post-photo {
     width: 100%;
 }
@@ -453,29 +458,20 @@ pre {
 
 .post:not(.photoset-post) .post-photo,
 .photoset-row:first-child.columns-1 .photo-link {
-    -webkit-border-radius: 4px 4px 0 0;
-    -moz-border-radius: 4px 4px 0 0;
-    -o-border-radius: 4px 4px 0 0;
-    border-radius: 4px 4px 0 0;
+    @include border-radius(4px 4px 0 0);
 }
 
 .photoset-row:first-child:not(.columns-1) .photo-link:first-child {
-    -webkit-border-top-left-radius: 4px;
-    -moz-border-top-left-radius: 4px;
-    -o-border-top-left-radius: 4px;
-    border-top-left-radius: 4px;
+    @include border-radius(4px, top-left);
 }
-
 .photoset-row:first-child:not(.columns-1) .photo-link:last-child {
-    -webkit-border-top-right-radius: 4px;
-    -moz-border-top-right-radius: 4px;
-    -o-border-top-right-radius: 4px;
-    border-top-right-radius: 4px;
+    @include border-radius(4px, top-right);
 }
 
 /* ============
     Quote Post
    ============ */
+
 .quote-container {
     padding: 0;
     border-width: 0;
@@ -483,20 +479,18 @@ pre {
 }
 
 .the-quote {
-    margin: 0 0.8125rem 0.8125rem;
+    margin: 0 0.8125rem 0.8125rem; // 13px
     line-height: 125%;
 }
 
 .quote-container.short .the-quote {
-    font-size: 1.25rem;
+    font-size: 1.25rem; // 20px
 }
-
 .quote-container.medium .the-quote {
-    font-size: 1rem;
+    font-size: 1rem; // 16px
 }
-
 .quote-container.long .the-quote {
-    font-size: 0.875rem;
+    font-size: 0.875rem; // 14px
     line-height: 150%;
 }
 
@@ -513,16 +507,15 @@ pre {
 /* ===========
     Link Post
    =========== */
+
 .link-container {
     display: block;
     padding: 1em 0;
     background-color: transparent;
-    -webkit-border-radius: 4px 4px 0 0;
-    -moz-border-radius: 4px 4px 0 0;
-    -o-border-radius: 4px 4px 0 0;
-    border-radius: 4px 4px 0 0;
-}
 
+    //@include transition(background-color);
+    @include border-radius(4px 4px 0 0);
+}
 .link-container.has-thumbnail {
     padding-top: 0;
 }
@@ -530,18 +523,17 @@ pre {
 .link-container:not(.has-thumbnail) .link-name {
     margin-top: 0;
 }
-
 .link-name:after {
     vertical-align: bottom;
-    margin-left: 0.625rem;
+    margin-left: 0.625rem; // 10px
 }
 
 .link-excerpt {
     margin: 0 1em;
+    //@include transition(border-color);
 }
-
 .link-excerpt .the-excerpt {
-    font-size: 0.75rem;
+    font-size: 0.75rem; // 12px
     line-height: 150%;
     margin-bottom: 0;
 }
@@ -554,6 +546,7 @@ pre {
 /* ===========
     Chat Post
    =========== */
+
 .chat-container {
     margin-top: 0;
 }
@@ -575,16 +568,14 @@ pre {
 .chat-line.has-label .line-text {
     float: left;
     width: 80%;
-    padding-left: 0.3125rem;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    box-sizing: border-box;
+    padding-left: 0.3125rem; // 5px
+    @include border-box-sizing;
 }
 
 /* ============
     Audio Post
    ============ */
+
 .type-audio .post-content {
     position: relative;
 }
@@ -598,7 +589,6 @@ pre {
     padding: 1em 1em 0;
     min-height: 71px;
 }
-
 .index .audio-info {
     margin-bottom: 1em;
 }
@@ -611,14 +601,14 @@ pre {
 }
 
 .track-name {
-    font-size: 1.063rem;
+    font-size: 1.063rem; // 17px
     line-height: 115%;
     margin: 0;
 }
 
 .artist {
-    font-size: 0.6875rem;
-    margin: 0.125rem 0 0;
+    font-size: 0.6875rem; // 11px
+    margin: 0.125rem 0 0; // 2px
 }
 
 .album-art {
@@ -643,12 +633,12 @@ pre {
 /* =============
     Answer Post
    ============= */
+
 .question-container,
 .answer-container {
     margin: 0 1em;
     position: relative;
 }
-
 .answer-container {
     margin-top: 1em;
     padding-top: 1em;
@@ -662,22 +652,18 @@ pre {
     top: 0;
     left: 0;
 }
-
 .answerer-portrait {
     top: 1em;
 }
 
 .question-author,
 .answer-author {
-    font-size: 0.875rem;
+    font-size: 0.875rem; // 14px
     text-transform: lowercase;
     line-height: 100%;
     height: 40px;
-    padding: 0.8125rem 0 0 50px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    box-sizing: border-box;
+    padding: 0.8125rem 0 0 50px; // 13px
+    @include border-box-sizing;
 }
 
 .asker, .answerer {
@@ -693,7 +679,6 @@ pre {
 .type-answer .post-body {
     border-top: 1px solid #eee;
 }
-
 .type-answer .post-body:empty {
     border-top-width: 0;
 }
@@ -701,20 +686,22 @@ pre {
 /* =======
     Pages
    ======= */
+
 .page-content .lightcaps {
     font-weight: normal;
-    font-size: 0.75rem;
+    font-size: 0.75rem; // 12px
     line-height: 125%;
 }
 
 .page-content .lightcaps small {
-    font-size: 0.625rem;
+    font-size: 0.625rem; // 10px
     letter-spacing: 1px;
 }
 
 /* ===========
     Post Meta
    =========== */
+
 .index .post-aside,
 .post-footer {
     padding: 1em 1em 0;
@@ -722,17 +709,18 @@ pre {
 
 .permalink .post-aside {
     position: fixed;
-    top: 7.75rem;
-    width: 250px;
-    margin-left: 560px;
+    top: $blog-header-height;
+    width: $post-aside-width;
+    margin-left: $permalink-post-width + $post-lr-padding;
 }
 
+// Begin Post Date
 .post-date {
-    font-size: 0.6875rem;
+    font-size: px2rem(11px);
 }
 
 .index .post-date {
-    line-height: 0.6875rem;
+    line-height: px2rem(11px);
     text-transform: lowercase;
     float: left;
     max-width: 18%;
@@ -741,64 +729,72 @@ pre {
 .permalink .post-date {
     line-height: 150%;
 }
+// End Post Date
 
+// Begin Post Tags
 .tags {
     line-height: 150%;
     text-transform: lowercase;
 }
 
-.index .tags {
-    font-size: 0.5625rem;
-    float: left;
-    margin: 0;
-    padding-left: 20px;
-    max-width: 77%;
-    position: relative;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    box-sizing: border-box;
-}
-.index .tags:before {
-    content: '/';
-    position: absolute;
-    left: 8px;
-    font-size: 0.6875rem;
-}
-.index .has-external-audio .tags {
-    max-width: 71%;
-}
-.index .tag {
-    float: left;
-    padding-right: 0.3125rem;
+.index {
+    .tags {
+        font-size: px2rem(9px);
+        float: left;
+        margin: 0;
+        padding-left: 20px;
+        max-width: 77%;
+        position: relative;
+        @include border-box-sizing;
+
+        &:before {
+            content: '/';
+            position: absolute;
+            left: 8px;
+            font-size: px2rem(11px);
+        }
+    }
+    .has-external-audio .tags {
+        max-width: 71%;
+    }
+
+    .tag {
+        float: left;
+        padding-right: px2rem(5px);
+    }
 }
 
 .permalink .tags {
-    font-size: 0.625rem;
+    font-size: px2rem(10px);
 }
+// End Post Tags
 
+// Begin Post Icons
 .index .post-icons {
     float: right;
     margin: 0;
-    font-size: 0.6875rem;
-    line-height: 0.6875rem;
+    font-size: px2rem(11px);
+    line-height: px2rem(11px);
 }
 
-.permalink .post-icons {
-    display: none;
-    font-size: 0.625rem;
-    line-height: 150%;
-    text-transform: lowercase;
-}
-.permalink .post.type-audio .post-icons {
-    display: block;
-}
-.permalink .play-count:before {
-    margin-right: 6px;
-}
-.permalink .external-audio:before {
-    content: '/';
-    margin-left: 3px;
+.permalink {
+    .post-icons {
+        display: none;
+        font-size: px2rem(10px);
+        line-height: 150%;
+        text-transform: lowercase;
+    }
+    .post.type-audio .post-icons {
+        display: block;
+    }
+
+    .play-count:before {
+        margin-right: 6px;
+    }
+    .external-audio:before {
+        content: '/';
+        margin-left: 3px;
+    }
 }
 
 .index .external-audio,
@@ -806,30 +802,24 @@ pre {
 .reblog-button {
     float: right;
     text-align: right;
-    padding-left: 0.25rem;
+    padding-left: 0.25rem; // 4px
 }
-
 .like-button {
-    width: 0.8125rem;
-    padding-left: 0.125rem;
+    width: 0.8125rem; // 13px
+    padding-left: 0.125rem; // 2px
     position: relative;
 }
-
 .reblog-button {
     padding-left: 0;
 }
 
 .post-icon {
     display: block;
-    height: 0.6875rem;
+    height: 0.6875rem; // 11px
 }
-
 .like-icon {
     visibility: hidden;
-    -webkit-transition: color 0.2s ease-in-out;
-    -moz-transition: color 0.2s ease-in-out;
-    -o-transition: color 0.2s ease-in-out;
-    transition: color 0.2s ease-in-out;
+    @include transition(color);
 }
 
 /*
@@ -848,7 +838,6 @@ ref: http://stackoverflow.com/a/21715659/954677
     opacity: 0;
     display: none;
 }
-
 .like_button iframe {
     position: relative;
     top: -3px;
@@ -857,31 +846,34 @@ ref: http://stackoverflow.com/a/21715659/954677
 .like_button.liked + .like-icon {
     color: #d75f45 !important;
 }
-
 .like_button.liked + .like-icon:before {
-    content: '\e813';
+    content: '\e813'; // icon-heart-filled
     position: relative;
-    right: 0.0625rem;
+    right: 0.0625rem; // 1px
 }
+// End Post Icons
 
+// Begin Post Sources
 .post-sources {
-    font-size: 0.625rem;
+    font-size: px2rem(10px);
     line-height: 150%;
 }
 
 .submission {
     text-transform: lowercase;
-}
-.submission:before {
-    vertical-align: middle;
-    margin-right: 3px;
+    &:before {
+        vertical-align: middle;
+        margin-right: 3px;
+    }
 }
 
 .via:after {
     content: '/';
     margin-right: 5px;
 }
+// End Post Sources
 
+// Begin Notes Section
 .note-count {
     margin-top: 0;
     padding-top: 1em;
@@ -890,7 +882,7 @@ ref: http://stackoverflow.com/a/21715659/954677
 
 .notes {
     margin: 0;
-    font-size: 0.75rem;
+    font-size: 0.75rem; // 12px
 }
 
 .notes .avatar_frame {
@@ -902,13 +894,15 @@ ref: http://stackoverflow.com/a/21715659/954677
 }
 
 .more_notes_link_container {
-    font-size: 0.625rem;
+    font-size: 0.625rem; // 10px
     line-height: inherit;
 }
+// End Notes Section
 
 /* ==========================================================================
     Footer Styles
    ========================================================================== */
+
 .pagination {
     margin: 0;
 }
@@ -928,38 +922,83 @@ ref: http://stackoverflow.com/a/21715659/954677
     text-align: right;
 }
 
+
+// #day-pagination {
+//     margin: 0 20px;
+//     text-transform: lowercase;
+// }
+//
+// #prev-day {
+//     float: left;
+//     width: 50%;
+// }
+//
+// #next-day {
+//     float: right;
+//     width: 50%;
+//     text-align: right;
+// }
+
 /* =========
     Buttons
    ========= */
+
 #spinner, #elevator, #theme-credit {
     position: fixed;
     bottom: 20px;
     right: 20px;
 }
 
+// @-moz-keyframes spin {
+//     from { -moz-transform: rotate(0deg); }
+//     to   { -moz-transform: rotate(360deg); }
+// }
+// @-webkit-keyframes spin {
+//     from { -webkit-transform: rotate(0deg); }
+//     to   { -webkit-transform: rotate(360deg); }
+// }
+// @keyframes spin {
+//     from { transform: rotate(0deg); }
+//     to   { transform: rotate(360deg); }
+// }
+//
+// #spinner {
+//     bottom: 5.25rem; // 52px + 29px (#elevator) + 3px = 84px
+//     opacity: 0;
+//     @include transition(bottom 0.4s, opacity 0.4s);
+// }
+// #spinner.spin {
+//     opacity: 1;
+//     cursor: progress;
+//     -webkit-animation: spin 2s linear infinite;
+//     -moz-animation: spin 2s linear infinite;
+//     -o-animation: spin 2s linear infinite;
+//     animation: spin 2s linear infinite;
+// }
+
 #elevator {
     opacity: 0;
-}
-#elevator.visible {
-    opacity: 1;
-    bottom: 3.25rem;
-}
-#elevator.icon-up-bold:before {
-    position: relative;
-    top: -0.125rem;
+
+    &.visible {
+        opacity: 1;
+        bottom: px2rem(20px + $badge-width-height + 3px);
+    }
+
+    &.icon-up-bold:before {
+        position: relative;
+        top: px2rem(-2px);
+    }
 }
 
 #theme-credit:hover {
     color: #d75f45 !important;
-}
-#theme-credit:hover:before {
-    content: '\e813';
-    position: relative;
-    left: 0.0625rem;
+    &:before {
+        content: '\e813'; // icon-heart-filled
+        position: relative;
+        left: px2rem(1px);
+    }
 }
 
 /* ==========================================================================
     Media Queries
    ========================================================================== */
-
-/*# sourceMappingURL=main.css.map */

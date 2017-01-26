@@ -20,7 +20,6 @@
 
     {block:Hidden}
     <!-- Theme Options -->
-    <meta name="image:Logo" content="">
     <!-- HeaderImage: {HeaderImage} -->
     <!-- AvatarShape: {AvatarShape} -->
 
@@ -38,9 +37,6 @@
     <meta name="font:Heading Font" content="{TitleFont}">
 
     <meta name="if:Show Submit Link" content="1">
-    <meta name="if:Show Likes Link" content="1">
-    <meta name="if:Show Search Form" content="1">
-    <meta name="if:Show Featured Characters" content="0">
     <!-- {block:ShowHeaderImage}ShowHeaderImage{/block:ShowHeaderImage} -->
     <!-- {block:HideHeaderImage}HideHeaderImage{/block:HideHeaderImage} -->
     <!-- {block:ShowAvatar}ShowAvatar{/block:ShowAvatar} -->
@@ -54,11 +50,17 @@
     <meta name="text:Ask Link Label" content="Ask">
     <meta name="text:Submit Link Label" content="Submit">
     <meta name="text:Alternate Description" content="">
-    <meta name="text:About the Author" content="">
-    <meta name="text:Header Art Credit" content="">
-    <meta name="text:Sidebar Art Credit" content="">
-    <meta name="text:Avatar Art Credit" content="">
-    <meta name="text:Google Analytics ID" content="">
+
+    <meta name="text:8tracks URL" content="">
+    <meta name="text:ao3 URL" content="">
+    <meta name="text:Facebook URL" content="">
+    <meta name="text:Github URL" content="">
+    <meta name="text:Instagram URL" content="">
+    <meta name="text:Spotify URL" content="">
+    <meta name="text:Steam URL" content="">
+    <meta name="text:Tumblr URL" content="">
+    <meta name="text:Twitch URL" content="">
+    <meta name="text:Twitter URL" content="">
     <!-- /Theme Options -->
     {/block:Hidden}
 
@@ -67,12 +69,12 @@
     <link rel="alternate" type="application/rss+xml" href="{RSS}">
 
     <!-- Custom Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Yrsa:300,400,600|Lora:400i,700i&subset=latin-ext">
-    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/a1eoiyejg/sulahnnehn-icons.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla:400,400i,700,700i&amp;subset=latin-ext">
+    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/zAVojo6hb/bubblessoc-icons.min.css">
     <!-- /Custom Fonts -->
 
     <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/IV8oionom/main.css">
+    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/TYlojuew5/main.css">
 
     <style>
         ::-moz-selection {
@@ -83,7 +85,6 @@
             background: {color:Highlight};
             text-shadow: none;
         }
-
         body {
             background-color: {color:Background};
             color: {color:Text};
@@ -94,7 +95,8 @@
         a:hover {
             color: {color:Link Hover};
         }
-        h1:not(.lightcaps), h2:not(.lightcaps):not(.results-title), h3:not(.lightcaps) {
+        h1:not(.lightcaps), h2:not(.lightcaps), h3:not(.lightcaps),
+        .menu-link, #day-pagination {
             font-family: {font:Heading Font};
         }
         hr {
@@ -112,8 +114,6 @@
             background-color: {color:Highlight};
             color: rgba({RGBcolor:Text}, 0.9) !important;
         }
-        .toggler:hover .badge,
-        .toggle-open .badge,
         .badge:hover {
             background-color: {color:Highlight Hover};
         }
@@ -125,14 +125,11 @@
         #blog-header {
             background-color: rgba({RGBcolor:Background}, 0.9);
         }
-
-        #blog-title-link:hover .blog-title-image {
-            box-shadow: 0 0 10px 1px {color:Accent};
+        #blog-title-link:hover {
+            color: {color:Link};
         }
-
-        #search-field {
-            background-color: {color:Post Background};
-            border-color: {color:Borders};
+        .social-icon {
+            color: rgba({RGBcolor:Link}, 0.75);
         }
 
         /* =============
@@ -142,7 +139,6 @@
         .results-title {
             color: rgba({RGBcolor:Text}, 0.9);
         }
-
         .post-content {
             background-color: {color:Post Background};
             -webkit-box-shadow: 1px 1px 0 {color:Borders};
@@ -150,20 +146,18 @@
             -o-box-shadow: 1px 1px 0 {color:Borders};
             box-shadow: 1px 1px 0 {color:Borders};
         }
-
         .answer-container,
         .type-link .post-body,
         .type-answer .post-body,
         .note-count {
             border-top-color: {color:Borders};
         }
-
         .the-quote,
         .question-author,
-        .answer-author {
+        .answer-author,
+        .permalink .post-date {
             font-family: {font:Heading Font};
         }
-
         .chat-line.even,
         .link-container:hover {
             background-color: rgba({RGBcolor:Highlight}, 0.75);
@@ -171,7 +165,6 @@
         .link-container:hover .link-excerpt {
             border-left-color: {color:Highlight Hover};
         }
-
         .like-icon {
             color: {color:Link};
         }
@@ -186,25 +179,16 @@
         #nprogress .progress-bar {
            background: {color:Accent};
         }
-
-        #blog-title-text, .menu-link,
+        #blog-title-link,
         .post-title-link, .link-container,
         .post-date-link, .index .tag-link,
-        .more_notes_link,
-        .toggler,
-        #prev-day .prev-text, #next-day .next-text {
+        .more_notes_link {
             color: {color:Text};
         }
-
-        .more_notes_link:hover,
-        .toggler:hover .toggler-text,
-        #prev-day .prev-link:hover .prev-text,
-        #next-day .next-link:hover .next-text {
+        .more_notes_link:hover {
             border-bottom-color: {color:Borders};
         }
-
-        .post-date-link:hover, .index .tag-link:hover,
-        .menu-link:hover, .menu-link.active {
+        .post-date-link:hover, .index .tag-link:hover {
             border-bottom-color: {color:Highlight Hover};
         }
 
@@ -214,115 +198,125 @@
 
         {CustomCSS}
     </style>
-
-    <!--<script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>-->
 </head>
 <body
 {block:IndexPage}class="index{block:SearchPage} search-page{block:NoSearchResults} no-results{/block:NoSearchResults}{/block:SearchPage}{block:TagPage} tag-page{/block:TagPage}{block:DayPage} day-page{/block:DayPage}"{/block:IndexPage}
 {block:PermalinkPage}class="permalink"{/block:PermalinkPage}
 {block:TagPage}data-tag="{PlaintextTag}"{/block:TagPage}>
 <div id="wrapper">
-    <!--[if lt IE 8]>
-    <p id="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+    <header id="blog-header">
+        <div id="header-wrapper">
+            <h1 id="blog-title">
+                <a href="/" id="blog-title-link">
+                    {block:IfAlternateTitle}{text:Alternate Title}{/block:IfAlternateTitle}
+                    {block:IfNotAlternateTitle}{Title}{/block:IfNotAlternateTitle}
+                </a>
+            </h1>
 
-    <header id="blog-header" data-border-color="{color:Borders}">
-        <h1 id="blog-title">
-            <a href="/" id="blog-title-link">
-                {block:IfLogoImage}
-                <img src="{image:Logo}" alt="{Title}" class="blog-title-image circle" id="blog-logo">
-                {/block:IfLogoImage}
-                {block:IfNotLogoImage}
-                <img src="{PortraitURL-128}" alt="{Title}" class="blog-title-image circle" id="blog-portrait">
-                {/block:IfNotLogoImage}
+            {block:IfAlternateDescription}
+            <p id="blog-description">{text:Alternate Description}</p>
+            {/block:IfAlternateDescription}
+            {block:IfNotAlternateDescription}{block:Description}
+            <p id="blog-description">{Description}</p>
+            {/block:Description}{/block:IfNotAlternateDescription}
 
-                {block:IfAlternateTitle}
-                <span id="blog-title-text">{text:Alternate Title}</span>
-                {/block:IfAlternateTitle}
-                {block:IfNotAlternateTitle}
-                <span id="blog-title-text">{Title}</span>
-                {/block:IfNotAlternateTitle}
-            </a>
-        </h1>
+            <nav>
+                <ul id="main-menu">
+                    {block:HasPages}
+                    {block:Pages}
+                    <li class="page menu-item">
+                        <a href="{URL}" class="page-link menu-link">{Label}</a>
+                    </li>
+                    {/block:Pages}
+                    {/block:HasPages}
 
-        <nav id="blog-nav">
-            <ul id="main-menu" class="lightcaps">
-                {block:HasPages}
-                {block:Pages}
-                <li class="page menu-item" data-page="{Label}">
-                    <a href="{URL}" class="page-link menu-link">{Label}</a>
-                </li>
-                {/block:Pages}
-                {/block:HasPages}
+                    {block:AskEnabled}
+                    <li class="menu-item">
+                        <a href="/ask" class="menu-link">
+                            {block:IfAskLinkLabel}{text:Ask Link Label}{/block:IfAskLinkLabel}
+                            {block:IfNotAskLinkLabel}{AskLabel}{/block:IfNotAskLinkLabel}
+                        </a>
+                    </li>
+                    {/block:AskEnabled}
 
-                {block:AskEnabled}
-                <li id="ask" class="menu-item">
-                    <a href="/ask" id="ask-link" class="menu-link">
-                        {block:IfAskLinkLabel}{text:Ask Link Label}{/block:IfAskLinkLabel}
-                        {block:IfNotAskLinkLabel}{AskLabel}{/block:IfNotAskLinkLabel}
-                    </a>
-                </li>
-                {/block:AskEnabled}
+                    {block:IfShowSubmitLink}{block:SubmissionsEnabled}
+                    <li class="menu-item">
+                        <a href="/submit" class="menu-link">
+                            {block:IfSubmitLinkLabel}{text:Submit Link Label}{/block:IfSubmitLinkLabel}
+                            {block:IfNotSubmitLinkLabel}{SubmitLabel}{/block:IfNotSubmitLinkLabel}
+                        </a>
+                    </li>
+                    {/block:SubmissionsEnabled}{/block:IfShowSubmitLink}
 
-                {block:IfShowSubmitLink}{block:SubmissionsEnabled}
-                <li id="submit" class="menu-item">
-                    <a href="/submit" id="submit-link" class="menu-link">
-                        {block:IfSubmitLinkLabel}{text:Submit Link Label}{/block:IfSubmitLinkLabel}
-                        {block:IfNotSubmitLinkLabel}{SubmitLabel}{/block:IfNotSubmitLinkLabel}
-                    </a>
-                </li>
-                {/block:SubmissionsEnabled}{/block:IfShowSubmitLink}
+                    <li class="menu-item">
+                        <a href="/archive" class="menu-link">{lang:Archive}</a>
+                    </li>
+                </ul>
 
-                <li id="archive" class="menu-item">
-                    <a href="/archive" id="archive-link" class="menu-link">{lang:Archive}</a>
-                </li>
-
-                {block:IfShowLikesLink}{block:Likes}
-                <li id="likes" class="menu-item">
-                    <a href="https://www.tumblr.com/liked/by/{Name}" id="likes-link" class="menu-link">
-                        {lang:Likes}
-                    </a>
-                </li>
-                {/block:Likes}{/block:IfShowLikesLink}
-            </ul>
-
-            <ul id="tumblr-controls" class="clearfix">
-                {block:IfShowSearchForm}
-                <li id="search" class="control-item{block:SearchPage} form-open{/block:SearchPage}">
-                    <a href="#" title="Open {lang:Search}" id="open-search" class="icon-search search-control control-icon badge"></a>
-                    <a href="#" title="Close {lang:Search}" id="close-search" class="icon-cancel search-control control-icon badge"></a>
-                    <form action="/search" method="get" id="search-form">
-                        <input type="search" placeholder="{lang:Search}" name="q" value="{SearchQuery}" id="search-field">
-                        <button type="submit" title="{lang:Search}" id="search-button" class="icon-search"></button>
-                    </form>
-                </li>
-                {/block:IfShowSearchForm}
-                <li id="tumblr-message" class="control-item">
-                    <a href="https://www.tumblr.com/dashboard?conversation={Name}" title="Message {Name}" id="tumblr-message-link" class="icon-feather control-icon badge" target="_blank"></a>
-                </li>
-                <li id="follow" class="control-item">
-                    <a href="https://www.tumblr.com/follow/{Name}" title="{lang:Follow} {Name}" id="follow-link" class="icon-plus control-icon badge" target="_blank"></a>
-                </li>
-                <li id="dashboard" class="control-item">
-                    <a href="https://www.tumblr.com/dashboard" title="Dashboard" id="dashboard-link" class="icon-home control-icon badge" target="_blank"></a>
-                </li>
-            </ul>
-        </nav>
+                <ul id="social-icons">
+                    {block:IfTwitterURL}
+                    <li class="social-item">
+                        <a href="{text:Twitter URL}" class="social-icon icon-twitter" target="_blank"></a>
+                    </li>
+                    {/block:IfTwitterURL}
+                    {block:IfFacebookURL}
+                    <li class="social-item">
+                        <a href="{text:Facebook URL}" class="social-icon icon-facebook" target="_blank"></a>
+                    </li>
+                    {/block:IfFacebookURL}
+                    {block:IfGithubURL}
+                    <li class="social-item">
+                        <a href="{text:Github URL}" class="social-icon icon-github" target="_blank"></a>
+                    </li>
+                    {/block:IfGithubURL}
+                    {block:IfInstagramURL}
+                    <li class="social-item">
+                        <a href="{text:Instagram URL}" class="social-icon icon-instagram" target="_blank"></a>
+                    </li>
+                    {/block:IfInstagramURL}
+                    {block:IfAo3URL}
+                    <li class="social-item">
+                        <a href="{text:ao3 URL}" class="social-icon icon-ao3" target="_blank"></a>
+                    </li>
+                    {/block:IfAo3URL}
+                    {block:If8tracksURL}
+                    <li class="social-item">
+                        <a href="{text:8tracks URL}" class="social-icon icon-8tracks" target="_blank"></a>
+                    </li>
+                    {/block:If8tracksURL}
+                    {block:IfSpotifyURL}
+                    <li class="social-item">
+                        <a href="{text:Spotify URL}" class="social-icon icon-spotify" target="_blank"></a>
+                    </li>
+                    {/block:IfSpotifyURL}
+                    {block:IfSteamURL}
+                    <li class="social-item">
+                        <a href="{text:Steam URL}" class="social-icon icon-steam" target="_blank"></a>
+                    </li>
+                    {/block:IfSteamURL}
+                    {block:IfTwitchURL}
+                    <li class="social-item">
+                        <a href="{text:Twitch URL}" class="social-icon icon-twitch" target="_blank"></a>
+                    </li>
+                    {/block:IfTwitchURL}
+                </ul>
+            </nav>
+        </div> <!-- #header-wrapper -->
     </header> <!-- #blog-header -->
 
-    <main id="posts-container">
+    <main id="posts-container"{block:PermalinkPage}{block:Posts}{block:Date} class="has-posts"{/block:Date}{/block:Posts}{/block:PermalinkPage}>
         {block:TagPage}
-        <h2 class="results-title">
-            Posts tagged as &ldquo;<em class="the-query">{Tag}</em>&rdquo;
+        <h2 class="results-title icon-tag">
+            Posts tagged as <em class="the-query">{Tag}</em>
         </h2>
         {/block:TagPage}
         {block:SearchPage}
-        <h2 class="results-title">
-            Search results for &ldquo;<em class="the-query">{SearchQuery}</em>&rdquo;
+        <h2 class="results-title icon-search">
+            Search results for <em class="the-query">{SearchQuery}</em>:
         </h2>
         {/block:SearchPage}
         {block:DayPage}
-        <h2 class="results-title">
+        <h2 class="results-title icon-clock">
             {Month} {DayOfMonth}, {Year}
         </h2>
         {/block:DayPage}
@@ -331,7 +325,7 @@
             {block:IndexPage}<div id="grid-sizer"></div>{/block:IndexPage}
 
             {block:Posts}
-            <article id="{PostID}" class="post type-{PostType}{block:Panorama} panorama-post{/block:Panorama}{block:Photoset} photoset-post{/block:Photoset} {TagsAsClasses}">
+            <article id="{PostID}" class="post type-{PostType}{block:Panorama} panorama-post{/block:Panorama}{block:Photoset} photoset-post{/block:Photoset}">
                 <div class="post-content">
 
                 {block:Text}
@@ -355,19 +349,19 @@
                 <figure class="photo-container" id="photoset_{PostID}">
                     {block:IndexPage}
                     <a href="{Permalink}" class="photo-link" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" data-lowres="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}">
-                        <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" class="post-photo">
+                        <img src="{PhotoURL-500}" alt="{PhotoAlt}" class="post-photo">
                     </a>
                     {/block:IndexPage}
 
                     {block:PermalinkPage}
                     {LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" class="post-photo">{LinkCloseTag}
-                    {/block:PermalinkPage}
 
                     {block:Caption}
                     <figcaption class="caption post-body">
                         {Caption}
                     </figcaption>
                     {/block:Caption}
+                    {/block:PermalinkPage}
                 </figure>
                 <!-- /Photo Post -->
                 {/block:Photo}
@@ -378,11 +372,13 @@
                 <figure class="photo-container">
                     {LinkOpenTag}<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" class="post-photo">{LinkCloseTag}
 
+                    {block:PermalinkPage}
                     {block:Caption}
                     <figcaption class="caption post-body">
                         {Caption}
                     </figcaption>
                     {/block:Caption}
+                    {/block:PermalinkPage}
                 </figure>
                 <!-- /Panorama Post -->
                 {/block:Panorama}
@@ -393,15 +389,17 @@
                 <figure class="photo-container" data-layout='{JSPhotosetLayout}' id="photoset_{PostID}">
                     {block:Photos}
                     <a href="{PhotoURL-HighRes}" class="photo-link" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" data-lowres="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}">
-                        <img src="{PhotoURL-HighRes}" alt="{PlaintextCaption}" class="post-photo">
+                        <img src="{PhotoURL-500}" alt="{PlaintextCaption}" class="post-photo">
                     </a>
                     {/block:Photos}
 
+                    {block:PermalinkPage}
                     {block:Caption}
                     <figcaption class="caption post-body">
                         {Caption}
                     </figcaption>
                     {/block:Caption}
+                    {/block:PermalinkPage}
                 </figure>
                 <!-- /Photoset Post -->
                 {/block:Photoset}
@@ -429,7 +427,7 @@
                 <!-- Link Post -->
                 <a href="{URL}" class="link-container{block:Thumbnail} has-thumbnail{/block:Thumbnail}" {Target}>
                     {block:Thumbnail}
-                    <img src="{Thumbnail-HighRes}" alt="{PlaintextName}" class="post-photo link-thumbnail">
+                    <img src="{Thumbnail-HighRes}" alt="{PlaintextName}" class="post-photo">
                     {/block:Thumbnail}
 
                     <h1 class="post-title link-name iconr-right-mini">{Name}</h1>
@@ -459,7 +457,7 @@
                 {/block:Title}
                 <ul class="chat-container">
                     {block:Lines}
-                    <li class="chat-line {Alt}{block:Label} has-label clearfix{/block:Label}" data-user-number="{UserNumber}">
+                    <li class="chat-line {Alt}{block:Label} has-label clearfix{/block:Label}">
                         {block:Label}<strong class="line-label">{Label}</strong>{/block:Label}
                         <span class="line-text">{Line}</span>
                     </li>
@@ -473,34 +471,37 @@
                 <!-- Audio Post -->
                 {block:AudioPlayer}
                 <!-- Default Audio Player -->
-                <header class="audio-info{block:AlbumArt} has-album-art{/block:AlbumArt}">
+                <header class="audio-info">
                     <div class="the-info">
                         {block:TrackName}<h1 class="post-title track-name">{TrackName}</h1>{/block:TrackName}
                         {block:Artist}<h2 class="artist lightcaps">{Artist}</h2>{/block:Artist}
-                        {block:Album}<h3 class="album lightcaps">{Album}</h3>{/block:Album}
                     </div>
                     {block:AlbumArt}
                     <img src="{AlbumArtURL}" alt="{PlaintextAlbum}" class="album-art circle">
                     {/block:AlbumArt}
                 </header>
 
-                <figure class="audio-container default-audio">
+                <figure class="audio-container">
                     <div class="audio-player circle">
                         {AudioPlayerWhite}
                     </div>
 
+                    {block:PermalinkPage}
                     {block:Caption}
                     <figcaption class="caption post-body">
                         {Caption}
                     </figcaption>
                     {/block:Caption}
+                    {/block:PermalinkPage}
                 </figure>
                 <!-- /Default Audio Player -->
                 {/block:AudioPlayer}
 
                 {block:AudioEmbed}
                 <!-- Embedded Audio Player -->
-                <figure class="audio-container embedded-audio">
+                <figure class="audio-container">
+                    {block:IndexPage}{AudioEmbed-500}{/block:IndexPage}
+                    {block:PermalinkPage}
                     {AudioEmbed-640}
 
                     {block:Caption}
@@ -508,6 +509,7 @@
                         {Caption}
                     </figcaption>
                     {/block:Caption}
+                    {/block:PermalinkPage}
                 </figure>
                 <!-- /Embedded Audio Player -->
                 {/block:AudioEmbed}
@@ -518,6 +520,8 @@
                 {block:Video}
                 <!-- Video Post -->
                 <figure class="video-container">
+                    {block:IndexPage}{VideoEmbed-500}{/block:IndexPage}
+                    {block:PermalinkPage}
                     {VideoEmbed-700}
 
                     {block:Caption}
@@ -525,6 +529,7 @@
                         {Caption}
                     </figcaption>
                     {/block:Caption}
+                    {/block:PermalinkPage}
                 </figure>
                 <!-- /Video Post -->
                 {/block:Video}
@@ -533,14 +538,14 @@
                 {block:Answer}
                 <!-- Answer Post -->
                 <div class="question-container">
-                    <img src="{AskerPortraitURL-96}" alt="{PlaintextAsker}" class="asker-portrait circle">
+                    <img src="{AskerPortraitURL-40}" alt="{PlaintextAsker}" class="asker-portrait circle">
                     <div class="question-author"><strong>{Asker}</strong> asked:</div>
                     <div class="question">{Question}</div>
                 </div>
 
                 {block:Answerer}
                 <div class="answer-container">
-                    <img src="{AnswererPortraitURL-96}" alt="{PlaintextAnswerer}" class="answerer-portrait circle">
+                    <img src="{AnswererPortraitURL-40}" alt="{PlaintextAnswerer}" class="answerer-portrait circle">
                     <div class="answer-author"><strong>{Answerer}</strong> answered:</div>
                     <div class="answer">{Answer}</div>
                 </div>
@@ -553,8 +558,8 @@
 
                 {block:Date}
                 <!-- Post Meta -->
-                <footer class="post-footer clearfix{block:HasTags} has-tags{/block:HasTags}{block:Audio}{block:ExternalAudio} has-external-audio{/block:ExternalAudio}{/block:Audio}">
-                    <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {24HourWithZero}:{Minutes}:{Seconds}" title="{DayOfWeek}, {Month} {DayOfMonth}, {Year} {12Hour}:{Minutes}{AmPm}" class="post-date">
+                <aside class="post-aside clearfix{block:Audio}{block:ExternalAudio} has-external-audio{/block:ExternalAudio}{/block:Audio}">
+                    <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {24HourWithZero}:{Minutes}:{Seconds}" title="{DayOfWeek}, {Month} {DayOfMonth}, {Year} {12Hour}:{Minutes}{AmPm}" class="post-date{block:PermalinkPage} icon-clock lightcaps{/block:PermalinkPage}">
                         {block:IndexPage}<a href="{Permalink}" title="{lang:Permalink}: {ShortURL}" class="post-date-link">{/block:IndexPage}
                             {TimeAgo}
                         {block:IndexPage}</a>{/block:IndexPage}
@@ -572,47 +577,61 @@
 
                     <ul class="post-icons">
                         {block:Audio}
-                        <li class="play-count">{PlayCountWithLabel}</li>
+                        {block:PermalinkPage}
+                        <li class="play-count icon-headphones">{PlayCountWithLabel}</li>
+                        {/block:PermalinkPage}
                         {block:ExternalAudio}
                         <li class="external-audio">
-                            <a href="{ExternalAudioURL}" title="{lang:Download}" class="external-audio-icon icon-download post-icon"></a>
+                            <a href="{ExternalAudioURL}" title="{lang:Download}"{block:IndexPage} class="icon-download post-icon"{/block:IndexPage}>
+                                {block:PermalinkPage}{lang:Download}{/block:PermalinkPage}
+                            </a>
                         </li>
                         {/block:ExternalAudio}
                         {/block:Audio}
+                        {block:IndexPage}
                         <li class="like-button">
                             {LikeButton color="black" size="13"}
                             <span class="like-icon icon-heart-outline post-icon"></span>
                         </li>
                         <li class="reblog-button">
-                            <a href="{ReblogURL}" class="reblog-icon icon-reblog post-icon" target="_blank"></a>
+                            <a href="{ReblogURL}" class="icon-reblog post-icon" target="_blank"></a>
                         </li>
+                        {/block:IndexPage}
                     </ul>
 
+                    {block:PermalinkPage}
                     <ul class="post-sources">
                         {block:Submission}
-                        <li class="submission">
+                        <li class="submission icon-pencil">
                             Submitted by
-                            <a href="{SubmitterURL}" class="ps-link submitter-link">{Submitter}</a>
+                            <a href="{SubmitterURL}">{Submitter}</a>
                         </li>
                         {/block:Submission}
                         {block:RebloggedFrom}
-                        <li class="via">
-                            {lang:Reblogged from}
-                            <a href="{ReblogParentURL}" title="{lang:Via}: {PlaintextReblogParentTitle}" class="ps-link via-link">{ReblogParentName}</a>
+                        <li class="via lightcaps icon-reblog">
+                            <a href="{ReblogParentURL}" title="{lang:Reblogged from} {PlaintextReblogParentName}">
+                                {lang:Via}
+                            </a>
                         </li>
-                        <li class="source">
-                            Originally from
-                            <a href="{ReblogRootURL}" title="{lang:Source}: {PlaintextReblogRootTitle}" class="ps-link source-link">{ReblogRootName}</a>
+                        <li class="source lightcaps">
+                            <a href="{ReblogRootURL}" title="Originally from {PlaintextReblogRootName}">
+                                {lang:Source}
+                            </a>
                         </li>
                         {/block:RebloggedFrom}
                         {block:NotReblog}{block:ContentSource}
-                        <li class="source">
-                            Published by
-                            <a href="{SourceURL}" title="{lang:Source}: {PlaintextSourceTitle}" class="ps-link source-link">{SourceTitle}</a>
+                        <li class="source lightcaps icon-reblog">
+                            <a href="{SourceURL}" title="Published by {PlaintextSourceTitle}">
+                                {lang:Source}
+                            </a>
                         </li>
                         {/block:ContentSource}{/block:NotReblog}
                     </ul>
+                    {/block:PermalinkPage}
+                </aside>
 
+                {block:PermalinkPage}
+                <footer class="post-footer">
                     {block:PermalinkPagination}
                     <ul id="permalink-pagination" class="pagination">
                         {block:PreviousPost}
@@ -633,6 +652,7 @@
                     {PostNotes-16}
                     {/block:PostNotes}
                 </footer>
+                {/block:PermalinkPage}
                 <!-- /Post Meta -->
                 {/block:Date}
 
@@ -643,201 +663,104 @@
         </div> <!-- #the-posts -->
     </main> <!-- #posts-container -->
 
-    <aside id="blog-aside">
-        {block:IfAlternateDescription}
-        <p id="blog-description">{text:Alternate Description}</p>
-        {/block:IfAlternateDescription}
-        {block:IfNotAlternateDescription}{block:Description}
-        <p id="blog-description">{Description}</p>
-        {/block:Description}{/block:IfNotAlternateDescription}
-
-        {block:IfAboutTheAuthor}
-        <!-- About the Author Menu -->
-        <h2 id="about-title" class="aside-title lightcaps">
-            <a href="#" id="about-toggler" class="toggler" data-toggle="about-text">
-                <span class="toggler-icon icon-crown badge"></span>
-                <span class="toggler-text">About the Author</span>
-            </a>
-        </h2>
-        <p id="about-text" class="toggled icon-right-dir">
-            {text:About the Author}
-        </p>
-        <!-- /About the Author Menu -->
-        {/block:IfAboutTheAuthor}
-
-        {block:IfShowFeaturedCharacters}
-        <!-- Featured Characters Menu -->
-        <h2 id="characters-title" class="aside-title lightcaps">
-            <a href="#" id="characters-toggler" class="toggler" data-toggle="featured-characters">
-                <span class="toggler-icon icon-group badge"></span>
-                <span class="toggler-text">Featured Characters</span>
-            </a>
-        </h2>
-        <ul id="featured-characters" class="toggled">
-            <li class="icon-right-dir">
-                <a href="/tagged/sibylla-surana">Sibylla Surana</a>
-                <small class="game">(DA: Origins)</small>
-            </li>
-            <li class="icon-right-dir">
-                <a href="/tagged/cyril-valerian">Cyril Valerian</a>
-                <small class="game">(DA Universe)</small>
-            </li>
-            <li class="icon-right-dir">
-                <a href="/tagged/alyssia-hawke">Alyssia Hawke</a>
-                <small class="game">(DA2)</small>
-            </li>
-            <li class="icon-right-dir">
-                <a href="/tagged/venka-cadash">Venka Cadash</a>
-                <small class="game">(DA: Inquisition)</small>
-            </li>
-            <li class="icon-right-dir">
-                <a href="/tagged/quintus-alessio">Quintus Alessio</a>
-                <small class="game">(Skyrim)</small>
-            </li>
-            <li class="icon-right-dir">
-                <a href="/tagged/signy-alessio">Signy Alessio</a>
-                <small class="game">(Skyrim)</small>
-            </li>
-        </ul>
-        <!-- /Featured Characters Menu -->
-        {/block:IfShowFeaturedCharacters}
-
-        <!-- Other Blogs Menu -->
-        <h2 id="other-blogs-title" class="aside-title lightcaps">
-            <a href="#" id="other-blogs-toggler" class="toggler" data-toggle="other-blogs">
-                <span class="toggler-icon icon-globe badge"></span>
-                <span class="toggler-text">Other Blogs</span>
-            </a>
-        </h2>
-        <ul id="other-blogs" class="toggled">
-            <li class="icon-right-dir">
-                <a href="http://bubbless0c.tumblr.com" target="_blank">Personal</a>
-            </li>
-            <li class="icon-right-dir">
-                <a href="http://theunavenged.tumblr.com" target="_blank">Jason Todd</a>
-            </li>
-            <li class="icon-right-dir">
-                <a href="http://ladymagister.tumblr.com" target="_blank">Dragon Age/Skyrim</a>
-            </li>
-            <li class="icon-right-dir">
-                <a href="http://raptureaesthetics.tumblr.com" target="_blank">BioShock</a>
-            </li>
-            <li class="icon-right-dir">
-                <a href="http://circleofminrathous.tumblr.com" target="_blank">Writing Ref Archive</a>
-            </li>
-        </ul>
-        <!-- /Other Blogs Menu -->
-
-        <!-- Credits Menu -->
-        <h2 id="credits-title" class="aside-title lightcaps">
-            <a href="#" id="credits-toggler" class="toggler" data-toggle="credits">
-                <span class="toggler-icon icon-heart-filled badge"></span>
-                <span class="toggler-text">Credits</span>
-            </a>
-        </h2>
-        <ul id="credits" class="toggled">
-            {block:IfHeaderArtCredit}
-            <li class="icon-right-dir">
-                Header art by
-                <a href="http://{text:Header Art Credit}.tumblr.com" target="_blank">{text:Header Art Credit}</a>
-            </li>
-            {/block:IfHeaderArtCredit}
-            {block:IfSidebarArtCredit}
-            <li class="icon-right-dir">
-                Sidebar art by
-                <a href="http://{text:Sidebar Art Credit}.tumblr.com" target="_blank">{text:Sidebar Art Credit}</a>
-            </li>
-            {/block:IfSidebarArtCredit}
-            {block:IfAvatarArtCredit}
-            <li class="icon-right-dir">
-                Avatar art by
-                <a href="http://{text:Avatar Art Credit}.tumblr.com" target="_blank">{text:Avatar Art Credit}</a>
-            </li>
-            {/block:IfAvatarArtCredit}
-            <li class="icon-right-dir">
-                Theme by
-                <a href="https://github.com/BubblesSOC/bubs-tumblr-theme/tree/sulahnnehn" target="_blank">Me</a>
-            </li>
-        </ul>
-        <!-- /Credits Menu -->
-    </aside>
-
     <footer id="blog-footer">
         {block:Pagination}
-        <div id="loading" data-total-pages="{TotalPages}" data-current-page="{CurrentPage}" data-loading="{lang:Loading}" data-finished="{lang:No more posts}" data-more="{lang:Load more posts}">
-            <span id="spinner" class="badge icon-loading"></span>
-        </div>
-
-        <ul id="blog-pagination" class="pagination lightcaps">
+        <ul id="blog-pagination" class="pagination clearfix">
             {block:PreviousPage}
             <li id="prev-page" class="previous">
-                <a href="{PreviousPage}" title="{lang:Previous page}" class="prev-link icon-left">
-                    <span class="prev-text">{lang:Prev}</span>
-                </a>
+                <a href="{PreviousPage}" title="{lang:Previous page}" class="prev-link icon-left-bold badge"></a>
             </li>
             {/block:PreviousPage}
-
-            {block:JumpPagination length="3"}
-            {block:CurrentPage}
-            <li id="current-page" class="page-number">
-                <strong id="current-page-number">{PageNumber}</strong>
-            </li>
-            {/block:CurrentPage}
-            {block:JumpPage}
-            <li class="jump-page page-number">
-                <a href="{URL}" class="jump-page-link">{PageNumber}</a>
-            </li>
-            {/block:JumpPage}
-            {/block:JumpPagination}
-
             {block:NextPage}
             <li id="next-page" class="next">
-                <a href="{NextPage}" title="{lang:Next page}" class="next-link iconr-right">
-                    <span class="next-text">{lang:Next}</span>
-                </a>
+                <a href="{NextPage}" title="{lang:Next page}" class="next-link icon-right-bold badge"></a>
             </li>
             {/block:NextPage}
         </ul>
         {/block:Pagination}
 
         {block:DayPagination}
-        <ul id="day-pagination" class="pagination lightcaps clearfix">
+        <ul id="day-pagination" class="pagination clearfix">
             {block:PreviousDayPage}
             <li id="prev-day" class="previous">
-                <a href="{PreviousDayPage}" title="{lang:Previous day}" class="prev-link icon-left-dir">
-                    <span class="prev-text">{ShortMonth} {DayOfMonth}</span>
+                <a href="{PreviousDayPage}" title="{lang:Previous day}" class="prev-link icon-left">
+                    {ShortMonth} {DayOfMonth}
                 </a>
             </li>
             {/block:PreviousDayPage}
             {block:NextDayPage}
             <li id="next-day" class="next">
-                <a href="{NextDayPage}" title="{lang:Next day}" class="next-link iconr-right-dir">
-                    <span class="next-text">{ShortMonth} {DayOfMonth}</span>
+                <a href="{NextDayPage}" title="{lang:Next day}" class="next-link iconr-right">
+                    {ShortMonth} {DayOfMonth}
                 </a>
             </li>
             {/block:NextDayPage}
         </ul>
         {/block:DayPagination}
 
+        <span id="spinner" title="{lang:Loading}..." class="icon-loading badge"></span>
         <a href="#" title="Back to Top" id="elevator" class="icon-up-bold badge"></a>
-        <a href="http://bubbless0c.tumblr.com" target="_blank" title="Theme by Bubs" id="theme-credit" class="icon-heart-outline badge"></a>
+        <a href="http://bubbless0c.tumblr.com" target="_blank" title="Theme by Me" id="theme-credit" class="icon-heart-outline badge"></a>
     </footer>  <!-- #blog-footer -->
 </div> <!-- #wrapper -->
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="http://static.tumblr.com/f8gk9za/m1Noc7qf2/plugins.js"></script>
-<script src="http://static.tumblr.com/f8gk9za/rFyoiyh2a/main.js"></script>
-
-{block:IfGoogleAnalyticsID}
 <script>
-    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-    e.src='//www.google-analytics.com/analytics.js';
-    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-    ga('create','{text:Google Analytics ID}','auto');ga('send','pageview');
+    (function(){
+        var elevator    = document.getElementById('elevator'),
+            blogHeader  = document.getElementById('blog-header'),
+            borderColor = '{color:Borders}';
+
+        var blogHeaderManip = function(scrollPos) {
+            if (scrollPos > 0) {
+                blogHeader.classList.add('compact');
+                blogHeader.style.borderBottomColor = borderColor;
+            } else {
+                blogHeader.classList.remove('compact');
+                blogHeader.style.borderBottomColor = 'transparent';
+            }
+        };
+
+        var elevatorFade = function(scrollPos) {
+            if (scrollPos > 400) {
+                elevator.classList.add('visible');
+            } else {
+                elevator.classList.remove('visible');
+            }
+        };
+
+        // scroll optimization with window.requestAnimationFrame
+        // ref: https://developer.mozilla.org/en-US/docs/Web/Events/scroll
+        var last_known_scroll_position = 0, ticking = false;
+
+        window.addEventListener('scroll', function() {
+            last_known_scroll_position = window.scrollY;
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    blogHeaderManip(last_known_scroll_position);
+                    elevatorFade(last_known_scroll_position);
+                    ticking = false;
+                });
+            }
+            ticking = true;
+        });
+
+        window.onload = function() {
+            var likeBtns  = document.querySelectorAll('.index .like_button'),
+                likeIcons = document.querySelectorAll('.index .like-icon'), i;
+
+            document.getElementById('wrapper').classList.add('transitions-enabled');
+            for (i=0; i < likeBtns.length; i++) {
+                likeBtns[i].style.display = 'block';
+                likeIcons[i].style.visibility = 'visible';
+            }
+            document.querySelector('.tmblr-iframe').style.display = 'block';
+        };
+    })();
 </script>
-{/block:IfGoogleAnalyticsID}
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="http://static.tumblr.com/f8gk9za/Eb6ojms6n/plugins.js"></script>
+<script src="http://static.tumblr.com/f8gk9za/migojms6v/main.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,52 @@
+@import 'variables';
+
+@function px2rem($px) {
+    @if unitless($px) {
+        $px: $px * 1px;
+    }
+    @return ($px / $root-font-size) * 1rem;
+}
+
+@function transition-shorthand($args) {
+    $val: ();
+    @each $prop, $duration, $timing-function, $delay in $args {
+        // using my own defaults rather than the css defaults
+        @if $prop == null {
+            $prop: all;
+        }
+        @if $duration == null {
+            $duration: 0.2s;
+        }
+        @if $timing-function == null {
+            $timing-function: ease-in-out;
+        }
+        $val: append($val, $prop $duration $timing-function $delay, comma);
+    }
+    @return $val;
+}
+
+@mixin transition($args...) {
+    $val: transition-shorthand($args);
+    -webkit-transition: $val;
+    -moz-transition: $val;
+    -o-transition: $val;
+    transition: $val;
+}
+
+@mixin border-box-sizing {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+// $pos: top-left || top-right || bottom-right || bottom-left;
+@mixin border-radius($val, $pos: null) {
+    @if $pos != null {
+        $pos: $pos + '-';
+    }
+    -webkit-border-#{$pos}radius: $val;
+    -moz-border-#{$pos}radius: $val;
+    -o-border-#{$pos}radius: $val;
+    border-#{$pos}radius: $val;
+}

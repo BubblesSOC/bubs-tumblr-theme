@@ -196,26 +196,30 @@
 
 
     $(function() {
-        var $theGrid = null,
-            $infScr  = null,
-            $loading = $('#loading'),
-            $spinner = $('#spinner');
 
-        $('.post').centerAudioInfo().idealize();
-
+        // animated scroll to top
+        $('#elevator').click(function() {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 500);
+            return false;
+        });
 
         // initialize the layout grid
-        if ( $('body').hasClass('index') ) {
-            NProgress.configure({
-                trickleRate: 0.08,
-                trickleSpeed: 400,
-                showSpinner: false,
-                template: '<div class="progress-bar" role="bar"></div>'
-            }).start();
-        }
+        var $theGrid = null;
+        $('.post').centerAudioInfo().idealize();
+
+        // if ( $('body').hasClass('index') ) {
+        //     NProgress.configure({
+        //         trickleRate: 0.08,
+        //         trickleSpeed: 400,
+        //         showSpinner: false,
+        //         template: '<div class="progress-bar" role="bar"></div>'
+        //     }).start();
+        // }
 
         $theGrid = $('.index #the-posts').imagesLoaded().progress(function() {
-            NProgress.inc(0.08);
+            //NProgress.inc(0.08);
         }).always(function() {
             $theGrid.masonry({
                 columnWidth: '#grid-sizer',
@@ -224,191 +228,7 @@
             }).on('layoutComplete', function() {
                 $('.post.type-audio').centerAudioInfo();
             });
-            NProgress.done(true);
-        });
-
-
-        // initialize infinite scroll
-        var Spinner = {
-            on: function(currPage) {
-                var title = $loading.data('loading') + ' ' + currPage + ' / ' + $loading.data('total-pages');
-                return $spinner.attr('title', title).addClass('spin');
-            },
-            off: function() {
-                return $spinner.removeAttr('title').removeClass('spin');
-            }
-        };
-
-        $infScr = $('.index #the-posts').infinitescroll({
-            loading: {
-                finishedMsg: $loading.data('finished'),
-                msg: $('<p id="loading-message" class="lightcaps"></p>'),
-                selector: '#loading',
-                speed: 400,
-                start: function(opts) {
-                    var instance = $(this).data('infinitescroll'),
-                        $loadMsg = opts.loading.msg.appendTo(opts.loading.selector),
-                        currPage = opts.state.currPage + 1;
-
-                    if (currPage <= opts.maxPage) {
-                        $loadMsg.text('Loading Page ' + currPage + ' of ' + opts.maxPage + '...');
-                        Spinner.on(currPage);
-                    } else {
-                        $loadMsg.text(opts.loading.finishedMsg);
-                    }
-
-                    $loadMsg.fadeIn(opts.loading.speed, function() {
-                        instance.beginAjax(opts);
-                    });
-                },
-                finished: function() {
-                    return;
-                }
-            },
-            state: {
-                currPage: $loading.data('current-page')
-            },
-            nextSelector: '#next-page a.next-link',
-            navSelector: '#blog-pagination',
-            itemSelector: '.post',
-            pathParse: function(path, nextPage) {
-                return [ path.substring(0, path.lastIndexOf('/')) + '/', '' ];
-            },
-            errorCallback: function() {
-                var opts = $infScr.data('infinitescroll').options;
-
-                setTimeout(function() {
-                    opts.loading.msg.fadeOut(opts.loading.speed);
-                }, 3000);
-            },
-            maxPage: $loading.data('total-pages')
-        },
-        function( newElements ) {
-            var $posts  = $(newElements).css({ opacity: 0 }),
-                postIds = $posts.map(function() {
-                    return this.id;
-                }).get(),
-                opts = $infScr.data('infinitescroll').options;
-
-            $infScr.infinitescroll('pause');
-            $posts.idealize().imagesLoaded().always(function() {
-                Tumblr.LikeButton.get_status_by_post_ids(postIds);
-
-                $posts.css({ opacity: 1 });
-                $theGrid.masonry('appended', $posts);
-
-                if (opts && !opts.state.isBeyondMaxPage) {
-                    Spinner.off();
-                    opts.loading.msg.fadeOut(opts.loading.speed);
-                }
-
-                $infScr.infinitescroll('resume');
-            });
-        });
-        // end infinite scroll
-
-
-        // fade-in elements on scroll
-        var $elevator   = $('#elevator'),
-            spinInit    = $spinner.css('bottom'),
-            spinShift   = $elevator.css('bottom'),
-            $blogHeader = $('#blog-header'),
-            borderColor = $blogHeader.data('border-color');
-
-        // scroll optimization with window.requestAnimationFrame
-        // ref: https://developer.mozilla.org/en-US/docs/Web/Events/scroll
-        var last_known_scroll_position = 0,
-            ticking = false;
-
-        var blogHeaderBorder = function(scrollPos) {
-            if (scrollPos > 0) {
-                $blogHeader.css('border-bottom-color', borderColor);
-            } else {
-                $blogHeader.css('border-bottom-color', 'transparent');
-            }
-        };
-
-        var elevatorFade = function(scrollPos) {
-            if (scrollPos > 400) {
-                if ( $elevator.css('display') == 'none' ) {
-                    $spinner.css('bottom', spinInit);
-                    $elevator.fadeIn(400, function() {
-                        $elevator.css('display', 'inline-block');
-                    });
-                }
-            } else {
-                $elevator.fadeOut(400, function() {
-                    $spinner.css('bottom', spinShift);
-                });
-            }
-        };
-
-        window.addEventListener('scroll', function(e) {
-            last_known_scroll_position = window.scrollY;
-            if (!ticking) {
-                window.requestAnimationFrame(function() {
-                    blogHeaderBorder(last_known_scroll_position);
-                    elevatorFade(last_known_scroll_position);
-                    ticking = false;
-                });
-            }
-            ticking = true;
-        });
-
-        // animated scroll to top
-        $elevator.click(function() {
-            $('body,html').animate({
-                scrollTop: 0
-            }, 500);
-            return false;
-        });
-
-
-        // search form toggle and slide
-        var $search     = $('#search'),
-            $searchCtrl = $('.search-control');
-
-        $searchCtrl.click(function() {
-            if ( $search.hasClass('form-open') ) {
-                // form is open, close it
-                $search.removeClass('form-open');
-            } else {
-                // form is closed, open it
-                $search.addClass('form-open');
-                setTimeout(function() {
-                    $('#search-field').focus();
-                }, 500);
-            }
-            return false;
-        });
-
-
-        // aside menu toggler
-        $('.toggler').click(function() {
-            var $toggler = $(this),
-                $toggled = $( '#' + $toggler.data('toggle') );
-
-            $('.toggled').not($toggled).slideUp('fast');
-            $toggled.slideToggle('fast', function() {
-                $('.toggler').removeClass('toggle-open');
-                if ( $toggled.is(':visible') ) $toggler.addClass('toggle-open');
-            });
-            return false;
-        });
-
-
-        // nav enhancements
-        $('.menu-link').each(function() {
-            var $link = $(this);
-
-            if ( $link.attr('href') == '/fanmixes' || $link.is('#likes-link') ) {
-                $link.attr('target', '_blank');
-                return true;
-            }
-
-            if ( $link.attr('href') == window.location.pathname ) {
-                $link.addClass('active');
-            }
+            //NProgress.done(true);
         });
     });
 

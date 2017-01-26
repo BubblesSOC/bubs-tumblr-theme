@@ -1,0 +1,16 @@
+// changed tab_str from '  ' to '    '
+// in /Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/tree/visitors/to_css.rb
+
+$root-font-size: 16px;
+$body-font-size: 13px;
+
+$badge-width-height: 29px;  // 13px + 8px + 8px
+
+$post-lr-padding: 20px;
+$post-max-width: 500px + ($post-lr-padding * 2);
+$post-min-width: 400px + ($post-lr-padding * 2);
+
+$permalink-post-width: 540px;
+$post-aside-width: 250px;
+
+$wrapper-max-width: $post-max-width * 2; // 1080px
