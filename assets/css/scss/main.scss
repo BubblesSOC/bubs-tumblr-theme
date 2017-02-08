@@ -134,7 +134,7 @@ pre {
         @include transition(background-color);
     }
     .post-date-link, .index .tag-link, .more_notes_link {
-        @include transition(border-color 0.2s);
+        @include transition(border-color);
     }
     #blog-header {
         @include transition(border-bottom-color 0.4s, height);
@@ -155,7 +155,7 @@ pre {
     General Layout Styles
    ========================================================================== */
 
-.tmblr-iframe {
+.index .tmblr-iframe {
     display: none;
 }
 

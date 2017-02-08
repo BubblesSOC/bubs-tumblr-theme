@@ -205,21 +205,10 @@
             return false;
         });
 
-        // initialize the layout grid
-        var $theGrid = null;
         $('.post').centerAudioInfo().idealize();
 
-        // if ( $('body').hasClass('index') ) {
-        //     NProgress.configure({
-        //         trickleRate: 0.08,
-        //         trickleSpeed: 400,
-        //         showSpinner: false,
-        //         template: '<div class="progress-bar" role="bar"></div>'
-        //     }).start();
-        // }
-
-        $theGrid = $('.index #the-posts').imagesLoaded().progress(function() {
-            //NProgress.inc(0.08);
+        var $theGrid = $('.index #the-posts').imagesLoaded().progress(function() {
+            NProgress.inc(0.08);
         }).always(function() {
             $theGrid.masonry({
                 columnWidth: '#grid-sizer',
@@ -228,7 +217,6 @@
             }).on('layoutComplete', function() {
                 $('.post.type-audio').centerAudioInfo();
             });
-            //NProgress.done(true);
         });
     });
 
