@@ -4,6 +4,12 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
+    <script>
+        // for the aesthetic~
+        if(window.location.pathname == '/') {
+            window.location.replace('/tagged/x');
+        }
+    </script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>
@@ -74,7 +80,7 @@
     <!-- /Custom Fonts -->
 
     <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/i0nol2blh/main.css">
+    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/Nv5ol63ws/main.css">
 
     <style>
         ::-moz-selection {
@@ -159,7 +165,8 @@
             font-family: {font:Heading Font};
         }
         .chat-line.even,
-        .link-container:hover {
+        .link-container:hover,
+        .more_notes_link:hover {
             background-color: rgba({RGBcolor:Highlight}, 0.75);
         }
         .link-container:hover .link-excerpt {
@@ -184,9 +191,6 @@
         .post-date-link, .index .tag-link,
         .more_notes_link {
             color: {color:Text};
-        }
-        .more_notes_link:hover {
-            border-bottom-color: {color:Borders};
         }
         .post-date-link:hover, .index .tag-link:hover {
             border-bottom-color: {color:Highlight Hover};
@@ -326,7 +330,7 @@
 
             {block:Posts}
             <article id="{PostID}" class="post type-{PostType}{block:Panorama} panorama-post{/block:Panorama}{block:Photoset} photoset-post{/block:Photoset}">
-                <div class="post-content">
+                <div class="post-content clearfix">
 
                 {block:Text}
                 <!-- Text Post -->
@@ -538,15 +542,15 @@
                 {block:Answer}
                 <!-- Answer Post -->
                 <div class="question-container">
-                    <img src="{AskerPortraitURL-40}" alt="{PlaintextAsker}" class="asker-portrait circle">
-                    <div class="question-author"><strong>{Asker}</strong> asked:</div>
+                    <img src="{AskerPortraitURL-24}" alt="{PlaintextAsker}" class="asker-portrait circle">
+                    <div class="question-author">{Asker} asked:</div>
                     <div class="question">{Question}</div>
                 </div>
 
                 {block:Answerer}
                 <div class="answer-container">
-                    <img src="{AnswererPortraitURL-40}" alt="{PlaintextAnswerer}" class="answerer-portrait circle">
-                    <div class="answer-author"><strong>{Answerer}</strong> answered:</div>
+                    <img src="{AnswererPortraitURL-24}" alt="{PlaintextAnswerer}" class="answerer-portrait circle">
+                    <div class="answer-author">{Answerer} answered:</div>
                     <div class="answer">{Answer}</div>
                 </div>
                 {/block:Answerer}

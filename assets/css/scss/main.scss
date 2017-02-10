@@ -1,11 +1,12 @@
 @import 'mixins';
+$body-font-rem: px2rem($body-font-size);
 
 html {
     font-size: 100%; // 16px
 }
 
 body {
-    font: 0.8125rem/175% 'Karla', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font: #{$body-font-rem}/175% 'Karla', 'Helvetica Neue', Arial, Helvetica, sans-serif;
     // 13px/22.75px
 }
 
@@ -49,29 +50,28 @@ ul, ol, p {
 }
 
 h1, h2, h3 {
-    letter-spacing: 3px;
     font-weight: normal;
     text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: $body-font-rem 0;
 }
 
+h1 {
+    margin-bottom: px2rem(18px);
+    letter-spacing: 3px;
+}
+
+$h2-font-size: 15px;
+$h2-font-rem: px2rem($h2-font-size);
+
 h2 {
-    font-size: 1.5em;
-    margin: 0.83em 0;
+    font-size: $h2-font-rem;
+    margin-top: $h2-font-rem;
+    margin-bottom: $h2-font-rem;
 }
+
 h3 {
-    font-size: 1.17em;
-    margin: 1em 0;
-}
-h4 {
-    margin: 1.33em 0;
-}
-h5 {
-    font-size: 0.83em;
-    margin: 1.67em 0;
-}
-h6 {
-    font-size: 0.67em;
-    margin: 2.33em 0;
+    font-size: $body-font-rem;
 }
 
 pre {
@@ -111,11 +111,11 @@ pre {
     width: px2rem($badge-width-height);
     height: px2rem($badge-width-height);
     padding: px2rem(8px);
-    line-height: px2rem(13px);
+    line-height: $body-font-rem;
     @include border-box-sizing;
 
     &:before {
-        font-size: px2rem(13px);
+        font-size: $body-font-rem;
     }
 }
 
@@ -130,10 +130,10 @@ pre {
     a {
         @include transition(color);
     }
-    .badge {
+    .badge, .link-container, .more_notes_link {
         @include transition(background-color);
     }
-    .post-date-link, .index .tag-link, .more_notes_link {
+    .post-date-link, .index .tag-link, .link-excerpt {
         @include transition(border-color);
     }
     #blog-header {
@@ -142,12 +142,14 @@ pre {
     #blog-title {
         @include transition(font-size);
     }
-    #blog-description,
-    #social-icons {
+    #blog-description, #social-icons {
         @include transition(height);
     }
     #elevator {
         @include transition(background-color, bottom 0.4s, opacity 0.6s);
+    }
+    .post-title-link:after {
+        @include transition(opacity);
     }
 }
 
@@ -223,7 +225,8 @@ $blog-header-height: px2rem(124px);
 #main-menu, #social-icons,
 .chat-container, .fake-list,
 .tags, .post-icons, .post-sources,
-.notes, .pagination {
+.notes, .pagination,
+#tagCloud ul {
     list-style-type: none;
     padding: 0;
 }
@@ -240,8 +243,7 @@ $blog-header-height: px2rem(124px);
    ========================= */
 
 .post-date-link,
-.index .tag-link,
-.more_notes_link {
+.index .tag-link {
     border-bottom: 1px solid transparent;
 }
 
@@ -336,6 +338,10 @@ $blog-header-height: px2rem(124px);
     }
 }
 
+.tag-page[data-tag="x"] .results-title {
+    display: none;
+}
+
 .index .post, #grid-sizer {
     width: 50%;
     max-width: $post-max-width;
@@ -354,8 +360,10 @@ $blog-header-height: px2rem(124px);
 }
 
 .post-content {
-    padding-bottom: 1em;
     @include border-radius(4px);
+}
+.index .post-content {
+    padding-bottom: 1em;
 }
 
 .type-quote .post-content,
@@ -378,17 +386,21 @@ $blog-header-height: px2rem(124px);
 }
 
 .post-title {
-    margin: 0.8125rem; // 13px
-    line-height: 115%;
+    margin-left: $body-font-rem;
+    margin-right: $body-font-rem;
+    line-height: 125%;
 }
-.link-name, .chat-title {
-    font-size: 1.438rem; // 23px
+
+$post-title-size: 18px;
+$post-title-rem: px2rem($post-title-size);
+.index .post-title,
+.has-posts .post-title {
+    font-size: $post-title-rem;
 }
 
 .post-title-link:after {
     vertical-align: bottom;
     opacity: 0;
-    //@include transition(opacity);
 }
 .post-title-link:hover:after {
     opacity: 1;
@@ -396,52 +408,40 @@ $blog-header-height: px2rem(124px);
 
 .post-body {
     margin: 0 1em;
-}
 
-// .post-body small {
-//     line-height: 100%;
-// }
-//
-// .post-body small,
-// .post-body i,
-// .post-body em,
-// .post-body cite,
-// .post-body code,
-// .post-body pre {
-//     font-size: 0.6875rem; // 11px
-// }
-//
-// .post-body small small,
-// .post-body small i,
-// .post-body small em,
-// .post-body small cite,
-// .post-body small code,
-// .post-body small pre {
-//     font-size: 0.5625rem; // 9px
-// }
-
-.post-body figure {
-    margin: 1em 0;
+    small {
+        font-size: 85%;
+        line-height: 100%;
+    }
+    pre {
+        font-size: 90%;
+        line-height: 150%;
+    }
+    figure {
+        margin: 1em 0;
+    }
 }
 
 /* tumblr gif styles */
-.tmblr-full.stretched {
-    position: relative;
-    left: -1em;
-}
+.tmblr-full {
+    .tmblr-attribution {
+        margin: 0 $body-font-rem;
+        font-size: 85%;
 
-.tmblr-full.stretched img {
-    width: 100%;
-}
+        .icon-link-ext:before {
+            margin-right: px2rem(3px);
+            vertical-align: middle;
+        }
+    }
 
-.tmblr-full.stretched .tmblr-attribution {
-    margin: 0 1em;
-    font-size: 0.6875rem; // 11px
-}
+    &.stretched {
+        position: relative;
+        left: -1em;
 
-.tmblr-full.stretched .tmblr-attribution .icon-link-ext:before {
-    margin-right: 0.1875rem; // 3px
-    vertical-align: middle;
+        img {
+            width: 100%;
+        }
+    }
 }
 
 /* ============
@@ -479,29 +479,21 @@ $blog-header-height: px2rem(124px);
 }
 
 .the-quote {
-    margin: 0 0.8125rem 0.8125rem; // 13px
-    line-height: 125%;
+    margin: 0 $body-font-rem $body-font-rem;
+    text-transform: uppercase;
+
+    p:first-child {
+        margin-top: 0;
+    }
 }
 
 .quote-container.short .the-quote {
-    font-size: 1.25rem; // 20px
+    font-size: px2rem(20px);
+    line-height: 125%;
 }
 .quote-container.medium .the-quote {
-    font-size: 1rem; // 16px
-}
-.quote-container.long .the-quote {
-    font-size: 0.875rem; // 14px
+    font-size: px2rem(15px);
     line-height: 150%;
-}
-
-.the-quote p:first-child {
-    margin-top: 0;
-}
-
-.post-body .quote-source {
-    font-family: inherit;
-    font-size: inherit;
-    font-style: normal;
 }
 
 /* ===========
@@ -512,30 +504,29 @@ $blog-header-height: px2rem(124px);
     display: block;
     padding: 1em 0;
     background-color: transparent;
-
-    //@include transition(background-color);
     @include border-radius(4px 4px 0 0);
-}
-.link-container.has-thumbnail {
-    padding-top: 0;
+
+    &.has-thumbnail {
+        padding-top: 0;
+    }
+    &:not(.has-thumbnail) .link-name {
+        margin-top: 0;
+    }
 }
 
-.link-container:not(.has-thumbnail) .link-name {
-    margin-top: 0;
-}
 .link-name:after {
     vertical-align: bottom;
-    margin-left: 0.625rem; // 10px
+    margin-left: px2rem(10px);
 }
 
 .link-excerpt {
     margin: 0 1em;
-    //@include transition(border-color);
-}
-.link-excerpt .the-excerpt {
-    font-size: 0.75rem; // 12px
-    line-height: 150%;
-    margin-bottom: 0;
+
+    .the-excerpt {
+        font-size: px2rem(12px);
+        line-height: 150%;
+        margin-bottom: 0;
+    }
 }
 
 .type-link .post-body {
@@ -549,10 +540,11 @@ $blog-header-height: px2rem(124px);
 
 .chat-container {
     margin-top: 0;
+    margin-bottom: 0;
 }
 
 .chat-title {
-    margin-bottom: 0;
+    margin-bottom: $post-title-size - $body-font-size;
 }
 
 .chat-line {
@@ -568,7 +560,7 @@ $blog-header-height: px2rem(124px);
 .chat-line.has-label .line-text {
     float: left;
     width: 80%;
-    padding-left: 0.3125rem; // 5px
+    padding-left: px2rem(5px);
     @include border-box-sizing;
 }
 
@@ -580,35 +572,29 @@ $blog-header-height: px2rem(124px);
     position: relative;
 }
 
-.album,
-.index .audio-container .caption {
-    display: none;
-}
-
 .audio-info {
     padding: 1em 1em 0;
     min-height: 71px;
+
+    .the-info {
+        vertical-align: middle;
+        min-height: 71px;
+        padding-left: 84px;
+        opacity: 0;
+    }
 }
 .index .audio-info {
     margin-bottom: 1em;
 }
 
-.audio-info .the-info {
-    vertical-align: middle;
-    min-height: 71px;
-    padding-left: 84px;
-    opacity: 0;
-}
-
 .track-name {
-    font-size: 1.063rem; // 17px
-    line-height: 115%;
+    font-size: px2rem(17px) !important;
     margin: 0;
 }
 
 .artist {
-    font-size: 0.6875rem; // 11px
-    margin: 0.125rem 0 0; // 2px
+    font-size: px2rem(11px);
+    margin: px2rem(2px) 0 0;
 }
 
 .album-art {
@@ -646,8 +632,8 @@ $blog-header-height: px2rem(124px);
 
 .asker-portrait,
 .answerer-portrait {
-    width: 40px;
-    height: 40px;
+    width: 24px;
+    height: 24px;
     position: absolute;
     top: 0;
     left: 0;
@@ -658,11 +644,12 @@ $blog-header-height: px2rem(124px);
 
 .question-author,
 .answer-author {
-    font-size: 0.875rem; // 14px
-    text-transform: lowercase;
+    font-size: px2rem(11px);
+    text-transform: uppercase;
+    letter-spacing: 2px;
     line-height: 100%;
-    height: 40px;
-    padding: 0.8125rem 0 0 50px; // 13px
+    height: 24px;
+    padding: 6px 0 0 34px;
     @include border-box-sizing;
 }
 
@@ -670,9 +657,11 @@ $blog-header-height: px2rem(124px);
     font-weight: normal;
 }
 
+.question, .answer {
+    padding-bottom: 1em;
+}
 .question {
     margin-top: 1em;
-    padding-bottom: 1em;
 }
 
 .answer-container,
@@ -687,15 +676,38 @@ $blog-header-height: px2rem(124px);
     Pages
    ======= */
 
-.page-content .lightcaps {
-    font-weight: normal;
-    font-size: 0.75rem; // 12px
-    line-height: 125%;
+.elsewhere {
+    line-height: px2rem(25px);
 }
 
-.page-content .lightcaps small {
-    font-size: 0.625rem; // 10px
-    letter-spacing: 1px;
+.left-column, .right-column {
+    @extend .elsewhere;
+    @include border-box-sizing;
+    width: 50%;
+    padding-bottom: 1em;
+
+    h2 {
+        font-size: $body-font-rem;
+    }
+    h3 {
+        font-size: px2rem(11px);
+    }
+    ul {
+        padding-left: 1em !important;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.left-column {
+    float: left;
+    padding-right: 0.5em;
+}
+
+.right-column {
+    float: right;
+    padding-left: 0.5em;
 }
 
 /* ===========
@@ -882,20 +894,34 @@ ref: http://stackoverflow.com/a/21715659/954677
 
 .notes {
     margin: 0;
-    font-size: 0.75rem; // 12px
+    font-size: px2rem(12px);
+
+    .avatar_frame {
+        display: none;
+    }
+    blockquote {
+        margin: 0.5em 0;
+    }
 }
 
-.notes .avatar_frame {
-    display: none;
-}
-
-.notes blockquote {
-    margin: 0.5em 0;
+.note:last-child:not(.more_notes_link_container) {
+    padding-bottom: $body-font-rem;
 }
 
 .more_notes_link_container {
-    font-size: 0.625rem; // 10px
-    line-height: inherit;
+    font-size: px2rem(10px);
+}
+
+.notes_loading {
+    display: block;
+    padding: $body-font-rem 0;
+}
+
+.more_notes_link {
+    @extend .notes_loading;
+    width: $permalink-post-width;
+    position: relative;
+    left: $body-font-rem * -1;
 }
 // End Notes Section
 
@@ -943,38 +969,11 @@ ref: http://stackoverflow.com/a/21715659/954677
     Buttons
    ========= */
 
-#spinner, #elevator, #theme-credit {
+#elevator, #theme-credit {
     position: fixed;
     bottom: 20px;
     right: 20px;
 }
-
-// @-moz-keyframes spin {
-//     from { -moz-transform: rotate(0deg); }
-//     to   { -moz-transform: rotate(360deg); }
-// }
-// @-webkit-keyframes spin {
-//     from { -webkit-transform: rotate(0deg); }
-//     to   { -webkit-transform: rotate(360deg); }
-// }
-// @keyframes spin {
-//     from { transform: rotate(0deg); }
-//     to   { transform: rotate(360deg); }
-// }
-//
-// #spinner {
-//     bottom: 5.25rem; // 52px + 29px (#elevator) + 3px = 84px
-//     opacity: 0;
-//     @include transition(bottom 0.4s, opacity 0.4s);
-// }
-// #spinner.spin {
-//     opacity: 1;
-//     cursor: progress;
-//     -webkit-animation: spin 2s linear infinite;
-//     -moz-animation: spin 2s linear infinite;
-//     -o-animation: spin 2s linear infinite;
-//     animation: spin 2s linear infinite;
-// }
 
 #elevator {
     opacity: 0;

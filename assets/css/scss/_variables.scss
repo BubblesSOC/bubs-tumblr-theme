@@ -4,7 +4,7 @@
 $root-font-size: 16px;
 $body-font-size: 13px;
 
-$badge-width-height: 29px;  // 13px + 8px + 8px
+$badge-width-height: $body-font-size + 8px + 8px;
 
 $post-lr-padding: 20px;
 $post-max-width: 500px + ($post-lr-padding * 2);
