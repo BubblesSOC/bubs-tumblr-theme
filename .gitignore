@@ -1,7 +1,10 @@
 # Mine #
 ########
+assets/css/scss/*
+assets/css/main.css.*
 assets/fonts/*
 etc/*
+.sass-cache
 
 # Packages #
 ############
