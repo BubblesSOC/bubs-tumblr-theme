@@ -3,7 +3,8 @@ html {
 }
 
 body {
-    font: 0.8125rem/175% "Karla", "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font: 300 0.8125rem/175% "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
+    margin: 0 49px;
 }
 
 audio, canvas, iframe, img, svg, video {
@@ -43,6 +44,10 @@ blockquote {
 
 ul, ol, p {
     margin: 1em 0;
+}
+
+b, strong {
+    font-weight: 500;
 }
 
 h1, h2, h3 {
@@ -121,6 +126,7 @@ pre {
     text-transform: uppercase;
     letter-spacing: 2px;
     line-height: 100%;
+    font-weight: 300;
 }
 
 .transitions-enabled a {
@@ -342,8 +348,7 @@ pre {
 }
 .results-title .the-query {
     font-style: normal;
-    font-weight: bold;
-    letter-spacing: 1px;
+    font-weight: 500;
 }
 
 .tag-page[data-tag="x"] .results-title {
@@ -992,5 +997,14 @@ ref: http://stackoverflow.com/a/21715659/954677
 /* ==========================================================================
     Media Queries
    ========================================================================== */
+@media screen and (max-width: 977px) {
+  .index #wrapper {
+        max-width: 580px;
+  }
+  .index .post, .index #grid-sizer {
+        width: 100%;
+        max-width: none;
+  }
+}
 
 /*# sourceMappingURL=main.css.map */

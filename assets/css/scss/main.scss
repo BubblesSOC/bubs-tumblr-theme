@@ -6,8 +6,9 @@ html {
 }
 
 body {
-    font: #{$body-font-rem}/175% 'Karla', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font: 300 #{$body-font-rem}/175% 'Roboto', 'Helvetica Neue', Arial, Helvetica, sans-serif;
     // 13px/22.75px
+    margin: 0 $badge-width-height + 20px;
 }
 
 audio, canvas, iframe, img, svg, video {
@@ -47,6 +48,10 @@ blockquote {
 
 ul, ol, p {
     margin: 1em 0;
+}
+
+b, strong {
+    font-weight: 500;
 }
 
 h1, h2, h3 {
@@ -124,6 +129,7 @@ pre {
     text-transform: uppercase;
     letter-spacing: 2px;
     line-height: 100%;
+    font-weight: 300;
 }
 
 .transitions-enabled {
@@ -333,8 +339,7 @@ $blog-header-height: px2rem(124px);
 
     .the-query {
         font-style: normal;
-        font-weight: bold;
-        letter-spacing: 1px;
+        font-weight: 500;
     }
 }
 
@@ -343,6 +348,7 @@ $blog-header-height: px2rem(124px);
 }
 
 .index .post, #grid-sizer {
+    //width: 33.3333333%;
     width: 50%;
     max-width: $post-max-width;
     min-width: $post-min-width;
@@ -1001,3 +1007,33 @@ ref: http://stackoverflow.com/a/21715659/954677
 /* ==========================================================================
     Media Queries
    ========================================================================== */
+
+// $mq1-width: $wrapper-max-width + ($badge-width-height + 20px) * 2 - 1;
+// @media screen and (max-width: $mq1-width) {
+//     .index {
+//         .pagination {
+//             margin-bottom: 20px;
+//         }
+//         .next, .previous {
+//             position: static;
+//             padding: 0 $post-lr-padding;
+//         }
+//         .next {
+//             float: right;
+//         }
+//     }
+// }
+
+$mq-max-width: ($post-min-width * 2) + ($badge-width-height + 20px) * 2 - 1;
+@media screen and (max-width: $mq-max-width) {
+    .index {
+        #wrapper {
+            max-width: 540px + $post-lr-padding * 2;
+        }
+
+        .post, #grid-sizer {
+            width: 100%;
+            max-width: none;
+        }
+    }
+}
