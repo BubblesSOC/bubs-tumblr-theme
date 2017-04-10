@@ -126,7 +126,7 @@ pre {
     text-transform: uppercase;
     letter-spacing: 2px;
     line-height: 100%;
-    font-weight: 300;
+    font-family: Amiri, Baskerville, Georgia, "Times New Roman", Times, serif;
 }
 
 .transitions-enabled a {
@@ -159,7 +159,7 @@ pre {
     -o-transition: font-size 0.2s ease-in-out;
     transition: font-size 0.2s ease-in-out;
 }
-.transitions-enabled #blog-description, .transitions-enabled #social-icons {
+.transitions-enabled #blog-description {
     -webkit-transition: height 0.2s ease-in-out;
     -moz-transition: height 0.2s ease-in-out;
     -o-transition: height 0.2s ease-in-out;
@@ -223,6 +223,20 @@ pre {
     width: 540px;
 }
 
+#blog-footer {
+    padding: 20px 20px;
+    border-top: 1px solid #eee;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.permalink #blog-footer {
+    margin-top: 20px;
+}
+
 /* ==============
     Progress Bar
    ============== */
@@ -276,8 +290,7 @@ pre {
 
 #blog-title,
 #blog-description,
-#main-menu,
-#social-icons {
+#main-menu {
     margin: 0;
     position: absolute;
     display: inline-block;
@@ -288,47 +301,35 @@ pre {
     top: 0;
     left: 20px;
     font-size: 1.125rem;
-    letter-spacing: 11px;
+    letter-spacing: 5px;
 }
 
 #blog-description {
     top: 1.625rem;
-    right: 20px;
-    font-size: 0.6875rem;
+    left: 20px;
+    font: italic 0.75rem/0.8125rem Amiri, Baskerville, Georgia, "Times New Roman", Times, serif;
     height: 0.8125rem;
-    line-height: 0.8125rem;
 }
 
 #main-menu {
     top: 0;
     right: 20px;
+    font-size: 0.75rem;
 }
 
 .menu-item {
-    margin-right: 2rem;
+    margin-right: 1.5625rem;
     text-transform: lowercase;
 }
 
-#social-icons {
-    top: 1.9375rem;
-    left: 20px;
-    height: 1em;
-}
-
-.social-item {
-    margin-right: 0.8125rem;
-}
-
-.menu-item:last-child,
-.social-item:last-child {
+.menu-item:last-child {
     margin-right: 0;
 }
 
 .compact #blog-title {
     font-size: 0.8125rem;
 }
-.compact #blog-description,
-.compact #social-icons {
+.compact #blog-description {
     height: 0;
     overflow: hidden;
 }
@@ -338,6 +339,8 @@ pre {
    ========================================================================== */
 .results-title {
     margin: 0 20px 20px;
+    font-family: inherit;
+    font-weight: 300;
     font-size: 0.75rem;
     text-transform: lowercase;
     letter-spacing: normal;
@@ -415,7 +418,6 @@ pre {
 }
 
 .post-title-link:after {
-    vertical-align: bottom;
     opacity: 0;
 }
 
@@ -506,13 +508,18 @@ pre {
 }
 
 .quote-container.short .the-quote {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     line-height: 125%;
 }
 
 .quote-container.medium .the-quote {
     font-size: 0.9375rem;
     line-height: 150%;
+}
+
+.quote-source {
+    font-family: Amiri, Baskerville, Georgia, "Times New Roman", Times, serif;
+    font-size: 0.875rem;
 }
 
 /* ===========
@@ -535,7 +542,6 @@ pre {
 }
 
 .link-name:after {
-    vertical-align: bottom;
     margin-left: 0.625rem;
 }
 
@@ -608,13 +614,14 @@ pre {
 }
 
 .track-name {
-    font-size: 1.0625rem !important;
+    font-size: 0.9375rem !important;
     margin: 0;
+    letter-spacing: normal;
 }
 
 .artist {
-    font-size: 0.6875rem;
-    margin: 0.125rem 0 0;
+    font-size: 0.75rem;
+    margin: 0.375rem 0 0;
 }
 
 .album-art {
@@ -665,9 +672,7 @@ pre {
 
 .question-author,
 .answer-author {
-    font-size: 0.6875rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
     line-height: 100%;
     height: 24px;
     padding: 6px 0 0 34px;
@@ -716,14 +721,14 @@ pre {
 .left-column h2, .right-column h2 {
     font-size: 0.8125rem;
 }
-.left-column h3, .right-column h3 {
-    font-size: 0.6875rem;
-}
 .left-column ul, .right-column ul {
     padding-left: 1em !important;
 }
 .left-column ul:last-child, .right-column ul:last-child {
     margin-bottom: 0;
+}
+.left-column ul ul, .right-column ul ul {
+    padding-bottom: 1em;
 }
 
 .left-column {
@@ -945,6 +950,40 @@ ref: http://stackoverflow.com/a/21715659/954677
 /* ==========================================================================
     Footer Styles
    ========================================================================== */
+#footer-description {
+    font-size: 0.5625rem;
+    line-height: 150%;
+    margin: 0;
+    float: left;
+}
+
+#social-icons,
+#theme-credit-long {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: 1em;
+    display: inline-block;
+    line-height: 1em;
+    font-size: 0.5625rem;
+    margin: 0;
+}
+
+#social-icons {
+    top: 35px;
+}
+
+.social-item {
+    margin-right: 0.6875rem;
+}
+
+.social-item:last-child {
+    margin-right: 0;
+}
+
+/* ============
+    Pagination
+   ============ */
 .pagination {
     margin: 0;
 }

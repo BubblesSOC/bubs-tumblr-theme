@@ -6,9 +6,9 @@
 <head>
     <script>
         // for the aesthetic~
-        if(window.location.pathname == '/') {
-            window.location.replace('/tagged/x');
-        }
+        // if(window.location.pathname == '/') {
+        //     window.location.replace('/tagged/x');
+        // }
     </script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -56,6 +56,7 @@
     <meta name="text:Ask Link Label" content="Ask">
     <meta name="text:Submit Link Label" content="Submit">
     <meta name="text:Alternate Description" content="">
+    <meta name="text:Footer Description" content="">
 
     <meta name="text:8tracks URL" content="">
     <meta name="text:ao3 URL" content="">
@@ -75,13 +76,12 @@
     <link rel="alternate" type="application/rss+xml" href="{RSS}">
 
     <!-- Custom Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla:400,400i,700,700i&amp;subset=latin-ext">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amiri:400,400i,700,700i|Roboto:300,300i,400,400i,500,500i">
     <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/zAVojo6hb/bubblessoc-icons.min.css">
     <!-- /Custom Fonts -->
 
     <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-    <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/FhWomjypw/main.css">
+    <link rel="stylesheet" href="http://static.tumblr.com/ekpsoyi/5tCoo7rev/main.css">
 
     <style>
         ::-moz-selection {
@@ -102,8 +102,7 @@
         a:hover {
             color: {color:Link Hover};
         }
-        h1:not(.lightcaps), h2:not(.lightcaps), h3:not(.lightcaps),
-        .menu-link, #day-pagination {
+        h1:not(.lightcaps), h2:not(.lightcaps), h3:not(.lightcaps) {
             font-family: {font:Heading Font};
         }
         hr {
@@ -135,6 +134,9 @@
         #blog-title-link:hover {
             color: {color:Link};
         }
+        .menu-link {
+            color: rgba({RGBcolor:Text}, 0.7);
+        }
         .social-icon {
             color: rgba({RGBcolor:Link}, 0.75);
         }
@@ -156,7 +158,8 @@
         .answer-container,
         .type-link .post-body,
         .type-answer .post-body,
-        .note-count {
+        .note-count,
+        #blog-footer {
             border-top-color: {color:Borders};
         }
         .the-quote,
@@ -230,14 +233,14 @@
                     {block:HasPages}
                     {block:Pages}
                     <li class="page menu-item">
-                        <a href="{URL}" class="page-link menu-link">{Label}</a>
+                        <a href="{URL}" class="page-link menu-link lightcaps">{Label}</a>
                     </li>
                     {/block:Pages}
                     {/block:HasPages}
 
                     {block:AskEnabled}
                     <li class="menu-item">
-                        <a href="/ask" class="menu-link">
+                        <a href="/ask" class="menu-link lightcaps">
                             {block:IfAskLinkLabel}{text:Ask Link Label}{/block:IfAskLinkLabel}
                             {block:IfNotAskLinkLabel}{AskLabel}{/block:IfNotAskLinkLabel}
                         </a>
@@ -246,7 +249,7 @@
 
                     {block:IfShowSubmitLink}{block:SubmissionsEnabled}
                     <li class="menu-item">
-                        <a href="/submit" class="menu-link">
+                        <a href="/submit" class="menu-link lightcaps">
                             {block:IfSubmitLinkLabel}{text:Submit Link Label}{/block:IfSubmitLinkLabel}
                             {block:IfNotSubmitLinkLabel}{SubmitLabel}{/block:IfNotSubmitLinkLabel}
                         </a>
@@ -254,56 +257,8 @@
                     {/block:SubmissionsEnabled}{/block:IfShowSubmitLink}
 
                     <li class="menu-item">
-                        <a href="/archive" class="menu-link">{lang:Archive}</a>
+                        <a href="/archive" class="menu-link lightcaps">{lang:Archive}</a>
                     </li>
-                </ul>
-
-                <ul id="social-icons">
-                    {block:IfTwitterURL}
-                    <li class="social-item">
-                        <a href="{text:Twitter URL}" class="social-icon icon-twitter" target="_blank"></a>
-                    </li>
-                    {/block:IfTwitterURL}
-                    {block:IfFacebookURL}
-                    <li class="social-item">
-                        <a href="{text:Facebook URL}" class="social-icon icon-facebook" target="_blank"></a>
-                    </li>
-                    {/block:IfFacebookURL}
-                    {block:IfGithubURL}
-                    <li class="social-item">
-                        <a href="{text:Github URL}" class="social-icon icon-github" target="_blank"></a>
-                    </li>
-                    {/block:IfGithubURL}
-                    {block:IfInstagramURL}
-                    <li class="social-item">
-                        <a href="{text:Instagram URL}" class="social-icon icon-instagram" target="_blank"></a>
-                    </li>
-                    {/block:IfInstagramURL}
-                    {block:IfAo3URL}
-                    <li class="social-item">
-                        <a href="{text:ao3 URL}" class="social-icon icon-ao3" target="_blank"></a>
-                    </li>
-                    {/block:IfAo3URL}
-                    {block:If8tracksURL}
-                    <li class="social-item">
-                        <a href="{text:8tracks URL}" class="social-icon icon-8tracks" target="_blank"></a>
-                    </li>
-                    {/block:If8tracksURL}
-                    {block:IfSpotifyURL}
-                    <li class="social-item">
-                        <a href="{text:Spotify URL}" class="social-icon icon-spotify" target="_blank"></a>
-                    </li>
-                    {/block:IfSpotifyURL}
-                    {block:IfSteamURL}
-                    <li class="social-item">
-                        <a href="{text:Steam URL}" class="social-icon icon-steam" target="_blank"></a>
-                    </li>
-                    {/block:IfSteamURL}
-                    {block:IfTwitchURL}
-                    <li class="social-item">
-                        <a href="{text:Twitch URL}" class="social-icon icon-twitch" target="_blank"></a>
-                    </li>
-                    {/block:IfTwitchURL}
                 </ul>
             </nav>
         </div> <!-- #header-wrapper -->
@@ -668,7 +623,7 @@
         </div> <!-- #the-posts -->
     </main> <!-- #posts-container -->
 
-    <footer id="blog-footer">
+    <footer id="blog-footer" class="clearfix">
         {block:Pagination}
         <ul id="blog-pagination" class="pagination clearfix">
             {block:PreviousPage}
@@ -688,14 +643,14 @@
         <ul id="day-pagination" class="pagination clearfix">
             {block:PreviousDayPage}
             <li id="prev-day" class="previous">
-                <a href="{PreviousDayPage}" title="{lang:Previous day}" class="prev-link icon-left">
+                <a href="{PreviousDayPage}" title="{lang:Previous day}" class="prev-link icon-left lightcaps">
                     {ShortMonth} {DayOfMonth}
                 </a>
             </li>
             {/block:PreviousDayPage}
             {block:NextDayPage}
             <li id="next-day" class="next">
-                <a href="{NextDayPage}" title="{lang:Next day}" class="next-link iconr-right">
+                <a href="{NextDayPage}" title="{lang:Next day}" class="next-link iconr-right lightcaps">
                     {ShortMonth} {DayOfMonth}
                 </a>
             </li>
@@ -703,8 +658,64 @@
         </ul>
         {/block:DayPagination}
 
+        {block:IfFooterDescription}
+        <p id="footer-description">{text:Footer Description}</p>
+        {/block:IfFooterDescription}
+
+        <ul id="social-icons">
+            {block:IfTwitterURL}
+            <li class="social-item">
+                <a href="{text:Twitter URL}" class="social-icon icon-twitter" target="_blank"></a>
+            </li>
+            {/block:IfTwitterURL}
+            {block:IfFacebookURL}
+            <li class="social-item">
+                <a href="{text:Facebook URL}" class="social-icon icon-facebook" target="_blank"></a>
+            </li>
+            {/block:IfFacebookURL}
+            {block:IfGithubURL}
+            <li class="social-item">
+                <a href="{text:Github URL}" class="social-icon icon-github" target="_blank"></a>
+            </li>
+            {/block:IfGithubURL}
+            {block:IfInstagramURL}
+            <li class="social-item">
+                <a href="{text:Instagram URL}" class="social-icon icon-instagram" target="_blank"></a>
+            </li>
+            {/block:IfInstagramURL}
+            {block:IfAo3URL}
+            <li class="social-item">
+                <a href="{text:ao3 URL}" class="social-icon icon-ao3" target="_blank"></a>
+            </li>
+            {/block:IfAo3URL}
+            {block:If8tracksURL}
+            <li class="social-item">
+                <a href="{text:8tracks URL}" class="social-icon icon-8tracks" target="_blank"></a>
+            </li>
+            {/block:If8tracksURL}
+            {block:IfSpotifyURL}
+            <li class="social-item">
+                <a href="{text:Spotify URL}" class="social-icon icon-spotify" target="_blank"></a>
+            </li>
+            {/block:IfSpotifyURL}
+            {block:IfSteamURL}
+            <li class="social-item">
+                <a href="{text:Steam URL}" class="social-icon icon-steam" target="_blank"></a>
+            </li>
+            {/block:IfSteamURL}
+            {block:IfTwitchURL}
+            <li class="social-item">
+                <a href="{text:Twitch URL}" class="social-icon icon-twitch" target="_blank"></a>
+            </li>
+            {/block:IfTwitchURL}
+        </ul>
+
+        <p id="theme-credit-long">
+            <a href="https://github.com/BubblesSOC/bubs-tumblr-theme/tree/bubblessoc" target="_blank">Theme</a> inspired by <a href="https://www.tumblr.com/theme/38586" target="_blank">Wallstocker</a>, designed by me
+        </p>
+
         <a href="#" title="Back to Top" id="elevator" class="icon-up-bold badge"></a>
-        <a href="http://bubbless0c.tumblr.com" target="_blank" title="Theme by Me" id="theme-credit" class="icon-heart-outline badge"></a>
+        <a href="http://gomjabbars.tumblr.com" target="_blank" title="Theme by Me" id="theme-credit" class="icon-heart-outline badge"></a>
     </footer>  <!-- #blog-footer -->
 </div> <!-- #wrapper -->
 
