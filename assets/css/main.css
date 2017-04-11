@@ -301,13 +301,12 @@ pre {
     top: 0;
     left: 20px;
     font-size: 1.125rem;
-    letter-spacing: 5px;
 }
 
 #blog-description {
     top: 1.625rem;
     left: 20px;
-    font: italic 0.75rem/0.8125rem Amiri, Baskerville, Georgia, "Times New Roman", Times, serif;
+    font: italic 0.8125rem/0.8125rem Amiri, Baskerville, Georgia, "Times New Roman", Times, serif;
     height: 0.8125rem;
 }
 
@@ -706,6 +705,10 @@ pre {
 /* =======
     Pages
    ======= */
+#ask_form {
+    margin-bottom: 1em;
+}
+
 .elsewhere, .left-column, .right-column {
     line-height: 1.5625rem;
 }
@@ -773,7 +776,6 @@ pre {
 
 .tags {
     line-height: 150%;
-    text-transform: lowercase;
 }
 
 .index .tags {

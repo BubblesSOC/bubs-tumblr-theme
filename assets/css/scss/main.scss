@@ -289,7 +289,7 @@ $blog-header-height: px2rem(124px);
     top: 0;
     left: $post-lr-padding;
     font-size: px2rem(18px);
-    letter-spacing: 5px;
+    // letter-spacing: 3px;
 }
 
 #blog-description {
@@ -297,7 +297,7 @@ $blog-header-height: px2rem(124px);
     // should be: 18px (#blog-title) + 13px
     // but I preferred the look of: 13px (#social-icons) + 13px
     left: $post-lr-padding;
-    font: italic #{px2rem(12px)}/#{px2rem(13px)} $serif-font-family;
+    font: italic #{px2rem(13px)}/#{px2rem(13px)} $serif-font-family;
     height: px2rem(13px);
 }
 
@@ -688,6 +688,10 @@ $post-title-rem: px2rem($post-title-size);
     Pages
    ======= */
 
+#ask_form {
+    margin-bottom: 1em;
+}
+
 .elsewhere {
     line-height: px2rem(25px);
 }
@@ -758,7 +762,7 @@ $post-title-rem: px2rem($post-title-size);
 // Begin Post Tags
 .tags {
     line-height: 150%;
-    text-transform: lowercase;
+    // text-transform: lowercase;
 }
 
 .index {

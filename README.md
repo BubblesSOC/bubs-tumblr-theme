@@ -3,6 +3,8 @@ Bubs' Tumblr Theme
 
 It's a theme. For Tumblr. Crafted by Bubs.
 
+#### Preview: [gomjabbars.tumblr.com](http://gomjabbars.tumblr.com)
+
 Credits
 -------
 
