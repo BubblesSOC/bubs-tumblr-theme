@@ -978,7 +978,7 @@ ref: http://stackoverflow.com/a/21715659/954677
     content: '\e802';
 }
 .note:not(.more_notes_link_container).reply:before {
-    content: '\e800';
+    content: '\f0e5';
 }
 .note:not(.more_notes_link_container):last-child {
     padding-bottom: 0.8125rem;
