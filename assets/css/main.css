@@ -126,10 +126,10 @@ pre {
     text-transform: uppercase;
     letter-spacing: 2px;
     line-height: 100%;
-    font-family: Amiri, Baskerville, Georgia, "Times New Roman", Times, serif;
+    font-family: "Amiri", "Baskerville", Georgia, "Times New Roman", Times, serif;
 }
 
-.transitions-enabled a {
+.transitions-enabled a, .transitions-enabled .note:before {
     -webkit-transition: color 0.2s ease-in-out;
     -moz-transition: color 0.2s ease-in-out;
     -o-transition: color 0.2s ease-in-out;
@@ -202,7 +202,7 @@ pre {
     left: 0;
     z-index: 10;
     width: 100%;
-    height: 7.75rem;
+    height: 7.4375rem;
     padding: 40px 0;
     border-bottom: 1px solid transparent;
     -webkit-box-sizing: border-box;
@@ -216,7 +216,7 @@ pre {
 }
 
 #posts-container {
-    margin-top: 7.75rem;
+    margin-top: 7.4375rem;
 }
 
 .permalink #posts-container.has-posts {
@@ -306,7 +306,7 @@ pre {
 #blog-description {
     top: 1.625rem;
     left: 20px;
-    font: italic 0.8125rem/0.8125rem Amiri, Baskerville, Georgia, "Times New Roman", Times, serif;
+    font: italic 0.8125rem/0.8125rem "Amiri", "Baskerville", Georgia, "Times New Roman", Times, serif;
     height: 0.8125rem;
 }
 
@@ -338,7 +338,7 @@ pre {
    ========================================================================== */
 .results-title {
     margin: 0 20px 20px;
-    font-family: inherit;
+    font-family: inherit !important;
     font-weight: 300;
     font-size: 0.75rem;
     text-transform: lowercase;
@@ -517,7 +517,7 @@ pre {
 }
 
 .quote-source {
-    font-family: Amiri, Baskerville, Georgia, "Times New Roman", Times, serif;
+    font-family: "Amiri", "Baskerville", Georgia, "Times New Roman", Times, serif;
     font-size: 0.875rem;
 }
 
@@ -638,8 +638,23 @@ pre {
     position: absolute;
     top: 25px;
     left: 25px;
-    background-color: #fff;
+    background-color: #f2f2f2;
     opacity: 0.7;
+}
+
+.audio_player {
+    width: 27px;
+    height: 27px;
+    overflow: hidden;
+}
+
+.tumblr_audio_player {
+    width: 27px !important;
+    max-width: 27px !important;
+    height: 27px;
+    overflow: hidden;
+    position: relative;
+    left: -3px;
 }
 
 /* =============
@@ -754,7 +769,7 @@ pre {
 
 .permalink .post-aside {
     position: fixed;
-    top: 7.75rem;
+    top: 7.4375rem;
     width: 250px;
     margin-left: 560px;
 }
@@ -922,6 +937,7 @@ ref: http://stackoverflow.com/a/21715659/954677
 .notes {
     margin: 0;
     font-size: 0.75rem;
+    line-height: 190%;
 }
 .notes .avatar_frame {
     display: none;
@@ -930,7 +946,41 @@ ref: http://stackoverflow.com/a/21715659/954677
     margin: 0.5em 0;
 }
 
-.note:last-child:not(.more_notes_link_container) {
+.note:not(.more_notes_link_container) {
+    padding-left: 1.125rem;
+    position: relative;
+}
+.note:not(.more_notes_link_container):before {
+    font-family: "bubblessoc-icons";
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+    display: inline-block;
+    text-decoration: inherit;
+    text-align: center;
+  /* For safety - reset parent styles, that can break glyph codes*/
+    font-variant: normal;
+    text-transform: none;
+  /* fix buttons height, for twitter bootstrap */
+    line-height: 1em;
+  /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 0.625rem;
+    position: absolute;
+    top: 7px;
+    left: 0;
+}
+.note:not(.more_notes_link_container).like:before {
+    content: '\e813';
+}
+.note:not(.more_notes_link_container).reblog:before {
+    content: '\e802';
+}
+.note:not(.more_notes_link_container).reply:before {
+    content: '\e800';
+}
+.note:not(.more_notes_link_container):last-child {
     padding-bottom: 0.8125rem;
 }
 

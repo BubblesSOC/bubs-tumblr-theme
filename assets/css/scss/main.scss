@@ -133,7 +133,7 @@ pre {
 }
 
 .transitions-enabled {
-    a {
+    a, .note:before {
         @include transition(color);
     }
     .badge, .link-container, .more_notes_link {
@@ -178,8 +178,16 @@ pre {
     max-width: none;
 }
 
-$blog-header-height: px2rem(124px);
-// 40px (padding-top) + 18px + 13px (#blog-title) + 13px (#blog-description) + 40px (padding-bottom)
+// Header Elements
+$title-height: 18px; // #blog-title
+$title-height-compact: 13px; // #blog-title
+$title-margin-bottom: 8px;
+$description-height: 13px; // #blog-description
+$header-padding: 40px;
+$header-padding-compact: 29px;
+
+$header-height: px2rem($title-height + $title-margin-bottom + $description-height + ($header-padding * 2));
+// 40px (padding-top) + 18px + 8px (#blog-title) + 13px (#blog-description) + 40px (padding-bottom)
 
 #blog-header {
     position: fixed;
@@ -187,20 +195,20 @@ $blog-header-height: px2rem(124px);
     left: 0;
     z-index: 10;
     width: 100%;
-    height: $blog-header-height;
-    padding: 40px 0;
+    height: $header-height;
+    padding: $header-padding 0;
     border-bottom: 1px solid transparent;
     @include border-box-sizing;
 
     &.compact {
-        height: px2rem(71px);
+        height: px2rem($title-height-compact + ($header-padding-compact * 2));
         // 29px (padding-top) + 13px (#blog-title) + 29px (padding-bottom)
-        padding: 29px 0;
+        padding: $header-padding-compact 0;
     }
 }
 
 #posts-container {
-    margin-top: $blog-header-height;
+    margin-top: $header-height;
 }
 
 .permalink #posts-container.has-posts {
@@ -288,17 +296,15 @@ $blog-header-height: px2rem(124px);
 #blog-title {
     top: 0;
     left: $post-lr-padding;
-    font-size: px2rem(18px);
-    // letter-spacing: 3px;
+    font-size: px2rem($title-height);
 }
 
+$desc-height-rem: px2rem($description-height);
 #blog-description {
-    top: px2rem(26px);
-    // should be: 18px (#blog-title) + 13px
-    // but I preferred the look of: 13px (#social-icons) + 13px
+    top: px2rem($title-height + $title-margin-bottom);
     left: $post-lr-padding;
-    font: italic #{px2rem(13px)}/#{px2rem(13px)} $serif-font-family;
-    height: px2rem(13px);
+    font: italic #{$desc-height-rem}/#{$desc-height-rem} $serif-font-family;
+    height: $desc-height-rem;
 }
 
 #main-menu {
@@ -316,7 +322,7 @@ $blog-header-height: px2rem(124px);
 
 .compact {
     #blog-title {
-        font-size: px2rem(13px);
+        font-size: px2rem($title-height-compact);
     }
     #blog-description {
         height: 0;
@@ -330,7 +336,7 @@ $blog-header-height: px2rem(124px);
 
 .results-title {
     margin: 0 $post-lr-padding 20px;
-    font-family: inherit;
+    font-family: inherit !important;
     font-weight: 300;
     font-size: px2rem(12px);
     text-transform: lowercase;
@@ -626,8 +632,23 @@ $post-title-rem: px2rem($post-title-size);
     position: absolute;
     top: 25px;
     left: 25px;
-    background-color: #fff;
+    background-color: #f2f2f2;
     opacity: 0.7;
+}
+
+// fix for tumblr's changes to the default audio player
+.audio_player {
+    width: 27px;
+    height: 27px;
+    overflow: hidden;
+}
+.tumblr_audio_player {
+    width: 27px !important;
+    max-width: 27px !important;
+    height: 27px;
+    overflow: hidden;
+    position: relative;
+    left: -3px;
 }
 
 /* =============
@@ -737,7 +758,7 @@ $post-title-rem: px2rem($post-title-size);
 
 .permalink .post-aside {
     position: fixed;
-    top: $blog-header-height;
+    top: $header-height;
     width: $post-aside-width;
     margin-left: $permalink-post-width + $post-lr-padding;
 }
@@ -911,6 +932,7 @@ ref: http://stackoverflow.com/a/21715659/954677
 .notes {
     margin: 0;
     font-size: px2rem(12px);
+    line-height: 190%;
 
     .avatar_frame {
         display: none;
@@ -920,9 +942,56 @@ ref: http://stackoverflow.com/a/21715659/954677
     }
 }
 
-.note:last-child:not(.more_notes_link_container) {
-    padding-bottom: $body-font-rem;
+.note:not(.more_notes_link_container) {
+    padding-left: px2rem(10px + 8px); // icon width + icon margin
+    position: relative;
+
+    &:before {
+        // copied directly from bubblessoc-icons.css
+        font-family: "bubblessoc-icons";
+        font-style: normal;
+        font-weight: normal;
+        speak: none;
+        display: inline-block;
+        text-decoration: inherit;
+        text-align: center;
+
+        /* For safety - reset parent styles, that can break glyph codes*/
+        font-variant: normal;
+        text-transform: none;
+
+        /* fix buttons height, for twitter bootstrap */
+        line-height: 1em;
+
+        /* Better Font Rendering =========== */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+
+        // added for main.css
+        font-size: px2rem(10px);
+        position: absolute;
+        top: 7px;
+        left: 0;
+    }
+
+    &.like:before {
+        content: '\e813';
+    }
+    &.reblog:before {
+        content: '\e802';
+    }
+    &.reply:before {
+        content: '\e800';
+    }
+
+    &:last-child {
+        padding-bottom: $body-font-rem;
+    }
 }
+
+// .note:last-child:not(.more_notes_link_container) {
+//     padding-bottom: $body-font-rem;
+// }
 
 .more_notes_link_container {
     font-size: px2rem(10px);

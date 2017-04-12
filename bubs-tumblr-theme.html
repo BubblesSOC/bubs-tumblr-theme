@@ -70,12 +70,12 @@
     <link rel="alternate" type="application/rss+xml" href="{RSS}">
 
     <!-- Custom Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amiri:400,400i,700,700i|Roboto:300,300i,400,400i,500,500i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amiri:400,400i,700,700i|Prata|Roboto:300,300i,400,400i,500,500i">
     <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/zAVojo6hb/bubblessoc-icons.min.css">
     <!-- /Custom Fonts -->
 
     <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-    <link rel="stylesheet" href="http://static.tumblr.com/ekpsoyi/ljdoo95af/main.css">
+    <link rel="stylesheet" href="http://static.tumblr.com/ekpsoyi/QHNooaytj/main.css">
 
     <style>
         ::-moz-selection {
@@ -97,7 +97,7 @@
             color: {color:Link Hover};
         }
         h1:not(.lightcaps), h2:not(.lightcaps), h3:not(.lightcaps) {
-            font-family: {font:Heading Font};
+            font-family: 'Prata', {font:Heading Font};
         }
         hr {
             border-top-color: {color:Borders};
@@ -157,7 +157,7 @@
         .question-author,
         .answer-author,
         .permalink .post-date {
-            font-family: {font:Heading Font};
+            font-family: 'Prata', {font:Heading Font};
         }
         .chat-line.even,
         .link-container:hover,
@@ -172,6 +172,12 @@
         }
         .like_button:hover + .like-icon {
             color: {color:Link Hover};
+        }
+        .note:before {
+            color: {color:Highlight Hover};
+        }
+        .note:hover:before {
+            color: {color:Link};
         }
 
         /* ==============
@@ -260,17 +266,17 @@
 
     <main id="posts-container"{block:PermalinkPage}{block:Posts}{block:Date} class="has-posts"{/block:Date}{/block:Posts}{/block:PermalinkPage}>
         {block:TagPage}
-        <h2 class="results-title lightcaps icon-tag">
+        <h2 class="results-title icon-tag">
             Posts tagged as <em class="the-query">{Tag}</em>
         </h2>
         {/block:TagPage}
         {block:SearchPage}
-        <h2 class="results-title lightcaps icon-search">
+        <h2 class="results-title icon-search">
             Search results for <em class="the-query">{SearchQuery}</em>:
         </h2>
         {/block:SearchPage}
         {block:DayPage}
-        <h2 class="results-title lightcaps icon-clock">
+        <h2 class="results-title icon-clock">
             {Month} {DayOfMonth}, {Year}
         </h2>
         {/block:DayPage}
