@@ -11,3 +11,4 @@ Credits
 - [imagesLoaded](http://imagesloaded.desandro.com/)
 - [Masonry](http://masonry.desandro.com/)
 - [NProgress.js](http://ricostacruz.com/nprogress/)
+- [TinyTip.js](http://sweefty.com/tinytip/)

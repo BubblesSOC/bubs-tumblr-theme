@@ -975,23 +975,19 @@ ref: http://stackoverflow.com/a/21715659/954677
     }
 
     &.like:before {
-        content: '\e813';
+        content: '\e813'; // icon-heart-filled
     }
     &.reblog:before {
-        content: '\e802';
+        content: '\e802'; // icon-reblog
     }
     &.reply:before {
-        content: '\f0e5';
+        content: '\f0e5'; // icon-comment-outline
     }
 
     &:last-child {
         padding-bottom: $body-font-rem;
     }
 }
-
-// .note:last-child:not(.more_notes_link_container) {
-//     padding-bottom: $body-font-rem;
-// }
 
 .more_notes_link_container {
     font-size: px2rem(10px);
@@ -1123,6 +1119,14 @@ ref: http://stackoverflow.com/a/21715659/954677
         position: relative;
         left: px2rem(1px);
     }
+}
+
+.tinytip {
+    font-size: px2rem(10px);
+    line-height: px2rem(10px);
+    height: px2rem(10px);
+    @include border-radius(3px);
+    padding: 6px;
 }
 
 /* ==========================================================================

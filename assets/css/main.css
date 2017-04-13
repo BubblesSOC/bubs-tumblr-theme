@@ -1085,6 +1085,17 @@ ref: http://stackoverflow.com/a/21715659/954677
     left: 0.0625rem;
 }
 
+.tinytip {
+    font-size: 0.625rem;
+    line-height: 0.625rem;
+    height: 0.625rem;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    padding: 6px;
+}
+
 /* ==========================================================================
     Media Queries
    ========================================================================== */
