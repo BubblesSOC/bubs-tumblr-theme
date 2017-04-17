@@ -75,7 +75,7 @@
     <!-- /Custom Fonts -->
 
     <link rel="stylesheet" href="http://static.tumblr.com/f8gk9za/eLuoakle3/normalize.min.css">
-    <link rel="stylesheet" href="http://static.tumblr.com/ekpsoyi/iBQoobbqb/main.css">
+    <link rel="stylesheet" href="http://static.tumblr.com/ekpsoyi/dFNoodfji/main.css">
 
     <style>
         ::-moz-selection {
@@ -283,9 +283,25 @@
         </h2>
         {/block:SearchPage}
         {block:DayPage}
-        <h2 class="results-title icon-clock">
-            {Month} {DayOfMonth}, {Year}
-        </h2>
+        {block:DayPagination}
+        <ul id="day-pagination" class="pagination results-title">
+            {block:PreviousDayPage}
+            <li id="prev-day" class="previous">
+                <a href="{PreviousDayPage}" title="{lang:Previous day}" class="prev-link icon-left">
+                    {Month} {DayOfMonth}
+                </a>
+            </li>
+            {/block:PreviousDayPage}
+            <li id="current-day">{Month} {DayOfMonth}, {Year}</li>
+            {block:NextDayPage}
+            <li id="next-day" class="next">
+                <a href="{NextDayPage}" title="{lang:Next day}" class="next-link iconr-right">
+                    {Month} {DayOfMonth}
+                </a>
+            </li>
+            {/block:NextDayPage}
+        </ul>
+        {/block:DayPagination}
         {/block:DayPage}
 
         <div id="the-posts" class="clearfix">
@@ -528,6 +544,7 @@
                 <aside class="post-aside clearfix{block:Audio}{block:ExternalAudio} has-external-audio{/block:ExternalAudio}{/block:Audio}">
                     <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {24HourWithZero}:{Minutes}:{Seconds}" title="{DayOfWeek}, {Month} {DayOfMonth}, {Year} {12Hour}:{Minutes}{AmPm}" class="post-date{block:PermalinkPage} icon-clock lightcaps{/block:PermalinkPage}">
                         {block:IndexPage}<a href="{Permalink}" title="{lang:Permalink}: {ShortURL}" class="post-date-link">{/block:IndexPage}
+                        <!--{block:PermalinkPage}<a href="/day/{Year}/{MonthNumberWithZero}/{DayOfMonthWithZero}/" class="post-date-link">{/block:PermalinkPage}-->
                             {TimeAgo}
                         {block:IndexPage}</a>{/block:IndexPage}
                     </time>
@@ -645,25 +662,6 @@
             {/block:NextPage}
         </ul>
         {/block:Pagination}
-
-        {block:DayPagination}
-        <ul id="day-pagination" class="pagination clearfix">
-            {block:PreviousDayPage}
-            <li id="prev-day" class="previous">
-                <a href="{PreviousDayPage}" title="{lang:Previous day}" class="prev-link icon-left lightcaps">
-                    {ShortMonth} {DayOfMonth}
-                </a>
-            </li>
-            {/block:PreviousDayPage}
-            {block:NextDayPage}
-            <li id="next-day" class="next">
-                <a href="{NextDayPage}" title="{lang:Next day}" class="next-link iconr-right lightcaps">
-                    {ShortMonth} {DayOfMonth}
-                </a>
-            </li>
-            {/block:NextDayPage}
-        </ul>
-        {/block:DayPagination}
 
         {block:IfFooterDescription}
         <p id="footer-description">{text:Footer Description}</p>

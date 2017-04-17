@@ -261,7 +261,7 @@ $header-height: px2rem($title-height + $title-margin-bottom + $description-heigh
 .menu-item, .social-item,
 .play-count, .permalink .external-audio,
 .submission, .via, .source,
-.next, .previous, .page-number {
+.next, .previous, #current-day {
     display: inline-block;
 }
 
@@ -1052,41 +1052,34 @@ ref: http://stackoverflow.com/a/21715659/954677
     Pagination
    ============ */
 
-.pagination {
+.pagination:not(#day-pagination) {
     margin: 0;
 }
 
-.previous, .next {
+.previous:not(#prev-day), .next:not(#next-day) {
     position: fixed;
     top: 50%;
 }
 
-.previous {
+.previous:not(#prev-day) {
     left: 20px;
     text-align: left;
 }
 
-.next {
+.next:not(#next-day) {
     right: 20px;
     text-align: right;
 }
 
+#prev-day:after {
+    content: '/';
+    margin-right: 5px;
+}
 
-// #day-pagination {
-//     margin: 0 20px;
-//     text-transform: lowercase;
-// }
-//
-// #prev-day {
-//     float: left;
-//     width: 50%;
-// }
-//
-// #next-day {
-//     float: right;
-//     width: 50%;
-//     text-align: right;
-// }
+#next-day:before {
+    content: '/';
+    margin-left: 5px;
+}
 
 /* =========
     Buttons
@@ -1132,22 +1125,6 @@ ref: http://stackoverflow.com/a/21715659/954677
 /* ==========================================================================
     Media Queries
    ========================================================================== */
-
-// $mq1-width: $wrapper-max-width + ($badge-width-height + 20px) * 2 - 1;
-// @media screen and (max-width: $mq1-width) {
-//     .index {
-//         .pagination {
-//             margin-bottom: 20px;
-//         }
-//         .next, .previous {
-//             position: static;
-//             padding: 0 $post-lr-padding;
-//         }
-//         .next {
-//             float: right;
-//         }
-//     }
-// }
 
 $mq-max-width: ($post-min-width * 2) + ($badge-width-height + 20px) * 2 - 1;
 @media screen and (max-width: $mq-max-width) {

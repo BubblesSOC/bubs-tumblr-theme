@@ -267,7 +267,7 @@ pre {
 .menu-item, .social-item,
 .play-count, .permalink .external-audio,
 .submission, .via, .source,
-.next, .previous, .page-number {
+.next, .previous, #current-day {
     display: inline-block;
 }
 
@@ -1036,23 +1036,33 @@ ref: http://stackoverflow.com/a/21715659/954677
 /* ============
     Pagination
    ============ */
-.pagination {
+.pagination:not(#day-pagination) {
     margin: 0;
 }
 
-.previous, .next {
+.previous:not(#prev-day), .next:not(#next-day) {
     position: fixed;
     top: 50%;
 }
 
-.previous {
+.previous:not(#prev-day) {
     left: 20px;
     text-align: left;
 }
 
-.next {
+.next:not(#next-day) {
     right: 20px;
     text-align: right;
+}
+
+#prev-day:after {
+    content: '/';
+    margin-right: 5px;
+}
+
+#next-day:before {
+    content: '/';
+    margin-left: 5px;
 }
 
 /* =========
