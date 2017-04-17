@@ -2,6 +2,9 @@
 ########
 assets/fonts/*
 etc/*
+.sass-cache/*
+*.css.map
+*.css.old
 
 # Packages #
 ############
