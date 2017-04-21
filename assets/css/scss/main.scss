@@ -534,16 +534,19 @@ $post-title-rem: px2rem($post-title-size);
     }
 }
 
-.link-name:after {
-    margin-left: px2rem(10px);
+.link-name {
+    margin-bottom: 0;
+
+    &:after {
+        margin-left: px2rem(10px);
+    }
 }
 
 .link-excerpt {
     margin: 0 1em;
 
     .the-excerpt {
-        font-size: px2rem(12px);
-        line-height: 150%;
+        font: italic #{$body-font-rem}/150% $serif-font-family;
         margin-bottom: 0;
     }
 }

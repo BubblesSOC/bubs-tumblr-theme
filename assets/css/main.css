@@ -540,6 +540,9 @@ pre {
     margin-top: 0;
 }
 
+.link-name {
+    margin-bottom: 0;
+}
 .link-name:after {
     margin-left: 0.625rem;
 }
@@ -548,8 +551,7 @@ pre {
     margin: 0 1em;
 }
 .link-excerpt .the-excerpt {
-    font-size: 0.75rem;
-    line-height: 150%;
+    font: italic 0.8125rem/150% "Amiri", "Baskerville", Georgia, "Times New Roman", Times, serif;
     margin-bottom: 0;
 }
 
